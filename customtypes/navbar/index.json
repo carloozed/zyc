@@ -1,0 +1,10 @@
+{
+  "format": "custom",
+  "id": "navbar",
+  "json": {
+    "Main": {}
+  },
+  "label": "Navbar",
+  "repeatable": false,
+  "status": true
+}

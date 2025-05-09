@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "Max Fett";
+    src: url("/fonts/MaxFett-Black-Trial.woff2");
+}
+
+@font-face {
+    font-family: "ABC Synt Regular";
+    src: url("/fonts/ABCSynt-Regular-Trial.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Review Mono";
+    src: url("/fonts/ReviewMonoRegularTrial.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+:root {
+    --title-font: "Max Fett";
+    --subtitle-font: "ABC Synt Regular";
+    --text-font: "Review Mono"
+}
+
+
+h1,
+h2,
+h3 {
+    font-family: var(--title-font)
+}
+
+h4,
+h5,
+h6 {
+    font-family: var(--subtitle-font);
+    background-color: red;
+}
+
+p,
+li,
+ul {
+    font-family: var(--text-font);
+    background-color: red;
+}

@@ -1,0 +1,10 @@
+{
+  "format": "custom",
+  "id": "download_bar",
+  "json": {
+    "Main": {}
+  },
+  "label": "Download Bar",
+  "repeatable": false,
+  "status": true
+}
