@@ -1,0 +1,7 @@
+.main {
+    background-image: url("https://images.prismic.io/zurichyouthclassical/aB4UXydWJ-7kR1pv_230473_us_8244_web.jpg?auto=format,compress");
+    min-height: 100svh;
+    min-width: 100svw;
+    overflow: hidden;
+    position: relative;
+}
