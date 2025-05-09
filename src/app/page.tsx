@@ -11,11 +11,15 @@ import styles from './page.module.css';
 export default async function Home() {
   const client = createClient();
   const home = await client.getByUID('page', 'home');
+  const background = await client.getSingle('landing_background_image');
 
   // <SliceZone> renders the page's slices.
 
   return (
-    <main className={styles.main}>
+    <main
+      className={styles.main}
+      style={{ backgroundImage: `url(${background.data.image.url})` }}
+    >
       <SliceZone slices={home.data.slices} components={components} />
     </main>
   );

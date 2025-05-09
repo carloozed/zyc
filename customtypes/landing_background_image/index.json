@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "landing_background_image",
+  "label": "Landing Background Image",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

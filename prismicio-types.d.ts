@@ -22,6 +22,38 @@ export type DownloadBarDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Landing Background Image documents
+ */
+interface LandingBackgroundImageDocumentData {
+  /**
+   * Image field in *Landing Background Image*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing_background_image.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Landing Background Image document from Prismic
+ *
+ * - **API ID**: `landing_background_image`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LandingBackgroundImageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<LandingBackgroundImageDocumentData>,
+    "landing_background_image",
+    Lang
+  >;
+
 interface NavbarDocumentData {}
 
 /**
@@ -132,6 +164,7 @@ export type TimelineBarDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | DownloadBarDocument
+  | LandingBackgroundImageDocument
   | NavbarDocument
   | PageDocument
   | TimelineBarDocument;
@@ -204,6 +237,8 @@ declare module "@prismicio/client" {
     export type {
       DownloadBarDocument,
       DownloadBarDocumentData,
+      LandingBackgroundImageDocument,
+      LandingBackgroundImageDocumentData,
       NavbarDocument,
       NavbarDocumentData,
       PageDocument,
