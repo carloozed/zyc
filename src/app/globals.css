@@ -32,13 +32,13 @@
 
     --accentred: #FBCEB1;
     --accentgreen: #D9E4D4;
-    --lightgrey: #F5F5F5;
+    --lightgrey: #D9D9DD;
     --darkgrey: #B3B3B3;
     --contestblue: #9AE4F1;
     --cadenzagold: #E8CA57;
     --crescendogold: #FFC130;
     --black: #000;
-    --white: #000;
+    --white: #fff;
 
     /* font sizes */
 
@@ -52,6 +52,10 @@
     --subtitle-m: 2rem;
     /* 24px */
     --subtitle-s: 1.5rem;
+
+    /* 20px */
+    --text-large: 1.25rem;
+
     /* 16px */
     --text: 1rem;
     /* 12px */
@@ -62,6 +66,31 @@
     --text-2xs: 0.25rem;
     /* 2px */
     --text-3xs: 0.125rem;
+
+
+    --fontweight-small: 300;
+
+    /* paddings */
+    --padding-m: var(--text-large);
+    --padding-sm: var(--text);
+    --padding-s: var(--text-s);
+    --padding-xs: var(--text-xs);
+    --padding-2xs: var(--text-2xs);
+
+
+    /* borders */
+    --border-thin: 0.5px solid var(--black);
+    --radius-s: 8px;
+
+
+    /* animation stuff */
+
+    --bezier: cubic-bezier(0.35, 0.03, 0.24, 1);
+    --animationtime-fast: 0.4s
+}
+
+body {
+    position: relative;
 }
 
 
@@ -76,12 +105,13 @@ ul,
 button,
 nav {
     color: var(--black);
+    line-height: 1;
 }
 
 h1,
 h2,
 h3 {
-    font-family: var(--title-font)
+    font-family: var(--title-font);
 }
 
 h4,

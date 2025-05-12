@@ -1,0 +1,37 @@
+.header__content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.75fr 1fr;
+    padding: var(--padding-xs) 0;
+}
+
+
+.header__logocontainer,
+.header__downloadbar,
+.header__hamburger {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.header__logocontainer {
+    height: calc(1rem + 1vw);
+    width: 100%;
+    justify-content: left;
+}
+
+
+.header__downloadbar {
+    justify-content: center;
+}
+
+.header__hamburger {
+    justify-content: right;
+}
+
+
+.header__logocontainer img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}

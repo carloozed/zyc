@@ -4,6 +4,8 @@ import { repositoryName } from '@/prismicio';
 import './globals.css';
 import './reset.css';
 
+import Navigation from './components/Navigation/Navigation';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -11,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Navigation />
+        {children}
+      </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
   );

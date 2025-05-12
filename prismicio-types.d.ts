@@ -4,7 +4,79 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-interface DownloadBarDocumentData {}
+/**
+ * Content for Download Bar documents
+ */
+interface DownloadBarDocumentData {
+  /**
+   * Is Download Available field in *Download Bar*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: download_bar.is_download_available
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  is_download_available: prismic.SelectField<
+    "Stundenplan" | "Resultate" | "Nichts"
+  >;
+
+  /**
+   * Schedule is Available field in *Download Bar*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Der Stundenplan ist jetzt verfügbar!
+   * - **API ID Path**: download_bar.schedule_is_available
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  schedule_is_available: prismic.KeyTextField;
+
+  /**
+   * Results are available field in *Download Bar*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Die Resultate sind jetzt verfügbar!
+   * - **API ID Path**: download_bar.results_are_available
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  results_are_available: prismic.KeyTextField;
+
+  /**
+   * Results Link field in *Download Bar*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Download
+   * - **API ID Path**: download_bar.results_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  results_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Schedule Link field in *Download Bar*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Download
+   * - **API ID Path**: download_bar.schedule_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  schedule_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
 
 /**
  * Download Bar document from Prismic
@@ -53,6 +125,34 @@ export type LandingBackgroundImageDocument<Lang extends string = string> =
     "landing_background_image",
     Lang
   >;
+
+/**
+ * Content for Logo documents
+ */
+interface LogoDocumentData {
+  /**
+   * image field in *Logo*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: logo.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Logo document from Prismic
+ *
+ * - **API ID**: `logo`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LogoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<LogoDocumentData>, "logo", Lang>;
 
 interface NavbarDocumentData {}
 
@@ -165,6 +265,7 @@ export type TimelineBarDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | DownloadBarDocument
   | LandingBackgroundImageDocument
+  | LogoDocument
   | NavbarDocument
   | PageDocument
   | TimelineBarDocument;
@@ -239,6 +340,8 @@ declare module "@prismicio/client" {
       DownloadBarDocumentData,
       LandingBackgroundImageDocument,
       LandingBackgroundImageDocumentData,
+      LogoDocument,
+      LogoDocumentData,
       NavbarDocument,
       NavbarDocumentData,
       PageDocument,

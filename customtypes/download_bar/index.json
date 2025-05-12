@@ -1,10 +1,55 @@
 {
   "format": "custom",
   "id": "download_bar",
-  "json": {
-    "Main": {}
-  },
   "label": "Download Bar",
   "repeatable": false,
-  "status": true
+  "status": true,
+  "json": {
+    "Main": {
+      "is_download_available": {
+        "type": "Select",
+        "config": {
+          "label": "Is Download Available",
+          "placeholder": "",
+          "options": ["Stundenplan", "Resultate", "Nichts"]
+        }
+      },
+      "schedule_is_available": {
+        "type": "Text",
+        "config": {
+          "label": "Schedule is Available",
+          "placeholder": "Der Stundenplan ist jetzt verfügbar!"
+        }
+      },
+      "results_are_available": {
+        "type": "Text",
+        "config": {
+          "label": "Results are available",
+          "placeholder": "Die Resultate sind jetzt verfügbar!"
+        }
+      },
+      "results_link": {
+        "type": "Link",
+        "config": {
+          "label": "Results Link",
+          "placeholder": "Download",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "schedule_link": {
+        "type": "Link",
+        "config": {
+          "label": "Schedule Link",
+          "placeholder": "Download",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      }
+    }
+  }
 }

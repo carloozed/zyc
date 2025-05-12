@@ -1,0 +1,31 @@
+.downloadbar__container {
+    width: 100%;
+    height: 100%;
+    border: var(--border-thin);
+    background-color: var(--white);
+    border-radius: var(--radius-s);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-2xs) var(--padding-s);
+}
+
+.downloadbar__container h5 {
+    font-size: var(--text-large);
+    font-weight: var(--fontweight-small);
+}
+
+.downloadbar__container a {
+    padding: calc(var(--padding-xs) / 4) var(--padding-xs);
+    border: var(--border-thin);
+    border-radius: calc(var(--radius-s)/ 1.5);
+    text-decoration: none;
+    font-family: var(--title-font);
+    font-size: var(--text-large);
+    transition: background-color var(--animationtime-fast) var(--bezier);
+}
+
+
+.downloadbar__container a:hover {
+    background-color: var(--lightgrey)
+}
