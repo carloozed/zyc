@@ -17,7 +17,7 @@
     width: fit-content;
     height: fit-content;
     will-change: width;
-    transition: width var(--animationtime-fast) var(--bezier);
+    transition: all var(--animationtime-fast) var(--bezier);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,4 +48,22 @@
 .hamburger__container:hover .hamburger__line:nth-of-type(1),
 .hamburger__container:hover .hamburger__line:nth-of-type(3) {
     width: 1.5rem;
+}
+
+.hamburger__open .hamburger__line:nth-of-type(1),
+.hamburger__open .hamburger__line:nth-of-type(3) {
+    width: 1.5rem;
+}
+
+.hamburger__open .hamburger__line:nth-of-type(1) {
+    transform: rotate(45deg) translateY(4.5px) translateX(6px);
+}
+
+.hamburger__open .hamburger__line:nth-of-type(3) {
+    transform: rotate(-45deg) translateY(-5px) translateX(6px);
+}
+
+.hamburger__open .hamburger__line:nth-of-type(2) {
+    opacity: 0;
+    width: 0;
 }
