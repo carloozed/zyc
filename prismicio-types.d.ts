@@ -69,6 +69,71 @@ export type DatenschutzDocument<Lang extends string = string> =
     Lang
   >;
 
+type DeinWegDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Dein Weg mit ZYC documents
+ */
+interface DeinWegDocumentData {
+  /**
+   * Slice Zone field in *Dein Weg mit ZYC*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: dein_weg.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DeinWegDocumentDataSlicesSlice> /**
+   * Meta Title field in *Dein Weg mit ZYC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: dein_weg.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Dein Weg mit ZYC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: dein_weg.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Dein Weg mit ZYC*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: dein_weg.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Dein Weg mit ZYC document from Prismic
+ *
+ * - **API ID**: `dein_weg`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DeinWegDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<DeinWegDocumentData>,
+    "dein_weg",
+    Lang
+  >;
+
 /**
  * Content for Download Bar documents
  */
@@ -285,6 +350,71 @@ export type ImpresssumDocument<Lang extends string = string> =
     Lang
   >;
 
+type KontaktDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Kontakt documents
+ */
+interface KontaktDocumentData {
+  /**
+   * Slice Zone field in *Kontakt*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: kontakt.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<KontaktDocumentDataSlicesSlice> /**
+   * Meta Title field in *Kontakt*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: kontakt.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Kontakt*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: kontakt.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Kontakt*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: kontakt.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Kontakt document from Prismic
+ *
+ * - **API ID**: `kontakt`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type KontaktDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<KontaktDocumentData>,
+    "kontakt",
+    Lang
+  >;
+
 /**
  * Content for Landing Background Image documents
  */
@@ -345,7 +475,87 @@ interface LogoDocumentData {
 export type LogoDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<LogoDocumentData>, "logo", Lang>;
 
-interface NavbarDocumentData {}
+/**
+ * Item in *Low Navigation → Low Navigation Items*
+ */
+export interface LowNavigationDocumentDataLowNavigationItemsItem {
+  /**
+   * item field in *Low Navigation → Low Navigation Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: low_navigation.low_navigation_items[].item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  item: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Low Navigation documents
+ */
+interface LowNavigationDocumentData {
+  /**
+   * Low Navigation Items field in *Low Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: low_navigation.low_navigation_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  low_navigation_items: prismic.GroupField<
+    Simplify<LowNavigationDocumentDataLowNavigationItemsItem>
+  >;
+}
+
+/**
+ * Low Navigation document from Prismic
+ *
+ * - **API ID**: `low_navigation`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LowNavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<LowNavigationDocumentData>,
+    "low_navigation",
+    Lang
+  >;
+
+/**
+ * Item in *Navbar → Navigation Items*
+ */
+export interface NavbarDocumentDataNavigationItemsItem {
+  /**
+   * Item field in *Navbar → Navigation Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Link
+   * - **API ID Path**: navbar.navigation_items[].item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  item: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Navbar documents
+ */
+interface NavbarDocumentData {
+  /**
+   * Navigation Items field in *Navbar*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navbar.navigation_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation_items: prismic.GroupField<
+    Simplify<NavbarDocumentDataNavigationItemsItem>
+  >;
+}
 
 /**
  * Navbar document from Prismic
@@ -434,6 +644,55 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+/**
+ * Item in *Subnavigation → Subnavigation Items*
+ */
+export interface SubnavigationDocumentDataSubnavigationItemsItem {
+  /**
+   * Link field in *Subnavigation → Subnavigation Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: The Contest
+   * - **API ID Path**: subnavigation.subnavigation_items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Subnavigation documents
+ */
+interface SubnavigationDocumentData {
+  /**
+   * Subnavigation Items field in *Subnavigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: subnavigation.subnavigation_items[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  subnavigation_items: prismic.GroupField<
+    Simplify<SubnavigationDocumentDataSubnavigationItemsItem>
+  >;
+}
+
+/**
+ * Subnavigation document from Prismic
+ *
+ * - **API ID**: `subnavigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SubnavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SubnavigationDocumentData>,
+    "subnavigation",
+    Lang
+  >;
 
 type TeilnahmeTermineDocumentDataSlicesSlice = never;
 
@@ -713,20 +972,90 @@ export type TimelineBarDocument<Lang extends string = string> =
     Lang
   >;
 
+type UberZycDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Über ZYC documents
+ */
+interface UberZycDocumentData {
+  /**
+   * Slice Zone field in *Über ZYC*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: uber_zyc.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<UberZycDocumentDataSlicesSlice> /**
+   * Meta Title field in *Über ZYC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: uber_zyc.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Über ZYC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: uber_zyc.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Über ZYC*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: uber_zyc.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Über ZYC document from Prismic
+ *
+ * - **API ID**: `uber_zyc`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type UberZycDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<UberZycDocumentData>,
+    "uber_zyc",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | DatenschutzDocument
+  | DeinWegDocument
   | DownloadBarDocument
   | FaqDocument
   | ImpresssumDocument
+  | KontaktDocument
   | LandingBackgroundImageDocument
   | LogoDocument
+  | LowNavigationDocument
   | NavbarDocument
   | PageDocument
+  | SubnavigationDocument
   | TeilnahmeTermineDocument
   | TheCadenzaDocument
   | TheContestDocument
   | TheCrescendoDocument
-  | TimelineBarDocument;
+  | TimelineBarDocument
+  | UberZycDocument;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -797,6 +1126,9 @@ declare module "@prismicio/client" {
       DatenschutzDocument,
       DatenschutzDocumentData,
       DatenschutzDocumentDataSlicesSlice,
+      DeinWegDocument,
+      DeinWegDocumentData,
+      DeinWegDocumentDataSlicesSlice,
       DownloadBarDocument,
       DownloadBarDocumentData,
       FaqDocument,
@@ -805,15 +1137,25 @@ declare module "@prismicio/client" {
       ImpresssumDocument,
       ImpresssumDocumentData,
       ImpresssumDocumentDataSlicesSlice,
+      KontaktDocument,
+      KontaktDocumentData,
+      KontaktDocumentDataSlicesSlice,
       LandingBackgroundImageDocument,
       LandingBackgroundImageDocumentData,
       LogoDocument,
       LogoDocumentData,
+      LowNavigationDocument,
+      LowNavigationDocumentData,
+      LowNavigationDocumentDataLowNavigationItemsItem,
       NavbarDocument,
       NavbarDocumentData,
+      NavbarDocumentDataNavigationItemsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      SubnavigationDocument,
+      SubnavigationDocumentData,
+      SubnavigationDocumentDataSubnavigationItemsItem,
       TeilnahmeTermineDocument,
       TeilnahmeTermineDocumentData,
       TeilnahmeTermineDocumentDataSlicesSlice,
@@ -828,6 +1170,9 @@ declare module "@prismicio/client" {
       TheCrescendoDocumentDataSlicesSlice,
       TimelineBarDocument,
       TimelineBarDocumentData,
+      UberZycDocument,
+      UberZycDocumentData,
+      UberZycDocumentDataSlicesSlice,
       AllDocumentTypes,
       RichTextSlice,
       RichTextSliceDefaultPrimary,

@@ -86,11 +86,17 @@
     /* animation stuff */
 
     --bezier: cubic-bezier(0.35, 0.03, 0.24, 1);
-    --animationtime-fast: 0.4s
+    --animationtime-fast: 0.4s;
+    --animationtime-middle: 0.6s;
+    --animationtime-slow: 0.8s;
 }
 
 body {
     position: relative;
+}
+
+*::selection {
+    background-color: var(--contestblue);
 }
 
 

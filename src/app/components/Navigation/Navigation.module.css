@@ -5,6 +5,22 @@
     left: 0;
     z-index: 1000;
     width: 100%;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.header__maincontent {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.header__highercontent {
+    z-index: 2;
+}
+
+.header__lowercontent {
+    z-index: 1;
 }
 
 /* Small Mobile */

@@ -1,24 +1,30 @@
 {
   "format": "custom",
-  "id": "navbar",
-  "label": "Navbar",
-  "repeatable": false,
+  "id": "low_navigation",
+  "label": "Low Navigation",
+  "repeatable": true,
   "status": true,
   "json": {
     "Main": {
-      "navigation_items": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "low_navigation_items": {
         "type": "Group",
         "config": {
-          "label": "Navigation Items",
+          "label": "Low Navigation Items",
           "repeat": true,
           "fields": {
             "item": {
               "type": "Link",
               "config": {
-                "label": "Item",
-                "placeholder": "Link",
+                "label": "item",
+                "placeholder": "",
                 "select": null,
-                "allowTargetBlank": false,
+                "allowTargetBlank": true,
                 "allowText": true,
                 "repeat": false
               }

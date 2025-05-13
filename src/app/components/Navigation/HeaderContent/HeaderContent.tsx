@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import styles from './HeaderContent.module.css';
-import { DownloadBarDocument } from '../../../../../prismicio-types';
-import { LogoDocument } from '../../../../../prismicio-types';
 
 /* Component Imports */
 import DownloadBar from './DownloadBar/DownloadBar';
@@ -13,17 +11,13 @@ import Hamburger from './Hamburger/Hamburger';
 
 import { usePathname } from 'next/navigation';
 
-type Props = {
-  downloadbar: DownloadBarDocument;
-  logo: LogoDocument;
-};
-
-export default function HeaderContent({ downloadbar, logo }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
-
+  const [isHovered, setIsHovered] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
 
   useEffect(() => {
     if (pathname === '/') {
@@ -32,6 +26,33 @@ export default function HeaderContent({ downloadbar, logo }: Props) {
       setIsHome(false);
     }
   }, [pathname]);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty(
+          '--header-height',
+          `${height}px`
+        );
+      }
+    };
+
+    updateHeaderHeight();
+
+    window.addEventListener('resize', updateHeaderHeight);
+
+    // Update when content might change
+    const resizeObserver = new ResizeObserver(updateHeaderHeight);
+    if (headerRef.current) {
+      resizeObserver.observe(headerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   const HamburgerProps = {
     isOpen: isOpen,
@@ -43,6 +64,7 @@ export default function HeaderContent({ downloadbar, logo }: Props) {
       className={`${styles.header__content} ${isHovered || isOpen || !isHome ? ` ${styles.header__fullopacity}` : ''}`}
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      ref={headerRef}
     >
       <div className={styles.header__logocontainer}>
         <PrismicNextImage field={logo.data.image} />

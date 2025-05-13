@@ -1,0 +1,5 @@
+.menu__container {
+    background-color: red;
+    height: calc(100vh - var(--header-height));
+    pointer-events: all;
+}

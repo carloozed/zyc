@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function DownloadBar({ downloadbar }: Props) {
-  console.log(downloadbar.data);
   return (
     <div className={styles.downloadbar__container}>
       <h5 className={styles.downloadbar__text}>

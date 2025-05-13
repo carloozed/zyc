@@ -1,24 +1,24 @@
 {
   "format": "custom",
-  "id": "navbar",
-  "label": "Navbar",
+  "id": "subnavigation",
+  "label": "Subnavigation",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "navigation_items": {
+      "subnavigation_items": {
         "type": "Group",
         "config": {
-          "label": "Navigation Items",
+          "label": "Subnavigation Items",
           "repeat": true,
           "fields": {
-            "item": {
+            "link": {
               "type": "Link",
               "config": {
-                "label": "Item",
-                "placeholder": "Link",
+                "label": "Link",
+                "placeholder": "The Contest",
                 "select": null,
-                "allowTargetBlank": false,
+                "allowTargetBlank": true,
                 "allowText": true,
                 "repeat": false
               }

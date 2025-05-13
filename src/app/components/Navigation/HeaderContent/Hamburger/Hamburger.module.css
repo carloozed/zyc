@@ -1,6 +1,6 @@
 .hamburger__container {
     background-color: var(--white);
-    border: var(--border);
+    border: var(--border-thin);
     height: 100%;
     width: fit-content;
     display: flex;
@@ -11,7 +11,6 @@
     border-radius: var(--radius-s);
     cursor: pointer;
     gap: 0.4rem;
-
 }
 
 .hamburger__container .hamburger__line {
