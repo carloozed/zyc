@@ -14,7 +14,7 @@ export default function Menu({ ...menuProps }) {
   const socials = lownavigations[0];
   const address = menuProps.address.data;
   const logo = menuProps.logo.data;
-  console.log(legal);
+  const indicator = menuProps.indicator.data;
 
   return (
     <>
@@ -23,6 +23,9 @@ export default function Menu({ ...menuProps }) {
           <div className={styles.menu__leftcontainer}>
             <div className={styles.menu__navlistcontainer}>
               <ul className={styles.menu__navlist}>
+                <div className={styles.menu__navlist__indicator}>
+                  <PrismicNextImage field={indicator.image} />
+                </div>
                 {navbar.data.navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
                     <li key={index} className={styles.navbar__item}>

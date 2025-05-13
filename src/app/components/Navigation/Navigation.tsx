@@ -12,6 +12,7 @@ export default async function Navigation() {
   const navbar = await client.getSingle('navbar');
   const lownavigations = await client.getAllByType('low_navigation');
   const address = await client.getSingle('address');
+  const indicator = await client.getSingle('navigation_indicator');
 
   return (
     <header className={styles.header}>
@@ -22,6 +23,7 @@ export default async function Navigation() {
         navbar={navbar}
         lownavigations={lownavigations}
         address={address}
+        indicator={indicator}
       />
     </header>
   );

@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import HeaderContent from './HeaderContent/HeaderContent';
 import Menu from './Menu/Menu';
 
-import { AddressDocument, NavbarDocument } from '../../../../prismicio-types';
+import {
+  AddressDocument,
+  NavbarDocument,
+  NavigationIndicatorDocument,
+} from '../../../../prismicio-types';
 import { DownloadBarDocument } from '../../../../prismicio-types';
 import { LogoDocument } from '../../../../prismicio-types';
 import { LowNavigationDocument } from '../../../../prismicio-types';
@@ -16,6 +20,7 @@ type Props = {
   navbar: NavbarDocument;
   lownavigations: LowNavigationDocument[];
   address: AddressDocument;
+  indicator: NavigationIndicatorDocument;
 };
 
 export default function Content({
@@ -25,6 +30,7 @@ export default function Content({
   navbar,
   lownavigations,
   address,
+  indicator,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +41,7 @@ export default function Content({
     lownavigations: lownavigations,
     address: address,
     logo: logo,
+    indicator: indicator,
   };
 
   const headerContentProps = {

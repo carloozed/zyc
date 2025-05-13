@@ -69,7 +69,8 @@
 
 .menu__addresscontainer h6 {
     font-size: var(--text);
-    font-weight: var(--fontweight-xs)
+    font-weight: var(--fontweight-xs);
+    text-decoration: underline;
 }
 
 .menu__navlistcontainer {
@@ -82,6 +83,23 @@
     flex-direction: column;
     gap: var(--padding-sm);
     pointer-events: all;
+    position: relative;
+}
+
+
+.menu__navlist__indicator {
+    height: calc(var(--subtitle-l) + var(--padding-sm));
+    width: auto;
+    position: absolute;
+    transform: translateX(-120%) translateY(400%);
+}
+
+.menu__navlist__indicator img {
+    height: auto;
+    width: 100%;
+    transform: translateY(-60%) translateX(-20%);
+    scale: 1.2;
+
 }
 
 .navbar__item {
