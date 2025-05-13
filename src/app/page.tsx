@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <main
       className={styles.main}
-      // style={{ backgroundImage: `url(${background.data.image.url})` }}
+      style={{ backgroundImage: `url(${background.data.image.url})` }}
     >
       <SliceZone slices={home.data.slices} components={components} />
     </main>

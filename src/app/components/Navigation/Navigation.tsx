@@ -10,6 +10,8 @@ export default async function Navigation() {
   const downloadbar = await client.getSingle('download_bar');
   const logo = await client.getSingle('logo');
   const navbar = await client.getSingle('navbar');
+  const lownavigations = await client.getAllByType('low_navigation');
+  const address = await client.getSingle('address');
 
   return (
     <header className={styles.header}>
@@ -18,6 +20,8 @@ export default async function Navigation() {
         downloadbar={downloadbar}
         logo={logo}
         navbar={navbar}
+        lownavigations={lownavigations}
+        address={address}
       />
     </header>
   );

@@ -58,6 +58,11 @@
 
     /* 16px */
     --text: 1rem;
+
+    /* 14px */
+    --text-sm: 0.875rem;
+
+
     /* 12px */
     --text-s: 0.75rem;
     /* 8px */
@@ -68,7 +73,8 @@
     --text-3xs: 0.125rem;
 
 
-    --fontweight-small: 300;
+    --fontweight-s: 300;
+    --fontweight-xs: 100;
 
     /* paddings */
     --padding-m: var(--text-large);

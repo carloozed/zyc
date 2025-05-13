@@ -12,7 +12,7 @@
 
 .downloadbar__container h5 {
     font-size: var(--text-large);
-    font-weight: var(--fontweight-small);
+    font-weight: var(--fontweight-s);
 }
 
 .downloadbar__container a {

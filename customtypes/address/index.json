@@ -1,0 +1,58 @@
+{
+  "format": "custom",
+  "id": "address",
+  "label": "Address",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "zyc": {
+        "type": "StructuredText",
+        "config": {
+          "label": "ZYC",
+          "placeholder": "ZYC",
+          "allowTargetBlank": false,
+          "multi": "heading4"
+        }
+      },
+      "name_full": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Name Full",
+          "placeholder": "Zurich Youth Classical",
+          "allowTargetBlank": true,
+          "multi": "heading5"
+        }
+      },
+      "location_link": {
+        "type": "Link",
+        "config": {
+          "label": "Location Link",
+          "placeholder": "Location Link",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "street": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Street",
+          "placeholder": "Brunnenhof",
+          "allowTargetBlank": true,
+          "multi": "heading6"
+        }
+      },
+      "city": {
+        "type": "StructuredText",
+        "config": {
+          "label": "City",
+          "placeholder": "CH - 8048 Zürich",
+          "allowTargetBlank": true,
+          "multi": "heading6"
+        }
+      }
+    }
+  }
+}

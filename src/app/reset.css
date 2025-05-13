@@ -57,6 +57,11 @@ p {
     text-wrap: pretty;
 }
 
+a {
+    text-decoration: none;
+
+}
+
 h1,
 h2,
 h3,
@@ -72,4 +77,8 @@ h6 {
 #root,
 #__next {
     isolation: isolate;
+}
+
+li {
+    list-style-type: none;
 }

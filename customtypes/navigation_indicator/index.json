@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "navigation_indicator",
+  "label": "Navigation Indicator",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

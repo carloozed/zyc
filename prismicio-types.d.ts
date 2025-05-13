@@ -4,6 +4,88 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Address documents
+ */
+interface AddressDocumentData {
+  /**
+   * ZYC field in *Address*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: ZYC
+   * - **API ID Path**: address.zyc
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  zyc: prismic.RichTextField;
+
+  /**
+   * Name Full field in *Address*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Zurich Youth Classical
+   * - **API ID Path**: address.name_full
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name_full: prismic.RichTextField;
+
+  /**
+   * Location Link field in *Address*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Location Link
+   * - **API ID Path**: address.location_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  location_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Street field in *Address*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Brunnenhof
+   * - **API ID Path**: address.street
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  street: prismic.RichTextField;
+
+  /**
+   * City field in *Address*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: CH - 8048 Zürich
+   * - **API ID Path**: address.city
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  city: prismic.RichTextField;
+}
+
+/**
+ * Address document from Prismic
+ *
+ * - **API ID**: `address`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AddressDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AddressDocumentData>,
+    "address",
+    Lang
+  >;
+
 type DatenschutzDocumentDataSlicesSlice = never;
 
 /**
@@ -573,6 +655,38 @@ export type NavbarDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Navigation Indicator documents
+ */
+interface NavigationIndicatorDocumentData {
+  /**
+   * image field in *Navigation Indicator*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: navigation_indicator.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Navigation Indicator document from Prismic
+ *
+ * - **API ID**: `navigation_indicator`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavigationIndicatorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NavigationIndicatorDocumentData>,
+    "navigation_indicator",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = never;
 
 /**
@@ -1038,6 +1152,7 @@ export type UberZycDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | AddressDocument
   | DatenschutzDocument
   | DeinWegDocument
   | DownloadBarDocument
@@ -1048,6 +1163,7 @@ export type AllDocumentTypes =
   | LogoDocument
   | LowNavigationDocument
   | NavbarDocument
+  | NavigationIndicatorDocument
   | PageDocument
   | SubnavigationDocument
   | TeilnahmeTermineDocument
@@ -1123,6 +1239,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AddressDocument,
+      AddressDocumentData,
       DatenschutzDocument,
       DatenschutzDocumentData,
       DatenschutzDocumentDataSlicesSlice,
@@ -1150,6 +1268,8 @@ declare module "@prismicio/client" {
       NavbarDocument,
       NavbarDocumentData,
       NavbarDocumentDataNavigationItemsItem,
+      NavigationIndicatorDocument,
+      NavigationIndicatorDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
