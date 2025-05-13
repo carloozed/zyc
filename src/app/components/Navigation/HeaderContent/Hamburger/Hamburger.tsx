@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './Hamburger.module.css';
 
-type Props = {};
+type Props = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+};
 
-export default function Hamburger({}: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function Hamburger({ isOpen, setIsOpen }: Props) {
   const clickFunction = () => {
     setIsOpen(!isOpen);
   };

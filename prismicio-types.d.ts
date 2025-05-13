@@ -4,6 +4,71 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type DatenschutzDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Datenschutz documents
+ */
+interface DatenschutzDocumentData {
+  /**
+   * Slice Zone field in *Datenschutz*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<DatenschutzDocumentDataSlicesSlice> /**
+   * Meta Title field in *Datenschutz*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: datenschutz.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Datenschutz*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: datenschutz.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Datenschutz*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Datenschutz document from Prismic
+ *
+ * - **API ID**: `datenschutz`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DatenschutzDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<DatenschutzDocumentData>,
+    "datenschutz",
+    Lang
+  >;
+
 /**
  * Content for Download Bar documents
  */
@@ -91,6 +156,132 @@ export type DownloadBarDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<DownloadBarDocumentData>,
     "download_bar",
+    Lang
+  >;
+
+type FaqDocumentDataSlicesSlice = never;
+
+/**
+ * Content for FAQ documents
+ */
+interface FaqDocumentData {
+  /**
+   * Slice Zone field in *FAQ*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<FaqDocumentDataSlicesSlice> /**
+   * Meta Title field in *FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: faq.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *FAQ*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: faq.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *FAQ*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * FAQ document from Prismic
+ *
+ * - **API ID**: `faq`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FaqDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
+
+type ImpresssumDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Impresssum documents
+ */
+interface ImpresssumDocumentData {
+  /**
+   * Slice Zone field in *Impresssum*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impresssum.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ImpresssumDocumentDataSlicesSlice> /**
+   * Meta Title field in *Impresssum*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: impresssum.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Impresssum*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: impresssum.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Impresssum*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impresssum.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Impresssum document from Prismic
+ *
+ * - **API ID**: `impresssum`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ImpresssumDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ImpresssumDocumentData>,
+    "impresssum",
     Lang
   >;
 
@@ -244,6 +435,266 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
+type TeilnahmeTermineDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Teilnahme Termine documents
+ */
+interface TeilnahmeTermineDocumentData {
+  /**
+   * Slice Zone field in *Teilnahme Termine*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teilnahme_termine.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TeilnahmeTermineDocumentDataSlicesSlice> /**
+   * Meta Title field in *Teilnahme Termine*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: teilnahme_termine.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Teilnahme Termine*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: teilnahme_termine.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Teilnahme Termine*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: teilnahme_termine.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Teilnahme Termine document from Prismic
+ *
+ * - **API ID**: `teilnahme_termine`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TeilnahmeTermineDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TeilnahmeTermineDocumentData>,
+    "teilnahme_termine",
+    Lang
+  >;
+
+type TheCadenzaDocumentDataSlicesSlice = never;
+
+/**
+ * Content for The Cadenza documents
+ */
+interface TheCadenzaDocumentData {
+  /**
+   * Slice Zone field in *The Cadenza*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_cadenza.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TheCadenzaDocumentDataSlicesSlice> /**
+   * Meta Title field in *The Cadenza*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: the_cadenza.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *The Cadenza*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: the_cadenza.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *The Cadenza*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_cadenza.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * The Cadenza document from Prismic
+ *
+ * - **API ID**: `the_cadenza`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TheCadenzaDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TheCadenzaDocumentData>,
+    "the_cadenza",
+    Lang
+  >;
+
+type TheContestDocumentDataSlicesSlice = never;
+
+/**
+ * Content for The Contest documents
+ */
+interface TheContestDocumentData {
+  /**
+   * Slice Zone field in *The Contest*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_contest.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TheContestDocumentDataSlicesSlice> /**
+   * Meta Title field in *The Contest*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: the_contest.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *The Contest*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: the_contest.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *The Contest*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_contest.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * The Contest document from Prismic
+ *
+ * - **API ID**: `the_contest`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TheContestDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TheContestDocumentData>,
+    "the_contest",
+    Lang
+  >;
+
+type TheCrescendoDocumentDataSlicesSlice = never;
+
+/**
+ * Content for The Crescendo documents
+ */
+interface TheCrescendoDocumentData {
+  /**
+   * Slice Zone field in *The Crescendo*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_crescendo.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TheCrescendoDocumentDataSlicesSlice> /**
+   * Meta Title field in *The Crescendo*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: the_crescendo.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *The Crescendo*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: the_crescendo.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *The Crescendo*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: the_crescendo.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * The Crescendo document from Prismic
+ *
+ * - **API ID**: `the_crescendo`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TheCrescendoDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TheCrescendoDocumentData>,
+    "the_crescendo",
+    Lang
+  >;
+
 interface TimelineBarDocumentData {}
 
 /**
@@ -263,11 +714,18 @@ export type TimelineBarDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | DatenschutzDocument
   | DownloadBarDocument
+  | FaqDocument
+  | ImpresssumDocument
   | LandingBackgroundImageDocument
   | LogoDocument
   | NavbarDocument
   | PageDocument
+  | TeilnahmeTermineDocument
+  | TheCadenzaDocument
+  | TheContestDocument
+  | TheCrescendoDocument
   | TimelineBarDocument;
 
 /**
@@ -336,8 +794,17 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      DatenschutzDocument,
+      DatenschutzDocumentData,
+      DatenschutzDocumentDataSlicesSlice,
       DownloadBarDocument,
       DownloadBarDocumentData,
+      FaqDocument,
+      FaqDocumentData,
+      FaqDocumentDataSlicesSlice,
+      ImpresssumDocument,
+      ImpresssumDocumentData,
+      ImpresssumDocumentDataSlicesSlice,
       LandingBackgroundImageDocument,
       LandingBackgroundImageDocumentData,
       LogoDocument,
@@ -347,6 +814,18 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      TeilnahmeTermineDocument,
+      TeilnahmeTermineDocumentData,
+      TeilnahmeTermineDocumentDataSlicesSlice,
+      TheCadenzaDocument,
+      TheCadenzaDocumentData,
+      TheCadenzaDocumentDataSlicesSlice,
+      TheContestDocument,
+      TheContestDocumentData,
+      TheContestDocumentDataSlicesSlice,
+      TheCrescendoDocument,
+      TheCrescendoDocumentData,
+      TheCrescendoDocumentDataSlicesSlice,
       TimelineBarDocument,
       TimelineBarDocumentData,
       AllDocumentTypes,

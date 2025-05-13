@@ -3,6 +3,12 @@
     display: grid;
     grid-template-columns: 1fr 1.75fr 1fr;
     padding: var(--padding-xs) 0;
+    transition: all var(--animationtime-fast) var(--bezier);
+    opacity: 0.5;
+}
+
+.header__fullopacity {
+    opacity: 1
 }
 
 
