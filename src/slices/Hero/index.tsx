@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { asText, Content } from '@prismicio/client';
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import { Content } from '@prismicio/client';
+import { SliceComponentProps } from '@prismicio/react';
 
-import { PrismicNextImage } from '@prismicio/next';
 import styles from './index.module.css';
+import DefaultHero from './DefaultHero';
+import ContestHero from './ContestHero';
 
 /**
  * Props for `SplitVisualHeadline`.
@@ -15,30 +16,27 @@ export type SplitVisualHeadlineProps =
  * Component for "SplitVisualHeadline" Slices.
  */
 const SplitVisualHeadline: FC<SplitVisualHeadlineProps> = ({ slice }) => {
+  const defaultHeroProps = {
+    slice,
+    styles,
+  };
+
+  const contestHeroProps = {
+    slice,
+    styles,
+  };
+
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.heroslice}
     >
-      <div
-        className={styles.heroslice__container}
-        style={{ backgroundColor: slice.primary.background_color || '#FFD700' }}
-      >
-        <div className={styles.heroslice__leftcontainer}>
-          <div className={styles.leftcontainer__imagecontainer}>
-            <PrismicNextImage field={slice.primary.visual} />
-            <div className={styles.imagecontainer__decoration}>
-              <PrismicNextImage field={slice.primary.decoration} />
-            </div>
-          </div>
-        </div>
-        <div className={styles.heroslice__rightcontainer}>
-          <PrismicRichText field={slice.primary.headline} />
+      {slice.variation === 'visual_left_headline_right' && (
+        <DefaultHero {...defaultHeroProps} />
+      )}
 
-          <h3>{asText(slice.primary.supporting_text)}</h3>
-        </div>
-      </div>
+      {slice.variation === 'contest' && <ContestHero {...contestHeroProps} />}
     </section>
   );
 };

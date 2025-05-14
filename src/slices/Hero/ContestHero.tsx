@@ -1,14 +1,12 @@
-'use client';
+import React from 'react';
 
 import { asText } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 
 import { PrismicNextImage } from '@prismicio/next';
 
-import React from 'react';
-
-export default function DefaultHero({ ...defaultHeroProps }) {
-  const { slice, styles } = defaultHeroProps;
+export default function ContestHero({ ...contestHeroProps }) {
+  const { slice, styles } = contestHeroProps;
   return (
     <>
       <div
