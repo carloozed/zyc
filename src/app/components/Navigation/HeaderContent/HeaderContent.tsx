@@ -69,7 +69,7 @@ export default function HeaderContent({ ...headerContentProps }) {
       ref={headerRef}
     >
       {' '}
-      <PrismicNextLink field={home}>
+      <PrismicNextLink field={home} onClick={() => setIsOpen(false)}>
         <div className={styles.header__logocontainer}>
           <PrismicNextImage field={logo.data.image} />
         </div>{' '}
