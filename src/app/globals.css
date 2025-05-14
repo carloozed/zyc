@@ -39,15 +39,19 @@
     --crescendogold: #FFC130;
     --black: #000;
     --white: #fff;
-    --white-lowopa: rgba(255, 255, 255, 0.5);
+
+
+    --opacity: 0.8;
+
+    --white-lowopa: rgba(255, 255, 255, var(--opacity));
     /* font sizes */
 
     /* 120px */
     --page-title: calc(3.3rem + 3.3vw);
     /* 64px */
-    --subtitle-xl: 4rem;
+    --subtitle-xl: calc(1.6rem + 1.6vw);
     /* 48px */
-    --subtitle-l: calc(1.4rem + 1.4vw);
+    --subtitle-l: calc(1.3rem + 1.3vw);
     /* 32px */
     --subtitle-m: 2rem;
     /* 24px */

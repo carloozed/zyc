@@ -31,7 +31,7 @@
 }
 
 .leftcontainer__dynamic {
-    height: calc(16rem + 16vw);
+    height: calc(15rem + 15vw);
     width: 100%;
     background-color: var(--white);
     border: var(--border-thin);
@@ -46,8 +46,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: var(--padding-xs);
     grid-row-gap: var(--padding-xs);
-    height: fit-content;
-    height: calc(16rem + 16vw);
+    height: calc(15rem + 15vw);
 }
 
 .landing__navigationitem {
@@ -80,7 +79,7 @@
 
 .landing__contest {
     grid-area: 1 / 1 / 3 / 2;
-    width: calc(11rem + 11vw);
+    width: calc(9rem + 9vw);
 }
 
 
