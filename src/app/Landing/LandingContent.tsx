@@ -13,13 +13,17 @@ export default function LandingContent({ landingNavigation }: Props) {
   return (
     <div className={styles.landing__container}>
       <div className={styles.landing__leftcontainer}>
-        <div
-          className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
-        >
-          <PrismicNextLink field={termine}>
+        <div className={styles.landing__leftcontainer__content}>
+          <div className={styles.leftcontainer__dynamic}></div>
+          <div
+            className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
+          >
+            {' '}
             <h4>{termine.text}</h4>
-            <h5>{cta_text}</h5>
-          </PrismicNextLink>
+            <PrismicNextLink field={termine}>
+              <h5>{cta_text}</h5>
+            </PrismicNextLink>
+          </div>
         </div>
       </div>
       <div className={styles.landing__rightcontainer}>
@@ -58,8 +62,9 @@ export default function LandingContent({ landingNavigation }: Props) {
         <div
           className={`${styles.landing__about} ${styles.landing__navigationitem}`}
         >
+          {' '}
+          <h4>{about.text}</h4>
           <PrismicNextLink field={about}>
-            <h4>{about.text}</h4>
             <h5>{cta_text}</h5>
           </PrismicNextLink>
         </div>{' '}
