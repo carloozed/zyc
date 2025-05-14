@@ -3,14 +3,19 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 6% var(--padding-s);
+    padding: 5.5% var(--padding-s);
 }
 
-.landing__rightcontainer {
+
+.landing__rightcontainer,
+.landing__leftcontainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 }
+
+.landing__rightcontainer {}
 
 .landing__leftcontainer {
     width: 45%;
@@ -18,16 +23,15 @@
 }
 
 .landing__leftcontainer__content {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
     justify-content: space-between;
+    height: 100%;
 
 }
 
 .leftcontainer__dynamic {
-    height: 32rem;
+    height: calc(16rem + 16vw);
     width: 100%;
     background-color: var(--white);
     border: var(--border-thin);
@@ -43,11 +47,12 @@
     grid-column-gap: var(--padding-xs);
     grid-row-gap: var(--padding-xs);
     height: fit-content;
+    height: calc(16rem + 16vw);
 }
 
 .landing__navigationitem {
     background-color: var(--white-lowopa);
-    transition: all var(--animationtime-middle) var(--bezier);
+    transition: transform var(--animationtime-slow) var(--bezier), background-color var(--animationtime-middle);
     border: var(--border-thin);
     border-radius: var(--radius-s)
 }
@@ -60,6 +65,7 @@
 
 .landing__navigationitem:hover {
     background-color: var(--white);
+    transform: scale(1.03)
 }
 
 .landing__crescendo,
@@ -74,8 +80,7 @@
 
 .landing__contest {
     grid-area: 1 / 1 / 3 / 2;
-    width: 330px;
-    height: 32rem;
+    width: calc(11rem + 11vw);
 }
 
 
@@ -105,6 +110,7 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: var(--padding-s);
+
 }
 
 .landing__contest .ccc__innercontainer {

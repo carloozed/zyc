@@ -47,7 +47,7 @@
     /* 64px */
     --subtitle-xl: 4rem;
     /* 48px */
-    --subtitle-l: 3rem;
+    --subtitle-l: calc(1.4rem + 1.4vw);
     /* 32px */
     --subtitle-m: 2rem;
     /* 24px */
@@ -91,10 +91,11 @@
 
     /* animation stuff */
 
-    --bezier: cubic-bezier(0.35, 0.03, 0.24, 1);
+    --bezier: cubic-bezier(0.35, 0.23, 0.84, 1);
     --animationtime-fast: 0.4s;
     --animationtime-middle: 0.6s;
     --animationtime-slow: 0.8s;
+    --animationtime-breathe: 1.2s;
 }
 
 body {
