@@ -1,26 +1,28 @@
 import { type Metadata } from 'next';
-
 import { asText } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
-
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
-
 import styles from './page.module.css';
+import LandingContent from './Landing/LandingContent';
 
 export default async function Home() {
   const client = createClient();
-  const home = await client.getByUID('page', 'home');
-  const background = await client.getSingle('landing_background_image');
 
-  // <SliceZone> renders the page's slices.
+  // Fetch both documents in parallel for better performance
+  const [background, landingNavigation] = await Promise.all([
+    client.getSingle('landing_background_image'),
+    client.getSingle('homepage_navigation'),
+  ]);
 
   return (
     <main
       className={styles.main}
-      style={{ backgroundImage: `url(${background.data.image.url})` }}
+      style={{
+        backgroundImage: background?.data?.image?.url
+          ? `url(${background.data.image.url})`
+          : undefined,
+      }}
     >
-      <SliceZone slices={home.data.slices} components={components} />
+      <LandingContent landingNavigation={landingNavigation} />
     </main>
   );
 }
@@ -31,10 +33,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: asText(home.data.title),
-    description: home.data.meta_description,
+    description: home.data.meta_description ?? '',
     openGraph: {
       title: home.data.meta_title ?? undefined,
-      images: [{ url: home.data.meta_image.url ?? '' }],
+      images: [
+        {
+          url: home.data.meta_image?.url ?? '',
+        },
+      ],
     },
   };
 }

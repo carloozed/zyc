@@ -1,0 +1,73 @@
+{
+  "format": "custom",
+  "id": "homepage_navigation",
+  "label": "Homepage Navigation",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Text",
+          "placeholder": "[mehr]"
+        }
+      },
+      "the_contest": {
+        "type": "Link",
+        "config": {
+          "label": "The Contest",
+          "placeholder": "The Contest",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "the_cadenza": {
+        "type": "Link",
+        "config": {
+          "label": "The Cadenza",
+          "placeholder": "The Cadenza",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "the_crescendo": {
+        "type": "Link",
+        "config": {
+          "label": "The Crescendo",
+          "placeholder": "The Crescendo",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "termine": {
+        "type": "Link",
+        "config": {
+          "label": "Termine",
+          "placeholder": "Termine",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "about": {
+        "type": "Link",
+        "config": {
+          "label": "About",
+          "placeholder": "About",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      }
+    }
+  }
+}

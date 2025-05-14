@@ -91,14 +91,15 @@
     height: calc(var(--subtitle-l) + var(--padding-sm));
     width: auto;
     position: absolute;
-    transform: translateX(-120%) translateY(400%);
+    transform: translateX(-120%) translateY(00%);
+    transition: transform var(--animationtime-fast) var(--bezier)
 }
 
 .menu__navlist__indicator img {
     height: auto;
     width: 100%;
     transform: translateY(-60%) translateX(-20%);
-    scale: 1.2;
+    scale: 1.1;
 
 }
 

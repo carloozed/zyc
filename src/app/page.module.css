@@ -1,6 +1,8 @@
 .main {
     min-height: 100svh;
     min-width: 100svw;
+    height: 100svh;
+    width: 100svw;
     overflow: hidden;
     position: relative;
     background-size: 100% auto;

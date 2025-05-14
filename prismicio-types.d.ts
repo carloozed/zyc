@@ -367,6 +367,117 @@ interface FaqDocumentData {
 export type FaqDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
 
+/**
+ * Content for Homepage Navigation documents
+ */
+interface HomepageNavigationDocumentData {
+  /**
+   * CTA Text field in *Homepage Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: [mehr]
+   * - **API ID Path**: homepage_navigation.cta_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * The Contest field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: The Contest
+   * - **API ID Path**: homepage_navigation.the_contest
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  the_contest: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * The Cadenza field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: The Cadenza
+   * - **API ID Path**: homepage_navigation.the_cadenza
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  the_cadenza: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * The Crescendo field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: The Crescendo
+   * - **API ID Path**: homepage_navigation.the_crescendo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  the_crescendo: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Termine field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Termine
+   * - **API ID Path**: homepage_navigation.termine
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  termine: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * About field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: About
+   * - **API ID Path**: homepage_navigation.about
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  about: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Homepage Navigation document from Prismic
+ *
+ * - **API ID**: `homepage_navigation`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type HomepageNavigationDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<HomepageNavigationDocumentData>,
+    "homepage_navigation",
+    Lang
+  >;
+
 type ImpresssumDocumentDataSlicesSlice = never;
 
 /**
@@ -1157,6 +1268,7 @@ export type AllDocumentTypes =
   | DeinWegDocument
   | DownloadBarDocument
   | FaqDocument
+  | HomepageNavigationDocument
   | ImpresssumDocument
   | KontaktDocument
   | LandingBackgroundImageDocument
@@ -1252,6 +1364,8 @@ declare module "@prismicio/client" {
       FaqDocument,
       FaqDocumentData,
       FaqDocumentDataSlicesSlice,
+      HomepageNavigationDocument,
+      HomepageNavigationDocumentData,
       ImpresssumDocument,
       ImpresssumDocumentData,
       ImpresssumDocumentDataSlicesSlice,
