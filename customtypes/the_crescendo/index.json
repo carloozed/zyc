@@ -1,14 +1,21 @@
 {
   "format": "page",
   "id": "the_crescendo",
+  "label": "The Crescendo",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
       "slices": {
-        "config": {
-          "choices": {}
-        },
+        "type": "Slices",
         "fieldset": "Slice Zone",
-        "type": "Slices"
+        "config": {
+          "choices": {
+            "split_visual_headline": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +45,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "The Crescendo",
-  "repeatable": false,
-  "status": true
+  }
 }

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 
-import { HomepageNavigationDocument } from '../../../prismicio-types';
+import { HomepageNavigationDocument } from '../../../../prismicio-types';
 
 import styles from './LandingContent.module.css';
 import { PrismicNextLink } from '@prismicio/next';

@@ -2,7 +2,7 @@ import { type Metadata } from 'next';
 import { asText } from '@prismicio/client';
 import { createClient } from '@/prismicio';
 import styles from './page.module.css';
-import LandingContent from './Landing/LandingContent';
+import LandingContent from './components/Landing/LandingContent';
 
 export default async function Home() {
   const client = createClient();

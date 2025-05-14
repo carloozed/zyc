@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 import styles from './Menu.module.css';
 
@@ -9,12 +11,14 @@ import { PrismicRichText } from '@prismicio/react';
 
 export default function Menu({ ...menuProps }) {
   const { navbar, isOpen, lownavigations } = menuProps;
+  const [subbarIsOpen, setSubbarIsOpen] = useState(false);
 
   const legal = lownavigations[1];
   const socials = lownavigations[0];
   const address = menuProps.address.data;
   const logo = menuProps.logo.data;
   const indicator = menuProps.indicator.data;
+  const subnavigation = menuProps.subnavigation.data;
 
   return (
     <>
@@ -28,8 +32,29 @@ export default function Menu({ ...menuProps }) {
                 </div>
                 {navbar.data.navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
-                    <li key={index} className={styles.navbar__item}>
+                    <li
+                      key={index}
+                      className={styles.navbar__item}
+                      onMouseEnter={() => setSubbarIsOpen(index === 1)}
+                      onMouseLeave={() => setSubbarIsOpen(false)}
+                    >
                       <PrismicNextLink field={item.item} />
+                      <ul
+                        className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
+                      >
+                        {index === 1 &&
+                          subnavigation.subnavigation_items.map(
+                            (item: { link: LinkField }, index: number) => (
+                              <li
+                                key={index}
+                                className={styles.subnavbar__item}
+                              >
+                                <span>[0{index + 1}] </span>
+                                <PrismicNextLink field={item.link} />
+                              </li>
+                            )
+                          )}
+                      </ul>
                     </li>
                   )
                 )}

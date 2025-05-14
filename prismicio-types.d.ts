@@ -984,7 +984,7 @@ export type TeilnahmeTermineDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheCadenzaDocumentDataSlicesSlice = never;
+type TheCadenzaDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
 
 /**
  * Content for The Cadenza documents
@@ -1114,7 +1114,7 @@ export type TheContestDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheCrescendoDocumentDataSlicesSlice = never;
+type TheCrescendoDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
 
 /**
  * Content for The Crescendo documents
@@ -1286,48 +1286,90 @@ export type AllDocumentTypes =
   | UberZycDocument;
 
 /**
- * Primary content in *RichText → Default → Primary*
+ * Primary content in *Hero → Cadenza, Crescendo → Primary*
  */
-export interface RichTextSliceDefaultPrimary {
+export interface SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary {
   /**
-   * Content field in *RichText → Default → Primary*
+   * Visual field in *Hero → Cadenza, Crescendo → Primary*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Lorem ipsum...
-   * - **API ID Path**: rich_text.default.primary.content
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.visual_left_headline_right.primary.visual
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  visual: prismic.ImageField<never>;
+
+  /**
+   * Headline field in *Hero → Cadenza, Crescendo → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.visual_left_headline_right.primary.headline
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  content: prismic.RichTextField;
+  headline: prismic.TitleField;
+
+  /**
+   * Supporting Text field in *Hero → Cadenza, Crescendo → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.visual_left_headline_right.primary.supporting_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  supporting_text: prismic.RichTextField;
+
+  /**
+   * Background Color field in *Hero → Cadenza, Crescendo → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.visual_left_headline_right.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Decoration field in *Hero → Cadenza, Crescendo → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.visual_left_headline_right.primary.decoration
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  decoration: prismic.ImageField<never>;
 }
 
 /**
- * Default variation for RichText Slice
+ * Cadenza, Crescendo variation for Hero Slice
  *
- * - **API ID**: `default`
- * - **Description**: RichText
+ * - **API ID**: `visual_left_headline_right`
+ * - **Description**: Displays an image to the left and headline content with description to the right.
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<RichTextSliceDefaultPrimary>,
-  never
->;
+export type SplitVisualHeadlineSliceVisualLeftHeadlineRight =
+  prismic.SharedSliceVariation<
+    "visual_left_headline_right",
+    Simplify<SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary>,
+    never
+  >;
 
 /**
- * Slice variation for *RichText*
+ * Slice variation for *Hero*
  */
-type RichTextSliceVariation = RichTextSliceDefault;
+type SplitVisualHeadlineSliceVariation =
+  SplitVisualHeadlineSliceVisualLeftHeadlineRight;
 
 /**
- * RichText Shared Slice
+ * Hero Shared Slice
  *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
+ * - **API ID**: `split_visual_headline`
+ * - **Description**: *None*
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type RichTextSlice = prismic.SharedSlice<
-  "rich_text",
-  RichTextSliceVariation
+export type SplitVisualHeadlineSlice = prismic.SharedSlice<
+  "split_visual_headline",
+  SplitVisualHeadlineSliceVariation
 >;
 
 declare module "@prismicio/client" {
@@ -1408,10 +1450,10 @@ declare module "@prismicio/client" {
       UberZycDocumentData,
       UberZycDocumentDataSlicesSlice,
       AllDocumentTypes,
-      RichTextSlice,
-      RichTextSliceDefaultPrimary,
-      RichTextSliceVariation,
-      RichTextSliceDefault,
+      SplitVisualHeadlineSlice,
+      SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
+      SplitVisualHeadlineSliceVariation,
+      SplitVisualHeadlineSliceVisualLeftHeadlineRight,
     };
   }
 }

@@ -8,6 +8,7 @@ import {
   AddressDocument,
   NavbarDocument,
   NavigationIndicatorDocument,
+  SubnavigationDocument,
 } from '../../../../prismicio-types';
 import { DownloadBarDocument } from '../../../../prismicio-types';
 import { LogoDocument } from '../../../../prismicio-types';
@@ -21,6 +22,7 @@ type Props = {
   lownavigations: LowNavigationDocument[];
   address: AddressDocument;
   indicator: NavigationIndicatorDocument;
+  subnavigation: SubnavigationDocument;
 };
 
 export default function Content({
@@ -31,6 +33,7 @@ export default function Content({
   lownavigations,
   address,
   indicator,
+  subnavigation,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,6 +45,7 @@ export default function Content({
     address: address,
     logo: logo,
     indicator: indicator,
+    subnavigation: subnavigation,
   };
 
   const headerContentProps = {
@@ -49,6 +53,7 @@ export default function Content({
     logo: logo,
     isOpen: isOpen,
     setIsOpen: setIsOpen,
+    navbar: navbar,
   };
 
   return (

@@ -6,7 +6,7 @@ import styles from './HeaderContent.module.css';
 
 /* Component Imports */
 import DownloadBar from './DownloadBar/DownloadBar';
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import Hamburger from './Hamburger/Hamburger';
 
 import { usePathname } from 'next/navigation';
@@ -17,6 +17,8 @@ export default function HeaderContent({ ...headerContentProps }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
+  const { navbar } = headerContentProps;
+  const home = navbar.data.navigation_items[0].item;
   const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
 
   useEffect(() => {
@@ -66,9 +68,12 @@ export default function HeaderContent({ ...headerContentProps }) {
       onMouseLeave={() => setIsHovered(false)}
       ref={headerRef}
     >
-      <div className={styles.header__logocontainer}>
-        <PrismicNextImage field={logo.data.image} />
-      </div>
+      {' '}
+      <PrismicNextLink field={home}>
+        <div className={styles.header__logocontainer}>
+          <PrismicNextImage field={logo.data.image} />
+        </div>{' '}
+      </PrismicNextLink>
       <div className={styles.header__downloadbar}>
         {downloadbar.data.is_download_available !== 'Nichts' && (
           <DownloadBar downloadbar={downloadbar} />

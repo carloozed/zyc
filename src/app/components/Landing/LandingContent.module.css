@@ -146,6 +146,7 @@
     height: fit-content;
     text-transform: uppercase;
     width: 100%;
+    transform: translateY(var(--padding-s))
 }
 
 .landing__about a,
