@@ -1,13 +1,13 @@
 .hamburger__container {
     background-color: var(--white);
     border: var(--border-thin);
-    height: 100%;
+    height: fit-content;
     width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 var(--padding-m);
+    padding: var(--padding-xs) var(--padding-s);
     border-radius: var(--radius-s);
     cursor: pointer;
     gap: 0.4rem;

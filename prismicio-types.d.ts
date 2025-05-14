@@ -1049,7 +1049,7 @@ export type TheCadenzaDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheContestDocumentDataSlicesSlice = never;
+type TheContestDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
 
 /**
  * Content for The Contest documents
@@ -1355,10 +1355,79 @@ export type SplitVisualHeadlineSliceVisualLeftHeadlineRight =
   >;
 
 /**
+ * Primary content in *Hero → Contest → Primary*
+ */
+export interface SplitVisualHeadlineSliceContestPrimary {
+  /**
+   * Visual field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.visual
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  visual: prismic.ImageField<never>;
+
+  /**
+   * Headline field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Supporting Text field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.supporting_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  supporting_text: prismic.RichTextField;
+
+  /**
+   * Background Color field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  background_color: prismic.ColorField;
+
+  /**
+   * Decoration field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.decoration
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  decoration: prismic.ImageField<never>;
+}
+
+/**
+ * Contest variation for Hero Slice
+ *
+ * - **API ID**: `contest`
+ * - **Description**: Displays an image to the left and headline content with description to the right.
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitVisualHeadlineSliceContest = prismic.SharedSliceVariation<
+  "contest",
+  Simplify<SplitVisualHeadlineSliceContestPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
 type SplitVisualHeadlineSliceVariation =
-  SplitVisualHeadlineSliceVisualLeftHeadlineRight;
+  | SplitVisualHeadlineSliceVisualLeftHeadlineRight
+  | SplitVisualHeadlineSliceContest;
 
 /**
  * Hero Shared Slice
@@ -1452,8 +1521,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       SplitVisualHeadlineSlice,
       SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
+      SplitVisualHeadlineSliceContestPrimary,
       SplitVisualHeadlineSliceVariation,
       SplitVisualHeadlineSliceVisualLeftHeadlineRight,
+      SplitVisualHeadlineSliceContest,
     };
   }
 }

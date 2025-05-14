@@ -10,7 +10,7 @@ import { LinkField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 
 export default function Menu({ ...menuProps }) {
-  const { navbar, isOpen, lownavigations } = menuProps;
+  const { navbar, isOpen, lownavigations, setIsOpen } = menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
 
   const legal = lownavigations[1];
@@ -37,6 +37,7 @@ export default function Menu({ ...menuProps }) {
                       className={styles.navbar__item}
                       onMouseEnter={() => setSubbarIsOpen(index === 1)}
                       onMouseLeave={() => setSubbarIsOpen(false)}
+                      onClick={() => setIsOpen(false)}
                     >
                       <PrismicNextLink field={item.item} />
                       <ul

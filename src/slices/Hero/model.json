@@ -49,6 +49,53 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "contest",
+      "name": "Contest",
+      "description": "Displays an image to the left and headline content with description to the right.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "visual": {
+          "type": "Image",
+          "config": {
+            "label": "Visual"
+          }
+        },
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Headline"
+          }
+        },
+        "supporting_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Supporting Text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "background_color": {
+          "type": "Color",
+          "config": {
+            "label": "Background Color"
+          }
+        },
+        "decoration": {
+          "type": "Image",
+          "config": {
+            "label": "Decoration",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }
