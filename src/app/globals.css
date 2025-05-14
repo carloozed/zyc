@@ -39,7 +39,7 @@
     --crescendogold: #FFC130;
     --black: #000;
     --white: #fff;
-
+    --white-lowopa: rgba(255, 255, 255, 0.5);
     /* font sizes */
 
     /* 120px */

@@ -1,5 +1,98 @@
 .landing__container {
     height: 100%;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: space-between;
+    padding: 8% var(--padding-s);
+}
+
+.landing__rightcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.landing__rightcontainer__ccc {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: var(--padding-xs);
+    grid-row-gap: var(--padding-xs);
+    height: fit-content;
+}
+
+.landing__navigationitem {
+    background-color: var(--white-lowopa);
+    transition: all var(--animationtime-middle) var(--bezier);
+    border: var(--border-thin);
+    border-radius: var(--radius-s)
+}
+
+.landing__navigationitem a h5 {
+    width: fit-content;
+    font-size: var(--text-large);
+    font-weight: var(--fontweight-xs)
+}
+
+.landing__navigationitem:hover {
+    background-color: var(--white);
+}
+
+.landing__contest {
+    grid-area: 1 / 1 / 3 / 2;
+    width: 330px;
+    height: 518px;
+}
+
+
+.landing__cadenza {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.landing__crescendo {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+
+
+.landing__crescendo,
+.landing__cadenza,
+.landing__contest {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.ccc__innercontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--padding-s);
+}
+
+.landing__contest .ccc__innercontainer {
+    height: 55%;
+}
+
+.landing__cadenza .ccc__innercontainer,
+.landing__crescendo .ccc__innercontainer {
+    height: 60%;
+}
+
+.landing__crescendo h4,
+.landing__cadenza h4,
+.landing__contest h4 {
+    width: fit-content;
+    font-size: var(--subtitle-l);
+    font-weight: var(--fontweight-s);
+
+}
+
+.landing__crescendo a,
+.landing__cadenza a,
+.landing__contest a {
+    width: fit-content;
 }

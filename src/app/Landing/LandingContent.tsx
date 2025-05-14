@@ -23,30 +23,38 @@ export default function LandingContent({ landingNavigation }: Props) {
         </div>
       </div>
       <div className={styles.landing__rightcontainer}>
-        <div
-          className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
-        >
-          <PrismicNextLink field={the_contest}>
-            <h4>{the_contest.text}</h4>
-            <h5>{cta_text}</h5>
-          </PrismicNextLink>
+        <div className={styles.landing__rightcontainer__ccc}>
+          <div
+            className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
+          >
+            <div className={styles.ccc__innercontainer}>
+              <h4>{the_contest.text}</h4>
+              <PrismicNextLink field={the_contest}>
+                <h5>{cta_text}</h5>
+              </PrismicNextLink>
+            </div>
+          </div>
+          <div
+            className={`${styles.landing__cadenza} ${styles.landing__navigationitem}`}
+          >
+            <div className={styles.ccc__innercontainer}>
+              <h4>{the_cadenza.text}</h4>
+              <PrismicNextLink field={the_cadenza}>
+                <h5>{cta_text}</h5>
+              </PrismicNextLink>
+            </div>
+          </div>
+          <div
+            className={`${styles.landing__crescendo} ${styles.landing__navigationitem}`}
+          >
+            <div className={styles.ccc__innercontainer}>
+              <h4>{the_crescendo.text}</h4>
+              <PrismicNextLink field={the_crescendo}>
+                <h5>{cta_text}</h5>
+              </PrismicNextLink>
+            </div>
+          </div>
         </div>
-        <div
-          className={`${styles.landing__cadenza} ${styles.landing__navigationitem}`}
-        >
-          <PrismicNextLink field={the_cadenza}>
-            <h4>{the_cadenza.text}</h4>
-            <h5>{cta_text}</h5>
-          </PrismicNextLink>
-        </div>
-        <div
-          className={`${styles.landing__crescendo} ${styles.landing__navigationitem}`}
-        >
-          <PrismicNextLink field={the_crescendo}>
-            <h4>{the_crescendo.text}</h4>
-            <h5>{cta_text}</h5>
-          </PrismicNextLink>
-        </div>{' '}
         <div
           className={`${styles.landing__about} ${styles.landing__navigationitem}`}
         >
