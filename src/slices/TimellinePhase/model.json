@@ -34,6 +34,13 @@
             "label": "End Date",
             "placeholder": ""
           }
+        },
+        "width": {
+          "type": "Text",
+          "config": {
+            "label": "width",
+            "placeholder": "30%"
+          }
         }
       },
       "items": {}

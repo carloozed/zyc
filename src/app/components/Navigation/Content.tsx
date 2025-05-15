@@ -9,10 +9,12 @@ import {
   NavbarDocument,
   NavigationIndicatorDocument,
   SubnavigationDocument,
+  TimelineDocument,
 } from '../../../../prismicio-types';
 import { DownloadBarDocument } from '../../../../prismicio-types';
 import { LogoDocument } from '../../../../prismicio-types';
 import { LowNavigationDocument } from '../../../../prismicio-types';
+import TimelineBroad from './TimelineBroad/TimelineBroad';
 
 type Props = {
   downloadbar: DownloadBarDocument;
@@ -23,6 +25,7 @@ type Props = {
   address: AddressDocument;
   indicator: NavigationIndicatorDocument;
   subnavigation: SubnavigationDocument;
+  timelineBroad: TimelineDocument;
 };
 
 export default function Content({
@@ -34,6 +37,7 @@ export default function Content({
   address,
   indicator,
   subnavigation,
+  timelineBroad,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,6 +60,10 @@ export default function Content({
     navbar: navbar,
   };
 
+  const timelineProps = {
+    timelineBroad: timelineBroad,
+  };
+
   return (
     <>
       <div
@@ -67,7 +75,9 @@ export default function Content({
         <div className={styles.header__lowercontent}>
           <Menu {...menuProps} />
         </div>
-        <div className={styles.header__timeline}></div>
+        <div className={styles.header__timeline}>
+          <TimelineBroad {...timelineProps} />
+        </div>
       </div>
     </>
   );

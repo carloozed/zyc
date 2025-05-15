@@ -1,0 +1,21 @@
+.timeline__container {
+    background-color: var(--white-lowopa);
+    position: fixed;
+    display: flex;
+    height: fit-content;
+    padding: var(--padding-2xs) var(--padding-s);
+    bottom: var(--padding-s);
+    min-width: 80%;
+    justify-content: space-between;
+    border: var(--border-thin);
+    border-radius: 6px;
+    transform: scale(0.88);
+    transform-origin: left;
+    pointer-events: all;
+    transition: all 0.2s var(--bezier);
+    left: var(--padding-s)
+}
+
+.timeline__container:hover {
+    transform: scale(0.90);
+}

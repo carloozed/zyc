@@ -23,6 +23,11 @@
 				"__TYPE__": "FieldContent",
 				"type": "Date",
 				"value": "2019-12-23"
+			},
+			"width": {
+				"__TYPE__": "FieldContent",
+				"value": "myself",
+				"type": "Text"
 			}
 		},
 		"items": []

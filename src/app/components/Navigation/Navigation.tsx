@@ -14,6 +14,7 @@ export default async function Navigation() {
   const address = await client.getSingle('address');
   const indicator = await client.getSingle('navigation_indicator');
   const subnavigation = await client.getSingle('subnavigation');
+  const timelineBroad = await client.getSingle('timeline');
 
   return (
     <header className={styles.header}>
@@ -26,6 +27,7 @@ export default async function Navigation() {
         address={address}
         indicator={indicator}
         subnavigation={subnavigation}
+        timelineBroad={timelineBroad}
       />
     </header>
   );

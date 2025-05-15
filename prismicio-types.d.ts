@@ -1213,24 +1213,6 @@ export type TimelineDocument<Lang extends string = string> =
     Lang
   >;
 
-interface TimelineBarDocumentData {}
-
-/**
- * Timeline Bar document from Prismic
- *
- * - **API ID**: `timeline_bar`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type TimelineBarDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<TimelineBarDocumentData>,
-    "timeline_bar",
-    Lang
-  >;
-
 type UberZycDocumentDataSlicesSlice = never;
 
 /**
@@ -1317,7 +1299,6 @@ export type AllDocumentTypes =
   | TheContestDocument
   | TheCrescendoDocument
   | TimelineDocument
-  | TimelineBarDocument
   | UberZycDocument;
 
 /**
@@ -1509,6 +1490,16 @@ export interface TimelinePhasesSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   end_date: prismic.DateField;
+
+  /**
+   * width field in *TimellinePhase → Long Phase → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 30%
+   * - **API ID Path**: timeline_phases.default.primary.width
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  width: prismic.KeyTextField;
 }
 
 /**
@@ -1715,8 +1706,6 @@ declare module "@prismicio/client" {
       TimelineDocument,
       TimelineDocumentData,
       TimelineDocumentDataSlicesSlice,
-      TimelineBarDocument,
-      TimelineBarDocumentData,
       UberZycDocument,
       UberZycDocumentData,
       UberZycDocumentDataSlicesSlice,
