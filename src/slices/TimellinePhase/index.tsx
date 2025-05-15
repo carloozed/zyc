@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Content } from '@prismicio/client';
+import { Content, DateField } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 
 import styles from './index.module.css';
@@ -14,11 +14,56 @@ export type TimelinePhasesProps =
  * Component for "TimelinePhases" Slices.
  */
 const TimelinePhases: FC<TimelinePhasesProps> = ({ slice }) => {
+  // Calculate percentage based on dates
+  const calculateProgressPercentage = () => {
+    const startDateField: DateField = slice.primary.start_date;
+    const endDateField: DateField = slice.primary.end_date;
+
+    // Check if date fields exist and have values
+    if (!startDateField || !endDateField) {
+      return 0; // Return 0% if either date is missing
+    }
+
+    // Parse dates - using the string value from the DateField
+    const startDate = new Date(startDateField);
+    const endDate = new Date(endDateField);
+
+    // Get current date
+    const currentDate = new Date();
+
+    // Make sure dates are valid
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      return 0; // If dates are invalid, return 0%
+    }
+
+    // Calculate total duration in milliseconds
+    const totalDuration = endDate.getTime() - startDate.getTime();
+
+    // If duration is 0 or negative, return 0
+    if (totalDuration <= 0) {
+      return 0;
+    }
+
+    // Calculate elapsed time
+    const elapsedTime = Math.min(
+      Math.max(0, currentDate.getTime() - startDate.getTime()),
+      totalDuration
+    );
+
+    // Calculate percentage (0 to 100)
+    return (elapsedTime / totalDuration) * 100;
+  };
+
+  // Get the progress percentage
+  const progressPercentage = calculateProgressPercentage();
+
   console.log(
     'startDates',
     slice.primary.start_date,
     'endDates',
-    slice.primary.end_date
+    slice.primary.end_date,
+    'progressPercentage',
+    progressPercentage
   );
 
   return (
@@ -41,7 +86,10 @@ const TimelinePhases: FC<TimelinePhasesProps> = ({ slice }) => {
       <div className={styles.timeline__progresscontainer}>
         <div className={styles.progresscontainer__circle}></div>
         <div className={styles.progresscontainer__circle}></div>
-        <div className={styles.progresscontainer__progressbar}>
+        <div
+          className={styles.progresscontainer__progressbar}
+          style={{ width: `${progressPercentage}%` }}
+        >
           <svg
             width="100%"
             height="6"
