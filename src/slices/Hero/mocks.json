@@ -153,6 +153,24 @@
 				"credits": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"reglement_download": {
+				"key": "65791c82-60cf-4421-bbef-78a65e990bbf",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "does"
+				}
+			},
+			"anmeldelink": {
+				"__TYPE__": "LinkContent",
+				"key": "013d35a2-6818-427c-b1ce-29911d6c3330",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "population"
+				}
 			}
 		},
 		"items": [

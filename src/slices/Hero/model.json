@@ -93,6 +93,28 @@
             "constraint": {},
             "thumbnails": []
           }
+        },
+        "anmeldelink": {
+          "type": "Link",
+          "config": {
+            "label": "Anmeldelink",
+            "placeholder": "Anmelden!",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "reglement_download": {
+          "type": "Link",
+          "config": {
+            "label": "Reglement DOwnload",
+            "placeholder": "Download Reglement",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
         }
       },
       "items": {}

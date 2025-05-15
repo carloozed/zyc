@@ -1423,6 +1423,38 @@ export interface SplitVisualHeadlineSliceContestPrimary {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   decoration: prismic.ImageField<never>;
+
+  /**
+   * Anmeldelink field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Anmelden!
+   * - **API ID Path**: split_visual_headline.contest.primary.anmeldelink
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  anmeldelink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Reglement DOwnload field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Download Reglement
+   * - **API ID Path**: split_visual_headline.contest.primary.reglement_download
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  reglement_download: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**
