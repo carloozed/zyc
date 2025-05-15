@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { asText } from '@prismicio/client';
+import { asText, RichTextField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
@@ -17,11 +17,13 @@ export default function ContestHero({ ...contestHeroProps }) {
         style={{ backgroundColor: slice.primary.background_color || '#FFD700' }}
       >
         <div className={styles.heroslice__informationcontainer}>
-          {slice.primary.contestubersicht.map((item, index) => (
-            <div key={index}>
-              <PrismicRichText field={item.item} />
-            </div>
-          ))}
+          {slice.primary.contestubersicht.map(
+            (item: RichTextField, index: number) => (
+              <div key={index}>
+                <PrismicRichText field={item} />
+              </div>
+            )
+          )}
         </div>
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>
