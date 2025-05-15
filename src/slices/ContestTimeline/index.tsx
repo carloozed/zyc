@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { FC } from 'react';
+import { Content } from '@prismicio/client';
+import { SliceComponentProps } from '@prismicio/react';
+import ContestTimelineContent from './ContestTimelineContent';
 
 /**
  * Props for `ContestTimeline`.
@@ -12,15 +13,7 @@ export type ContestTimelineProps =
  * Component for "ContestTimeline" Slices.
  */
 const ContestTimeline: FC<ContestTimelineProps> = ({ slice }) => {
-  return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for contest_timeline (variation: {slice.variation})
-      Slices
-    </section>
-  );
+  return <ContestTimelineContent slice={slice} />;
 };
 
 export default ContestTimeline;
