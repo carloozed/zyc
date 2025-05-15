@@ -22,6 +22,8 @@
 /* 1440px and up */
 @media (min-width: 90rem) {}
 
+@media (min-width: 120rem) {}
+
 /* Touch Devices */
 /* Any touch device regardless of size */
 @media (hover: none) {}

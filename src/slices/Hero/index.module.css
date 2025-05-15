@@ -91,10 +91,11 @@
 /* 1440px and up */
 @media (min-width: 90rem) {
     .heroslice__container {
-        width: 70%;
-
+        max-width: var(--max-width);
     }
 }
+
+@media (min-width: 120rem) {}
 
 /* Touch Devices */
 /* Any touch device regardless of size */

@@ -1179,6 +1179,40 @@ export type TheCrescendoDocument<Lang extends string = string> =
     Lang
   >;
 
+type TimelineDocumentDataSlicesSlice = TimelinePhasesSlice;
+
+/**
+ * Content for TImeline documents
+ */
+interface TimelineDocumentData {
+  /**
+   * Slice Zone field in *TImeline*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<TimelineDocumentDataSlicesSlice>;
+}
+
+/**
+ * TImeline document from Prismic
+ *
+ * - **API ID**: `timeline`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TimelineDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TimelineDocumentData>,
+    "timeline",
+    Lang
+  >;
+
 interface TimelineBarDocumentData {}
 
 /**
@@ -1282,6 +1316,7 @@ export type AllDocumentTypes =
   | TheCadenzaDocument
   | TheContestDocument
   | TheCrescendoDocument
+  | TimelineDocument
   | TimelineBarDocument
   | UberZycDocument;
 
@@ -1441,6 +1476,170 @@ export type SplitVisualHeadlineSlice = prismic.SharedSlice<
   SplitVisualHeadlineSliceVariation
 >;
 
+/**
+ * Primary content in *TimellinePhase → Long Phase → Primary*
+ */
+export interface TimelinePhasesSliceDefaultPrimary {
+  /**
+   * Phase title field in *TimellinePhase → Long Phase → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Qualifikationsphase
+   * - **API ID Path**: timeline_phases.default.primary.phase_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_title: prismic.RichTextField;
+
+  /**
+   * Start Date field in *TimellinePhase → Long Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.default.primary.start_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField;
+
+  /**
+   * End Date field in *TimellinePhase → Long Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.default.primary.end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+}
+
+/**
+ * Long Phase variation for TimellinePhase Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelinePhasesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TimelinePhasesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TimellinePhase → Mid Phase → Primary*
+ */
+export interface TimelinePhasesSliceMidPhasePrimary {
+  /**
+   * Phase title field in *TimellinePhase → Mid Phase → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Qualifikationsphase
+   * - **API ID Path**: timeline_phases.midPhase.primary.phase_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_title: prismic.RichTextField;
+
+  /**
+   * Start Date field in *TimellinePhase → Mid Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.midPhase.primary.start_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField;
+
+  /**
+   * End Date field in *TimellinePhase → Mid Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.midPhase.primary.end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+}
+
+/**
+ * Mid Phase variation for TimellinePhase Slice
+ *
+ * - **API ID**: `midPhase`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelinePhasesSliceMidPhase = prismic.SharedSliceVariation<
+  "midPhase",
+  Simplify<TimelinePhasesSliceMidPhasePrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TimellinePhase → Short Phase → Primary*
+ */
+export interface TimelinePhasesSliceShortPhasePrimary {
+  /**
+   * Phase title field in *TimellinePhase → Short Phase → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Qualifikationsphase
+   * - **API ID Path**: timeline_phases.shortPhase.primary.phase_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_title: prismic.RichTextField;
+
+  /**
+   * Start Date field in *TimellinePhase → Short Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.shortPhase.primary.start_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField;
+
+  /**
+   * End Date field in *TimellinePhase → Short Phase → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline_phases.shortPhase.primary.end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+}
+
+/**
+ * Short Phase variation for TimellinePhase Slice
+ *
+ * - **API ID**: `shortPhase`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelinePhasesSliceShortPhase = prismic.SharedSliceVariation<
+  "shortPhase",
+  Simplify<TimelinePhasesSliceShortPhasePrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TimellinePhase*
+ */
+type TimelinePhasesSliceVariation =
+  | TimelinePhasesSliceDefault
+  | TimelinePhasesSliceMidPhase
+  | TimelinePhasesSliceShortPhase;
+
+/**
+ * TimellinePhase Shared Slice
+ *
+ * - **API ID**: `timeline_phases`
+ * - **Description**: TimelinePhases
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TimelinePhasesSlice = prismic.SharedSlice<
+  "timeline_phases",
+  TimelinePhasesSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1513,6 +1712,9 @@ declare module "@prismicio/client" {
       TheCrescendoDocument,
       TheCrescendoDocumentData,
       TheCrescendoDocumentDataSlicesSlice,
+      TimelineDocument,
+      TimelineDocumentData,
+      TimelineDocumentDataSlicesSlice,
       TimelineBarDocument,
       TimelineBarDocumentData,
       UberZycDocument,
@@ -1525,6 +1727,14 @@ declare module "@prismicio/client" {
       SplitVisualHeadlineSliceVariation,
       SplitVisualHeadlineSliceVisualLeftHeadlineRight,
       SplitVisualHeadlineSliceContest,
+      TimelinePhasesSlice,
+      TimelinePhasesSliceDefaultPrimary,
+      TimelinePhasesSliceMidPhasePrimary,
+      TimelinePhasesSliceShortPhasePrimary,
+      TimelinePhasesSliceVariation,
+      TimelinePhasesSliceDefault,
+      TimelinePhasesSliceMidPhase,
+      TimelinePhasesSliceShortPhase,
     };
   }
 }

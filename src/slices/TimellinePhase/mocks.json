@@ -1,0 +1,96 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"phase_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading5",
+						"content": {
+							"text": "Musical"
+						}
+					}
+				]
+			},
+			"start_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2024-02-19"
+			},
+			"end_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2019-12-23"
+			}
+		},
+		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "midPhase",
+		"primary": {
+			"phase_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading5",
+						"content": {
+							"text": "Flower"
+						}
+					}
+				]
+			},
+			"start_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2020-06-16"
+			},
+			"end_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2022-01-02"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "shortPhase",
+		"primary": {
+			"phase_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading5",
+						"content": {
+							"text": "Paint"
+						}
+					}
+				]
+			},
+			"start_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2021-05-20"
+			},
+			"end_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2021-06-10"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
+	}
+]

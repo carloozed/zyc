@@ -4,4 +4,5 @@ import dynamic from "next/dynamic";
 
 export const components = {
   split_visual_headline: dynamic(() => import("./Hero")),
+  timeline_phases: dynamic(() => import("./TimellinePhase")),
 };

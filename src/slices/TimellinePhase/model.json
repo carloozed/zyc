@@ -1,0 +1,110 @@
+{
+  "id": "timeline_phases",
+  "type": "SharedSlice",
+  "name": "TimellinePhase",
+  "description": "TimelinePhases",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Long Phase",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "phase_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Phase title",
+            "placeholder": "Qualifikationsphase",
+            "allowTargetBlank": true,
+            "multi": "heading5"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date",
+            "placeholder": ""
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "midPhase",
+      "name": "Mid Phase",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "phase_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Phase title",
+            "placeholder": "Qualifikationsphase",
+            "allowTargetBlank": true,
+            "multi": "heading5"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date",
+            "placeholder": ""
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "shortPhase",
+      "name": "Short Phase",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "phase_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Phase title",
+            "placeholder": "Qualifikationsphase",
+            "allowTargetBlank": true,
+            "multi": "heading5"
+          }
+        },
+        "start_date": {
+          "type": "Date",
+          "config": {
+            "label": "Start Date",
+            "placeholder": ""
+          }
+        },
+        "end_date": {
+          "type": "Date",
+          "config": {
+            "label": "End Date",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
