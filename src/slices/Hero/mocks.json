@@ -164,13 +164,37 @@
 				}
 			},
 			"anmeldelink": {
-				"__TYPE__": "LinkContent",
 				"key": "013d35a2-6818-427c-b1ce-29911d6c3330",
+				"__TYPE__": "LinkContent",
 				"value": {
 					"__TYPE__": "ExternalLink",
 					"url": "http://twitter.com",
 					"text": "population"
 				}
+			},
+			"contestubersicht": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"item",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Leave"
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": [

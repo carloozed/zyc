@@ -16,6 +16,13 @@ export default function ContestHero({ ...contestHeroProps }) {
         className={styles.heroslice__container}
         style={{ backgroundColor: slice.primary.background_color || '#FFD700' }}
       >
+        <div className={styles.heroslice__informationcontainer}>
+          {slice.primary.contestubersicht.map((item, index) => (
+            <div key={index}>
+              <PrismicRichText field={item.item} />
+            </div>
+          ))}
+        </div>
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>
             <PrismicNextImage field={slice.primary.visual} />

@@ -115,6 +115,24 @@
             "allowText": true,
             "repeat": false
           }
+        },
+        "contestubersicht": {
+          "type": "Group",
+          "config": {
+            "label": "Contestübersicht",
+            "repeat": true,
+            "fields": {
+              "item": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Item",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading5"
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

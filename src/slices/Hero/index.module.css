@@ -18,6 +18,20 @@
 
 }
 
+.heroslice__informationcontainer {
+    display: flex;
+    position: absolute;
+    top: -2vh;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.heroslice__informationcontainer h5 {
+    font-weight: var(--fontweight-xs);
+    font-size: var(--text)
+}
+
 .heroslice__leftcontainer,
 .heroslice__rightcontainer {
     width: 100%;

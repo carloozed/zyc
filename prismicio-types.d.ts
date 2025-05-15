@@ -1302,6 +1302,21 @@ export type AllDocumentTypes =
   | UberZycDocument;
 
 /**
+ * Item in *Hero → Contest → Primary → Contestübersicht*
+ */
+export interface SplitVisualHeadlineSliceContestPrimaryContestubersichtItem {
+  /**
+   * Item field in *Hero → Contest → Primary → Contestübersicht*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.contestubersicht[].item
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  item: prismic.RichTextField;
+}
+
+/**
  * Primary content in *Hero → Cadenza, Crescendo → Primary*
  */
 export interface SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary {
@@ -1454,6 +1469,18 @@ export interface SplitVisualHeadlineSliceContestPrimary {
     unknown,
     prismic.FieldState,
     never
+  >;
+
+  /**
+   * Contestübersicht field in *Hero → Contest → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_visual_headline.contest.primary.contestubersicht[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contestubersicht: prismic.GroupField<
+    Simplify<SplitVisualHeadlineSliceContestPrimaryContestubersichtItem>
   >;
 }
 
@@ -1744,6 +1771,7 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       SplitVisualHeadlineSlice,
       SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
+      SplitVisualHeadlineSliceContestPrimaryContestubersichtItem,
       SplitVisualHeadlineSliceContestPrimary,
       SplitVisualHeadlineSliceVariation,
       SplitVisualHeadlineSliceVisualLeftHeadlineRight,
