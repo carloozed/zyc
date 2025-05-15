@@ -1,7 +1,6 @@
 .timeline__container {
     display: flex;
     flex-direction: column;
-    gap: var(--padding-xs);
     justify-content: center;
 }
 
@@ -9,7 +8,8 @@
     font-weight: var(--fontweight-s);
     text-align: center;
     text-transform: uppercase;
-    font-size: var(--text-s)
+    font-size: var(--text-s);
+    padding-bottom: var(--padding-xs)
 }
 
 .timeline__progresscontainer {

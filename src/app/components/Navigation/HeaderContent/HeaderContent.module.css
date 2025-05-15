@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1.75fr 1fr;
     padding: var(--padding-xs) 0 0 0;
-    transition: all var(--animationtime-fast) var(--bezier);
+    transition: opacity var(--animationtime-fast) var(--bezier);
     opacity: var(--opacity);
     pointer-events: all;
 }

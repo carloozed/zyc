@@ -27,8 +27,8 @@
 .circle {
     position: absolute;
     content: "";
-    height: 6px;
-    width: 6px;
+    height: calc(1px + 0.25vw);
+    width: calc(1px + 0.25vw);
     background-color: white;
     border: var(--border-thin);
     border-radius: 50%;
@@ -40,7 +40,7 @@
 
 
 .line {
-    width: 3rem;
+    width: calc(1.3rem + 1.3vw);
     height: 1px;
     background-color: var(--black);
 }
@@ -49,6 +49,9 @@
 .hamburger__container:hover .hamburger__line:nth-of-type(3) {
     width: 1.5rem;
 }
+
+
+
 
 .hamburger__open .hamburger__line:nth-of-type(1),
 .hamburger__open .hamburger__line:nth-of-type(3) {

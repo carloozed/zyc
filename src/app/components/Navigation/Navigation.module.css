@@ -18,7 +18,7 @@
     justify-content: space-between;
     gap: var(--padding-s);
     height: 100svh;
-    transition: all var(--animationtime-middle) var(--bezier)
+    transition: background-color var(--animationtime-middle) var(--bezier)
 }
 
 .header__open {
