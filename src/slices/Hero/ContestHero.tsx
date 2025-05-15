@@ -18,9 +18,9 @@ export default function ContestHero({ ...contestHeroProps }) {
       >
         <div className={styles.heroslice__informationcontainer}>
           {slice.primary.contestubersicht.map(
-            (item: RichTextField, index: number) => (
+            (item: { item: RichTextField }, index: number) => (
               <div key={index}>
-                <PrismicRichText field={item} />
+                <PrismicRichText field={item.item} />
               </div>
             )
           )}
