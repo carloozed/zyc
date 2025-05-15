@@ -19,9 +19,11 @@
     "@prismicio/next": "^2.0.1",
     "@prismicio/react": "^3.2.1",
     "gsap": "^3.13.0",
+    "motion": "^12.11.3",
     "next": "^15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

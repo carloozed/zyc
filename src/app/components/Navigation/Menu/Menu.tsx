@@ -1,17 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
-
+import React, { useState, useRef } from 'react';
 import styles from './Menu.module.css';
-
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-
 import { LinkField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
+import { gsap } from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+import { useGSAP } from '@gsap/react';
+
+// Register the plugin
+gsap.registerPlugin(SplitText, useGSAP);
 
 export default function Menu({ ...menuProps }) {
   const { navbar, isOpen, lownavigations, setIsOpen } = menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
+  const subnavLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   const legal = lownavigations[1];
   const socials = lownavigations[0];
@@ -19,6 +23,43 @@ export default function Menu({ ...menuProps }) {
   const logo = menuProps.logo.data;
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
+
+  useGSAP(() => {
+    if (subbarIsOpen && subnavLinksRef.current.length > 0) {
+      // Reset the array if needed
+      subnavLinksRef.current = subnavLinksRef.current.slice(
+        0,
+        subnavigation.subnavigation_items.length
+      );
+
+      // Apply SplitText to each link
+      subnavLinksRef.current.forEach((link) => {
+        if (link) {
+          // Create a SplitText instance
+          const splitText = new SplitText(link, {
+            type: 'chars',
+            charsClass: 'char',
+          });
+
+          // Animate the characters
+          gsap.fromTo(
+            splitText.chars,
+            {
+              opacity: 0,
+              y: 10,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.04,
+              duration: 0.4,
+              ease: 'power2.out',
+            }
+          );
+        }
+      });
+    }
+  }, [subbarIsOpen]);
 
   return (
     <>
@@ -40,22 +81,30 @@ export default function Menu({ ...menuProps }) {
                       onClick={() => setIsOpen(false)}
                     >
                       <PrismicNextLink field={item.item} />
-                      <ul
-                        className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
-                      >
-                        {index === 1 &&
-                          subnavigation.subnavigation_items.map(
-                            (item: { link: LinkField }, index: number) => (
-                              <li
-                                key={index}
-                                className={styles.subnavbar__item}
-                              >
-                                <span>[0{index + 1}] </span>
-                                <PrismicNextLink field={item.link} />
-                              </li>
-                            )
-                          )}
-                      </ul>
+                      <div className={styles.subnavbar__container}>
+                        <ul
+                          className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
+                        >
+                          {index === 1 &&
+                            subnavigation.subnavigation_items.map(
+                              (item: { link: LinkField }, index: number) => (
+                                <li
+                                  key={index}
+                                  className={styles.subnavbar__item}
+                                >
+                                  <span>[0{index + 1}] </span>
+                                  <span
+                                    ref={(el) => {
+                                      subnavLinksRef.current[index] = el;
+                                    }}
+                                  >
+                                    <PrismicNextLink field={item.link} />
+                                  </span>
+                                </li>
+                              )
+                            )}
+                        </ul>
+                      </div>
                     </li>
                   )
                 )}
