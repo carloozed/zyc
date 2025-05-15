@@ -1,5 +1,5 @@
 .timeline__container {
-    background-color: var(--white-lowopa);
+    background-color: var(--white);
     position: fixed;
     display: flex;
     height: fit-content;
@@ -14,6 +14,10 @@
     pointer-events: all;
     transition: all 0.2s var(--bezier);
     left: var(--padding-s)
+}
+
+.timeline__container__ishome {
+    background-color: var(--white-lowopa);
 }
 
 .timeline__container:hover {

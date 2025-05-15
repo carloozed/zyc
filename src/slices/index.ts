@@ -3,6 +3,8 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  contest_timeline: dynamic(() => import("./ContestTimeline")),
+  foldout: dynamic(() => import("./Foldout")),
   split_visual_headline: dynamic(() => import("./Hero")),
   timeline_phases: dynamic(() => import("./TimellinePhase")),
 };

@@ -20,6 +20,7 @@ const routes: Route[] = [
   { type: 'the_contest', path: '/the_contest' },
   { type: 'the_cadenza', path: '/the_cadenza' },
   { type: 'the_crescendo', path: '/the_crescendo' },
+  { type: 'teilnahme_termine', path: '/termine' },
 ];
 
 /**

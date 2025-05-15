@@ -1,0 +1,36 @@
+{
+  "id": "foldout",
+  "type": "SharedSlice",
+  "name": "Foldout",
+  "description": "Foldout",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Weitere Fragen?",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "adsfasdfadsf": {
+          "type": "Group",
+          "config": {
+            "label": "adsfadsf",
+            "repeat": true,
+            "fields": {}
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

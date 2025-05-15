@@ -9,6 +9,8 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
+import { usePathname } from 'next/navigation';
+
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
 
@@ -24,6 +26,24 @@ export default function Menu({ ...menuProps }) {
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
 
+  const pathname = usePathname();
+
+  const indicatorPosition = () => {
+    switch (pathname) {
+      case '/':
+        return '0%';
+      case '/the_contest':
+        return '100%';
+      case '/the_cadenza':
+        return '100%';
+      case '/the_crescendo':
+        return '100%';
+      case '/termine':
+        return '200%';
+      default:
+        return '0%';
+    }
+  };
   useGSAP(() => {
     if (subbarIsOpen && subnavLinksRef.current.length > 0) {
       // Reset the array if needed
@@ -68,7 +88,12 @@ export default function Menu({ ...menuProps }) {
           <div className={styles.menu__leftcontainer}>
             <div className={styles.menu__navlistcontainer}>
               <ul className={styles.menu__navlist}>
-                <div className={styles.menu__navlist__indicator}>
+                <div
+                  className={styles.menu__navlist__indicator}
+                  style={{
+                    transform: `translateY(${indicatorPosition()})  translateX(-120%)`,
+                  }}
+                >
                   <PrismicNextImage field={indicator.image} />
                 </div>
                 {navbar.data.navigation_items.map(

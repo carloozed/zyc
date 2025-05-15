@@ -1,0 +1,69 @@
+{
+  "id": "contest_timeline",
+  "type": "SharedSlice",
+  "name": "ContestTimeline",
+  "description": "ContestTimeline",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Timeline",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "timeline_contest_group": {
+          "type": "Group",
+          "config": {
+            "label": "Timeline Contest Group",
+            "repeat": true,
+            "fields": {
+              "start_date": {
+                "type": "Date",
+                "config": {
+                  "label": "Start Date",
+                  "placeholder": ""
+                }
+              },
+              "end_date": {
+                "type": "Date",
+                "config": {
+                  "label": "End Date",
+                  "placeholder": ""
+                }
+              },
+              "phase_name": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Phase Name ",
+                  "placeholder": "Anmeldung",
+                  "allowTargetBlank": true,
+                  "multi": "heading4,heading3"
+                }
+              },
+              "phase_description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Phase Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

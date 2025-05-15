@@ -8,8 +8,6 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 export default function ContestHero({ ...contestHeroProps }) {
   const { slice, styles } = contestHeroProps;
 
-  console.log('ContestHero slice', slice);
-
   return (
     <>
       <div

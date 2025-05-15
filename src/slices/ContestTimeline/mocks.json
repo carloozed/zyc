@@ -1,0 +1,74 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Difficult"
+						}
+					}
+				]
+			},
+			"timeline_contest_group": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"start_date",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Date",
+									"value": "2015-08-12"
+								}
+							],
+							[
+								"end_date",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Date",
+									"value": "2017-12-21"
+								}
+							],
+							[
+								"phase_name",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading4",
+											"content": {
+												"text": "Coast"
+											}
+										}
+									]
+								}
+							],
+							[
+								"phase_description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Consectetur consectetur et tempor non ullamco deserunt eiusmod eu eiusmod deserunt."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

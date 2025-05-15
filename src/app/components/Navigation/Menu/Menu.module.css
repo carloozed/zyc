@@ -95,7 +95,7 @@
     height: calc(var(--subtitle-l) + var(--padding-sm));
     width: auto;
     position: absolute;
-    transform: translateX(-120%) translateY(00%);
+
     transition: transform var(--animationtime-fast) var(--bezier)
 }
 

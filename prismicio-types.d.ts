@@ -1049,7 +1049,10 @@ export type TheCadenzaDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheContestDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
+type TheContestDocumentDataSlicesSlice =
+  | ContestTimelineSlice
+  | FoldoutSlice
+  | SplitVisualHeadlineSlice;
 
 /**
  * Content for The Contest documents
@@ -1300,6 +1303,170 @@ export type AllDocumentTypes =
   | TheCrescendoDocument
   | TimelineDocument
   | UberZycDocument;
+
+/**
+ * Item in *ContestTimeline → Default → Primary → Timeline Contest Group*
+ */
+export interface ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem {
+  /**
+   * Start Date field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].start_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField;
+
+  /**
+   * End Date field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+
+  /**
+   * Phase Name  field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Anmeldung
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].phase_name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_name: prismic.RichTextField;
+
+  /**
+   * Phase Description field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].phase_description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ContestTimeline → Default → Primary*
+ */
+export interface ContestTimelineSliceDefaultPrimary {
+  /**
+   * Title field in *ContestTimeline → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Timeline
+   * - **API ID Path**: contest_timeline.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Timeline Contest Group field in *ContestTimeline → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  timeline_contest_group: prismic.GroupField<
+    Simplify<ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem>
+  >;
+}
+
+/**
+ * Default variation for ContestTimeline Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContestTimelineSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContestTimelineSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContestTimeline*
+ */
+type ContestTimelineSliceVariation = ContestTimelineSliceDefault;
+
+/**
+ * ContestTimeline Shared Slice
+ *
+ * - **API ID**: `contest_timeline`
+ * - **Description**: ContestTimeline
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContestTimelineSlice = prismic.SharedSlice<
+  "contest_timeline",
+  ContestTimelineSliceVariation
+>;
+
+/**
+ * Item in *Foldout → Default → Primary → adsfadsf*
+ */
+export interface FoldoutSliceDefaultPrimaryAdsfasdfadsfItem {}
+
+/**
+ * Primary content in *Foldout → Default → Primary*
+ */
+export interface FoldoutSliceDefaultPrimary {
+  /**
+   * Section Title field in *Foldout → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Weitere Fragen?
+   * - **API ID Path**: foldout.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * adsfadsf field in *Foldout → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldout.default.primary.adsfasdfadsf[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  adsfasdfadsf: prismic.GroupField<
+    Simplify<FoldoutSliceDefaultPrimaryAdsfasdfadsfItem>
+  >;
+}
+
+/**
+ * Default variation for Foldout Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FoldoutSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FoldoutSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Foldout*
+ */
+type FoldoutSliceVariation = FoldoutSliceDefault;
+
+/**
+ * Foldout Shared Slice
+ *
+ * - **API ID**: `foldout`
+ * - **Description**: Foldout
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FoldoutSlice = prismic.SharedSlice<
+  "foldout",
+  FoldoutSliceVariation
+>;
 
 /**
  * Item in *Hero → Contest → Primary → Contestübersicht*
@@ -1769,6 +1936,16 @@ declare module "@prismicio/client" {
       UberZycDocumentData,
       UberZycDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ContestTimelineSlice,
+      ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
+      ContestTimelineSliceDefaultPrimary,
+      ContestTimelineSliceVariation,
+      ContestTimelineSliceDefault,
+      FoldoutSlice,
+      FoldoutSliceDefaultPrimaryAdsfasdfadsfItem,
+      FoldoutSliceDefaultPrimary,
+      FoldoutSliceVariation,
+      FoldoutSliceDefault,
       SplitVisualHeadlineSlice,
       SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
       SplitVisualHeadlineSliceContestPrimaryContestubersichtItem,

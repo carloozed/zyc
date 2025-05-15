@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "contest_timeline": {
+              "type": "SharedSlice"
+            },
+            "foldout": {
+              "type": "SharedSlice"
+            },
             "split_visual_headline": {
               "type": "SharedSlice"
             }
