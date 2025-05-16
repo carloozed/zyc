@@ -20,6 +20,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "contact_and_download": {
+              "type": "SharedSlice"
+            },
             "criterias": {
               "type": "SharedSlice"
             },

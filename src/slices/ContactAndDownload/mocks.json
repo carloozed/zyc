@@ -1,0 +1,97 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"subtitle_something_missing": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading3",
+						"content": {
+							"text": "Particular"
+						}
+					}
+				]
+			},
+			"text_missingsomething": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Minim ad cillum pariatur veniam quis consectetur est. Veniam anim ipsum deserunt exercitation culpa adipisicing magna dolor sint nulla dolore minim sit quis. Enim aute cupidatat anim eiusmod sit dolor consequat fugiat sit adipisicing nulla aute."
+						}
+					}
+				]
+			},
+			"links": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"link",
+								{
+									"key": "0a47743a-bcfe-4791-9c09-9d7f5bdb5bff",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "realize"
+									}
+								}
+							]
+						]
+					}
+				]
+			},
+			"downloads_title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading3",
+						"content": {
+							"text": "Neighbor"
+						}
+					}
+				]
+			},
+			"text_downloads": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Minim tempor non in sunt est tempor laboris magna et."
+						}
+					}
+				]
+			},
+			"download_links": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "12ad36d7-7199-4d09-934c-cebc6cab252b",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io",
+										"text": "gradually"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

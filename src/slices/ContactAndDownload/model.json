@@ -1,0 +1,95 @@
+{
+  "id": "contact_and_download",
+  "type": "SharedSlice",
+  "name": "ContactAndDownload",
+  "description": "ContactAndDownload",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "subtitle_something_missing": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle Something Missing",
+            "placeholder": "Fehlt etwas?",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "text_missingsomething": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text missingsomething",
+            "placeholder": "hast du noch weitere fragene etc?",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "links": {
+          "type": "Group",
+          "config": {
+            "label": "Links",
+            "repeat": true,
+            "fields": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Zum allgemeinen FAQ/Kontaktiere uns",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        },
+        "downloads_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Downloads Title",
+            "placeholder": "Downloads",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "text_downloads": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text Downloads",
+            "placeholder": "Du kannst alle Reglemente und Zeitpläne zu einem gegebenen Zeitpunkt hier downloaden. ",
+            "allowTargetBlank": true,
+            "multi": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "download_links": {
+          "type": "Group",
+          "config": {
+            "label": "Download Links",
+            "repeat": true,
+            "fields": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Name Download",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

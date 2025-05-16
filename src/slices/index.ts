@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  contact_and_download: dynamic(() => import("./ContactAndDownload")),
   contest_timeline: dynamic(() => import("./ContestTimeline")),
   criterias: dynamic(() => import("./Criterias")),
   foldout: dynamic(() => import("./Foldout")),

@@ -1168,6 +1168,7 @@ export type TheCadenzaDocument<Lang extends string = string> =
   >;
 
 type TheContestDocumentDataSlicesSlice =
+  | ContactAndDownloadSlice
   | CriteriasSlice
   | ContestTimelineSlice
   | FoldoutSlice
@@ -1468,6 +1469,135 @@ export type AllDocumentTypes =
   | TimelineDocument
   | UberZycDocument
   | WeAreHereImageDocument;
+
+/**
+ * Item in *ContactAndDownload → Default → Primary → Links*
+ */
+export interface ContactAndDownloadSliceDefaultPrimaryLinksItem {
+  /**
+   * Link field in *ContactAndDownload → Default → Primary → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Zum allgemeinen FAQ/Kontaktiere uns
+   * - **API ID Path**: contact_and_download.default.primary.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *ContactAndDownload → Default → Primary → Download Links*
+ */
+export interface ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem {
+  /**
+   * Link field in *ContactAndDownload → Default → Primary → Download Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Name Download
+   * - **API ID Path**: contact_and_download.default.primary.download_links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *ContactAndDownload → Default → Primary*
+ */
+export interface ContactAndDownloadSliceDefaultPrimary {
+  /**
+   * Subtitle Something Missing field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Fehlt etwas?
+   * - **API ID Path**: contact_and_download.default.primary.subtitle_something_missing
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle_something_missing: prismic.RichTextField;
+
+  /**
+   * Text missingsomething field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: hast du noch weitere fragene etc?
+   * - **API ID Path**: contact_and_download.default.primary.text_missingsomething
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_missingsomething: prismic.RichTextField;
+
+  /**
+   * Links field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_and_download.default.primary.links[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<
+    Simplify<ContactAndDownloadSliceDefaultPrimaryLinksItem>
+  >;
+
+  /**
+   * Downloads Title field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Downloads
+   * - **API ID Path**: contact_and_download.default.primary.downloads_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  downloads_title: prismic.RichTextField;
+
+  /**
+   * Text Downloads field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Du kannst alle Reglemente und Zeitpläne zu einem gegebenen Zeitpunkt hier downloaden.
+   * - **API ID Path**: contact_and_download.default.primary.text_downloads
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_downloads: prismic.RichTextField;
+
+  /**
+   * Download Links field in *ContactAndDownload → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_and_download.default.primary.download_links[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  download_links: prismic.GroupField<
+    Simplify<ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem>
+  >;
+}
+
+/**
+ * Default variation for ContactAndDownload Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactAndDownloadSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ContactAndDownloadSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactAndDownload*
+ */
+type ContactAndDownloadSliceVariation = ContactAndDownloadSliceDefault;
+
+/**
+ * ContactAndDownload Shared Slice
+ *
+ * - **API ID**: `contact_and_download`
+ * - **Description**: ContactAndDownload
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactAndDownloadSlice = prismic.SharedSlice<
+  "contact_and_download",
+  ContactAndDownloadSliceVariation
+>;
 
 /**
  * Item in *ContestTimeline → Default → Primary → Timeline Contest Group*
@@ -2189,6 +2319,12 @@ declare module "@prismicio/client" {
       WeAreHereImageDocument,
       WeAreHereImageDocumentData,
       AllDocumentTypes,
+      ContactAndDownloadSlice,
+      ContactAndDownloadSliceDefaultPrimaryLinksItem,
+      ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,
+      ContactAndDownloadSliceDefaultPrimary,
+      ContactAndDownloadSliceVariation,
+      ContactAndDownloadSliceDefault,
       ContestTimelineSlice,
       ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
       ContestTimelineSliceDefaultPrimary,
