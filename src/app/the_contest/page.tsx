@@ -9,8 +9,17 @@ import { components } from '@/slices';
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle('the_contest').catch(() => notFound());
+  const wearehereicon = await client
+    .getSingle('we_are_here_image')
+    .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <SliceZone
+      slices={page.data.slices}
+      components={components}
+      context={{ wearehereicon }}
+    />
+  );
 }
 
 export async function generateMetadata(): Promise<Metadata> {

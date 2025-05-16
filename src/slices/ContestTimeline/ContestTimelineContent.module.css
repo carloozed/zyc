@@ -20,7 +20,6 @@
     row-gap: var(--padding-m);
     width: var(--circle-height);
     position: relative;
-
 }
 
 .ctl__timeline h4 {
@@ -35,4 +34,33 @@
     border-radius: 50%;
     border: var(--border-thin);
     position: relative;
+    overflow: hidden;
+    transition: transform var(--animationtime-xfast) var(--bezier), filter var(--animationtime-fast) var(--bezier);
+}
+
+.ctl__timeline__item__circle:hover {
+    transform: scale(1.04);
+    filter: brightness(102%);
+}
+
+.color {
+    height: 100%;
+    width: 100%;
+    background-color: var(--contestblue);
+}
+
+.ctl__timeline__item__indicator {
+    position: absolute;
+    top: -45%;
+    left: -20%;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    align-items: left;
+}
+
+.ctl__timeline__item__indicator img {
+    left: 0;
+    height: calc(2rem + 7vh);
+    width: auto;
 }

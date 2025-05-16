@@ -2,11 +2,19 @@
 
 import React from 'react';
 import styles from './ContestTimelineContent.module.css';
-import { ContestTimelineSlice } from '../../../prismicio-types';
+import {
+  ContestTimelineSlice,
+  WeAreHereImageDocument,
+} from '../../../prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { JSXMapSerializer } from '@prismicio/react';
+import ProgressCircle from './ProgressCircle';
+import { PrismicNextImage } from '@prismicio/next';
 
-type Props = { slice: ContestTimelineSlice };
+type Props = {
+  slice: ContestTimelineSlice;
+  wearehereicon: WeAreHereImageDocument;
+};
 
 // Components for h4
 const h4Components: JSXMapSerializer = {
@@ -28,7 +36,10 @@ const h3Components: JSXMapSerializer = {
   heading6: ({ children }) => <h3>{children}</h3>,
 };
 
-export default function ContestTimelineContent({ slice }: Props) {
+export default function ContestTimelineContent({
+  slice,
+  wearehereicon,
+}: Props) {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -41,7 +52,18 @@ export default function ContestTimelineContent({ slice }: Props) {
         {/* First instance - render as h4 */}
         {slice.primary.timeline_contest_group.map((item, index) => (
           <div key={index} className={styles.ctl__timeline__item}>
-            <div className={styles.ctl__timeline__item__circle}></div>
+            {item.start_date &&
+              item.end_date &&
+              new Date(item.start_date) <= new Date() &&
+              new Date(item.end_date) >= new Date() && (
+                <div className={styles.ctl__timeline__item__indicator}>
+                  <PrismicNextImage field={wearehereicon.data.image} />
+                </div>
+              )}
+
+            <div className={styles.ctl__timeline__item__circle}>
+              <ProgressCircle item={item} styles={styles} />
+            </div>
             <div
               key={`h4-${index}`}
               className={styles.ctl__timeline__item__title}

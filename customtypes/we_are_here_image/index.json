@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "we_are_here_image",
+  "label": "We Are Here Image",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

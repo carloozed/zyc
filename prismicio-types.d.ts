@@ -1281,6 +1281,38 @@ export type UberZycDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for We Are Here Image documents
+ */
+interface WeAreHereImageDocumentData {
+  /**
+   * image field in *We Are Here Image*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: we_are_here_image.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * We Are Here Image document from Prismic
+ *
+ * - **API ID**: `we_are_here_image`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WeAreHereImageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<WeAreHereImageDocumentData>,
+    "we_are_here_image",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | AddressDocument
   | DatenschutzDocument
@@ -1302,7 +1334,8 @@ export type AllDocumentTypes =
   | TheContestDocument
   | TheCrescendoDocument
   | TimelineDocument
-  | UberZycDocument;
+  | UberZycDocument
+  | WeAreHereImageDocument;
 
 /**
  * Item in *ContestTimeline → Default → Primary → Timeline Contest Group*
@@ -1935,6 +1968,8 @@ declare module "@prismicio/client" {
       UberZycDocument,
       UberZycDocumentData,
       UberZycDocumentDataSlicesSlice,
+      WeAreHereImageDocument,
+      WeAreHereImageDocumentData,
       AllDocumentTypes,
       ContestTimelineSlice,
       ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
