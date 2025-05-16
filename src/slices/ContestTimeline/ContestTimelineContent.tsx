@@ -40,9 +40,27 @@ export default function ContestTimelineContent({
   slice,
   wearehereicon,
 }: Props) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [translatePercentage, setTranslatePercentage] = useState(0);
   const [currentPhase, setCurrentPhase] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(currentPhase);
+  const [translatePercentage, setTranslatePercentage] = useState(0);
+
+  const currentDate = new Date();
+
+  const currentPhaseIndex = slice.primary.timeline_contest_group.findIndex(
+    (item) => {
+      if (!item.start_date || !item.end_date) return false;
+      const startDate = new Date(item.start_date);
+      const endDate = new Date(item.end_date);
+      return currentDate >= startDate && currentDate <= endDate;
+    }
+  );
+
+  useEffect(() => {
+    if (currentPhaseIndex !== -1) {
+      setCurrentPhase(currentPhaseIndex);
+      setActiveIndex(currentPhaseIndex);
+    }
+  }, [currentPhaseIndex]);
 
   useEffect(() => {
     switch (activeIndex) {
@@ -62,7 +80,7 @@ export default function ContestTimelineContent({
         setTranslatePercentage(80);
         break;
       default:
-        setTranslatePercentage(0);
+        setTranslatePercentage(currentPhase);
         break;
     }
   });
@@ -76,13 +94,8 @@ export default function ContestTimelineContent({
       <PrismicRichText field={slice.primary.title} />
 
       <div className={styles.ctl__timeline}>
-        {/* First instance - render as h4 */}
         {slice.primary.timeline_contest_group.map((item, index) => (
-          <div
-            key={index}
-            className={styles.ctl__timeline__item}
-            // When mouse enters, update active index
-          >
+          <div key={index} className={styles.ctl__timeline__item}>
             {item.start_date &&
               item.end_date &&
               new Date(item.start_date) <= new Date() &&
