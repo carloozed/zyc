@@ -112,6 +112,7 @@
 
 body {
     position: relative;
+    overflow-x: hidden;
 }
 
 *::selection {
@@ -161,6 +162,7 @@ h2 {
 
 p {
     font-size: var(--text-s);
+    line-height: 120%;
 }
 
 

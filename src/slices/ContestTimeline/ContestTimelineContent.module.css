@@ -1,9 +1,11 @@
 .ctl__container {
-    padding-top: var(--padding-xl);
+    padding: var(--padding-xl) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--padding-xl);
+    min-width: 100svw;
+    height: 85vh;
 }
 
 
@@ -41,12 +43,14 @@
 .ctl__timeline__item__circle:hover {
     transform: scale(1.04);
     filter: brightness(102%);
+
 }
 
 .color {
     height: 100%;
     width: 100%;
     background-color: var(--contestblue);
+
 }
 
 .ctl__timeline__item__indicator {
@@ -63,4 +67,35 @@
     left: 0;
     height: calc(2rem + 7vh);
     width: auto;
+
+}
+
+.ctl__timeline__wrapper {
+
+    width: 40%;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.ctl__timeline__item__descriptioncontainer {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 500%;
+    transition: transform var(--animationtime-middle) var(--bezier);
+}
+
+.ctl__timeline__item__description {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: var(--padding-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+}
+
+.ctl__timeline__item__description h3 {
+    font-size: var(--subtitle-m)
 }

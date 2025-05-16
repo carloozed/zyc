@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ContestTimelineContent.module.css';
 import {
   ContestTimelineSlice,
@@ -40,6 +40,33 @@ export default function ContestTimelineContent({
   slice,
   wearehereicon,
 }: Props) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [translatePercentage, setTranslatePercentage] = useState(0);
+  const [currentPhase, setCurrentPhase] = useState(0);
+
+  useEffect(() => {
+    switch (activeIndex) {
+      case 0:
+        setTranslatePercentage(0);
+        break;
+      case 1:
+        setTranslatePercentage(20);
+        break;
+      case 2:
+        setTranslatePercentage(40);
+        break;
+      case 3:
+        setTranslatePercentage(60);
+        break;
+      case 4:
+        setTranslatePercentage(80);
+        break;
+      default:
+        setTranslatePercentage(0);
+        break;
+    }
+  });
+
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -51,7 +78,11 @@ export default function ContestTimelineContent({
       <div className={styles.ctl__timeline}>
         {/* First instance - render as h4 */}
         {slice.primary.timeline_contest_group.map((item, index) => (
-          <div key={index} className={styles.ctl__timeline__item}>
+          <div
+            key={index}
+            className={styles.ctl__timeline__item}
+            // When mouse enters, update active index
+          >
             {item.start_date &&
               item.end_date &&
               new Date(item.start_date) <= new Date() &&
@@ -61,13 +92,13 @@ export default function ContestTimelineContent({
                 </div>
               )}
 
-            <div className={styles.ctl__timeline__item__circle}>
+            <div
+              onMouseEnter={() => setActiveIndex(index)}
+              className={`${styles.ctl__timeline__item__circle} ${activeIndex === index ? styles.active : ''}`}
+            >
               <ProgressCircle item={item} styles={styles} />
             </div>
-            <div
-              key={`h4-${index}`}
-              className={styles.ctl__timeline__item__title}
-            >
+            <div className={styles.ctl__timeline__item__title}>
               <PrismicRichText
                 field={item.phase_name}
                 components={h4Components}
@@ -76,16 +107,28 @@ export default function ContestTimelineContent({
           </div>
         ))}
       </div>
-      <div>
-        {slice.primary.timeline_contest_group.map((item, index) => (
-          <div key={`h3-${index}`}>
-            <PrismicRichText
-              field={item.phase_name}
-              components={h3Components}
-            />
-            <PrismicRichText field={item.phase_description} />
-          </div>
-        ))}
+
+      <div className={styles.ctl__timeline__wrapper}>
+        <div
+          className={styles.ctl__timeline__item__descriptioncontainer}
+          // Use the pre-calculated translatePercentage
+          style={{
+            transform: `translateX(-${translatePercentage}%)`,
+          }}
+        >
+          {slice.primary.timeline_contest_group.map((item, index) => (
+            <div
+              key={`h3-${index}`}
+              className={`${styles.ctl__timeline__item__description} ${activeIndex === index ? styles.active_description : ''}`}
+            >
+              <PrismicRichText
+                field={item.phase_name}
+                components={h3Components}
+              />
+              <PrismicRichText field={item.phase_description} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

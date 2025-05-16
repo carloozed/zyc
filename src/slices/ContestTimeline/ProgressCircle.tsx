@@ -50,7 +50,6 @@ export default function ProgressCircle({ item, styles }: Props) {
     setProgressPercentage(calculateProgressPercentage());
   }, [item.start_date, item.end_date]);
 
-  console.log('perjeorejr', progressPercentage);
   return (
     <div
       className={styles.color}
