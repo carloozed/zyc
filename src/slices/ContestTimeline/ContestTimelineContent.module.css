@@ -50,8 +50,20 @@
     height: 100%;
     width: 100%;
     background-color: var(--contestblue);
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
+
+.color p {
+    font-size: calc(0.3rem + 0.3vw);
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(-10deg)
+}
+
+
 
 .ctl__timeline__item__indicator {
     position: absolute;

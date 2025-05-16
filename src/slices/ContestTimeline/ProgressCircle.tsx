@@ -51,9 +51,13 @@ export default function ProgressCircle({ item, styles }: Props) {
   }, [item.start_date, item.end_date]);
 
   return (
-    <div
-      className={styles.color}
-      style={{ opacity: `${progressPercentage}%` }}
-    ></div>
+    <div className={styles.color} style={{ opacity: `${progressPercentage}%` }}>
+      {progressPercentage === 100 && (
+        <p>
+          diese phase <br />
+          ist vorbei
+        </p>
+      )}
+    </div>
   );
 }
