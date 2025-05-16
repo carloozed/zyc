@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React from 'react';
 import { ContactAndDownloadSlice } from '../../../prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
