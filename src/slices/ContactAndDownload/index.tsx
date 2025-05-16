@@ -1,6 +1,7 @@
-import { FC } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { FC } from 'react';
+import { Content } from '@prismicio/client';
+import { SliceComponentProps } from '@prismicio/react';
+import ContactAndDownloadContent from './ContactAndDownloadContent';
 
 /**
  * Props for `ContactAndDownload`.
@@ -12,15 +13,7 @@ export type ContactAndDownloadProps =
  * Component for "ContactAndDownload" Slices.
  */
 const ContactAndDownload: FC<ContactAndDownloadProps> = ({ slice }) => {
-  return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-    >
-      Placeholder component for contact_and_download (variation:{" "}
-      {slice.variation}) Slices
-    </section>
-  );
+  return <ContactAndDownloadContent slice={slice} />;
 };
 
 export default ContactAndDownload;
