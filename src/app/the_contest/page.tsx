@@ -12,12 +12,18 @@ export default async function Page() {
   const wearehereicon = await client
     .getSingle('we_are_here_image')
     .catch(() => notFound());
+  const disciplinetypes = await client
+    .getAllByType('criteriatypesubfield')
+    .catch(() => notFound());
+  const signuplink = await client
+    .getSingle('anmeldelink')
+    .catch(() => notFound());
 
   return (
     <SliceZone
       slices={page.data.slices}
       components={components}
-      context={{ wearehereicon }}
+      context={{ wearehereicon, disciplinetypes, signuplink }}
     />
   );
 }

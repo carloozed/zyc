@@ -1,0 +1,22 @@
+{
+  "format": "custom",
+  "id": "anmeldelink",
+  "label": "Anmeldelink",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "anmeldelink": {
+        "type": "Link",
+        "config": {
+          "label": "Anmeldelink",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "criterias",
+  "type": "SharedSlice",
+  "name": "Criterias",
+  "description": "Criterias",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "Zulassungskriterien",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "cta_contest": {
+          "type": "StructuredText",
+          "config": {
+            "label": "CTA Contest",
+            "placeholder": "Alle Anforderungen erfüllt? Dann melde dich für THE CONTEST an!",
+            "allowTargetBlank": true,
+            "multi": "heading4"
+          }
+        },
+        "signup_link": {
+          "type": "Link",
+          "config": {
+            "label": "Signup Link",
+            "placeholder": "Anmelden!",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "slice_name": {
+          "type": "Text",
+          "config": {
+            "label": "Slice Name",
+            "placeholder": "Name des Slice in Lowercase"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

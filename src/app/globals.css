@@ -83,6 +83,7 @@
 
     /* paddings */
     --padding-xl: var(--subtitle-xl);
+    --padding-l: var(--subtitle-l);
     --padding-m: var(--text-large);
     --padding-sm: var(--text);
     --padding-s: var(--text-s);
@@ -113,6 +114,7 @@
 body {
     position: relative;
     overflow-x: hidden;
+    max-width: 100svw;
 }
 
 *::selection {

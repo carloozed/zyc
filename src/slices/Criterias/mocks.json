@@ -1,0 +1,45 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Riding"
+						}
+					}
+				]
+			},
+			"cta_contest": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading4",
+						"content": {
+							"text": "Energy"
+						}
+					}
+				]
+			},
+			"signup_link": {
+				"key": "9ca58ef1-8c26-4f5f-9828-c5de18b7ac92",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "lovely"
+				}
+			},
+			"slice_name": {
+				"__TYPE__": "FieldContent",
+				"value": "standard",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

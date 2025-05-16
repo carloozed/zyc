@@ -86,6 +86,124 @@ export type AddressDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Anmeldelink documents
+ */
+interface AnmeldelinkDocumentData {
+  /**
+   * Anmeldelink field in *Anmeldelink*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anmeldelink.anmeldelink
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  anmeldelink: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Anmeldelink document from Prismic
+ *
+ * - **API ID**: `anmeldelink`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AnmeldelinkDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AnmeldelinkDocumentData>,
+    "anmeldelink",
+    Lang
+  >;
+
+/**
+ * Item in *CriteriaTypeSubfield → Fieldcontent*
+ */
+export interface CriteriatypesubfieldDocumentDataFieldcontentItem {
+  /**
+   * Title field in *CriteriaTypeSubfield → Fieldcontent*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Zulassungskriterien
+   * - **API ID Path**: criteriatypesubfield.fieldcontent[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Short Overview field in *CriteriaTypeSubfield → Fieldcontent*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Contest findet diesen verschiedenen Disziplinen statt:
+   * - **API ID Path**: criteriatypesubfield.fieldcontent[].short_overview
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  short_overview: prismic.RichTextField;
+
+  /**
+   * Conditions field in *CriteriaTypeSubfield → Fieldcontent*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: criteriatypesubfield.fieldcontent[].conditions
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  conditions: prismic.RichTextField;
+}
+
+/**
+ * Content for CriteriaTypeSubfield documents
+ */
+interface CriteriatypesubfieldDocumentData {
+  /**
+   * Gehört zum Slice field in *CriteriaTypeSubfield*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: name des slice in lowercase
+   * - **API ID Path**: criteriatypesubfield.belongs_to_slice
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  belongs_to_slice: prismic.KeyTextField;
+
+  /**
+   * Fieldcontent field in *CriteriaTypeSubfield*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: criteriatypesubfield.fieldcontent[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  fieldcontent: prismic.GroupField<
+    Simplify<CriteriatypesubfieldDocumentDataFieldcontentItem>
+  >;
+}
+
+/**
+ * CriteriaTypeSubfield document from Prismic
+ *
+ * - **API ID**: `criteriatypesubfield`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CriteriatypesubfieldDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CriteriatypesubfieldDocumentData>,
+    "criteriatypesubfield",
+    Lang
+  >;
+
 type DatenschutzDocumentDataSlicesSlice = never;
 
 /**
@@ -1050,6 +1168,7 @@ export type TheCadenzaDocument<Lang extends string = string> =
   >;
 
 type TheContestDocumentDataSlicesSlice =
+  | CriteriasSlice
   | ContestTimelineSlice
   | FoldoutSlice
   | SplitVisualHeadlineSlice;
@@ -1058,6 +1177,17 @@ type TheContestDocumentDataSlicesSlice =
  * Content for The Contest documents
  */
 interface TheContestDocumentData {
+  /**
+   * asdfasdf field in *The Contest*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: asdfasdfasdf
+   * - **API ID Path**: the_contest.asdfasdf
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  asdfasdf: prismic.RichTextField;
+
   /**
    * Slice Zone field in *The Contest*
    *
@@ -1315,6 +1445,8 @@ export type WeAreHereImageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AddressDocument
+  | AnmeldelinkDocument
+  | CriteriatypesubfieldDocument
   | DatenschutzDocument
   | DeinWegDocument
   | DownloadBarDocument
@@ -1437,6 +1569,87 @@ type ContestTimelineSliceVariation = ContestTimelineSliceDefault;
 export type ContestTimelineSlice = prismic.SharedSlice<
   "contest_timeline",
   ContestTimelineSliceVariation
+>;
+
+/**
+ * Primary content in *Criterias → Default → Primary*
+ */
+export interface CriteriasSliceDefaultPrimary {
+  /**
+   * Title field in *Criterias → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Zulassungskriterien
+   * - **API ID Path**: criterias.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * CTA Contest field in *Criterias → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Alle Anforderungen erfüllt? Dann melde dich für THE CONTEST an!
+   * - **API ID Path**: criterias.default.primary.cta_contest
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_contest: prismic.RichTextField;
+
+  /**
+   * Signup Link field in *Criterias → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Anmelden!
+   * - **API ID Path**: criterias.default.primary.signup_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  signup_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Slice Name field in *Criterias → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Name des Slice in Lowercase
+   * - **API ID Path**: criterias.default.primary.slice_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  slice_name: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Criterias Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CriteriasSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CriteriasSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Criterias*
+ */
+type CriteriasSliceVariation = CriteriasSliceDefault;
+
+/**
+ * Criterias Shared Slice
+ *
+ * - **API ID**: `criterias`
+ * - **Description**: Criterias
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CriteriasSlice = prismic.SharedSlice<
+  "criterias",
+  CriteriasSliceVariation
 >;
 
 /**
@@ -1913,6 +2126,11 @@ declare module "@prismicio/client" {
     export type {
       AddressDocument,
       AddressDocumentData,
+      AnmeldelinkDocument,
+      AnmeldelinkDocumentData,
+      CriteriatypesubfieldDocument,
+      CriteriatypesubfieldDocumentData,
+      CriteriatypesubfieldDocumentDataFieldcontentItem,
       DatenschutzDocument,
       DatenschutzDocumentData,
       DatenschutzDocumentDataSlicesSlice,
@@ -1976,6 +2194,10 @@ declare module "@prismicio/client" {
       ContestTimelineSliceDefaultPrimary,
       ContestTimelineSliceVariation,
       ContestTimelineSliceDefault,
+      CriteriasSlice,
+      CriteriasSliceDefaultPrimary,
+      CriteriasSliceVariation,
+      CriteriasSliceDefault,
       FoldoutSlice,
       FoldoutSliceDefaultPrimaryAdsfasdfadsfItem,
       FoldoutSliceDefaultPrimary,

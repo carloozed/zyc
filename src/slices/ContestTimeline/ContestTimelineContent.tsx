@@ -83,7 +83,7 @@ export default function ContestTimelineContent({
         setTranslatePercentage(currentPhase);
         break;
     }
-  });
+  }, [activeIndex, currentPhase]);
 
   return (
     <section
