@@ -59,7 +59,7 @@
     --subtitle-s: calc(0.75rem + 0.75vw);
 
     /* 20px */
-    --text-large: 1.25rem;
+    --text-large: calc(0.6rem + 0.6vw);
 
     /* 16px */
     --text: 1rem;
@@ -104,6 +104,9 @@
     --animationtime-breathe: 1.2s;
 
     --max-width: 1460px;
+
+
+    --circle-height: calc(4.2rem + 4.2vw);
 }
 
 body {

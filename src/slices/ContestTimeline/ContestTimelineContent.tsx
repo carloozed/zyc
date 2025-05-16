@@ -54,13 +54,17 @@ export default function ContestTimelineContent({ slice }: Props) {
           </div>
         ))}
       </div>
-
-      {slice.primary.timeline_contest_group.map((item, index) => (
-        <div key={`h3-${index}`}>
-          <PrismicRichText field={item.phase_name} components={h3Components} />
-          <PrismicRichText field={item.phase_description} />
-        </div>
-      ))}
+      <div>
+        {slice.primary.timeline_contest_group.map((item, index) => (
+          <div key={`h3-${index}`}>
+            <PrismicRichText
+              field={item.phase_name}
+              components={h3Components}
+            />
+            <PrismicRichText field={item.phase_description} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
