@@ -30,7 +30,7 @@
 }
 
 .criteria__overviewcontent {
-    padding-left: var(--padding-xl);
+    padding-left: var(--subtitle-xxl);
     border-left: var(--border-thin);
     display: flex;
     flex-direction: column;

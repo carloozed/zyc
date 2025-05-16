@@ -49,6 +49,8 @@
 
     /* 120px */
     --page-title: calc(3.3rem + 3.3vw);
+
+    --subtitle-xxl: calc(2rem + 2vw);
     /* 64px */
     --subtitle-xl: calc(1.6rem + 1.6vw);
     /* 48px */
