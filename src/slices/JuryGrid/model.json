@@ -1,0 +1,81 @@
+{
+  "type": "SharedSlice",
+  "id": "jury_grid",
+  "name": "JuryGrid",
+  "variations": [
+    {
+      "id": "base_grid",
+      "name": "Base Grid",
+      "description": "A grid layout with a headline, introduction, and repeated jury/person entries featuring image, name, description, and optional links.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "headline": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Headline",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "introduction": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em",
+            "label": "Introduction"
+          }
+        },
+        "members": {
+          "type": "Group",
+          "config": {
+            "label": "Members",
+            "fields": {
+              "photo": {
+                "type": "Image",
+                "config": {
+                  "label": "Photo"
+                }
+              },
+              "name": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading3",
+                  "label": "Name"
+                }
+              },
+              "bio": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink",
+                  "label": "Bio"
+                }
+              },
+              "jurymember_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Jurymember Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        },
+        "jurymember_linkicon": {
+          "type": "Image",
+          "config": {
+            "label": "Jurymember Linkicon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

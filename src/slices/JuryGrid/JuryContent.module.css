@@ -1,0 +1,55 @@
+.jury__sectioncontainer {
+    padding: var(--padding-xl) var(--padding-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-xl);
+    margin: 0 auto;
+    max-width: 1750px;
+}
+
+.jury__introduction {
+    width: 100%;
+    max-width: 750px;
+    padding-left: var(--subtitle-s);
+}
+
+.jury__introduction p {
+    font-size: 1rem;
+}
+
+.jury__members {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 650px));
+    gap: var(--padding-l);
+    padding: 0 var(--padding-xl);
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.jury__member {
+    background-color: #F5F5F5;
+    padding-left: var(--padding-l);
+    padding-top: var(--padding-l);
+}
+
+.jury__container {
+    background-color: var(--white);
+    padding: var(--padding-s) var(--padding-m);
+    border-radius: 6px;
+}
+
+.jury__member h3 {
+    font-size: var(--subtitle-m);
+    padding-top: var(--padding-m)
+}
+
+.jury__uppercontainer {
+    gap: var(--padding-s);
+    display: flex;
+}
+
+.jury__uppercontainer p {
+    width: 30%;
+    font-size: var(--text-s)
+}

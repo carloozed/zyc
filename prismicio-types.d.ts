@@ -1168,6 +1168,7 @@ export type TheCadenzaDocument<Lang extends string = string> =
   >;
 
 type TheContestDocumentDataSlicesSlice =
+  | JuryGridSlice
   | ContactAndDownloadSlice
   | CriteriasSlice
   | ContestTimelineSlice
@@ -1178,17 +1179,6 @@ type TheContestDocumentDataSlicesSlice =
  * Content for The Contest documents
  */
 interface TheContestDocumentData {
-  /**
-   * asdfasdf field in *The Contest*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: asdfasdfasdf
-   * - **API ID Path**: the_contest.asdfasdf
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  asdfasdf: prismic.RichTextField;
-
   /**
    * Slice Zone field in *The Contest*
    *
@@ -1845,6 +1835,134 @@ export type FoldoutSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *JuryGrid → Base Grid → Primary → Members*
+ */
+export interface JuryGridSliceBaseGridPrimaryMembersItem {
+  /**
+   * Photo field in *JuryGrid → Base Grid → Primary → Members*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.members[].photo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo: prismic.ImageField<never>;
+
+  /**
+   * Name field in *JuryGrid → Base Grid → Primary → Members*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.members[].name
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  name: prismic.TitleField;
+
+  /**
+   * Bio field in *JuryGrid → Base Grid → Primary → Members*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.members[].bio
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  bio: prismic.RichTextField;
+
+  /**
+   * Jurymember Link field in *JuryGrid → Base Grid → Primary → Members*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.members[].jurymember_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  jurymember_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *JuryGrid → Base Grid → Primary*
+ */
+export interface JuryGridSliceBaseGridPrimary {
+  /**
+   * Headline field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.headline
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  headline: prismic.TitleField;
+
+  /**
+   * Introduction field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.introduction
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  introduction: prismic.RichTextField;
+
+  /**
+   * Members field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.members[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  members: prismic.GroupField<
+    Simplify<JuryGridSliceBaseGridPrimaryMembersItem>
+  >;
+
+  /**
+   * Jurymember Linkicon field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.jurymember_linkicon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  jurymember_linkicon: prismic.ImageField<never>;
+}
+
+/**
+ * Base Grid variation for JuryGrid Slice
+ *
+ * - **API ID**: `base_grid`
+ * - **Description**: A grid layout with a headline, introduction, and repeated jury/person entries featuring image, name, description, and optional links.
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type JuryGridSliceBaseGrid = prismic.SharedSliceVariation<
+  "base_grid",
+  Simplify<JuryGridSliceBaseGridPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *JuryGrid*
+ */
+type JuryGridSliceVariation = JuryGridSliceBaseGrid;
+
+/**
+ * JuryGrid Shared Slice
+ *
+ * - **API ID**: `jury_grid`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type JuryGridSlice = prismic.SharedSlice<
+  "jury_grid",
+  JuryGridSliceVariation
+>;
+
+/**
  * Item in *Hero → Contest → Primary → Contestübersicht*
  */
 export interface SplitVisualHeadlineSliceContestPrimaryContestubersichtItem {
@@ -2339,6 +2457,11 @@ declare module "@prismicio/client" {
       FoldoutSliceDefaultPrimary,
       FoldoutSliceVariation,
       FoldoutSliceDefault,
+      JuryGridSlice,
+      JuryGridSliceBaseGridPrimaryMembersItem,
+      JuryGridSliceBaseGridPrimary,
+      JuryGridSliceVariation,
+      JuryGridSliceBaseGrid,
       SplitVisualHeadlineSlice,
       SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
       SplitVisualHeadlineSliceContestPrimaryContestubersichtItem,
