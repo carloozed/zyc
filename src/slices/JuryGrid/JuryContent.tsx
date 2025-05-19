@@ -30,11 +30,7 @@ export default function JuryContent({ slice }: Props) {
                 <div className={styles.jury__lowercontainer}>
                   <PrismicRichText field={item.name} />
                   <PrismicNextLink field={item.jurymember_link}>
-                    <div className={styles.jury__linkimagecontainer}>
-                      <PrismicNextImage
-                        field={slice.primary.jurymember_linkicon}
-                      />
-                    </div>
+                    Persönliche Website
                   </PrismicNextLink>
                 </div>
               </div>

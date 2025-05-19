@@ -22,4 +22,5 @@
 
 .timeline__container:hover {
     transform: scale(0.90);
+    background-color: var(--white);
 }
