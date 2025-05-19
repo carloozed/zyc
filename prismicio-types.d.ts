@@ -1910,6 +1910,16 @@ export interface JuryGridSliceBaseGridPrimary {
   introduction: prismic.RichTextField;
 
   /**
+   * Jurymember Linkicon field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.jurymember_linkicon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  jurymember_linkicon: prismic.ImageField<never>;
+
+  /**
    * Members field in *JuryGrid → Base Grid → Primary*
    *
    * - **Field Type**: Group
@@ -1920,16 +1930,6 @@ export interface JuryGridSliceBaseGridPrimary {
   members: prismic.GroupField<
     Simplify<JuryGridSliceBaseGridPrimaryMembersItem>
   >;
-
-  /**
-   * Jurymember Linkicon field in *JuryGrid → Base Grid → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: jury_grid.base_grid.primary.jurymember_linkicon
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  jurymember_linkicon: prismic.ImageField<never>;
 }
 
 /**

@@ -53,3 +53,14 @@
     width: 30%;
     font-size: var(--text-s)
 }
+
+.jury__linkimagecontainer img {
+    height: calc(0.8rem + 0.8vw);
+    width: auto;
+}
+
+.jury__lowercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

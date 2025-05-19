@@ -27,6 +27,14 @@
             "label": "Introduction"
           }
         },
+        "jurymember_linkicon": {
+          "type": "Image",
+          "config": {
+            "label": "Jurymember Linkicon",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
         "members": {
           "type": "Group",
           "config": {
@@ -64,14 +72,6 @@
                 }
               }
             }
-          }
-        },
-        "jurymember_linkicon": {
-          "type": "Image",
-          "config": {
-            "label": "Jurymember Linkicon",
-            "constraint": {},
-            "thumbnails": []
           }
         }
       },

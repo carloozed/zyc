@@ -2,7 +2,7 @@ import React from 'react';
 import { JuryGridSlice } from '../../../prismicio-types';
 
 import styles from './JuryContent.module.css';
-import { PrismicNextImage } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 type Props = { slice: JuryGridSlice };
@@ -29,6 +29,13 @@ export default function JuryContent({ slice }: Props) {
                 </div>
                 <div className={styles.jury__lowercontainer}>
                   <PrismicRichText field={item.name} />
+                  <PrismicNextLink field={item.jurymember_link}>
+                    <div className={styles.jury__linkimagecontainer}>
+                      <PrismicNextImage
+                        field={slice.primary.jurymember_linkicon}
+                      />
+                    </div>
+                  </PrismicNextLink>
                 </div>
               </div>
             </div>
