@@ -6,7 +6,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 
 export default function ContestHero({ ...contestHeroProps }) {
-  const { slice, styles } = contestHeroProps;
+  const { slice, styles, signuplink } = contestHeroProps;
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function ContestHero({ ...contestHeroProps }) {
             <PrismicNextImage field={slice.primary.visual} />
           </div>
           <div className={styles.leftcontainer__linkcontainer}>
-            <PrismicNextLink field={slice.primary.anmeldelink} />
+            <PrismicNextLink field={signuplink.data.anmeldelink} />
             <PrismicNextLink field={slice.primary.reglement_download} />
           </div>
         </div>

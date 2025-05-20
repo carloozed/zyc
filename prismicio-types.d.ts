@@ -486,6 +486,107 @@ export type FaqDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<FaqDocumentData>, "faq", Lang>;
 
 /**
+ * Item in *FoldoutElement → Content*
+ */
+export interface FoldoutelementDocumentDataContentItem {
+  /**
+   * Is Foldout field in *FoldoutElement → Content*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: foldoutelement.content[].is_foldout
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_foldout: prismic.BooleanField;
+
+  /**
+   * Subtopic Title field in *FoldoutElement → Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldoutelement.content[].subtopic_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtopic_title: prismic.RichTextField;
+
+  /**
+   * Subtopic Description field in *FoldoutElement → Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldoutelement.content[].subtopic_description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtopic_description: prismic.RichTextField;
+}
+
+/**
+ * Content for FoldoutElement documents
+ */
+interface FoldoutelementDocumentData {
+  /**
+   * Belongs to Foldout field in *FoldoutElement*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Selber Text wie Foldout Name des Parent Foldouts
+   * - **API ID Path**: foldoutelement.belongs_to_foldout
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  belongs_to_foldout: prismic.KeyTextField;
+
+  /**
+   * Index field in *FoldoutElement*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: 1
+   * - **API ID Path**: foldoutelement.itemindex
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  itemindex: prismic.RichTextField;
+
+  /**
+   * Foldout Element Topic field in *FoldoutElement*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Online Anmeldung, Alterskategorie, Auswahlverfahren The Cadenza
+   * - **API ID Path**: foldoutelement.foldout_element_topic
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  foldout_element_topic: prismic.RichTextField;
+
+  /**
+   * Content field in *FoldoutElement*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldoutelement.content[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  content: prismic.GroupField<Simplify<FoldoutelementDocumentDataContentItem>>;
+}
+
+/**
+ * FoldoutElement document from Prismic
+ *
+ * - **API ID**: `foldoutelement`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FoldoutelementDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<FoldoutelementDocumentData>,
+    "foldoutelement",
+    Lang
+  >;
+
+/**
  * Content for Homepage Navigation documents
  */
 interface HomepageNavigationDocumentData {
@@ -1442,6 +1543,7 @@ export type AllDocumentTypes =
   | DeinWegDocument
   | DownloadBarDocument
   | FaqDocument
+  | FoldoutelementDocument
   | HomepageNavigationDocument
   | ImpresssumDocument
   | KontaktDocument
@@ -1773,11 +1875,6 @@ export type CriteriasSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Foldout → Default → Primary → adsfadsf*
- */
-export interface FoldoutSliceDefaultPrimaryAdsfasdfadsfItem {}
-
-/**
  * Primary content in *Foldout → Default → Primary*
  */
 export interface FoldoutSliceDefaultPrimary {
@@ -1792,16 +1889,14 @@ export interface FoldoutSliceDefaultPrimary {
   section_title: prismic.RichTextField;
 
   /**
-   * adsfadsf field in *Foldout → Default → Primary*
+   * Foldout Name field in *Foldout → Default → Primary*
    *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: foldout.default.primary.adsfasdfadsf[]
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Field Type**: Text
+   * - **Placeholder**: Einen Namen für das Foldout
+   * - **API ID Path**: foldout.default.primary.foldout_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  adsfasdfadsf: prismic.GroupField<
-    Simplify<FoldoutSliceDefaultPrimaryAdsfasdfadsfItem>
-  >;
+  foldout_name: prismic.KeyTextField;
 }
 
 /**
@@ -1818,9 +1913,57 @@ export type FoldoutSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Foldout → Foldout With Image → Primary*
+ */
+export interface FoldoutSliceFoldoutWithImagePrimary {
+  /**
+   * Section Title field in *Foldout → Foldout With Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Weitere Fragen?
+   * - **API ID Path**: foldout.foldoutWithImage.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Foldout Image field in *Foldout → Foldout With Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldout.foldoutWithImage.primary.foldout_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  foldout_image: prismic.ImageField<never>;
+
+  /**
+   * Foldout Name field in *Foldout → Foldout With Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Einen Namen für das Foldout
+   * - **API ID Path**: foldout.foldoutWithImage.primary.foldout_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  foldout_name: prismic.KeyTextField;
+}
+
+/**
+ * Foldout With Image variation for Foldout Slice
+ *
+ * - **API ID**: `foldoutWithImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FoldoutSliceFoldoutWithImage = prismic.SharedSliceVariation<
+  "foldoutWithImage",
+  Simplify<FoldoutSliceFoldoutWithImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Foldout*
  */
-type FoldoutSliceVariation = FoldoutSliceDefault;
+type FoldoutSliceVariation = FoldoutSliceDefault | FoldoutSliceFoldoutWithImage;
 
 /**
  * Foldout Shared Slice
@@ -2390,6 +2533,9 @@ declare module "@prismicio/client" {
       FaqDocument,
       FaqDocumentData,
       FaqDocumentDataSlicesSlice,
+      FoldoutelementDocument,
+      FoldoutelementDocumentData,
+      FoldoutelementDocumentDataContentItem,
       HomepageNavigationDocument,
       HomepageNavigationDocumentData,
       ImpresssumDocument,
@@ -2453,10 +2599,11 @@ declare module "@prismicio/client" {
       CriteriasSliceVariation,
       CriteriasSliceDefault,
       FoldoutSlice,
-      FoldoutSliceDefaultPrimaryAdsfasdfadsfItem,
       FoldoutSliceDefaultPrimary,
+      FoldoutSliceFoldoutWithImagePrimary,
       FoldoutSliceVariation,
       FoldoutSliceDefault,
+      FoldoutSliceFoldoutWithImage,
       JuryGridSlice,
       JuryGridSliceBaseGridPrimaryMembersItem,
       JuryGridSliceBaseGridPrimary,

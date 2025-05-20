@@ -32,7 +32,7 @@
 
     --accentred: #FBCEB1;
     --accentgreen: #D9E4D4;
-    --lightgrey: #D9D9DD;
+    --lightgrey: #F5F5F5;
     --darkgrey: #a4a4a4;
     --buttoncolor: #40E0D0;
     --contestblue: #9AE4F1;
@@ -161,7 +161,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--subtitle-xl);
+    font-size: var(--subtitle-l);
 }
 
 p {

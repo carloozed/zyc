@@ -1,0 +1,78 @@
+{
+  "format": "custom",
+  "id": "foldoutelement",
+  "label": "FoldoutElement",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "belongs_to_foldout": {
+        "type": "Text",
+        "config": {
+          "label": "Belongs to Foldout",
+          "placeholder": "Selber Text wie Foldout Name des Parent Foldouts"
+        }
+      },
+      "itemindex": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Index",
+          "placeholder": "1",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "foldout_element_topic": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Foldout Element Topic",
+          "placeholder": "Online Anmeldung, Alterskategorie, Auswahlverfahren The Cadenza",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "content": {
+        "type": "Group",
+        "config": {
+          "label": "Content",
+          "repeat": true,
+          "fields": {
+            "is_foldout": {
+              "type": "Boolean",
+              "config": {
+                "label": "Is Foldout",
+                "placeholder_false": "false",
+                "placeholder_true": "true",
+                "default_value": false
+              }
+            },
+            "subtopic_title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Subtopic Title",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading4"
+              }
+            },
+            "subtopic_description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Subtopic Description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -18,12 +18,15 @@ export default async function Page() {
   const signuplink = await client
     .getSingle('anmeldelink')
     .catch(() => notFound());
+  const foldoutElements = await client
+    .getAllByType('foldoutelement')
+    .catch(() => notFound());
 
   return (
     <SliceZone
       slices={page.data.slices}
       components={components}
-      context={{ wearehereicon, disciplinetypes, signuplink }}
+      context={{ wearehereicon, disciplinetypes, signuplink, foldoutElements }}
     />
   );
 }

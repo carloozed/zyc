@@ -9,11 +9,24 @@ import FoldoutContent from './FoldoutContent';
  */
 export type FoldoutProps = SliceComponentProps<Content.FoldoutSlice>;
 
+type FoldoutSliceContext = {
+  foldoutElements: Content.FoldoutelementDocument[];
+  signuplink: Content.AnmeldelinkDocument;
+};
+
 /**
  * Component for "Foldout" Slices.
  */
-const Foldout: FC<FoldoutProps> = ({ slice }) => {
-  return <FoldoutContent slice={slice} />;
+const Foldout: FC<FoldoutProps> = ({ slice, context }) => {
+  const { foldoutElements, signuplink } = context as FoldoutSliceContext;
+
+  const regularProps = {
+    slice,
+    foldoutElements,
+    signuplink,
+  };
+
+  return <FoldoutContent regularProps={regularProps} />;
 };
 
 export default Foldout;

@@ -15,7 +15,9 @@
     height: 100%;
 }
 
-.landing__rightcontainer {}
+.landing__rightcontainer {
+    width: 42.5%;
+}
 
 .landing__leftcontainer {
     width: 45%;
@@ -32,11 +34,13 @@
 
 .leftcontainer__dynamic {
     height: calc(15rem + 15vw);
+
     width: 100%;
     background-color: var(--white);
     border: var(--border-thin);
     border-radius: var(--radius-s);
     opacity: 0;
+
 }
 
 
@@ -59,7 +63,8 @@
 .landing__navigationitem a h5 {
     width: fit-content;
     font-size: var(--text-large);
-    font-weight: var(--fontweight-xs)
+    font-weight: var(--fontweight-xs);
+
 }
 
 .landing__navigationitem:hover {
@@ -79,7 +84,7 @@
 
 .landing__contest {
     grid-area: 1 / 1 / 3 / 2;
-    width: calc(9rem + 9vw);
+    width: calc(10rem +10vw);
 }
 
 
@@ -93,7 +98,7 @@
 
 .landing__about,
 .landing__termine {
-    height: 9rem;
+    height: calc(4.3rem + 4.3vw);
     width: 100%;
     padding: var(--padding-s);
     display: flex;
