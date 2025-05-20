@@ -37,6 +37,9 @@ export default function RegularSlice({ regularProps }: Props) {
                     <PrismicRichText field={item.subtopic_title} />
                   </div>
                 </div>
+                <div className={generalStyles.foltout__item_lowercontainer}>
+                  <PrismicRichText field={item.subtopic_description} />
+                </div>
               </div>
             )
           );
