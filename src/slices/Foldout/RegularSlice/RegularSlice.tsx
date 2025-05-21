@@ -70,7 +70,7 @@ export default function RegularSlice({ regularProps }: Props) {
                 mainContainerRefs.current[elementIndex] = el;
               }}
               style={{
-                height: 'auto', // Initially auto to allow measurement
+                height: 'auto',
                 overflow: 'hidden',
                 transition: 'height 0.3s var(--bezier)',
               }}
