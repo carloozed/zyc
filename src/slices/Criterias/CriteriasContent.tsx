@@ -20,8 +20,6 @@ export default function CriteriasContent({
   disciplinetypes,
   signuplink,
 }: Props) {
-  console.log('CriteriasContent', disciplinetypes);
-
   return (
     <>
       <section

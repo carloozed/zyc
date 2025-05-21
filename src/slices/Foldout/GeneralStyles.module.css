@@ -88,7 +88,13 @@
 
 .foldout__subitem_titlediv {
     display: flex;
-    gap: var(--padding-m)
+    gap: var(--padding-m);
+    line-height: 100%;
+    align-items: center;
+}
+
+.foldout__subitem_titlediv h4 {
+    line-height: 50%;
 }
 
 .foldout__toggle_icon {
@@ -113,12 +119,12 @@
 }
 
 .foldout__toggle_icondiv:nth-of-type(2) {
-    transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg) scale(1);
     transition: transform 0.2s var(--bezier);
 }
 
 .foldout__toggle_icondiv.open {
-    transform: translateY(-50%) rotate(0deg);
+    transform: translateY(-50%) scale(1);
 }
 
 
@@ -130,7 +136,8 @@
 .foldout__subitem_description {
     display: flex;
     flex-direction: column;
-    gap: var(--padding-s)
+    gap: var(--padding-s);
+    padding-left: var(--padding-xl)
 }
 
 .foldout__subitem_description p {

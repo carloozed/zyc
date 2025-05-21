@@ -49,7 +49,7 @@ export default function RegularSlice({ regularProps }: Props) {
         if (index === openElementIndex) {
           mainContainer.style.height = `${upperHeight + contentHeight}px`;
         } else {
-          mainContainer.style.height = `calc(${upperHeight}px + 5px)`;
+          mainContainer.style.height = `calc(${upperHeight}px + 1px)`;
         }
       }
     });

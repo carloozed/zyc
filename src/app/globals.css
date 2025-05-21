@@ -169,6 +169,10 @@ p {
     line-height: 120%;
 }
 
+ol li {
+    list-style-type: upper-roman;
+}
+
 
 
 /* Small Mobile */

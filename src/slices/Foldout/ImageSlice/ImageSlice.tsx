@@ -19,8 +19,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
   const { slice, foldoutElements } = imageSliceProps;
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
 
-  console.log(slice.variation);
-
   // Create refs for each element using arrays
   const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -55,7 +53,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
         if (index === openElementIndex) {
           mainContainer.style.height = `${upperHeight + contentHeight}px`;
         } else {
-          mainContainer.style.height = `calc(${upperHeight}px + 5px)`;
+          mainContainer.style.height = `calc(${upperHeight}px + 1px)`;
         }
       }
     });
