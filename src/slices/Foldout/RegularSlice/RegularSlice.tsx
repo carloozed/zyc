@@ -1,21 +1,54 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { isFilled } from '@prismicio/client';
 import { regularPropsType } from '../FoldoutContent';
 
 import generalStyles from '../GeneralStyles.module.css';
 
-// The props type should match what you're receiving
 type Props = {
   regularProps: regularPropsType;
 };
 
 export default function RegularSlice({ regularProps }: Props) {
   const { slice, foldoutElements } = regularProps;
+  const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
 
-  const mappingArray = foldoutElements.find((item) => {
+  // Create refs for each element using arrays
+  const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const matchingElements = foldoutElements.filter((item) => {
     return item && item.data.belongs_to_foldout === slice.primary.foldout_name;
   });
+
+  const toggleElement = (index: number) => {
+    setOpenElementIndex(openElementIndex === index ? null : index);
+  };
+
+  useLayoutEffect(() => {
+    // Update all containers based on the current openElementIndex
+    matchingElements.forEach((_, index) => {
+      const mainContainer = mainContainerRefs.current[index];
+      const upperContainer = upperContainerRefs.current[index];
+      const contentContainer = contentRefs.current[index];
+
+      if (mainContainer && upperContainer && contentContainer) {
+        const upperHeight = upperContainer.offsetHeight;
+        const contentHeight = contentContainer.offsetHeight;
+
+        // If this is the open element, expand it
+        if (index === openElementIndex) {
+          mainContainer.style.height = `${upperHeight + contentHeight}px`;
+        } else {
+          // Otherwise, just the upper container height
+          mainContainer.style.height = `${upperHeight}px`;
+        }
+      }
+    });
+  }, [openElementIndex, matchingElements]);
 
   return (
     <div className={generalStyles.foldout}>
@@ -24,24 +57,99 @@ export default function RegularSlice({ regularProps }: Props) {
           <PrismicRichText field={slice.primary.section_title} />
         </div>
       )}
+
       <div className={generalStyles.foldout__itemcontainer}>
-        {mappingArray?.data.content.map((item, index: number) => {
+        {matchingElements.map((element, elementIndex) => {
+          const isOpen = openElementIndex === elementIndex;
+
           return (
-            isFilled.richText(item.subtopic_title) && (
-              <div key={index} className={generalStyles.foldout__item}>
-                <div className={generalStyles.foldout__item_uppercontainer}>
-                  <div className={generalStyles.index}>
-                    <h4>{index + 1}</h4>
-                  </div>
-                  <div className={generalStyles.foldout__item_title}>
-                    <PrismicRichText field={item.subtopic_title} />
-                  </div>
+            <div
+              key={element.id}
+              className={generalStyles.foldout__item}
+              ref={(el) => {
+                mainContainerRefs.current[elementIndex] = el;
+              }}
+              style={{
+                height: 'auto', // Initially auto to allow measurement
+                overflow: 'hidden',
+                transition: 'height 0.3s var(--bezier)',
+              }}
+            >
+              <div
+                className={generalStyles.foldout__item_uppercontainer}
+                onClick={() => toggleElement(elementIndex)}
+                ref={(el) => {
+                  upperContainerRefs.current[elementIndex] = el;
+                }}
+              >
+                <div className={generalStyles.index}>
+                  <h4>{elementIndex + 1}</h4>
                 </div>
-                <div className={generalStyles.foltout__item_lowercontainer}>
-                  <PrismicRichText field={item.subtopic_description} />
+
+                <div className={generalStyles.foldout__item_title}>
+                  {element.data.foldout_element_topic &&
+                    element.data.foldout_element_topic.length > 0 &&
+                    isFilled.richText(element.data.foldout_element_topic) && (
+                      <PrismicRichText
+                        field={element.data.foldout_element_topic}
+                      />
+                    )}
+                </div>
+
+                <div className={generalStyles.foldout__toggle_icon}>
+                  <div className={generalStyles.foldout__toggle_icondiv}></div>
+                  <div
+                    className={`${generalStyles.foldout__toggle_icondiv} ${isOpen ? generalStyles.open : ''}`}
+                  ></div>
                 </div>
               </div>
-            )
+
+              <div
+                className={generalStyles.foldout__item_content}
+                ref={(el) => {
+                  contentRefs.current[elementIndex] = el;
+                }}
+                style={{
+                  display: isOpen ? 'block' : 'none',
+                  visibility: isOpen ? 'visible' : 'hidden',
+                }}
+              >
+                {element.data.content &&
+                  element.data.content.map((item, contentIndex) => {
+                    if (!item) return null;
+
+                    return (
+                      <div
+                        key={contentIndex}
+                        className={generalStyles.foldout__subitem}
+                      >
+                        <div className={generalStyles.foldout__subitem_title}>
+                          {isFilled.richText(item.subtopic_title) && (
+                            <div
+                              className={
+                                generalStyles.foldout__subitem_titlediv
+                              }
+                            >
+                              <h4>&#8594;</h4>
+                              <PrismicRichText field={item.subtopic_title} />
+                            </div>
+                          )}
+                        </div>
+
+                        <div
+                          className={generalStyles.foldout__subitem_description}
+                        >
+                          {isFilled.richText(item.subtopic_description) && (
+                            <PrismicRichText
+                              field={item.subtopic_description}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           );
         })}
       </div>

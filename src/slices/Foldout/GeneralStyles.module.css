@@ -1,35 +1,70 @@
-.foldout {}
-
 .foldout__itemcontainer {
     background-color: var(--lightgrey);
     padding: var(--padding-l) var(--padding-xl);
     border-top: var(--border-thin);
     border-bottom: var(--border-thin);
     margin-top: var(--padding-l);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s)
 }
 
 .foldout__item {
+    overflow: hidden;
+    transition: height 0.3s var(--bezier);
+}
+
+.foldout__item_uppercontainer {
     display: flex;
-    gap: var(--padding-l);
-    text-transform: uppercase;
+    gap: var(--padding-m);
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.foldout__item_content {
+    padding: var(--padding-l) var(--page-title);
+    width: fit-content;
+}
+
+
+.foldout__item {
+    display: flex;
     height: fit-content;
-
+    flex-direction: column;
 }
 
-.foldout__item h4 {
-    font-size: calc(0.5rem + 1vw);
+.foldout__item h4,
+.foldout__item_title h3 {
     font-weight: var(--fontweight-xs);
-    padding: var(--padding-s);
-
+    font-family: var(--subtitle-font);
+    text-transform: uppercase;
 }
+
+
+.foldout__item_uppercontainer h3,
+.foldout__item_uppercontainer h4 {
+    padding: var(--padding-s);
+    font-size: calc(0.5rem + 1vw);
+}
+
+.foldout__item_content h4 {
+    width: fit-content;
+    font-size: var(--text-large);
+    padding-bottom: var(--padding-s);
+    /* font-family: var(--title-font); */
+}
+
+
+
 
 .foldout__item_title {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
+    border: var(--border-thin);
     border-radius: 12px;
-
+    display: flex;
 }
 
 
@@ -46,4 +81,39 @@
     height: 100%;
     width: 100%;
     text-align: center;
+}
+
+.foldout__subitem_titlediv {
+    display: flex;
+    gap: var(--padding-m)
+}
+
+.foldout__toggle_icon {
+    height: calc(0.2rem + 0.8vw);
+    width: calc(0.2rem + 0.8vw);
+    position: relative;
+}
+
+.foldout__toggle_icondiv {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform-origin: center;
+    background-color: var(--black);
+    height: 1px;
+    width: 100%;
+    transition: transform 0.2s var(--bezier);
+}
+
+.foldout__toggle_icondiv:nth-of-type(1) {
+    transform: translateY(-50%);
+}
+
+.foldout__toggle_icondiv:nth-of-type(2) {
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.2s var(--bezier);
+}
+
+.foldout__toggle_icondiv.open {
+    transform: translateY(-50%) rotate(0deg);
 }
