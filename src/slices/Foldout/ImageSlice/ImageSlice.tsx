@@ -55,7 +55,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
         if (index === openElementIndex) {
           mainContainer.style.height = `${upperHeight + contentHeight}px`;
         } else {
-          mainContainer.style.height = `${upperHeight}px`;
+          mainContainer.style.height = `calc(${upperHeight}px + 5px)`;
         }
       }
     });

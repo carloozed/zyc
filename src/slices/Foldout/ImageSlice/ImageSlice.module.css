@@ -1,6 +1,7 @@
 .foldout {
     display: flex;
     padding: var(--padding-l) var(--padding-xl);
+
 }
 
 .foldout__imagecontainer {
@@ -8,6 +9,13 @@
     display: flex;
     flex-direction: column;
     gap: var(--padding-xxs);
+    width: fit-content;
+}
+
+.foldout__imagecontainer img {
+    width: calc(15rem + 15vw);
+    height: auto;
+    object-fit: contain;
 }
 
 .foldout__decorationcontainer {

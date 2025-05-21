@@ -5,12 +5,18 @@
     margin-top: var(--padding-l);
     display: flex;
     flex-direction: column;
-    gap: var(--padding-xs)
+    gap: var(--padding-xxs);
+    height: fit-content;
+    width: 100%;
+    background-color: transparent;
 }
 
 .foldout__item {
     overflow: hidden;
     transition: height 0.3s var(--bezier);
+    margin-top: 1rem;
+    background-color: transparent;
+
 }
 
 .foldout__item_uppercontainer {
@@ -22,7 +28,7 @@
 }
 
 .foldout__item_content {
-    padding: var(--padding-l) var(--page-title);
+    padding: 0 var(--page-title);
     width: fit-content;
 }
 
@@ -47,15 +53,13 @@
     font-size: calc(0.5rem + 1vw);
 }
 
+
 .foldout__item_content h4 {
     width: fit-content;
     font-size: var(--text-large);
     padding-bottom: var(--padding-s);
     /* font-family: var(--title-font); */
 }
-
-
-
 
 .foldout__item_title {
     display: flex;
@@ -118,7 +122,16 @@
 }
 
 
-.foldout__subitem_description {}
+.foldout__subitem {
+    padding-top: var(--padding-m);
+    padding-bottom: var(--padding-m);
+}
+
+.foldout__subitem_description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s)
+}
 
 .foldout__subitem_description p {
     font-size: var(--text-sm);
