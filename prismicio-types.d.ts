@@ -1203,7 +1203,9 @@ export type TeilnahmeTermineDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheCadenzaDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
+type TheCadenzaDocumentDataSlicesSlice =
+  | FoldoutSlice
+  | SplitVisualHeadlineSlice;
 
 /**
  * Content for The Cadenza documents
@@ -1339,7 +1341,9 @@ export type TheContestDocument<Lang extends string = string> =
     Lang
   >;
 
-type TheCrescendoDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
+type TheCrescendoDocumentDataSlicesSlice =
+  | FoldoutSlice
+  | SplitVisualHeadlineSlice;
 
 /**
  * Content for The Crescendo documents

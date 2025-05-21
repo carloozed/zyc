@@ -9,8 +9,17 @@ import { components } from '@/slices';
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle('the_crescendo').catch(() => notFound());
+  const foldoutElements = await client
+    .getAllByType('foldoutelement')
+    .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <SliceZone
+      slices={page.data.slices}
+      components={components}
+      context={{ foldoutElements }}
+    />
+  );
 }
 
 export async function generateMetadata(): Promise<Metadata> {
