@@ -39,15 +39,6 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "section_title": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Section Title",
-            "placeholder": "Weitere Fragen?",
-            "allowTargetBlank": true,
-            "multi": "heading2"
-          }
-        },
         "foldout_image": {
           "type": "Image",
           "config": {
@@ -61,6 +52,23 @@
           "config": {
             "label": "Foldout Name",
             "placeholder": "Einen Namen für das Foldout"
+          }
+        },
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section_title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "decoration_image": {
+          "type": "Image",
+          "config": {
+            "label": "Decoration Image",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },

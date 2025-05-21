@@ -3,8 +3,11 @@ import {
   AnmeldelinkDocument,
   FoldoutelementDocument,
   FoldoutSlice,
+  FoldoutSliceFoldoutWithImage,
 } from '../../../prismicio-types';
 import RegularSlice from './RegularSlice/RegularSlice';
+
+import ImageSlice from './ImageSlice/ImageSlice';
 
 import styles from './FoldoutContent.module.css';
 
@@ -15,12 +18,23 @@ export type regularPropsType = {
   signuplink: AnmeldelinkDocument; // Changed from FoldoutSlice to AnmeldelinkDocument
 };
 
+export type ImagePropsType = {
+  slice: FoldoutSliceFoldoutWithImage;
+  foldoutElements: FoldoutelementDocument[];
+  signuplink: AnmeldelinkDocument;
+};
 export default function FoldoutContent({
   regularProps,
 }: {
   regularProps: regularPropsType;
 }) {
-  const { slice } = regularProps;
+  const { slice, foldoutElements, signuplink } = regularProps;
+
+  const imageSliceProps: ImagePropsType = {
+    slice: slice as FoldoutSliceFoldoutWithImage, // Type assertion since we check variation before using
+    foldoutElements,
+    signuplink,
+  };
 
   return (
     <section
@@ -31,9 +45,9 @@ export default function FoldoutContent({
       {slice.variation === 'default' && (
         <RegularSlice regularProps={regularProps} />
       )}
-      {/* {slice.variation === 'another' && (
-        <AnotherComponent regularProps={regularProps} />
-      )} */}
+      {slice.variation === 'foldoutWithImage' && (
+        <ImageSlice imageSliceProps={imageSliceProps} />
+      )}
     </section>
   );
 }

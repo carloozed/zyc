@@ -1,8 +1,7 @@
+.foldout {}
+
 .foldout__itemcontainer {
-    background-color: var(--lightgrey);
     padding: var(--padding-l) var(--padding-xl);
-    border-top: var(--border-thin);
-    border-bottom: var(--border-thin);
     margin-top: var(--padding-l);
     display: flex;
     flex-direction: column;
@@ -89,8 +88,8 @@
 }
 
 .foldout__toggle_icon {
-    height: calc(0.2rem + 0.8vw);
-    width: calc(0.2rem + 0.8vw);
+    height: calc(0.2rem + 0.5vw);
+    width: calc(0.2rem + 0.5vw);
     position: relative;
 }
 

@@ -1917,16 +1917,6 @@ export type FoldoutSliceDefault = prismic.SharedSliceVariation<
  */
 export interface FoldoutSliceFoldoutWithImagePrimary {
   /**
-   * Section Title field in *Foldout → Foldout With Image → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Weitere Fragen?
-   * - **API ID Path**: foldout.foldoutWithImage.primary.section_title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  section_title: prismic.RichTextField;
-
-  /**
    * Foldout Image field in *Foldout → Foldout With Image → Primary*
    *
    * - **Field Type**: Image
@@ -1945,6 +1935,26 @@ export interface FoldoutSliceFoldoutWithImagePrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   foldout_name: prismic.KeyTextField;
+
+  /**
+   * Section_title field in *Foldout → Foldout With Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldout.foldoutWithImage.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Decoration Image field in *Foldout → Foldout With Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: foldout.foldoutWithImage.primary.decoration_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  decoration_image: prismic.ImageField<never>;
 }
 
 /**

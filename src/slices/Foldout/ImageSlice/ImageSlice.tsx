@@ -3,17 +3,23 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { isFilled } from '@prismicio/client';
-import { regularPropsType } from '../FoldoutContent';
+
+import { ImagePropsType } from '../FoldoutContent';
 
 import generalStyles from '../GeneralStyles.module.css';
 
+import imageSliceStyles from './ImageSlice.module.css';
+import { PrismicNextImage } from '@prismicio/next';
+
 type Props = {
-  regularProps: regularPropsType;
+  imageSliceProps: ImagePropsType;
 };
 
-export default function RegularSlice({ regularProps }: Props) {
-  const { slice, foldoutElements } = regularProps;
+export default function ImageSlice({ imageSliceProps }: Props) {
+  const { slice, foldoutElements } = imageSliceProps;
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
+
+  console.log(slice.variation);
 
   // Create refs for each element using arrays
   const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -56,21 +62,21 @@ export default function RegularSlice({ regularProps }: Props) {
   }, [openElementIndex, matchingElements]);
 
   return (
-    <div className={generalStyles.foldout}>
-      {isFilled.richText(slice.primary.section_title) && (
-        <div className={generalStyles.foldout__section_title}>
-          <PrismicRichText field={slice.primary.section_title} />
+    <div className={imageSliceStyles.foldout}>
+      <div className={imageSliceStyles.foldout__imagecontainer}>
+        <div className={imageSliceStyles.foldout__decorationcontainer}>
+          <div className={imageSliceStyles.circle}></div>
+          <div className={imageSliceStyles.string}></div>
+          <div className={imageSliceStyles.circle}></div>
         </div>
-      )}
-
-      <div
-        className={generalStyles.foldout__itemcontainer}
-        style={{
-          backgroundColor: 'var(--lightgrey)',
-          borderTop: 'var(--border-thin)',
-          borderBottom: 'var(--border-thin)',
-        }}
-      >
+        <PrismicNextImage field={slice.primary.foldout_image} />
+        <div className={imageSliceStyles.foldout__decorationcontainer}>
+          <div className={imageSliceStyles.circle}></div>
+          <div className={imageSliceStyles.string}></div>
+          <div className={imageSliceStyles.circle}></div>
+        </div>
+      </div>
+      <div className={generalStyles.foldout__itemcontainer}>
         {matchingElements.map((element, elementIndex) => {
           const isOpen = openElementIndex === elementIndex;
 
