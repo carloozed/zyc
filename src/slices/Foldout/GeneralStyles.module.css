@@ -6,7 +6,7 @@
     margin-top: var(--padding-l);
     display: flex;
     flex-direction: column;
-    gap: var(--padding-s)
+    gap: var(--padding-xs)
 }
 
 .foldout__item {
@@ -116,4 +116,12 @@
 
 .foldout__toggle_icondiv.open {
     transform: translateY(-50%) rotate(0deg);
+}
+
+
+.foldout__subitem_description {}
+
+.foldout__subitem_description p {
+    font-size: var(--text-sm);
+    max-width: 40vw;
 }

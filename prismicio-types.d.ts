@@ -537,15 +537,15 @@ interface FoldoutelementDocumentData {
   belongs_to_foldout: prismic.KeyTextField;
 
   /**
-   * Index field in *FoldoutElement*
+   * Itemindex field in *FoldoutElement*
    *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: 1
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
    * - **API ID Path**: foldoutelement.itemindex
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#number
    */
-  itemindex: prismic.RichTextField;
+  itemindex: prismic.NumberField;
 
   /**
    * Foldout Element Topic field in *FoldoutElement*

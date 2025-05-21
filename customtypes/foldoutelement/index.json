@@ -20,12 +20,10 @@
         }
       },
       "itemindex": {
-        "type": "StructuredText",
+        "type": "Number",
         "config": {
-          "label": "Index",
-          "placeholder": "1",
-          "allowTargetBlank": true,
-          "multi": "heading3"
+          "label": "Itemindex",
+          "placeholder": ""
         }
       },
       "foldout_element_topic": {

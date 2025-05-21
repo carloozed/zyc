@@ -20,16 +20,23 @@ export default function RegularSlice({ regularProps }: Props) {
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const matchingElements = foldoutElements.filter((item) => {
-    return item && item.data.belongs_to_foldout === slice.primary.foldout_name;
-  });
+  const matchingElements = foldoutElements
+    .filter((item) => {
+      return (
+        item && item.data.belongs_to_foldout === slice.primary.foldout_name
+      );
+    })
+    .sort((a, b) => {
+      const aIndex = a.data.itemindex || 0;
+      const bIndex = b.data.itemindex || 0;
+      return aIndex - bIndex;
+    });
 
   const toggleElement = (index: number) => {
     setOpenElementIndex(openElementIndex === index ? null : index);
   };
 
   useLayoutEffect(() => {
-    // Update all containers based on the current openElementIndex
     matchingElements.forEach((_, index) => {
       const mainContainer = mainContainerRefs.current[index];
       const upperContainer = upperContainerRefs.current[index];
@@ -39,11 +46,9 @@ export default function RegularSlice({ regularProps }: Props) {
         const upperHeight = upperContainer.offsetHeight;
         const contentHeight = contentContainer.offsetHeight;
 
-        // If this is the open element, expand it
         if (index === openElementIndex) {
           mainContainer.style.height = `${upperHeight + contentHeight}px`;
         } else {
-          // Otherwise, just the upper container height
           mainContainer.style.height = `${upperHeight}px`;
         }
       }
