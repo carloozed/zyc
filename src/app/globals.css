@@ -48,7 +48,7 @@
     /* font sizes */
 
     /* 120px */
-    --page-title: calc(3.3rem + 3.3vw);
+    --page-title: calc(3rem + 3vw);
 
     --subtitle-xxl: calc(2rem + 2vw);
     /* 64px */
@@ -166,7 +166,7 @@ h2 {
 
 p {
     font-size: var(--text-s);
-    line-height: 120%;
+    line-height: 150%;
 }
 
 ol li {

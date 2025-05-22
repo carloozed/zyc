@@ -1,14 +1,30 @@
 {
   "format": "page",
   "id": "teilnahme_termine",
+  "label": "Teilnahme Termine",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
-      "slices": {
+      "page_title": {
+        "type": "StructuredText",
         "config": {
-          "choices": {}
-        },
+          "label": "Page Title",
+          "placeholder": "Termine",
+          "allowTargetBlank": true,
+          "multi": "heading1"
+        }
+      },
+      "slices": {
+        "type": "Slices",
         "fieldset": "Slice Zone",
-        "type": "Slices"
+        "config": {
+          "choices": {
+            "schedule_slice": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +54,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Teilnahme Termine",
-  "repeatable": false,
-  "status": true
+  }
 }

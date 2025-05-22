@@ -1,0 +1,80 @@
+{
+  "id": "schedule_slice",
+  "type": "SharedSlice",
+  "name": "ScheduleSlice",
+  "description": "ScheduleSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "phase_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Phase Title",
+            "placeholder": "The Contest - Qualifikationsphase",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "important_to_know_field": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Important to Know field",
+            "placeholder": "Das musst du wissen!",
+            "allowTargetBlank": true,
+            "multi": "heading4"
+          }
+        },
+        "phase_is_over_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Phase is over Text",
+            "placeholder": "DIese Phase ist bereits vorüber",
+            "allowTargetBlank": true,
+            "multi": "heading4"
+          }
+        },
+        "phase_field": {
+          "type": "Group",
+          "config": {
+            "label": "Phase Field",
+            "repeat": true,
+            "fields": {
+              "phase_title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Phase Title",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading5"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,heading6,strong,em,hyperlink,image,list-item,o-list-item"
+                }
+              },
+              "end_date": {
+                "type": "Date",
+                "config": {
+                  "label": "End Date",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

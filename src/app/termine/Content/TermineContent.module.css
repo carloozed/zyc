@@ -1,0 +1,11 @@
+.container {
+    min-height: 100svh;
+    padding: var(--page-title) var(--padding-s);
+}
+
+.termine__hero {
+    height: calc(100svh - var(--page-title));
+    position: relative;
+}
+
+.termine__content {}

@@ -8,6 +8,7 @@ export const components = {
   criterias: dynamic(() => import("./Criterias")),
   foldout: dynamic(() => import("./Foldout")),
   jury_grid: dynamic(() => import("./JuryGrid")),
+  schedule_slice: dynamic(() => import("./ScheduleSlice")),
   split_visual_headline: dynamic(() => import("./Hero")),
   timeline_phases: dynamic(() => import("./TimellinePhase")),
 };

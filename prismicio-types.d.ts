@@ -1138,12 +1138,23 @@ export type SubnavigationDocument<Lang extends string = string> =
     Lang
   >;
 
-type TeilnahmeTermineDocumentDataSlicesSlice = never;
+type TeilnahmeTermineDocumentDataSlicesSlice = ScheduleSliceSlice;
 
 /**
  * Content for Teilnahme Termine documents
  */
 interface TeilnahmeTermineDocumentData {
+  /**
+   * Page Title field in *Teilnahme Termine*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Termine
+   * - **API ID Path**: teilnahme_termine.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  page_title: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Teilnahme Termine*
    *
@@ -2131,6 +2142,118 @@ export type JuryGridSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *ScheduleSlice → Default → Primary → Phase Field*
+ */
+export interface ScheduleSliceSliceDefaultPrimaryPhaseFieldItem {
+  /**
+   * Phase Title field in *ScheduleSlice → Default → Primary → Phase Field*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule_slice.default.primary.phase_field[].phase_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_title: prismic.RichTextField;
+
+  /**
+   * Description field in *ScheduleSlice → Default → Primary → Phase Field*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule_slice.default.primary.phase_field[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * End Date field in *ScheduleSlice → Default → Primary → Phase Field*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule_slice.default.primary.phase_field[].end_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+}
+
+/**
+ * Primary content in *ScheduleSlice → Default → Primary*
+ */
+export interface ScheduleSliceSliceDefaultPrimary {
+  /**
+   * Phase Title field in *ScheduleSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Contest - Qualifikationsphase
+   * - **API ID Path**: schedule_slice.default.primary.phase_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_title: prismic.RichTextField;
+
+  /**
+   * Important to Know field field in *ScheduleSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Das musst du wissen!
+   * - **API ID Path**: schedule_slice.default.primary.important_to_know_field
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  important_to_know_field: prismic.RichTextField;
+
+  /**
+   * Phase is over Text field in *ScheduleSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: DIese Phase ist bereits vorüber
+   * - **API ID Path**: schedule_slice.default.primary.phase_is_over_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_is_over_text: prismic.RichTextField;
+
+  /**
+   * Phase Field field in *ScheduleSlice → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: schedule_slice.default.primary.phase_field[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  phase_field: prismic.GroupField<
+    Simplify<ScheduleSliceSliceDefaultPrimaryPhaseFieldItem>
+  >;
+}
+
+/**
+ * Default variation for ScheduleSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScheduleSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ScheduleSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ScheduleSlice*
+ */
+type ScheduleSliceSliceVariation = ScheduleSliceSliceDefault;
+
+/**
+ * ScheduleSlice Shared Slice
+ *
+ * - **API ID**: `schedule_slice`
+ * - **Description**: ScheduleSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ScheduleSliceSlice = prismic.SharedSlice<
+  "schedule_slice",
+  ScheduleSliceSliceVariation
+>;
+
+/**
  * Item in *Hero → Contest → Primary → Contestübersicht*
  */
 export interface SplitVisualHeadlineSliceContestPrimaryContestubersichtItem {
@@ -2634,6 +2757,11 @@ declare module "@prismicio/client" {
       JuryGridSliceBaseGridPrimary,
       JuryGridSliceVariation,
       JuryGridSliceBaseGrid,
+      ScheduleSliceSlice,
+      ScheduleSliceSliceDefaultPrimaryPhaseFieldItem,
+      ScheduleSliceSliceDefaultPrimary,
+      ScheduleSliceSliceVariation,
+      ScheduleSliceSliceDefault,
       SplitVisualHeadlineSlice,
       SplitVisualHeadlineSliceVisualLeftHeadlineRightPrimary,
       SplitVisualHeadlineSliceContestPrimaryContestubersichtItem,

@@ -3,7 +3,7 @@
     position: fixed;
     display: flex;
     height: fit-content;
-    padding: var(--padding-2xs) var(--padding-s);
+    padding: var(--padding-2xs) var(--padding-xs);
     bottom: var(--padding-s);
     min-width: 80%;
     justify-content: space-between;

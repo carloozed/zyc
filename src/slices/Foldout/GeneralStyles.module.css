@@ -140,11 +140,11 @@
 
 .foldout__subitem p,
 .foldout__subitem li {
-    line-height: 120%;
+    line-height: 150%;
     font-size: calc(0.4rem + 0.4vw) !important;
 }
 
-.foldout__subitem li {
+.foldout__subitem ul li {
     list-style-type: circle;
 }
 
