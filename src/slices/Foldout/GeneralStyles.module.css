@@ -43,7 +43,6 @@
 .foldout__item_title h3 {
     font-weight: var(--fontweight-xs);
     font-family: var(--subtitle-font);
-    text-transform: uppercase;
 }
 
 

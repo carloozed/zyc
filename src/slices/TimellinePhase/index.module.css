@@ -7,7 +7,6 @@
 .timeline__titlecontainer h5 {
     font-weight: var(--fontweight-s);
     text-align: center;
-    text-transform: uppercase;
     font-size: var(--text-s);
     padding-bottom: var(--padding-xs)
 }

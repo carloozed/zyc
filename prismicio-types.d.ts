@@ -1442,12 +1442,23 @@ export type TimelineDocument<Lang extends string = string> =
     Lang
   >;
 
-type UberZycDocumentDataSlicesSlice = never;
+type UberZycDocumentDataSlicesSlice = FoldoutSlice;
 
 /**
  * Content for Über ZYC documents
  */
 interface UberZycDocumentData {
+  /**
+   * Page Title field in *Über ZYC*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Zurich Youth Classical
+   * - **API ID Path**: uber_zyc.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  page_title: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Über ZYC*
    *
