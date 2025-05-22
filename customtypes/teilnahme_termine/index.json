@@ -20,6 +20,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "foldout": {
+              "type": "SharedSlice"
+            },
+            "contact_and_download": {
+              "type": "SharedSlice"
+            },
             "schedule_slice": {
               "type": "SharedSlice"
             }

@@ -1,10 +1,23 @@
 .schedule__container {
-    width: 80%;
+    width: 85%;
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: var(--page-title);
+    position: relative;
 }
+
+/* SVG for the connecting line */
+.connecting_line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
 
 .schedule__title_container {
     padding-left: calc(var(--page-title)* 2);
@@ -17,6 +30,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--padding-m);
+    position: relative;
 }
 
 .schedule__title {
@@ -50,7 +64,6 @@
     align-items: center;
     gap: var(--padding-s);
     position: relative;
-
 }
 
 .schedule__datecontainer * {
@@ -73,7 +86,7 @@
     text-align: right;
     font-family: var(--title-font);
     font-size: var(--subtitle-s);
-    transform: translateY(3px)
+    transform: translateY(5px);
 }
 
 .schedule__phase {
@@ -127,14 +140,21 @@
 
 .circle {
     position: absolute;
-    top: 0;
-    left: 0;
+
+    top: var(--padding-2xs);
+    left: var(--padding-2xs);
+
+    z-index: 2;
+    /* Make sure circles are above the line */
+}
+
+.circle div {
+    position: relative;
     height: var(--padding-xs);
     width: var(--padding-xs);
     border: var(--border-thin);
     border-radius: 50%;
-    top: var(--padding-2xs);
-    left: var(--padding-2xs);
+    background-color: transparent;
 }
 
 .square {

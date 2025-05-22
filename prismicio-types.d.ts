@@ -1138,7 +1138,10 @@ export type SubnavigationDocument<Lang extends string = string> =
     Lang
   >;
 
-type TeilnahmeTermineDocumentDataSlicesSlice = ScheduleSliceSlice;
+type TeilnahmeTermineDocumentDataSlicesSlice =
+  | FoldoutSlice
+  | ContactAndDownloadSlice
+  | ScheduleSliceSlice;
 
 /**
  * Content for Teilnahme Termine documents

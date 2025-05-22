@@ -8,4 +8,9 @@
     position: relative;
 }
 
-.termine__content {}
+.termine__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--page-title);
+    transform: translateY(-4.45%);
+}
