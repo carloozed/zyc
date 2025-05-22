@@ -16,7 +16,7 @@ export default async function Page() {
     .catch(() => notFound());
 
   return (
-    <section className={styles.page}>
+    <section className={styles.about__container}>
       <PrismicRichText field={page.data.page_title} />
       <SliceZone
         slices={page.data.slices}

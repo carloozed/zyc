@@ -1,0 +1,4 @@
+.about__container {
+    min-height: 100svh;
+    padding-top: calc(3rem + 3vw);
+}
