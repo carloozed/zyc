@@ -630,6 +630,38 @@ export type FoldoutelementDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * Logo field in *Footer*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+/**
  * Content for Homepage Navigation documents
  */
 interface HomepageNavigationDocumentData {
@@ -1617,6 +1649,7 @@ export type AllDocumentTypes =
   | DynamiclandingcontentDocument
   | FaqDocument
   | FoldoutelementDocument
+  | FooterDocument
   | HomepageNavigationDocument
   | ImpresssumDocument
   | KontaktDocument
@@ -2733,6 +2766,8 @@ declare module "@prismicio/client" {
       FoldoutelementDocument,
       FoldoutelementDocumentData,
       FoldoutelementDocumentDataContentItem,
+      FooterDocument,
+      FooterDocumentData,
       HomepageNavigationDocument,
       HomepageNavigationDocumentData,
       ImpresssumDocument,

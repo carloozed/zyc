@@ -6,6 +6,7 @@ import './reset.css';
 
 import Navigation from './components/Navigation/Navigation';
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
+import Footer from './components/Footer/Footer';
 
 export default function RootLayout({
   children,
@@ -18,6 +19,7 @@ export default function RootLayout({
         <SignupButtonLarge />
         <Navigation />
         {children}
+        <Footer />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
