@@ -17,9 +17,26 @@ export default function HeaderContent({ ...headerContentProps }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
+  const [showNavbar, setShowNavbar] = useState(true);
+
   const { navbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
   const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
+
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -67,6 +84,7 @@ export default function HeaderContent({ ...headerContentProps }) {
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       ref={headerRef}
+      style={{ transform: `translateY(${showNavbar ? '0' : '-150%'})` }}
     >
       {' '}
       <PrismicNextLink field={home} onClick={() => setIsOpen(false)}>
