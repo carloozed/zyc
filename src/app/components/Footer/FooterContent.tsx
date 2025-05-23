@@ -29,7 +29,6 @@ export default function FooterContent({
   subnavigation,
   logo,
 }: Props) {
-  console.log(lownavigations);
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__logocontainer}>
@@ -37,20 +36,64 @@ export default function FooterContent({
           <PrismicNextImage field={logo.data.image} />
         </div>
       </div>
-      <div className={styles.footer__addresscontainer}>
-        <div className={styles.footer__address}>
-          <PrismicRichText field={address.data.zyc} />
-          <PrismicNextLink field={address.data.location_link} />
-          <PrismicRichText field={address.data.street} />
-          <PrismicRichText field={address.data.city} />
-        </div>
-      </div>
-      <div className={styles.footer__lownavigationcontainer}>
-        {lownavigations[1].data.low_navigation_items.map((item, index) => (
-          <div key={index} className={styles.footer__lownavigation}>
-            <PrismicNextLink field={item.item} />
+      <div className={styles.footer__lowercontainer}>
+        <div className={styles.footer__leftcontainer}>
+          <div className={styles.footer__addresscontainer}>
+            <div className={styles.footer__address}>
+              <PrismicRichText field={address.data.zyc} />
+              <PrismicNextLink field={address.data.location_link} />
+              <PrismicRichText field={address.data.street} />
+              <PrismicRichText field={address.data.city} />
+            </div>
           </div>
-        ))}
+          <div className={styles.footer__lownavigationcontainer}>
+            {lownavigations[1].data.low_navigation_items.map((item, index) => (
+              <div key={index} className={styles.footer__lownavigation}>
+                <PrismicNextLink field={item.item} />
+                <div></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={styles.footer__middlecontainer}>
+          <div className={styles.footer__downloadcontainer}>
+            {footer.data.downloads.map((item, index) => (
+              <div key={index} className={styles.footer__link}>
+                <PrismicNextLink field={item.link} />
+                <p>&#8595;</p>
+              </div>
+            ))}
+          </div>
+          <div className={styles.footer__navigationcontainer}>
+            <div className={styles.footer__subnavigation}>
+              {subnavigation.data.subnavigation_items.map((item, index) => (
+                <div key={index} className={styles.footer__link}>
+                  <PrismicNextLink field={item.link} />
+                  <p className={styles.rotate}>&#8595;</p>
+                </div>
+              ))}
+            </div>
+            <div className={styles.footer__navigation}>
+              {navbar.data.navigation_items
+                .filter(
+                  (item) =>
+                    item.item.text !== 'Home' &&
+                    item.item.text !== 'Über ZYC' &&
+                    item.item.text !== 'FAQ'
+                )
+                .map((item, index) => (
+                  <div key={index} className={styles.footer__link}>
+                    <PrismicNextLink field={item.item} />
+                    <p className={styles.rotate}>&#8595;</p>
+                  </div>
+                ))}
+            </div>{' '}
+          </div>
+        </div>
+        <div className={styles.footer__datecontainer}>
+          {' '}
+          ©{new Date().getFullYear()}
+        </div>
       </div>
     </footer>
   );

@@ -6,12 +6,24 @@
   "status": true,
   "json": {
     "Main": {
-      "logo": {
-        "type": "Image",
+      "downloads": {
+        "type": "Group",
         "config": {
-          "label": "Logo",
-          "constraint": {},
-          "thumbnails": []
+          "label": "downloads",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
         }
       }
     }

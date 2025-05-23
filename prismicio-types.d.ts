@@ -630,19 +630,34 @@ export type FoldoutelementDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Footer → downloads*
+ */
+export interface FooterDocumentDataDownloadsItem {
+  /**
+   * Link field in *Footer → downloads*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.downloads[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Content for Footer documents
  */
 interface FooterDocumentData {
   /**
-   * Logo field in *Footer*
+   * downloads field in *Footer*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: footer.logo
+   * - **API ID Path**: footer.downloads[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  logo: prismic.ImageField<never>;
+  downloads: prismic.GroupField<Simplify<FooterDocumentDataDownloadsItem>>;
 }
 
 /**
@@ -2768,6 +2783,7 @@ declare module "@prismicio/client" {
       FoldoutelementDocumentDataContentItem,
       FooterDocument,
       FooterDocumentData,
+      FooterDocumentDataDownloadsItem,
       HomepageNavigationDocument,
       HomepageNavigationDocumentData,
       ImpresssumDocument,

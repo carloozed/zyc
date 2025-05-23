@@ -13,12 +13,13 @@
     border: var(--border-thin);
     transform: translateX(200%);
     transition: transform 2s var(--bezier);
+    pointer-events: none;
 
 }
 
 .signup__button__home {
     transform: translateX(-0%);
-    pointer-events: none;
+    pointer-events: all;
 }
 
 .signup__button a {

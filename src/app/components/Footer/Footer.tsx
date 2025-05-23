@@ -10,6 +10,7 @@ export default async function Footer() {
   const lownavigations = await client.getAllByType('low_navigation');
   const address = await client.getSingle('address');
   const subnavigation = await client.getSingle('subnavigation');
+
   return (
     <FooterContent
       footer={footer}
