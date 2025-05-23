@@ -1,0 +1,9 @@
+.footer {
+    padding: var(--padding-xl) var(--padding-m)
+}
+
+.footer__logo img {
+
+    height: calc(1rem + 1vw);
+    width: auto;
+}

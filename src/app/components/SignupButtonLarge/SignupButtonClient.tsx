@@ -11,20 +11,24 @@ type Props = {
 };
 
 export default function SignupButtonClient({ styles, signuplink }: Props) {
-  const [isHome, setIsHome] = useState(false);
+  const [buttonIsVisible, setButtonIsVisible] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === '/') {
-      setIsHome(true);
+    if (
+      pathname === '/' ||
+      pathname === '/the_cadenza' ||
+      pathname === '/the_crescendo'
+    ) {
+      setButtonIsVisible(false);
     } else {
-      setIsHome(false);
+      setButtonIsVisible(true);
     }
   }, [pathname]);
 
   return (
     <div
-      className={`${styles.signup__button} ${isHome ? styles.signup__button__home : ''}`}
+      className={`${styles.signup__button} ${buttonIsVisible ? styles.signup__button__home : ''}`}
     >
       <PrismicNextLink field={signuplink.data.anmeldelink} />
     </div>
