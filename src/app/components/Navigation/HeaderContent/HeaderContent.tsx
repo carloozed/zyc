@@ -18,25 +18,54 @@ export default function HeaderContent({ ...headerContentProps }) {
   const pathname = usePathname();
 
   const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const { navbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
   const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
-      setShowNavbar(false);
-    } else {
+    const currentScrollY = window.scrollY;
+
+    // If we're at the very top, always show navbar
+    if (currentScrollY <= 100) {
       setShowNavbar(true);
+    } else {
+      // Check scroll direction
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide navbar after 100px
+        if (currentScrollY > 100) {
+          setShowNavbar(false);
+        }
+      } else {
+        // Scrolling up - show navbar if scrolled up by at least 30px
+        if (lastScrollY - currentScrollY >= 30) {
+          setShowNavbar(true);
+        }
+      }
     }
+
+    setLastScrollY(currentScrollY);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    let ticking = false;
+
+    const scrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-  }, []);
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, [lastScrollY]);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -84,13 +113,15 @@ export default function HeaderContent({ ...headerContentProps }) {
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       ref={headerRef}
-      style={{ transform: `translateY(${showNavbar ? '0' : '-150%'})` }}
+      style={{
+        transform: `translateY(${showNavbar ? '0' : '-150%'})`,
+        transition: 'transform 0.3s ease-in-out',
+      }}
     >
-      {' '}
       <PrismicNextLink field={home} onClick={() => setIsOpen(false)}>
         <div className={styles.header__logocontainer}>
           <PrismicNextImage field={logo.data.image} />
-        </div>{' '}
+        </div>
       </PrismicNextLink>
       <div className={styles.header__downloadbar}>
         {downloadbar.data.is_download_available !== 'Nichts' && (
