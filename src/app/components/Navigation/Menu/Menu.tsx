@@ -40,6 +40,8 @@ export default function Menu({ ...menuProps }) {
         return '100%';
       case '/termine':
         return '200%';
+      case '/ueber_zyc':
+        return '400%';
       default:
         return '0%';
     }

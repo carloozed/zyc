@@ -20,7 +20,6 @@ export default function LandingContent({ landingNavigation }: Props) {
           <div
             className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
           >
-            {' '}
             <h4>{termine.text}</h4>
             <PrismicNextLink field={termine}>
               <h5>{cta_text}</h5>
