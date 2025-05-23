@@ -68,14 +68,14 @@ export default function Menu({ ...menuProps }) {
             splitText.chars,
             {
               opacity: 0,
-              y: 10,
+              y: 5,
             },
             {
               opacity: 1,
               y: 0,
               stagger: 0.04,
               duration: 0.4,
-              ease: 'power2.out',
+              ease: 'power4.out',
             }
           );
         }

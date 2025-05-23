@@ -95,7 +95,6 @@
     height: calc(var(--subtitle-l) + var(--padding-sm));
     width: auto;
     position: absolute;
-
     transition: transform var(--animationtime-fast) var(--bezier)
 }
 
@@ -113,23 +112,6 @@
     width: fit-content;
 }
 
-.navbar__item::before,
-.subnavbar__item a::before {
-    position: absolute;
-    content: "";
-    height: 1px;
-    width: 100%;
-    background-color: black;
-    bottom: 0;
-    transition: all var(--animationtime-fast) var(--bezier);
-    transform: scale(0);
-    transform-origin: left;
-}
-
-.navbar__item:hover::before,
-.subnavbar__item:hover a::before {
-    transform: scale(1)
-}
 
 .menu__socialscontainer {
     padding-right: 2.5%;

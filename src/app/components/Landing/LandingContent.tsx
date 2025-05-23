@@ -18,7 +18,7 @@ export default function LandingContent({
   hoverElements,
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
 
   const { cta_text, the_contest, the_cadenza, the_crescendo, termine, about } =
     landingNavigation.data;

@@ -26,10 +26,6 @@
 }
 
 
-.header__highercontent,
-.header__lowercontent,
-.header__timeline {}
-
 .header__highercontent {
     z-index: 2;
     height: fit-content;
