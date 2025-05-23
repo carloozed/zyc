@@ -1,0 +1,35 @@
+{
+  "format": "custom",
+  "id": "dynamiclandingcontent",
+  "label": "DynamicLandingContent",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "The Contest, The Cadenza, The Crescendo",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em"
+        }
+      }
+    }
+  }
+}

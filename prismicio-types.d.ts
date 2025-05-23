@@ -424,6 +424,49 @@ export type DownloadBarDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for DynamicLandingContent documents
+ */
+interface DynamiclandingcontentDocumentData {
+  /**
+   * Title field in *DynamicLandingContent*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Contest, The Cadenza, The Crescendo
+   * - **API ID Path**: dynamiclandingcontent.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * description field in *DynamicLandingContent*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: dynamiclandingcontent.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * DynamicLandingContent document from Prismic
+ *
+ * - **API ID**: `dynamiclandingcontent`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DynamiclandingcontentDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<DynamiclandingcontentDocumentData>,
+    "dynamiclandingcontent",
+    Lang
+  >;
+
 type FaqDocumentDataSlicesSlice = never;
 
 /**
@@ -1571,6 +1614,7 @@ export type AllDocumentTypes =
   | DatenschutzDocument
   | DeinWegDocument
   | DownloadBarDocument
+  | DynamiclandingcontentDocument
   | FaqDocument
   | FoldoutelementDocument
   | HomepageNavigationDocument
@@ -2681,6 +2725,8 @@ declare module "@prismicio/client" {
       DeinWegDocumentDataSlicesSlice,
       DownloadBarDocument,
       DownloadBarDocumentData,
+      DynamiclandingcontentDocument,
+      DynamiclandingcontentDocumentData,
       FaqDocument,
       FaqDocumentData,
       FaqDocumentDataSlicesSlice,

@@ -8,9 +8,10 @@ export default async function Home() {
   const client = createClient();
 
   // Fetch both documents in parallel for better performance
-  const [background, landingNavigation] = await Promise.all([
+  const [background, landingNavigation, hoverElements] = await Promise.all([
     client.getSingle('landing_background_image'),
     client.getSingle('homepage_navigation'),
+    client.getAllByType('dynamiclandingcontent'),
   ]);
 
   return (
@@ -22,7 +23,10 @@ export default async function Home() {
           : undefined,
       }}
     >
-      <LandingContent landingNavigation={landingNavigation} />
+      <LandingContent
+        landingNavigation={landingNavigation}
+        hoverElements={hoverElements}
+      />
     </main>
   );
 }
