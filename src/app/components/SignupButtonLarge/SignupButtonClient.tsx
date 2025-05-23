@@ -18,7 +18,8 @@ export default function SignupButtonClient({ styles, signuplink }: Props) {
     if (
       pathname === '/' ||
       pathname === '/the_cadenza' ||
-      pathname === '/the_crescendo'
+      pathname === '/the_crescendo' ||
+      pathname === '/ueber_zyc'
     ) {
       setButtonIsVisible(false);
     } else {
