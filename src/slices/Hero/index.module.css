@@ -29,7 +29,7 @@
 
 .heroslice__informationcontainer h5 {
     font-weight: var(--fontweight-xs);
-    font-size: var(--text)
+    font-size: var(--text);
 }
 
 .heroslice__leftcontainer,
@@ -52,10 +52,13 @@
     padding-top: var(--padding-xl);
     justify-content: flex-end;
     padding-bottom: var(--padding-xl);
+
 }
+
 
 .heroslice__rightcontainer h1 {
     transform: translateY(12px);
+
 }
 
 .leftcontainer__imagecontainer {
@@ -64,6 +67,7 @@
     position: relative;
     display: flex;
     gap: var(--padding-s);
+
 }
 
 .leftcontainer__linkcontainer {
@@ -97,11 +101,14 @@
     position: relative;
     display: flex;
     gap: var(--padding-s);
+    border: 1px solid red;
+
 }
 
 .leftcontainer__imagecontainer img {
     height: 100%;
     width: auto;
+
 }
 
 .imagecontainer__decoration {

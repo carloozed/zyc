@@ -25,7 +25,17 @@ export default function ContestHero({ ...contestHeroProps }) {
         </div>
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>
-            <PrismicNextImage field={slice.primary.visual} />
+            <PrismicNextImage field={slice.primary.visual} />{' '}
+            <div
+              className={styles.imagecontainer__decoration}
+              style={{
+                position: 'absolute',
+                top: '101%',
+                height: 'fit-content',
+              }}
+            >
+              <PrismicNextImage field={slice.primary.decoration} />
+            </div>
           </div>
           <div className={styles.leftcontainer__linkcontainer}>
             <PrismicNextLink field={signuplink.data.anmeldelink} />
@@ -33,10 +43,6 @@ export default function ContestHero({ ...contestHeroProps }) {
           </div>
         </div>
         <div className={styles.heroslice__rightcontainer}>
-          {' '}
-          <div className={styles.imagecontainer__decoration}>
-            <PrismicNextImage field={slice.primary.decoration} />
-          </div>
           <PrismicRichText field={slice.primary.headline} />
           <h3>{asText(slice.primary.supporting_text)}</h3>
         </div>
