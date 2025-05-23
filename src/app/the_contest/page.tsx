@@ -26,7 +26,12 @@ export default async function Page() {
     <SliceZone
       slices={page.data.slices}
       components={components}
-      context={{ wearehereicon, disciplinetypes, signuplink, foldoutElements }}
+      context={{
+        wearehereicon,
+        disciplinetypes,
+        signuplink,
+        foldoutElements,
+      }}
     />
   );
 }

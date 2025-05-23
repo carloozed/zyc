@@ -1,0 +1,35 @@
+.signup__button {
+    position: fixed;
+    top: 15%;
+    right: calc(0.5rem + 2vw);
+    background-color: var(--buttoncolor);
+    height: calc(3rem + 3.5vw);
+    width: calc(3rem + 3.5vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: 50%;
+    border: var(--border-thin);
+    transform: translateX(-0%);
+    transition: transform var(--animationtime-middle) var(--bezier);
+
+}
+
+.signup__button__home {
+    transform: translateX(200%);
+    pointer-events: none;
+}
+
+.signup__button a {
+    transform: translateY(2px);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--title-font);
+    font-size: var(--subtitle-xs)
+}
