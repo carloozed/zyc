@@ -12,18 +12,16 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 75vh;
+    gap: var(--padding-xs)
 }
 
 .landing__rightcontainer {
     width: 42.5%;
-
 }
 
 .landing__leftcontainer {
     width: 45%;
-    height: 100%;
-
 }
 
 .landing__leftcontainer__content {
@@ -31,10 +29,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    gap: var(--padding-xs)
 }
 
 .leftcontainer__dynamic {
-    height: calc(15rem + 15vw);
     width: 100%;
     background-color: var(--white);
     border: var(--border-thin);
@@ -45,7 +43,8 @@
     flex-direction: column;
     justify-content: space-between;
     gap: var(--padding-l);
-    transition: opacity 0.2s var(--bezier)
+    transition: opacity 0.2s var(--bezier);
+    height: 75%;
 }
 
 .leftcontainer__dynamic h3 {
@@ -91,7 +90,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: var(--padding-xs);
     grid-row-gap: var(--padding-xs);
-    height: calc(15rem + 15vw);
+    height: 75%;
 }
 
 .landing__navigationitem {
@@ -139,7 +138,7 @@
 
 .landing__about,
 .landing__termine {
-    height: calc(4.3rem + 4.3vw);
+    height: 25%;
     width: 100%;
     padding: var(--padding-s);
     display: flex;

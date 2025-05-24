@@ -46,42 +46,6 @@ export default function Menu({ ...menuProps }) {
         return '0%';
     }
   };
-  useGSAP(() => {
-    if (subbarIsOpen && subnavLinksRef.current.length > 0) {
-      // Reset the array if needed
-      subnavLinksRef.current = subnavLinksRef.current.slice(
-        0,
-        subnavigation.subnavigation_items.length
-      );
-
-      // Apply SplitText to each link
-      subnavLinksRef.current.forEach((link) => {
-        if (link) {
-          // Create a SplitText instance
-          const splitText = new SplitText(link, {
-            type: 'chars',
-            charsClass: 'char',
-          });
-
-          // Animate the characters
-          gsap.fromTo(
-            splitText.chars,
-            {
-              opacity: 0,
-              y: 5,
-            },
-            {
-              opacity: 1,
-              y: 0,
-              stagger: 0.04,
-              duration: 0.4,
-              ease: 'power4.out',
-            }
-          );
-        }
-      });
-    }
-  }, [subbarIsOpen]);
 
   return (
     <>
@@ -118,13 +82,12 @@ export default function Menu({ ...menuProps }) {
                                 <li
                                   key={index}
                                   className={styles.subnavbar__item}
+                                  ref={(el) => {
+                                    subnavLinksRef.current[index] = el;
+                                  }}
                                 >
                                   <span>[0{index + 1}] </span>
-                                  <span
-                                    ref={(el) => {
-                                      subnavLinksRef.current[index] = el;
-                                    }}
-                                  >
+                                  <span>
                                     <PrismicNextLink field={item.link} />
                                   </span>
                                 </li>
