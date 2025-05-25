@@ -22,8 +22,12 @@ export default function LandingContent({
   hoverElements,
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
-  // const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const mouseLeaveFunction = () => {
+    setHoveredElement('');
+    setIsHovered(false);
+  };
   const {
     cta_text,
     the_contest,
@@ -47,7 +51,7 @@ export default function LandingContent({
         <div className={styles.landing__leftcontainer__content}>
           <div
             className={styles.leftcontainer__dynamic}
-            style={{ opacity: hoveredElement !== '' ? 1 : 0 }}
+            style={{ opacity: isHovered ? 1 : 0 }}
           >
             <div className={styles.decor}>
               <div className={styles.circle}></div>
@@ -97,10 +101,13 @@ export default function LandingContent({
         </div>
       </div>
       <div className={styles.landing__rightcontainer}>
-        <div className={styles.landing__rightcontainer__ccc}>
+        <div
+          className={styles.landing__rightcontainer__ccc}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={mouseLeaveFunction}
+        >
           <div
             onMouseOver={() => setHoveredElement('contest')}
-            onMouseLeave={() => setHoveredElement('')}
             className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
           >
             <div className={styles.ccc__innercontainer}>
@@ -119,7 +126,6 @@ export default function LandingContent({
           <div
             className={`${styles.landing__cadenza} ${styles.landing__navigationitem}`}
             onMouseOver={() => setHoveredElement('cadenza')}
-            onMouseLeave={() => setHoveredElement('')}
           >
             <div className={styles.ccc__innercontainer}>
               <RevealText
@@ -137,7 +143,6 @@ export default function LandingContent({
           </div>
           <div
             onMouseOver={() => setHoveredElement('crescendo')}
-            onMouseLeave={() => setHoveredElement('')}
             className={`${styles.landing__crescendo} ${styles.landing__navigationitem}`}
           >
             <div className={styles.ccc__innercontainer}>
