@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 
-type Props = {};
+// type Props = {};
 
-export default function MainNavigation({}: Props) {
-  return <div>MainNavigation</div>;
-}
+// export default function MainNavigation({}: Props) {
+//   return <div>MainNavigation</div>;
+// }

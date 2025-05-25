@@ -9,6 +9,8 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
+import { useTransitionRouter } from 'next-view-transitions';
+
 import { usePathname } from 'next/navigation';
 
 // Register the plugin
@@ -26,7 +28,44 @@ export default function Menu({ ...menuProps }) {
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
 
+  const router = useTransitionRouter();
   const pathname = usePathname();
+
+  function triggerPageTransition() {
+    document.documentElement.animate(
+      [
+        {
+          clipPath: 'polygon(25% 75%, 75% 75%, 75% 75%, 25% 75%)',
+        },
+        {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        },
+      ],
+      {
+        duration: 2000,
+        easing: 'cubic-bezier(0.9, 0, 0.1, 1)',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    );
+  }
+
+  const handleNavigation = (field: LinkField) => (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    const path =
+      field.url || field.link_type === 'Document' ? field.url : field.url;
+
+    if (path === pathname) {
+      setIsOpen(false);
+      return;
+    }
+
+    setIsOpen(false);
+
+    router.push(path, {
+      onTransitionReady: triggerPageTransition,
+    });
+  };
 
   const indicatorPosition = () => {
     switch (pathname) {
@@ -69,9 +108,11 @@ export default function Menu({ ...menuProps }) {
                       className={styles.navbar__item}
                       onMouseEnter={() => setSubbarIsOpen(index === 1)}
                       onMouseLeave={() => setSubbarIsOpen(false)}
-                      onClick={() => setIsOpen(false)}
                     >
-                      <PrismicNextLink field={item.item} />
+                      <PrismicNextLink
+                        field={item.item}
+                        onClick={handleNavigation(item.item)}
+                      />
                       <div className={styles.subnavbar__container}>
                         <ul
                           className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
@@ -88,7 +129,10 @@ export default function Menu({ ...menuProps }) {
                                 >
                                   <span>[0{index + 1}] </span>
                                   <span>
-                                    <PrismicNextLink field={item.link} />
+                                    <PrismicNextLink
+                                      field={item.link}
+                                      onClick={handleNavigation(item.link)}
+                                    />
                                   </span>
                                 </li>
                               )
@@ -105,7 +149,11 @@ export default function Menu({ ...menuProps }) {
               <ul className={styles.menu__navlist}>
                 {legal.data.low_navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
-                    <li key={index} className={styles.lowernavbar__item}>
+                    <li
+                      key={index}
+                      className={styles.lowernavbar__item}
+                      onClick={handleNavigation(item.item)}
+                    >
                       <PrismicNextLink field={item.item} />{' '}
                       {index !==
                         socials.data.low_navigation_items.length - 1 && (
@@ -126,16 +174,22 @@ export default function Menu({ ...menuProps }) {
                   </div>
                   <PrismicRichText field={address.name_full} />
                 </div>
-                <PrismicNextLink field={address.location_link}>
-                  <PrismicRichText field={address.street} />
-                  <PrismicRichText field={address.city} />
-                </PrismicNextLink>
+                <div onClick={handleNavigation(address.location_link)}>
+                  <PrismicNextLink field={address.location_link}>
+                    <PrismicRichText field={address.street} />
+                    <PrismicRichText field={address.city} />
+                  </PrismicNextLink>
+                </div>
               </div>
               <div className={styles.menu__socialscontainer}>
                 <ul className={styles.menu__navlist}>
                   {socials.data.low_navigation_items.map(
                     (item: { item: LinkField }, index: number) => (
-                      <li key={index} className={styles.lowernavbar__item}>
+                      <li
+                        key={index}
+                        className={styles.lowernavbar__item}
+                        onClick={handleNavigation(item.item)}
+                      >
                         <PrismicNextLink field={item.item} />
                         {index !==
                           socials.data.low_navigation_items.length - 1 && (

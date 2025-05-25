@@ -102,9 +102,8 @@
 
 .landing__navigationitem a h5 {
     width: fit-content;
-    font-size: var(--text-large);
+    font-size: var(--subtitle-m);
     font-weight: var(--fontweight-xs);
-
 }
 
 .landing__navigationitem:hover {
@@ -169,6 +168,15 @@
     height: 60%;
 }
 
+/* .landing__contest .ccc__innercontainer span,
+.landing__cadenza .ccc__innercontainer span,
+.landing__crescendo .ccc__innercontainer span {
+    width: fit-content;
+    font-size: var(--subtitle-l);
+    font-weight: var(--fontweight-s);
+    font-family: var(--title-font);
+} */
+
 .landing__crescendo h4,
 .landing__cadenza h4,
 .landing__contest h4 {
@@ -176,7 +184,6 @@
     font-size: var(--subtitle-l);
     font-weight: var(--fontweight-s);
     font-family: var(--title-font);
-
 }
 
 .landing__crescendo a,

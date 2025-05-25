@@ -692,6 +692,61 @@ interface HomepageNavigationDocumentData {
   cta_text: prismic.KeyTextField;
 
   /**
+   * The Contest Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Contest
+   * - **API ID Path**: homepage_navigation.the_contest_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  the_contest_title: prismic.RichTextField;
+
+  /**
+   * The Cadenza Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Cadenza
+   * - **API ID Path**: homepage_navigation.the_cadenza_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  the_cadenza_title: prismic.RichTextField;
+
+  /**
+   * Termine Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Termine
+   * - **API ID Path**: homepage_navigation.termine_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  termine_title: prismic.RichTextField;
+
+  /**
+   * The Crescendo Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: The Crescendo
+   * - **API ID Path**: homepage_navigation.the_crescendo_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  the_crescendo_title: prismic.RichTextField;
+
+  /**
+   * About Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: About
+   * - **API ID Path**: homepage_navigation.about_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  about_title: prismic.RichTextField;
+
+  /**
    * The Contest field in *Homepage Navigation*
    *
    * - **Field Type**: Link

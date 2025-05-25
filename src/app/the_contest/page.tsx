@@ -1,10 +1,10 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+
+import ContestContent from './ContestContent';
 
 export default async function Page() {
   const client = createClient();
@@ -23,15 +23,12 @@ export default async function Page() {
     .catch(() => notFound());
 
   return (
-    <SliceZone
-      slices={page.data.slices}
-      components={components}
-      context={{
-        wearehereicon,
-        disciplinetypes,
-        signuplink,
-        foldoutElements,
-      }}
+    <ContestContent
+      signuplink={signuplink}
+      foldoutElements={foldoutElements}
+      disciplinetypes={disciplinetypes}
+      wearehereicon={wearehereicon}
+      page={page}
     />
   );
 }

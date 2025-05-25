@@ -13,6 +13,51 @@
           "placeholder": "[mehr]"
         }
       },
+      "the_contest_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "The Contest Title",
+          "placeholder": "The Contest",
+          "allowTargetBlank": true,
+          "multi": "heading4,heading3"
+        }
+      },
+      "the_cadenza_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "The Cadenza Title",
+          "placeholder": "The Cadenza",
+          "allowTargetBlank": true,
+          "multi": "heading4"
+        }
+      },
+      "termine_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Termine Title",
+          "placeholder": "Termine",
+          "allowTargetBlank": true,
+          "multi": "heading4"
+        }
+      },
+      "the_crescendo_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "The Crescendo Title",
+          "placeholder": "The Crescendo",
+          "allowTargetBlank": true,
+          "multi": "heading4"
+        }
+      },
+      "about_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "About Title",
+          "placeholder": "About",
+          "allowTargetBlank": true,
+          "multi": "heading4"
+        }
+      },
       "the_contest": {
         "type": "Link",
         "config": {

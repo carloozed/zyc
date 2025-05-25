@@ -1,10 +1,9 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
+import CreschendoContent from './CrescendoContent/CreschendoContent';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 
 export default async function Page() {
   const client = createClient();
@@ -13,13 +12,7 @@ export default async function Page() {
     .getAllByType('foldoutelement')
     .catch(() => notFound());
 
-  return (
-    <SliceZone
-      slices={page.data.slices}
-      components={components}
-      context={{ foldoutElements }}
-    />
-  );
+  return <CreschendoContent page={page} foldoutElements={foldoutElements} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -1,12 +1,16 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { HomepageNavigationDocument } from '../../../../prismicio-types';
 import { DynamiclandingcontentDocument } from '../../../../prismicio-types';
 import styles from './LandingContent.module.css';
 import { PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
+
+import { useRevealer } from '@/hooks/useRevealer';
+
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type Props = {
   landingNavigation: HomepageNavigationDocument;
@@ -20,14 +24,23 @@ export default function LandingContent({
   const [hoveredElement, setHoveredElement] = useState('');
   // const [isHovered, setIsHovered] = useState(false);
 
-  const { cta_text, the_contest, the_cadenza, the_crescendo, termine, about } =
-    landingNavigation.data;
+  const {
+    cta_text,
+    the_contest,
+    the_cadenza,
+    the_crescendo,
+    termine,
+    about,
+    the_contest_title,
+    the_cadenza_title,
+    the_crescendo_title,
+    termine_title,
+    about_title,
+  } = landingNavigation.data;
 
   const [contestHover, cadenzaHover, crescendoHover] = hoverElements;
+  useRevealer();
 
-  useEffect(() => {});
-
-  console.log(contestHover);
   return (
     <div className={styles.landing__container}>
       <div className={styles.landing__leftcontainer}>
@@ -69,7 +82,14 @@ export default function LandingContent({
           <div
             className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
           >
-            <h4>{termine.text}</h4>
+            <RevealText
+              field={termine_title}
+              id="termine-hero"
+              staggerAmount={0.3}
+              duration={1}
+              as={'h4'}
+              delay={0.7}
+            />
             <PrismicNextLink field={termine}>
               <h5>{cta_text}</h5>
             </PrismicNextLink>
@@ -84,7 +104,13 @@ export default function LandingContent({
             className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
           >
             <div className={styles.ccc__innercontainer}>
-              <h4>{the_contest.text}</h4>
+              <RevealText
+                field={the_contest_title}
+                id="the_contest-hero"
+                staggerAmount={0.2}
+                duration={1.4}
+                as={'h4'}
+              />
               <PrismicNextLink field={the_contest}>
                 <h5>{cta_text}</h5>
               </PrismicNextLink>
@@ -96,7 +122,14 @@ export default function LandingContent({
             onMouseLeave={() => setHoveredElement('')}
           >
             <div className={styles.ccc__innercontainer}>
-              <h4>{the_cadenza.text}</h4>
+              <RevealText
+                field={the_cadenza_title}
+                id="the_cadenza-hero"
+                staggerAmount={0.2}
+                duration={1.4}
+                as={'h4'}
+                delay={0.2}
+              />
               <PrismicNextLink field={the_cadenza}>
                 <h5>{cta_text}</h5>
               </PrismicNextLink>
@@ -108,7 +141,14 @@ export default function LandingContent({
             className={`${styles.landing__crescendo} ${styles.landing__navigationitem}`}
           >
             <div className={styles.ccc__innercontainer}>
-              <h4>{the_crescendo.text}</h4>
+              <RevealText
+                field={the_crescendo_title}
+                id="the_crescendo-hero"
+                staggerAmount={0.2}
+                duration={1.4}
+                as={'h4'}
+                delay={0.4}
+              />
               <PrismicNextLink field={the_crescendo}>
                 <h5>{cta_text}</h5>
               </PrismicNextLink>
@@ -119,7 +159,14 @@ export default function LandingContent({
           className={`${styles.landing__about} ${styles.landing__navigationitem}`}
         >
           {' '}
-          <h4>{about.text}</h4>
+          <RevealText
+            field={about_title}
+            id="about-hero"
+            staggerAmount={0.3}
+            duration={1}
+            as={'h4'}
+            delay={0.5}
+          />
           <PrismicNextLink field={about}>
             <h5>{cta_text}</h5>
           </PrismicNextLink>

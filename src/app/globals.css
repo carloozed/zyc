@@ -179,11 +179,37 @@ ol li {
     top: 0;
     left: 0;
     width: 100svw;
-    height: 100svh;
+    height: 200svh;
     transform-origin: center top;
     background-color: var(--white);
     pointer-events: none;
     z-index: 1000;
+}
+
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none !important;
+}
+
+::view-transition-group(root) {
+    z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+    isolation: isolate;
+    will-change: clip-path;
+    z-index: 1000;
+}
+
+::view-transition-new(root) {
+    z-index: 10000;
+    animation: none !important;
+}
+
+::view-transition-old(root) {
+    z-index: 1000;
+    animation: none !important;
 }
 
 

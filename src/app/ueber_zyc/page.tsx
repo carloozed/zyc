@@ -1,12 +1,12 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
-import { PrismicRichText, SliceZone } from '@prismicio/react';
 
 import styles from './page.module.css';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+
+import AboutContent from './AboutContent/AboutContent';
 
 export default async function Page() {
   const client = createClient();
@@ -16,14 +16,11 @@ export default async function Page() {
     .catch(() => notFound());
 
   return (
-    <section className={styles.about__container}>
-      <PrismicRichText field={page.data.page_title} />
-      <SliceZone
-        slices={page.data.slices}
-        components={components}
-        context={{ foldoutElements }}
-      />
-    </section>
+    <AboutContent
+      styles={styles}
+      page={page}
+      foldoutElements={foldoutElements}
+    />
   );
 }
 
