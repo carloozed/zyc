@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { asText, RichTextField } from '@prismicio/client';
+import { RichTextField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 export default function ContestHero({ ...contestHeroProps }) {
   const { slice, styles, signuplink } = contestHeroProps;
@@ -43,8 +45,21 @@ export default function ContestHero({ ...contestHeroProps }) {
           </div>
         </div>
         <div className={styles.heroslice__rightcontainer}>
-          <PrismicRichText field={slice.primary.headline} />
-          <h3>{asText(slice.primary.supporting_text)}</h3>
+          <RevealText
+            field={slice.primary.headline}
+            className={styles.revealtext}
+            staggerAmount={0.2}
+            duration={1.2}
+            delay={1.5}
+            as={'h1'}
+          />
+          <RevealText
+            field={slice.primary.supporting_text}
+            staggerAmount={0.2}
+            duration={1.2}
+            delay={1.8}
+            as={'h3'}
+          />
         </div>
       </div>
     </>
