@@ -11,7 +11,5 @@ export default async function SignupButtonLarge() {
   const signuplink = await client
     .getSingle('anmeldelink')
     .catch(() => notFound());
-
-  console.log(signuplink);
   return <SignupButtonClient styles={styles} signuplink={signuplink} />;
 }

@@ -9,6 +9,8 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
+import { EmptyLinkField } from '@prismicio/client';
+
 import { useTransitionRouter } from 'next-view-transitions';
 
 import { usePathname } from 'next/navigation';
@@ -49,20 +51,20 @@ export default function Menu({ ...menuProps }) {
     );
   }
 
-  const handleNavigation = (field: LinkField) => (e: React.MouseEvent) => {
+  const handleNavigation = (field: EmptyLinkField) => (e: React.MouseEvent) => {
     e.preventDefault();
 
     const path =
-      field.url || field.link_type === 'Document' ? field.url : field.url;
+      field.link_type || field.link_type === 'Web' ? field : field.text;
 
-    if (path === pathname) {
+    if (!path || path === pathname) {
       setIsOpen(false);
       return;
     }
 
     setIsOpen(false);
 
-    router.push(path, {
+    router.push(path.toString(), {
       onTransitionReady: triggerPageTransition,
     });
   };
