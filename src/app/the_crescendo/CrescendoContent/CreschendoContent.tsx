@@ -19,7 +19,6 @@ export default function CreschendoContent({ page, foldoutElements }: Props) {
   useRevealer();
   return (
     <section>
-      <div className="revealer"></div>
       <SliceZone
         slices={page.data.slices}
         components={components}

@@ -20,7 +20,6 @@ export default function AboutContent({ styles, page, foldoutElements }: Props) {
   useRevealer();
   return (
     <section className={styles.about__container}>
-      <div className="revealer"></div>
       <PrismicRichText field={page.data.page_title} />
       <SliceZone
         slices={page.data.slices}

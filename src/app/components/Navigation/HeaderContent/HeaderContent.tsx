@@ -28,18 +28,14 @@ export default function HeaderContent({ ...headerContentProps }) {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // If we're at the very top, always show navbar
     if (currentScrollY <= 100) {
       setShowNavbar(true);
     } else {
-      // Check scroll direction
       if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide navbar after 100px
         if (currentScrollY > 100) {
           setShowNavbar(false);
         }
       } else {
-        // Scrolling up - show navbar if scrolled up by at least 30px
         if (lastScrollY - currentScrollY >= 30) {
           setShowNavbar(true);
         }
@@ -91,7 +87,6 @@ export default function HeaderContent({ ...headerContentProps }) {
 
     window.addEventListener('resize', updateHeaderHeight);
 
-    // Update when content might change
     const resizeObserver = new ResizeObserver(updateHeaderHeight);
     if (headerRef.current) {
       resizeObserver.observe(headerRef.current);

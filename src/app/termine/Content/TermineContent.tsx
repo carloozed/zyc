@@ -17,7 +17,6 @@ export default function TermineContent({ page }: Props) {
 
   return (
     <section className={styles.container}>
-      <div className="revealer"></div>
       <div className={styles.termine__hero}>
         <PrismicRichText field={page.data.page_title} />
       </div>

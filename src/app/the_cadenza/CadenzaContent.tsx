@@ -20,7 +20,6 @@ export default function CadenzaContent({ page, foldoutElements }: Props) {
   useRevealer();
   return (
     <section style={{ position: 'relative' }}>
-      <div className="revealer"></div>
       <SliceZone
         slices={page.data.slices}
         components={components}

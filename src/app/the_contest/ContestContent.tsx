@@ -33,7 +33,6 @@ export default function ContestContent({
 
   return (
     <section style={{ position: 'relative' }}>
-      <div className="revealer"></div>
       <SliceZone
         slices={page.data.slices}
         components={components}
