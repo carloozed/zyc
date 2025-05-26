@@ -8,13 +8,14 @@ import {
 } from '../../../../prismicio-types';
 import { DynamiclandingcontentDocument } from '../../../../prismicio-types';
 import styles from './LandingContent.module.css';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import { useRevealer } from '@/hooks/useRevealer';
 
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import FadeIn from '../FadeIn/FadeIn';
+import { TransitionLink } from '../TransitionLink/TransitionLink';
 
 type Props = {
   landingNavigation: HomepageNavigationDocument;
@@ -119,9 +120,9 @@ export default function LandingContent({
                 delay={0.7}
               />
             </FadeIn>
-            <PrismicNextLink field={termine}>
+            <TransitionLink field={termine}>
               <h5>{cta_text}</h5>
-            </PrismicNextLink>
+            </TransitionLink>
           </div>
         </div>
       </div>
@@ -143,9 +144,9 @@ export default function LandingContent({
                 duration={1.4}
                 as={'h4'}
               />
-              <PrismicNextLink field={the_contest}>
+              <TransitionLink field={the_contest}>
                 <h5>{cta_text}</h5>
-              </PrismicNextLink>
+              </TransitionLink>
             </div>
           </div>
           <div
@@ -161,9 +162,9 @@ export default function LandingContent({
                 as={'h4'}
                 delay={0.2}
               />
-              <PrismicNextLink field={the_cadenza}>
+              <TransitionLink field={the_cadenza}>
                 <h5>{cta_text}</h5>
-              </PrismicNextLink>
+              </TransitionLink>
             </div>
           </div>
           <div
@@ -179,9 +180,9 @@ export default function LandingContent({
                 as={'h4'}
                 delay={0.4}
               />
-              <PrismicNextLink field={the_crescendo}>
+              <TransitionLink field={the_crescendo}>
                 <h5>{cta_text}</h5>
-              </PrismicNextLink>
+              </TransitionLink>
             </div>
           </div>
         </div>
@@ -197,9 +198,9 @@ export default function LandingContent({
             as={'h4'}
             delay={0.5}
           />
-          <PrismicNextLink field={about}>
+          <TransitionLink field={about}>
             <h5>{cta_text}</h5>
-          </PrismicNextLink>
+          </TransitionLink>
         </div>{' '}
       </div>
     </div>

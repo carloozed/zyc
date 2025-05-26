@@ -221,10 +221,7 @@ ol li {
     animation: 0.8s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
 }
 
-/* Persistent Elements */
-.navbar {
-    view-transition-name: navbar;
-}
+
 
 .footer {
     view-transition-name: footer;

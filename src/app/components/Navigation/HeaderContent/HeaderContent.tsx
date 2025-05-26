@@ -6,10 +6,11 @@ import styles from './HeaderContent.module.css';
 
 /* Component Imports */
 import DownloadBar from './DownloadBar/DownloadBar';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 import Hamburger from './Hamburger/Hamburger';
 
 import { usePathname } from 'next/navigation';
+import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
@@ -118,11 +119,15 @@ export default function HeaderContent({ ...headerContentProps }) {
         transition: 'transform 0.3s ease-in-out',
       }}
     >
-      <PrismicNextLink field={home} onClick={() => setIsOpen(false)}>
+      <TransitionLink
+        field={home}
+        onClick={() => setIsOpen(false)}
+        hasText={false}
+      >
         <div className={styles.header__logocontainer}>
           <PrismicNextImage field={logo.data.image} />
         </div>
-      </PrismicNextLink>
+      </TransitionLink>
       <div className={styles.header__downloadbar}>
         {downloadbar.data.is_download_available !== 'Nichts' && (
           <DownloadBar downloadbar={downloadbar} />
