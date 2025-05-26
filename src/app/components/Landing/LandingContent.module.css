@@ -4,8 +4,16 @@
     display: flex;
     justify-content: space-between;
     padding: 5.5% var(--padding-s);
+    background-position: center;
+    background-size: 100% auto;
+    position: relative;
 }
 
+.heroimage {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+}
 
 .landing__rightcontainer,
 .landing__leftcontainer {
@@ -13,7 +21,8 @@
     flex-direction: column;
     justify-content: space-between;
     height: 75vh;
-    gap: var(--padding-xs)
+    gap: var(--padding-xs);
+    z-index: 1;
 }
 
 .landing__rightcontainer {

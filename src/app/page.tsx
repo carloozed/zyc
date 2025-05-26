@@ -15,17 +15,11 @@ export default async function Home() {
   ]);
 
   return (
-    <main
-      className={styles.main}
-      style={{
-        backgroundImage: background?.data?.image?.url
-          ? `url(${background.data.image.url})`
-          : undefined,
-      }}
-    >
+    <main className={styles.main}>
       <LandingContent
         landingNavigation={landingNavigation}
         hoverElements={hoverElements}
+        background={background}
       />
     </main>
   );

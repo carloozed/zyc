@@ -5,6 +5,7 @@ import { ViewTransitions } from 'next-view-transitions';
 
 import './globals.css';
 import './reset.css';
+import './animationglobals.css';
 
 import Navigation from './components/Navigation/Navigation';
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';

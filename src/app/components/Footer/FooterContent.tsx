@@ -15,6 +15,7 @@ import {
 import styles from './FooterContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { isFilled } from '@prismicio/client';
 
 type Props = {
   footer: FooterDocument;
@@ -49,11 +50,17 @@ export default function FooterContent({
             <div className={styles.footer__leftcontainer}>
               <div className={styles.footer__addresscontainer}>
                 <div className={styles.footer__address}>
-                  <PrismicRichText field={address.data.zyc} />
-                  <PrismicNextLink field={address.data.location_link}>
-                    <PrismicRichText field={address.data.street} />
-                    <PrismicRichText field={address.data.city} />
-                  </PrismicNextLink>
+                  {(isFilled.richText(address.data.street) ||
+                    isFilled.richText(address.data.city)) && (
+                    <>
+                      {' '}
+                      <PrismicRichText field={address.data.zyc} />{' '}
+                      <PrismicNextLink field={address.data.location_link}>
+                        <PrismicRichText field={address.data.street} />
+                        <PrismicRichText field={address.data.city} />
+                      </PrismicNextLink>
+                    </>
+                  )}
                 </div>
               </div>
               <div className={styles.footer__lownavigationcontainer}>

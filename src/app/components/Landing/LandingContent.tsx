@@ -2,24 +2,30 @@
 
 import React, { useState } from 'react';
 
-import { HomepageNavigationDocument } from '../../../../prismicio-types';
+import {
+  HomepageNavigationDocument,
+  LandingBackgroundImageDocument,
+} from '../../../../prismicio-types';
 import { DynamiclandingcontentDocument } from '../../../../prismicio-types';
 import styles from './LandingContent.module.css';
-import { PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import { useRevealer } from '@/hooks/useRevealer';
 
 import { RevealText } from '@/app/components/RevealText/RevealText';
+import FadeIn from '../FadeIn/FadeIn';
 
 type Props = {
   landingNavigation: HomepageNavigationDocument;
   hoverElements: DynamiclandingcontentDocument[];
+  background: LandingBackgroundImageDocument;
 };
 
 export default function LandingContent({
   landingNavigation,
   hoverElements,
+  background,
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
   const [isHovered, setIsHovered] = useState(false);
@@ -47,6 +53,23 @@ export default function LandingContent({
 
   return (
     <div className={styles.landing__container}>
+      <div className={styles.heroimage__container}>
+        <FadeIn
+          vars={{
+            scale: 1,
+            opacity: 1,
+            duration: 4,
+            filter: 'blur(0px)',
+          }}
+          className="heroimage__animation"
+        >
+          <PrismicNextImage
+            field={background.data.image}
+            priority
+            className={styles.heroimage}
+          />
+        </FadeIn>
+      </div>
       <div className={styles.landing__leftcontainer}>
         <div className={styles.landing__leftcontainer__content}>
           <div
@@ -86,14 +109,16 @@ export default function LandingContent({
           <div
             className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
           >
-            <RevealText
-              field={termine_title}
-              id="termine-hero"
-              staggerAmount={0.3}
-              duration={1}
-              as={'h4'}
-              delay={0.7}
-            />
+            <FadeIn>
+              <RevealText
+                field={termine_title}
+                id="termine-hero"
+                staggerAmount={0.3}
+                duration={1}
+                as={'h4'}
+                delay={0.7}
+              />
+            </FadeIn>
             <PrismicNextLink field={termine}>
               <h5>{cta_text}</h5>
             </PrismicNextLink>

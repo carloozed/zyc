@@ -2,18 +2,15 @@
 
 import React, { useState, useRef } from 'react';
 import styles from './Menu.module.css';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 import { LinkField } from '@prismicio/client';
-import { PrismicRichText } from '@prismicio/react';
+
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
-import { EmptyLinkField } from '@prismicio/client';
-
-import { useTransitionRouter } from 'next-view-transitions';
-
 import { usePathname } from 'next/navigation';
+import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
@@ -25,51 +22,12 @@ export default function Menu({ ...menuProps }) {
 
   const legal = lownavigations[1];
   const socials = lownavigations[0];
-  const address = menuProps.address.data;
+
   const logo = menuProps.logo.data;
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
 
-  const router = useTransitionRouter();
   const pathname = usePathname();
-
-  console.log('pheheh');
-
-  function triggerPageTransition() {
-    document.documentElement.animate(
-      [
-        {
-          clipPath: 'polygon(25% 75%, 75% 75%, 75% 75%, 25% 75%)',
-        },
-        {
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        },
-      ],
-      {
-        duration: 2000,
-        easing: 'cubic-bezier(0.9, 0, 0.1, 1)',
-        pseudoElement: '::view-transition-new(root)',
-      }
-    );
-  }
-
-  const handleNavigation = (field: EmptyLinkField) => (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    const path =
-      field.link_type || field.link_type === 'Web' ? field : field.text;
-
-    if (!path || path === pathname) {
-      setIsOpen(false);
-      return;
-    }
-
-    setIsOpen(false);
-
-    router.push(path.toString(), {
-      onTransitionReady: triggerPageTransition,
-    });
-  };
 
   const indicatorPosition = () => {
     switch (pathname) {
@@ -112,11 +70,9 @@ export default function Menu({ ...menuProps }) {
                       className={styles.navbar__item}
                       onMouseEnter={() => setSubbarIsOpen(index === 1)}
                       onMouseLeave={() => setSubbarIsOpen(false)}
+                      onClick={() => setIsOpen(false)}
                     >
-                      <PrismicNextLink
-                        field={item.item}
-                        onClick={handleNavigation(item.item)}
-                      />
+                      <TransitionLink field={item.item} />
                       <div className={styles.subnavbar__container}>
                         <ul
                           className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
@@ -133,10 +89,7 @@ export default function Menu({ ...menuProps }) {
                                 >
                                   <span>[0{index + 1}] </span>
                                   <span>
-                                    <PrismicNextLink
-                                      field={item.link}
-                                      onClick={handleNavigation(item.link)}
-                                    />
+                                    <TransitionLink field={item.link} />
                                   </span>
                                 </li>
                               )
@@ -153,12 +106,8 @@ export default function Menu({ ...menuProps }) {
               <ul className={styles.menu__navlist}>
                 {legal.data.low_navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
-                    <li
-                      key={index}
-                      className={styles.lowernavbar__item}
-                      onClick={handleNavigation(item.item)}
-                    >
-                      <PrismicNextLink field={item.item} />{' '}
+                    <li key={index} className={styles.lowernavbar__item}>
+                      <TransitionLink field={item.item} />{' '}
                       {index !==
                         socials.data.low_navigation_items.length - 1 && (
                         <span></span>
@@ -176,25 +125,14 @@ export default function Menu({ ...menuProps }) {
                   <div className={styles.menu__logocontainer}>
                     <PrismicNextImage field={logo.image} />
                   </div>
-                  <PrismicRichText field={address.name_full} />
-                </div>
-                <div onClick={handleNavigation(address.location_link)}>
-                  <PrismicNextLink field={address.location_link}>
-                    <PrismicRichText field={address.street} />
-                    <PrismicRichText field={address.city} />
-                  </PrismicNextLink>
                 </div>
               </div>
               <div className={styles.menu__socialscontainer}>
                 <ul className={styles.menu__navlist}>
                   {socials.data.low_navigation_items.map(
                     (item: { item: LinkField }, index: number) => (
-                      <li
-                        key={index}
-                        className={styles.lowernavbar__item}
-                        onClick={handleNavigation(item.item)}
-                      >
-                        <PrismicNextLink field={item.item} />
+                      <li key={index} className={styles.lowernavbar__item}>
+                        <TransitionLink field={item.item} />
                         {index !==
                           socials.data.low_navigation_items.length - 1 && (
                           <span></span>

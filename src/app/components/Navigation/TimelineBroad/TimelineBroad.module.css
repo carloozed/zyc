@@ -24,3 +24,7 @@
     transform: scale(0.90);
     background-color: var(--white);
 }
+
+.timeline__hidden {
+    transform: translateY(150%) scale(0.88);
+}

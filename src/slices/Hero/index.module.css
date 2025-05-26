@@ -67,7 +67,6 @@
     position: relative;
     display: flex;
     gap: var(--padding-s);
-
 }
 
 .leftcontainer__linkcontainer {

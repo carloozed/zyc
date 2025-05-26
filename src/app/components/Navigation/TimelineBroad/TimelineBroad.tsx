@@ -71,11 +71,7 @@ export default function TimelineBroad({ ...timelineProps }) {
 
   return (
     <div
-      className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''}`}
-      style={{
-        transform: `translateY(${showTimeline ? '0' : '150%'})`,
-        transition: 'transform 0.3s ease-in-out',
-      }}
+      className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''} ${!showTimeline ? styles.timeline__hidden : ''}`}
     >
       <SliceZone slices={timeline.data.slices} components={components} />
     </div>

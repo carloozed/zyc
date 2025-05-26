@@ -1,0 +1,11 @@
+.container {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: contain;
+    transform: scale(1.05);
+    opacity: 0.8;
+}
