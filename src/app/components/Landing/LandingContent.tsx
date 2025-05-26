@@ -59,7 +59,7 @@ export default function LandingContent({
           vars={{
             scale: 1,
             opacity: 1,
-            duration: 4,
+            duration: 6,
             filter: 'blur(0px)',
           }}
           className="heroimage__animation"

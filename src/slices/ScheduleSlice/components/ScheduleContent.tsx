@@ -89,7 +89,7 @@ export default function ScheduleContent({ slice }: Props) {
       data-slice-variation={slice.variation}
       className={styles.schedule__container}
     >
-      <svg className={styles.connecting_line}>
+      {/* <svg className={styles.connecting_line}>
         <line
           ref={lineRef}
           x1="0"
@@ -99,23 +99,23 @@ export default function ScheduleContent({ slice }: Props) {
           stroke="black"
           strokeWidth="0.5"
         />
-      </svg>
+      </svg> */}
 
       <div className={styles.schedule__title_container}>
         <div className={styles.schedule__title}>
           <PrismicRichText field={slice.primary.phase_title} />
-          <div className={styles.circle}>
+          {/* <div className={styles.circle}>
             <div ref={titleRef}></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       <div className={styles.schedule__content}>
         <div className={styles.schedule__important}>
           <PrismicRichText field={slice.primary.important_to_know_field} />
-          <div className={styles.circleSecond}>
+          {/* <div className={styles.circleSecond}>
             <div ref={contentRef}></div>
-          </div>
+          </div> */}
         </div>
         <div>
           {slice.primary.phase_field.map((item, index) => (

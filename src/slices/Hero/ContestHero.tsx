@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { RichTextField } from '@prismicio/client';
-import { PrismicRichText } from '@prismicio/react';
-
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
 export default function ContestHero({ ...contestHeroProps }) {
-  const { slice, styles, signuplink } = contestHeroProps;
+  const { slice, styles } = contestHeroProps;
 
   return (
     <>
@@ -16,15 +13,7 @@ export default function ContestHero({ ...contestHeroProps }) {
         className={styles.heroslice__container}
         style={{ backgroundColor: slice.primary.background_color || '#FFD700' }}
       >
-        <div className={styles.heroslice__informationcontainer}>
-          {slice.primary.contestubersicht.map(
-            (item: { item: RichTextField }, index: number) => (
-              <div key={index}>
-                <PrismicRichText field={item.item} />
-              </div>
-            )
-          )}
-        </div>
+        <div className={styles.heroslice__informationcontainer}></div>
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>
             <PrismicNextImage field={slice.primary.visual} />{' '}
@@ -38,10 +27,6 @@ export default function ContestHero({ ...contestHeroProps }) {
             >
               <PrismicNextImage field={slice.primary.decoration} />
             </div>
-          </div>
-          <div className={styles.leftcontainer__linkcontainer}>
-            <PrismicNextLink field={signuplink.data.anmeldelink} />
-            <PrismicNextLink field={slice.primary.reglement_download} />
           </div>
         </div>
         <div className={styles.heroslice__rightcontainer}>

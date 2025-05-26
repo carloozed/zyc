@@ -160,12 +160,13 @@
     width: 100%;
     padding: var(--padding-s);
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .landing__termine {
-    justify-self: flex-end
+    justify-self: flex-end;
 }
 
 
@@ -219,7 +220,7 @@
     text-align: center;
     height: fit-content;
     width: 100%;
-    transform: translateY(var(--padding-s))
+    transform: translateY(var(--padding-s));
 }
 
 .landing__about a,

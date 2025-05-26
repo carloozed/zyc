@@ -42,7 +42,7 @@
     --white: #fff;
 
 
-    --opacity: 0.8;
+    --opacity: 0.48;
 
     --white-lowopa: rgba(255, 255, 255, var(--opacity));
     /* font sizes */
@@ -214,11 +214,11 @@ ol li {
 
 /* Default View Transitions */
 ::view-transition-old(root) {
-    animation: 0.5s cubic-bezier(0.33, 1, 0.68, 1) both fade-out;
+    animation: 9s cubic-bezier(0.33, 1, 0.68, 1) both fade-out;
 }
 
 ::view-transition-new(root) {
-    animation: 0.8s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+    animation: 9s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
 }
 
 

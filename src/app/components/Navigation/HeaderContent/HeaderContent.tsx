@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './HeaderContent.module.css';
 
 /* Component Imports */
-import DownloadBar from './DownloadBar/DownloadBar';
+// import DownloadBar from './DownloadBar/DownloadBar';
 import { PrismicNextImage } from '@prismicio/next';
 import Hamburger from './Hamburger/Hamburger';
 
@@ -77,11 +77,12 @@ export default function HeaderContent({ ...headerContentProps }) {
           <PrismicNextImage field={logo.data.image} />
         </div>
       </TransitionLink>
-      <div className={styles.header__downloadbar}>
+      <div></div>
+      {/* <div className={styles.header__downloadbar}>
         {downloadbar.data.is_download_available !== 'Nichts' && (
           <DownloadBar downloadbar={downloadbar} />
         )}
-      </div>
+      </div> */}
       <div className={styles.header__hamburger}>
         <Hamburger {...HamburgerProps} />
       </div>

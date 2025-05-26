@@ -10,7 +10,6 @@
     border: var(--border-thin);
     border-radius: 6px;
     transform: translateX(-50%) scale(0.88);
-    /* combine into one transform */
     transform-origin: center;
     pointer-events: all;
     transition: all var(--animationtime-fast) ease-out;
