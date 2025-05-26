@@ -11,6 +11,8 @@ import { JSXMapSerializer } from '@prismicio/react';
 import ProgressCircle from './ProgressCircle';
 import { PrismicNextImage } from '@prismicio/next';
 
+import { RevealText } from '@/app/components/RevealText/RevealText';
+
 type Props = {
   slice: ContestTimelineSlice;
   wearehereicon: WeAreHereImageDocument;
@@ -94,7 +96,11 @@ export default function ContestTimelineContent({
       data-slice-variation={slice.variation}
       className={styles.ctl__container}
     >
-      <PrismicRichText field={slice.primary.title} />
+      <RevealText
+        field={slice.primary.title}
+        useScrollTrigger={true}
+        as={'h2'}
+      />
 
       <div className={styles.ctl__timeline}>
         {slice.primary.timeline_contest_group.map((item, index) => (
@@ -112,7 +118,7 @@ export default function ContestTimelineContent({
               onMouseEnter={() => setActiveIndex(index)}
               className={`${styles.ctl__timeline__item__circle} ${activeIndex === index ? styles.active : ''}`}
             >
-              <ProgressCircle item={item} styles={styles} />
+              <ProgressCircle item={item} styles={styles} delay={index * 0.2} />
             </div>
             <div className={styles.ctl__timeline__item__title}>
               <PrismicRichText

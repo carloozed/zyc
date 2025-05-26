@@ -11,9 +11,10 @@
 
 .ctl__timeline {
     display: flex;
-    width: 65%;
+    width: 70%;
     justify-content: space-between;
     padding-top: var(--padding-xl);
+    height: fit-content;
 }
 
 .ctl__timeline__item {
@@ -22,6 +23,9 @@
     row-gap: var(--padding-m);
     width: var(--circle-height);
     position: relative;
+    overflow: hidden;
+    transition: transform var(--animationtime-xfast) var(--bezier), filter var(--animationtime-fast) var(--bezier);
+
 }
 
 .ctl__timeline h4 {
@@ -37,10 +41,9 @@
     border: var(--border-thin);
     position: relative;
     overflow: hidden;
-    transition: transform var(--animationtime-xfast) var(--bezier), filter var(--animationtime-fast) var(--bezier);
 }
 
-.ctl__timeline__item__circle:hover {
+.ctl__timeline__item:hover {
     transform: scale(1.04);
     filter: brightness(102%);
 
@@ -87,6 +90,7 @@
     position: relative;
     height: 100%;
     overflow: hidden;
+    min-height: 18rem;
 }
 
 .ctl__timeline__item__descriptioncontainer {
@@ -95,6 +99,7 @@
     height: 100%;
     width: 600%;
     transition: transform var(--animationtime-middle) var(--bezier);
+
 }
 
 .ctl__timeline__item__description {
@@ -112,14 +117,13 @@
     font-size: var(--subtitle-m)
 }
 
-.ctl__timeline__item__description p,
-.ctl__timeline__item__description a,
-.ctl__timeline__item__description li {
+.ctl__timeline__item__description p {
     font-size: calc(0.5rem + 0.5vw)
 }
 
-.ctl__timeline__item__description li {
+.ctl__timeline__item__description li a {
     line-height: 100%;
+    font-size: calc(0.45rem + 0.45vw)
 }
 
 

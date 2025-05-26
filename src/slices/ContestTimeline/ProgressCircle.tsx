@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { useEffect, useState } from 'react';
 import { DateField } from '@prismicio/client';
@@ -7,13 +7,21 @@ import {
   Simplify,
 } from '../../../prismicio-types';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 type Props = {
   styles: Readonly<Record<string, string>>;
   item: Simplify<ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem>;
+  delay?: number;
 };
 
-export default function ProgressCircle({ item, styles }: Props) {
+export default function ProgressCircle({ item, styles, delay }: Props) {
   const [progressPercentage, setProgressPercentage] = useState(0);
+  const circleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const calculateProgressPercentage = () => {
@@ -50,8 +58,32 @@ export default function ProgressCircle({ item, styles }: Props) {
     setProgressPercentage(calculateProgressPercentage());
   }, [item.start_date, item.end_date]);
 
+  useGSAP(
+    () => {
+      gsap.set(circleRef.current, { y: '150%' });
+
+      // Create scroll trigger animation
+      gsap.to(circleRef.current, {
+        y: '0%',
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: delay || 0,
+        scrollTrigger: {
+          trigger: circleRef.current,
+          start: 'top 85%',
+          end: 'bottom 15%',
+        },
+      });
+    },
+    { scope: circleRef }
+  );
+
   return (
-    <div className={styles.color} style={{ opacity: `${progressPercentage}%` }}>
+    <div
+      ref={circleRef}
+      className={styles.color}
+      style={{ opacity: `${progressPercentage}%` }}
+    >
       {progressPercentage === 100 && (
         <p>
           diese phase <br />

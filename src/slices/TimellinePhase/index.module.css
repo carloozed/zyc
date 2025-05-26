@@ -8,7 +8,7 @@
     font-weight: var(--fontweight-s);
     text-align: center;
     font-size: var(--text-s);
-    padding-bottom: var(--padding-xs)
+    padding-bottom: var(--padding-xs);
 }
 
 .timeline__progresscontainer {

@@ -6,10 +6,9 @@ import { asText, RichTextField } from '@prismicio/client';
 import styles from './RevealText.module.css';
 
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 type Props = {
   field: RichTextField;
@@ -22,7 +21,6 @@ type Props = {
   align?: 'center' | 'start' | 'end';
   letterByLetter?: boolean;
   delay?: number;
-  useScrollTrigger?: boolean; // New prop to toggle scroll trigger
 };
 
 export const RevealText: React.FC<Props> = ({
@@ -34,34 +32,22 @@ export const RevealText: React.FC<Props> = ({
   align = 'start',
   duration = 1.2,
   delay = 0,
-  useScrollTrigger = false,
 }) => {
   const words = asText(field).split(' ');
   const componentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      const animation = gsap.to('.reveal-text-word', {
+      gsap.to('.reveal-text-word', {
         y: 0,
         stagger: staggerAmount,
         duration: duration,
         ease: 'power3.out',
-        delay: useScrollTrigger ? 0 : delay, // No delay for scroll trigger
+        delay: delay,
       });
-
-      if (useScrollTrigger) {
-        ScrollTrigger.create({
-          trigger: componentRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          animation: animation,
-          markers: true,
-        });
-      }
     },
-    { scope: componentRef, dependencies: [useScrollTrigger] }
+    { scope: componentRef }
   );
-
   return (
     <Component ref={componentRef}>
       {words.map((word, index) => (
@@ -72,7 +58,7 @@ export const RevealText: React.FC<Props> = ({
           <span
             className={`reveal-text-word ${styles.innerspan}`}
             style={{
-              paddingRight: index !== words.length - 1 ? '0.15em' : '0', // Fixed the condition
+              paddingRight: index - 1 !== words.length - 1 ? '0.15em' : '0',
             }}
           >
             {word}
