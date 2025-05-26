@@ -20,7 +20,7 @@ export default function HeaderContent({ ...headerContentProps }) {
 
   const { navbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
-  const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
+  const { isOpen, setIsOpen, logo } = headerContentProps;
 
   useEffect(() => {
     if (pathname === '/') {
