@@ -45,6 +45,7 @@
 .foldout__item_title h3 {
     font-weight: var(--fontweight-xs);
     font-family: var(--subtitle-font);
+
 }
 
 
@@ -54,12 +55,13 @@
     font-size: calc(0.5rem + 1vw);
 }
 
+.foldout__item_uppercontainer h3 {}
+
 
 .foldout__item_content h4 {
     width: fit-content;
     font-size: var(--text-large);
     padding-bottom: var(--padding-s);
-    /* font-family: var(--title-font); */
 }
 
 .foldout__item_title {
@@ -78,12 +80,13 @@
     border-radius: 50%;
     display: flex;
     align-items: center;
-    border: var(--border-thin)
+    border: var(--border-thin);
+    justify-content: center;
+
+
 }
 
 .index h4 {
-    height: 100%;
-    width: 100%;
     text-align: center;
 }
 

@@ -56,7 +56,7 @@
                   "label": "Phase Description",
                   "placeholder": "",
                   "allowTargetBlank": true,
-                  "multi": "paragraph"
+                  "multi": "paragraph,list-item,hyperlink,strong"
                 }
               }
             }

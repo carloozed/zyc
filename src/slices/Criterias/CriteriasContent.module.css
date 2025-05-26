@@ -39,11 +39,11 @@
 
 
 .criteria__overviewcontent p {
-    font-size: var(--text)
+    font-size: var(--text);
 }
 
 .criteria__overviewcontent ul {
-    font-size: var(--text-sm);
+    font-size: var(--text);
     line-height: 120%;
 }
 
