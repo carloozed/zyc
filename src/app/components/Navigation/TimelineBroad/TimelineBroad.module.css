@@ -5,26 +5,31 @@
     height: fit-content;
     padding: var(--padding-2xs) var(--padding-xs);
     bottom: var(--padding-s);
-    min-width: 80%;
+    min-width: 85%;
     justify-content: space-between;
     border: var(--border-thin);
     border-radius: 6px;
-    transform: scale(0.88);
-    transform-origin: left;
+    transform: translateX(-50%) scale(0.88);
+    /* combine into one transform */
+    transform-origin: center;
     pointer-events: all;
-    transition: all 0.2s var(--bezier);
-    left: var(--padding-s)
+    transition: all var(--animationtime-fast) ease-out;
+    left: 50%;
 }
 
 .timeline__container__ishome {
     background-color: var(--white-lowopa);
+    transform: translateX(-50%) scale(0.88);
+    /* same scale */
 }
 
 .timeline__container:hover {
-    transform: scale(0.90);
+    transform: translateX(-50%) scale(0.90);
+    /* grow slightly on hover */
     background-color: var(--white);
 }
 
 .timeline__hidden {
-    transform: translateY(150%) scale(0.88);
+    transform: translateY(150%) translateX(-50%) scale(0.88);
+    /* hide with Y shift */
 }
