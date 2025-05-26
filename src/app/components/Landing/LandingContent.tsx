@@ -11,8 +11,6 @@ import styles from './LandingContent.module.css';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
-import { useRevealer } from '@/hooks/useRevealer';
-
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import FadeIn from '../FadeIn/FadeIn';
 import { TransitionLink } from '../TransitionLink/TransitionLink';
@@ -49,8 +47,10 @@ export default function LandingContent({
     about_title,
   } = landingNavigation.data;
 
-  const [contestHover, cadenzaHover, crescendoHover] = hoverElements;
-  useRevealer();
+  const [aboutHover, contestHover, cadenzaHover, crescendoHover] =
+    hoverElements;
+
+  console.log(aboutHover);
 
   return (
     <div className={styles.landing__container}>
@@ -98,6 +98,11 @@ export default function LandingContent({
                   <PrismicRichText field={cadenzaHover.data.title} />
                   <PrismicRichText field={cadenzaHover.data.description} />
                 </>
+              ) : hoveredElement === 'about' ? (
+                <>
+                  <PrismicRichText field={aboutHover.data.title} />
+                  <PrismicRichText field={aboutHover.data.description} />
+                </>
               ) : null}
             </div>
             <div className={styles.decor}>
@@ -125,12 +130,12 @@ export default function LandingContent({
           </div>
         </div>
       </div>
-      <div className={styles.landing__rightcontainer}>
-        <div
-          className={styles.landing__rightcontainer__ccc}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={mouseLeaveFunction}
-        >
+      <div
+        className={styles.landing__rightcontainer}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={mouseLeaveFunction}
+      >
+        <div className={styles.landing__rightcontainer__ccc}>
           <div
             onMouseOver={() => setHoveredElement('contest')}
             className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
@@ -187,6 +192,7 @@ export default function LandingContent({
         </div>
         <div
           className={`${styles.landing__about} ${styles.landing__navigationitem}`}
+          onMouseOver={() => setHoveredElement('about')}
         >
           {' '}
           <RevealText
