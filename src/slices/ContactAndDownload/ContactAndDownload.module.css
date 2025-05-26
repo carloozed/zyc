@@ -19,6 +19,11 @@
     font-size: var(--subtitle-s);
 }
 
+.sectioncontainer p,
+.sectioncontainer a {
+    font-size: calc(0.5rem + 0.5vw);
+}
+
 .linkscontainer {
     padding-top: var(--padding-m);
     display: flex;

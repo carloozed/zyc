@@ -4,6 +4,7 @@
     align-items: center;
     padding: var(--padding-xl) 0;
     gap: var(--padding-xl);
+    margin-top: var(--padding-);
 }
 
 .criterias__container {

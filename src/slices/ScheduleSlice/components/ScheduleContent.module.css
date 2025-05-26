@@ -108,9 +108,10 @@
 }
 
 
-.schedule__phase__description p {
+.schedule__phase__description p,
+.schedule__phase__description * {
 
-    font-size: var(--text-large);
+    font-size: calc(0.5rem + 0.5vw);
 }
 
 .schedule__phase__description ol {
@@ -119,7 +120,7 @@
 }
 
 .schedule__phase__description li {
-    font-size: var(--text-s)
+    font-size: calc(0.5rem + 0.5vw);
 }
 
 .schedule__phase h5 {

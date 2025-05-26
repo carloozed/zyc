@@ -121,7 +121,7 @@
     font-size: calc(0.5rem + 0.5vw)
 }
 
-.ctl__timeline__item__description li a {
+.ctl__timeline__item__description li {
     line-height: 100%;
     font-size: calc(0.45rem + 0.45vw)
 }
