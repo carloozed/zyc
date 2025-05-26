@@ -18,51 +18,9 @@ export default function HeaderContent({ ...headerContentProps }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   const { navbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
   const { isOpen, setIsOpen, downloadbar, logo } = headerContentProps;
-
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY <= 100) {
-      setShowNavbar(true);
-    } else {
-      if (currentScrollY > lastScrollY) {
-        if (currentScrollY > 100) {
-          setShowNavbar(false);
-        }
-      } else {
-        if (lastScrollY - currentScrollY >= 30) {
-          setShowNavbar(true);
-        }
-      }
-    }
-
-    setLastScrollY(currentScrollY);
-  };
-
-  useEffect(() => {
-    let ticking = false;
-
-    const scrollHandler = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, [lastScrollY]);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -109,10 +67,6 @@ export default function HeaderContent({ ...headerContentProps }) {
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       ref={headerRef}
-      style={{
-        transform: `translateY(${showNavbar ? '0' : '-150%'})`,
-        transition: 'transform 0.3s ease-in-out',
-      }}
     >
       <TransitionLink
         field={home}
