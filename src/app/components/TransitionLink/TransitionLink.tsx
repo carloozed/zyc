@@ -1,6 +1,14 @@
+'use client';
+
+import React, { useRef } from 'react';
+
 import { asLink, LinkField, PrismicDocument } from '@prismicio/client';
 import { Link } from 'next-view-transitions';
-import React from 'react';
+
+import { useGSAP } from '@gsap/react';
+import { gsap } from 'gsap';
+
+gsap.registerPlugin(useGSAP);
 
 export type TransitionLinkProps = {
   children?: React.ReactNode;
@@ -8,6 +16,7 @@ export type TransitionLinkProps = {
   onClick?: () => void;
   tabIndex?: number;
   hasText?: boolean;
+  hasAnimation?: boolean;
 } & (
   | { field: LinkField | null; document?: never; href?: never }
   | { field?: never; document: PrismicDocument | null; href?: never }
@@ -25,6 +34,7 @@ export function TransitionLink({
   hasText = true,
 }: TransitionLinkProps) {
   const url = href ?? asLink(field ?? doc);
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
   if (!url) {
     console.warn('TransitionLink: No valid URL provided');
@@ -33,14 +43,13 @@ export function TransitionLink({
 
   return (
     <Link
+      ref={linkRef}
       href={url}
       className={className}
       onClick={onClick}
       tabIndex={tabIndex}
     >
       {hasText ? (field?.text ?? children) : children}
-
-      {!hasText}
     </Link>
   );
 }

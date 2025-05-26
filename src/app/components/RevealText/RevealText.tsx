@@ -55,7 +55,7 @@ export const RevealText: React.FC<Props> = ({
           start: 'top 80%',
           end: 'bottom 20%',
           animation: animation,
-          markers: true,
+          markers: false,
         });
       }
     },

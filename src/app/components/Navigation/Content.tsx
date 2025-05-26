@@ -39,7 +39,7 @@ export default function Content({
   subnavigation,
   timelineBroad,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const menuProps = {
     navbar: navbar,

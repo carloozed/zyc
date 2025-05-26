@@ -19,7 +19,8 @@ export default function Menu({ ...menuProps }) {
   const { navbar, isOpen, lownavigations, setIsOpen } = menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
   const subnavLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
-
+  const linkContainerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const indicatorRef = useRef<HTMLDivElement>(null);
   const legal = lownavigations[1];
   const socials = lownavigations[0];
 
@@ -48,6 +49,31 @@ export default function Menu({ ...menuProps }) {
     }
   };
 
+  useGSAP(() => {
+    if (isOpen) {
+      gsap.set(linkContainerRef.current, { y: '120%' });
+      gsap.to(linkContainerRef.current, {
+        y: '0%',
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.2,
+        delay: 1,
+      });
+    }
+
+    if (isOpen) {
+      gsap.set(indicatorRef.current, { opacity: 0, y: '120%' });
+      gsap.to(indicatorRef.current, {
+        y: '0%',
+        opacity: 1,
+        duration: 1.4,
+        ease: 'power3.out',
+        stagger: 0.2,
+        delay: 1.8,
+      });
+    }
+  }, [isOpen]);
+
   return (
     <>
       {isOpen && (
@@ -61,7 +87,9 @@ export default function Menu({ ...menuProps }) {
                     transform: `translateY(${indicatorPosition()})  translateX(-120%)`,
                   }}
                 >
-                  <PrismicNextImage field={indicator.image} />
+                  <div ref={indicatorRef}>
+                    <PrismicNextImage field={indicator.image} />
+                  </div>
                 </div>
                 {navbar.data.navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
@@ -72,7 +100,19 @@ export default function Menu({ ...menuProps }) {
                       onMouseLeave={() => setSubbarIsOpen(false)}
                       onClick={() => setIsOpen(false)}
                     >
-                      <TransitionLink field={item.item} />
+                      <div className={styles.overlflow__container}>
+                        <div
+                          className={styles.navbar__linkcontainer}
+                          ref={(el) => {
+                            if (!linkContainerRef.current) {
+                              linkContainerRef.current = [];
+                            }
+                            linkContainerRef.current[index] = el;
+                          }}
+                        >
+                          <TransitionLink field={item.item} />
+                        </div>
+                      </div>
                       <div className={styles.subnavbar__container}>
                         <ul
                           className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}

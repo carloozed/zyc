@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 5%;
+
 }
 
 .menu__leftcontainer {
@@ -24,6 +25,15 @@
     align-items: flex-end;
     justify-content: flex-end;
 }
+
+
+.overlflow__container {
+    overflow: hidden;
+    padding-bottom: var(--padding-xs)
+}
+
+
+
 
 .menu__wrapper {
     display: flex;
