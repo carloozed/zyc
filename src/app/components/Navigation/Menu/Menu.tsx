@@ -42,7 +42,7 @@ export default function Menu({ ...menuProps }) {
       case '/termine':
         return '200%';
       case '/ueber_zyc':
-        return '400%';
+        return '300%';
       default:
         return '0%';
     }
