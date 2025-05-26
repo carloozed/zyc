@@ -80,6 +80,7 @@
 
 .schedule__important {
     padding: var(--padding-xs) 0;
+    position: relative;
 }
 
 .schedule__important h4 {
@@ -146,22 +147,31 @@
     height: 100%;
 }
 
-.circle {
+.circle,
+.circleSecond {
     position: absolute;
-    top: 42%;
-    left: var(--padding-2xs);
     transform: translateY(0%);
     z-index: 2;
-    /* Make sure circles are above the line */
 }
 
-.circle div {
+.circleSecond {
+    left: 4.6%;
+    top: 42%
+}
+
+.circle div,
+.circleSecond div {
     position: relative;
     height: var(--padding-xs);
     width: var(--padding-xs);
     border: var(--border-thin);
     border-radius: 50%;
     background-color: transparent;
+}
+
+.circle {
+    top: 42%;
+    left: var(--padding-2xs);
 }
 
 .square {

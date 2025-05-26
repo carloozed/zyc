@@ -111,12 +111,11 @@ export default function ScheduleContent({ slice }: Props) {
       </div>
 
       <div className={styles.schedule__content}>
-        <div className={styles.circle}>
-          <div ref={contentRef}></div>
-        </div>
-
         <div className={styles.schedule__important}>
           <PrismicRichText field={slice.primary.important_to_know_field} />
+          <div className={styles.circleSecond}>
+            <div ref={contentRef}></div>
+          </div>
         </div>
         <div>
           {slice.primary.phase_field.map((item, index) => (
