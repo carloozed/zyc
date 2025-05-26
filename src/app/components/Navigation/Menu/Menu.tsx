@@ -33,6 +33,8 @@ export default function Menu({ ...menuProps }) {
   const router = useTransitionRouter();
   const pathname = usePathname();
 
+  console.log('pheheh');
+
   function triggerPageTransition() {
     document.documentElement.animate(
       [
