@@ -241,7 +241,7 @@ ol li {
     ::view-transition-group(*),
     ::view-transition-old(*),
     ::view-transition-new(*) {
-        animation-duration: 0.001s;
+        animation-duration: 0.008s;
     }
 }
 
