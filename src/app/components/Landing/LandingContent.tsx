@@ -110,16 +110,15 @@ export default function LandingContent({
           <div
             className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
           >
-            <FadeIn>
-              <RevealText
-                field={termine_title}
-                id="termine-hero"
-                staggerAmount={0.3}
-                duration={1}
-                as={'h4'}
-                delay={0.7}
-              />
-            </FadeIn>
+            <RevealText
+              field={termine_title}
+              id="termine-hero"
+              staggerAmount={0.3}
+              duration={1}
+              as={'h4'}
+              delay={0.7}
+            />
+
             <TransitionLink field={termine}>
               <h5>{cta_text}</h5>
             </TransitionLink>

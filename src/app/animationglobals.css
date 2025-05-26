@@ -6,4 +6,5 @@
     width: 100%;
     opacity: 0;
     filter: blur(80px);
+    background-color: red;
 }

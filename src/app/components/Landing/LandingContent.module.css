@@ -9,6 +9,16 @@
     position: relative;
 }
 
+.heroimage__container {
+
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
 .heroimage {
     object-fit: contain;
     width: 100%;
@@ -22,7 +32,7 @@
     justify-content: space-between;
     height: 75vh;
     gap: var(--padding-xs);
-    z-index: 1;
+    z-index: 3;
 }
 
 .landing__rightcontainer {

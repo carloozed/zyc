@@ -50,14 +50,14 @@ export default function ContestHero({ ...contestHeroProps }) {
             className={styles.revealtext}
             staggerAmount={0.2}
             duration={1.2}
-            delay={1.5}
+            delay={0.8}
             as={'h1'}
           />
           <RevealText
             field={slice.primary.supporting_text}
             staggerAmount={0.2}
             duration={1.2}
-            delay={1.8}
+            delay={1.3}
             as={'h3'}
           />
         </div>
