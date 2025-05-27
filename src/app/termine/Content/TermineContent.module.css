@@ -14,3 +14,23 @@
     gap: var(--page-title);
     transform: translateY(0);
 }
+
+.terime_illustrationcontainer {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.terime_illustrationcontainer svg {}
+
+.svgcontainer {
+    display: flex;
+    gap: var(--padding-m);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.arrowup {
+    display: flex;
+    align-items: flex-end;
+}
