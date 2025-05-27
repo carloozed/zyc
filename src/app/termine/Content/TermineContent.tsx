@@ -14,7 +14,7 @@ import { useGSAP } from '@gsap/react';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import Square from './components/Square';
 import ArrowUp from './components/ArrowUp';
-import Arrow from '@/slices/ScheduleSlice/components/Arrow';
+
 import ArrowDown from './components/ArrowDown';
 
 gsap.registerPlugin(useGSAP);
