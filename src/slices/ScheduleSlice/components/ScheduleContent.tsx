@@ -34,7 +34,9 @@ const formatToGermanDate = (dateString: string): JSX.Element => {
 
   return (
     <div className={styles.schedule__date}>
-      <h3>{day}</h3>{' '}
+      <div className={styles.datecontainer}>
+        <h3>{day}</h3>{' '}
+      </div>
       <h4 style={{ paddingTop: 'var(--padding-xs)' }}>{month}</h4>
     </div>
   );

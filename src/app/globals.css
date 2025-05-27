@@ -1,6 +1,7 @@
 @font-face {
     font-family: "Max Fett";
-    src: url("/fonts/MaxFett-Black-Trial.woff2");
+    src: url("/fonts/MaxFett-Black.woff2");
+    fallback: url("/fonts/MaxFett-Black.woff");
 }
 
 @font-face {

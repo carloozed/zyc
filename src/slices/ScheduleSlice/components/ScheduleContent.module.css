@@ -49,7 +49,7 @@
 
 .schedule__phasecontainer {
     display: grid;
-    grid-template-columns: 0.1fr 0.9fr;
+    grid-template-columns: 0.15fr 0.85fr;
     column-gap: var(--padding-xl);
     min-height: calc(6rem + 6vw);
     padding: var(--padding-s) 0;
@@ -66,16 +66,25 @@
     position: relative;
 }
 
+.datecontainer {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: var(--border-thin)
+}
+
 .schedule__datecontainer * {
     font-weight: var(--fontweight-xs);
 }
 
 .schedule__datecontainer h3 {
-    border: var(--border-thin);
     width: fit-content;
     font-size: var(--subtitle-s);
     padding: var(--padding-s);
-    border-radius: 50%
+    border-radius: 50%;
+    transform: translateY(2px)
 }
 
 .schedule__important {

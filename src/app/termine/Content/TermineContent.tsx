@@ -27,7 +27,7 @@ export default function TermineContent({ page }: Props) {
 
       // Animate to natural position
       gsap.to(lowerContainerRef.current, {
-        y: '-4%', // Move to natural position
+        y: '-2.5%', // Move to natural position
         duration: 1.4,
         ease: 'power3.out',
         delay: 0.8,
