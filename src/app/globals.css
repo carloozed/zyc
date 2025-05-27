@@ -215,12 +215,18 @@ ol li {
 
 /* Default View Transitions */
 ::view-transition-old(root) {
-    animation: 9s cubic-bezier(0.33, 1, 0.68, 1) both fade-out;
+    animation: 4s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
+    pointer-events: none !important;
+
 }
 
 ::view-transition-new(root) {
-    animation: 9s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+    animation: 4s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+    pointer-events: none !important;
+
 }
+
+
 
 
 
@@ -228,11 +234,19 @@ ol li {
     view-transition-name: footer;
 }
 
+
+
 ::view-transition-old(navbar),
 ::view-transition-new(navbar),
 ::view-transition-old(footer),
 ::view-transition-new(footer) {
     animation: none;
+    pointer-events: none !important;
+}
+
+
+::view-transition {
+    pointer-events: none !important;
 }
 
 /* Reduced Motion Preferences */
