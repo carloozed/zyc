@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { isFilled } from '@prismicio/client';
 import { regularPropsType } from '../FoldoutContent';
@@ -14,11 +14,6 @@ type Props = {
 export default function RegularSlice({ regularProps }: Props) {
   const { slice, foldoutElements } = regularProps;
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
-
-  // Create refs for each element using arrays
-  const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const matchingElements = foldoutElements
     .filter((item) => {
@@ -35,25 +30,6 @@ export default function RegularSlice({ regularProps }: Props) {
   const toggleElement = (index: number) => {
     setOpenElementIndex(openElementIndex === index ? null : index);
   };
-
-  useLayoutEffect(() => {
-    matchingElements.forEach((_, index) => {
-      const mainContainer = mainContainerRefs.current[index];
-      const upperContainer = upperContainerRefs.current[index];
-      const contentContainer = contentRefs.current[index];
-
-      if (mainContainer && upperContainer && contentContainer) {
-        const upperHeight = upperContainer.offsetHeight;
-        const contentHeight = contentContainer.offsetHeight;
-
-        if (index === openElementIndex) {
-          mainContainer.style.height = `${upperHeight + contentHeight}px`;
-        } else {
-          mainContainer.style.height = `calc(${upperHeight}px + 1px)`;
-        }
-      }
-    });
-  }, [openElementIndex, matchingElements]);
 
   return (
     <div className={generalStyles.foldout}>
@@ -75,24 +51,10 @@ export default function RegularSlice({ regularProps }: Props) {
           const isOpen = openElementIndex === elementIndex;
 
           return (
-            <div
-              key={element.id}
-              className={generalStyles.foldout__item}
-              ref={(el) => {
-                mainContainerRefs.current[elementIndex] = el;
-              }}
-              style={{
-                height: 'auto',
-                overflow: 'hidden',
-                transition: 'height 0.3s var(--bezier)',
-              }}
-            >
+            <div key={element.id} className={generalStyles.foldout__item}>
               <div
                 className={generalStyles.foldout__item_uppercontainer}
                 onClick={() => toggleElement(elementIndex)}
-                ref={(el) => {
-                  upperContainerRefs.current[elementIndex] = el;
-                }}
               >
                 <div className={generalStyles.index}>
                   <h4>{elementIndex + 1}</h4>
@@ -117,14 +79,7 @@ export default function RegularSlice({ regularProps }: Props) {
               </div>
 
               <div
-                className={generalStyles.foldout__item_content}
-                ref={(el) => {
-                  contentRefs.current[elementIndex] = el;
-                }}
-                style={{
-                  display: isOpen ? 'block' : 'none',
-                  visibility: isOpen ? 'visible' : 'hidden',
-                }}
+                className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
               >
                 {element.data.content &&
                   element.data.content.map((item, contentIndex) => {

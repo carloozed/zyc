@@ -4,7 +4,6 @@
 
 .foldout__itemcontainer {
     padding: var(--padding-l) var(--padding-xl);
-    margin-top: var(--padding-l);
     display: flex;
     flex-direction: column;
     gap: var(--padding-xxs);
@@ -15,11 +14,26 @@
 
 .foldout__item {
     overflow: hidden;
-    transition: height 0.3s var(--bezier);
+    transition: height 0.9s var(--bezier);
     margin-top: 1rem;
     background-color: transparent;
 
 }
+
+.foldout__item_content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.9s ease-in-out;
+    padding: 0 var(--page-title);
+    width: fit-content;
+}
+
+.foldout__item_content.open {
+    max-height: 1000px;
+    /* Safe high value, or dynamically measured if needed */
+}
+
+
 
 .foldout__item_uppercontainer {
     display: flex;
@@ -32,6 +46,7 @@
 .foldout__item_content {
     padding: 0 var(--page-title);
     width: fit-content;
+
 }
 
 

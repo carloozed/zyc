@@ -1,8 +1,7 @@
 .foldout {
     display: flex;
     padding: 0 var(--padding-xl);
-    align-items: flex-start;
-    padding-bottom: var(--padding-l)
+    align-items: center;
 }
 
 .foldout__imagecontainer {
@@ -11,7 +10,8 @@
     flex-direction: column;
     gap: var(--padding-xxs);
     width: fit-content;
-
+    height: fit-content;
+    align-self: flex-start;
 }
 
 .foldout__imagecontainer img {

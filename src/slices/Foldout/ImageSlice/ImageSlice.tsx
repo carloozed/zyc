@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { isFilled } from '@prismicio/client';
 
@@ -40,25 +40,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
     setOpenElementIndex(openElementIndex === index ? null : index);
   };
 
-  useLayoutEffect(() => {
-    matchingElements.forEach((_, index) => {
-      const mainContainer = mainContainerRefs.current[index];
-      const upperContainer = upperContainerRefs.current[index];
-      const contentContainer = contentRefs.current[index];
-
-      if (mainContainer && upperContainer && contentContainer) {
-        const upperHeight = upperContainer.offsetHeight;
-        const contentHeight = contentContainer.offsetHeight;
-
-        if (index === openElementIndex) {
-          mainContainer.style.height = `${upperHeight + contentHeight}px`;
-        } else {
-          mainContainer.style.height = `calc(${upperHeight}px + 1px)`;
-        }
-      }
-    });
-  }, [openElementIndex, matchingElements]);
-
   return (
     <div className={imageSliceStyles.foldout}>
       <div className={imageSliceStyles.foldout__imagecontainer}>
@@ -84,11 +65,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
               className={generalStyles.foldout__item}
               ref={(el) => {
                 mainContainerRefs.current[elementIndex] = el;
-              }}
-              style={{
-                height: 'auto',
-                overflow: 'hidden',
-                transition: 'height 0.8s var(--bezier)',
               }}
             >
               <div
@@ -139,7 +115,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
               </div>
 
               <div
-                className={generalStyles.foldout__item_content}
+                className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
                 ref={(el) => {
                   contentRefs.current[elementIndex] = el;
                 }}
