@@ -265,7 +265,84 @@ ol li {
 
 /* Small Mobile */
 /* Up to 480px */
-@media (max-width: 30rem) {}
+@media (max-width: 30rem) {
+    :root {
+
+
+        /* font stuff */
+
+        --title-font: "Max Fett";
+        --subtitle-font: "Arial";
+        --text-font: "Arial";
+
+
+        /* color stuff */
+
+        --accentred: #FBCEB1;
+        --accentgreen: #D9E4D4;
+        --lightgrey: #F5F5F5;
+        --darkgrey: #a4a4a4;
+        --buttoncolor: #40E0D0;
+        --contestblue: #9AE4F1;
+        --cadenzagold: #FFD700;
+        --crescendogold: #FFC130;
+        --black: #000;
+        --white: #fff;
+
+
+        --opacity: 0.48;
+
+        --white-lowopa: rgba(255, 255, 255, var(--opacity));
+        /* font sizes */
+
+        /* 120px */
+        --page-title: calc(2.4rem + 2.4vw);
+
+        --subtitle-xxl: calc(2rem + 2vw);
+        /* 64px */
+        --subtitle-xl: calc(1.6rem + 1.6vw);
+        /* 48px */
+        --subtitle-l: calc(1.3rem + 1.3vw);
+        /* 32px */
+        --subtitle-m: 2rem;
+        /* 24px */
+        --subtitle-s: calc(0.75rem + 0.75vw);
+
+        /* 20px */
+        --text-large: calc(0.6rem + 0.6vw);
+
+        /* 16px */
+        --text: 1rem;
+
+        /* 14px */
+        --text-sm: 0.875rem;
+
+
+        /* 12px */
+        --text-s: calc(0.375rem + 0.375vw);
+        /* 8px */
+        --text-xs: 0.5rem;
+        /* 4px */
+        --text-2xs: 0.25rem;
+        /* 2px */
+        --text-3xs: 0.125rem;
+
+
+        /* animation stuff */
+
+        --bezier: ease-in-out;
+        --animationtime-xfast: 0.3s;
+        --animationtime-fast: 0.5s;
+        --animationtime-middle: 0.6s;
+        --animationtime-slow: 0.8s;
+        --animationtime-breathe: 1.2s;
+
+        --max-width: 1460px;
+
+
+        --circle-height: calc(2.6rem + 2.6vw);
+    }
+}
 
 /* Mobile */
 /* Up to 768px */

@@ -34,3 +34,84 @@
     font-family: var(--title-font);
     font-size: var(--subtitle-xs)
 }
+
+
+/* Small Mobile */
+/* Up to 480px */
+@media (max-width: 30rem) {
+    .signup__button {
+        position: fixed;
+        top: 50%;
+        right: calc(0.5rem + 1vw);
+        background-color: var(--buttoncolor);
+        height: calc(3rem + 8.5vw);
+        width: calc(3rem + 8.5vw);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        border-radius: 50%;
+        border: var(--border-thin);
+        transform: translateX(200%) translateY(-50%);
+        transition: transform 2s var(--bezier);
+        pointer-events: none;
+
+    }
+
+    .signup__button__home {
+        transform: translateX(-0%) translateY(-50%);
+        pointer-events: all;
+    }
+
+    .signup__button a {
+        transform: translateY(2px);
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        line-height: 120%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--title-font);
+        font-size: var(--text-large);
+    }
+
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}

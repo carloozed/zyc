@@ -79,7 +79,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                   style={{
                     backgroundColor:
                       element.data.belongs_to_foldout === 'contestfaq' &&
-                      element.data.itemindex === 0
+                      element.data.itemindex === 1
                         ? 'var(--contestblue)'
                         : 'transparent',
                   }}
@@ -92,7 +92,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                   style={{
                     backgroundColor:
                       element.data.belongs_to_foldout === 'contestfaq' &&
-                      element.data.itemindex === 0
+                      element.data.itemindex === 1
                         ? 'var(--contestblue)'
                         : 'transparent',
                   }}

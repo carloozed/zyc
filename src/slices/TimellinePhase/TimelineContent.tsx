@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { DateField } from '@prismicio/client';
 import { TimelinePhasesSlice } from '../../../prismicio-types';
 
+import { useMobile } from '@/contexts/MobileContext';
+
 type Props = {
   styles: Readonly<Record<string, string>>;
   slice: TimelinePhasesSlice;
@@ -12,6 +14,8 @@ type Props = {
 
 export default function TimelineContent({ styles, slice }: Props) {
   const [progressPercentage, setProgressPercentage] = useState(0);
+
+  const { isMobile } = useMobile();
 
   useEffect(() => {
     const calculateProgressPercentage = () => {
@@ -56,10 +60,10 @@ export default function TimelineContent({ styles, slice }: Props) {
       style={{
         width:
           slice.variation === 'default'
-            ? '22.5%'
+            ? `${!isMobile ? '22.5%' : '30%'}`
             : slice.variation === 'midPhase'
-              ? '17.5%'
-              : '10%',
+              ? `${!isMobile ? '17.5%' : '24%'}`
+              : `${!isMobile ? '10%' : '18%'}`,
       }}
     >
       <div>

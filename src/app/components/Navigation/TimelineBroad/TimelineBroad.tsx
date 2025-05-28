@@ -21,18 +21,15 @@ export default function TimelineBroad({ ...timelineProps }) {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // If we're at the very top, always show timeline
     if (currentScrollY <= 100) {
       setShowTimeline(true);
     } else {
       // Check scroll direction
       if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide timeline after 100px
         if (currentScrollY > 100) {
           setShowTimeline(false);
         }
       } else {
-        // Scrolling up - show timeline if scrolled up by at least 30px
         if (lastScrollY - currentScrollY >= 30) {
           setShowTimeline(true);
         }

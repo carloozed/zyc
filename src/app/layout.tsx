@@ -3,6 +3,8 @@ import { repositoryName } from '@/prismicio';
 
 import { ViewTransitions } from 'next-view-transitions';
 
+import { Providers } from '@/Providers/Providers';
+
 import './globals.css';
 import './reset.css';
 import './animationglobals.css';
@@ -18,15 +20,17 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en">
-        <body>
-          <SignupButtonLarge />
-          <Navigation />
-          {children}
-          <Footer />
-        </body>
-        <PrismicPreview repositoryName={repositoryName} />
-      </html>
+      <Providers>
+        <html lang="en">
+          <body>
+            <SignupButtonLarge />
+            <Navigation />
+            {children}
+            <Footer />
+          </body>
+          <PrismicPreview repositoryName={repositoryName} />
+        </html>
+      </Providers>
     </ViewTransitions>
   );
 }

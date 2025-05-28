@@ -29,6 +29,7 @@
     background-color: white;
     border-radius: 50px;
     border: var(--border-thin);
+
 }
 
 .progresscontainer__progressbar {
@@ -54,34 +55,16 @@
     .timeline__container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-    }
-
-    .timeline__titlecontainer h5 {
-        font-weight: var(--fontweight-s);
-        text-align: center;
-        font-size: var(--text-s);
-        padding-bottom: var(--padding-xs);
-    }
-
-    .timeline__progresscontainer {
-        height: fit-content;
-        display: flex;
-        position: relative;
-        overflow: hidden;
         justify-content: space-between;
-        border-radius: 50px;
-        border-right: none;
-        border-left: none;
-        border: var(--border-thin);
+        height: fit-content;
     }
+
+
+
 
     .progresscontainer__circle {
-        height: calc(0.75rem + 0.75vw);
-        width: calc(0.75rem + 0.75vw);
-        background-color: white;
-        border-radius: 50px;
-        border: var(--border-thin);
+        height: calc(0.5rem + 0.5vw);
+        width: calc(0.5rem + 0.5vw);
     }
 
     .progresscontainer__progressbar {
@@ -93,7 +76,7 @@
         height: 100%;
         z-index: -1;
         background-color: var(--contestblue);
-        border-radius: 6px;
+        border-radius: 3px;
         display: flex;
         justify-content: center;
         align-items: center;
