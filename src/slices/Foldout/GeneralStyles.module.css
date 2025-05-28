@@ -155,7 +155,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--padding-s);
-    padding-left: var(--padding-xl)
+    padding-left: var(--padding-l)
 }
 
 .foldout__subitem_description p {

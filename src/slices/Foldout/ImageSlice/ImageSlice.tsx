@@ -88,7 +88,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
               style={{
                 height: 'auto',
                 overflow: 'hidden',
-                transition: 'height 0.3s var(--bezier)',
+                transition: 'height 0.8s var(--bezier)',
               }}
             >
               <div
@@ -98,11 +98,29 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                   upperContainerRefs.current[elementIndex] = el;
                 }}
               >
-                <div className={generalStyles.index}>
+                <div
+                  className={generalStyles.index}
+                  style={{
+                    backgroundColor:
+                      element.data.belongs_to_foldout === 'contestfaq' &&
+                      element.data.itemindex === 0
+                        ? 'var(--contestblue)'
+                        : 'transparent',
+                  }}
+                >
                   <h4>{elementIndex + 1}</h4>
                 </div>
 
-                <div className={generalStyles.foldout__item_title}>
+                <div
+                  className={generalStyles.foldout__item_title}
+                  style={{
+                    backgroundColor:
+                      element.data.belongs_to_foldout === 'contestfaq' &&
+                      element.data.itemindex === 0
+                        ? 'var(--contestblue)'
+                        : 'transparent',
+                  }}
+                >
                   {element.data.foldout_element_topic &&
                     element.data.foldout_element_topic.length > 0 &&
                     isFilled.richText(element.data.foldout_element_topic) && (
@@ -124,10 +142,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                 className={generalStyles.foldout__item_content}
                 ref={(el) => {
                   contentRefs.current[elementIndex] = el;
-                }}
-                style={{
-                  display: isOpen ? 'block' : 'none',
-                  visibility: isOpen ? 'visible' : 'hidden',
                 }}
               >
                 {element.data.content &&
