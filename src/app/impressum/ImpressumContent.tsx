@@ -19,13 +19,23 @@ export default function ImpressumContent({ page }: Props) {
         useScrollTrigger={true}
         as={'h1'}
         staggerAmount={0}
+        duration={1.8}
       />
 
-      {page?.data.impressum_content.map((item, index) => (
-        <div key={index} className={styles.contentItem}>
-          <PrismicRichText field={item.text} />
-        </div>
-      ))}
+      <div className={styles.content}>
+        {page?.data.impressum_content.map((item, index) => (
+          <div key={index} className={styles.contentItem}>
+            <RevealText
+              field={item.title}
+              useScrollTrigger={true}
+              as={'h2'}
+              staggerAmount={0}
+            />
+
+            <PrismicRichText field={item.text} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,38 @@
 .main {
     min-height: 100svh;
-    padding: var(--padding-s);
-    padding-top: var(--page-title);
+    padding: var(--padding-xl) var(--padding-s);
 
+    padding-top: var(--page-title);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--page-title);
+    gap: var(--padding-l);
+    padding-left: var(--page-title);
+}
+
+.main li,
+.main p {
+    font-size: var(--text)
+}
+
+
+.contentItem {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s)
+}
+
+.contentItem h2 {
+    width: fit-content;
+    font-size: var(--subtitle-s);
+
+}
+
+
+.contentItem p {
+    width: 80%;
 }
