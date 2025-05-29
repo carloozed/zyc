@@ -319,8 +319,6 @@
         width: fit-content;
     }
 
-
-
     .subnavbar__subnavbar {
         position: relative;
         display: flex;
@@ -334,6 +332,7 @@
         padding-left: 0rem;
         width: fit-content;
         transition: opacity 0.2s var(--bezier);
+
     }
 
     .subnavbar__item {
@@ -343,6 +342,8 @@
         width: fit-content;
         overflow: hidden;
         width: fit-content;
+        z-index: 100;
+        pointer-events: all;
     }
 
     .subnavbar__item a {

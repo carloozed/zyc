@@ -12,12 +12,16 @@ import { useGSAP } from '@gsap/react';
 import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
+import { useMobile } from '@/contexts/MobileContext';
+
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
 
 export default function Menu({ ...menuProps }) {
   const { navbar, isOpen, lownavigations, setIsOpen } = menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
+
+  const { isMobile } = useMobile();
   const subnavLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
   const linkContainerRef = useRef<(HTMLDivElement | null)[]>([]);
   const indicatorRef = useRef<HTMLDivElement>(null);
@@ -35,15 +39,15 @@ export default function Menu({ ...menuProps }) {
       case '/':
         return '0%';
       case '/the_contest':
-        return '100%';
+        return '110%';
       case '/the_cadenza':
-        return '100%';
+        return '110%';
       case '/the_crescendo':
-        return '100%';
+        return '110%';
       case '/termine':
-        return '200%';
+        return '210%';
       case '/ueber_zyc':
-        return '300%';
+        return '310%';
       default:
         return '0%';
     }
@@ -51,9 +55,9 @@ export default function Menu({ ...menuProps }) {
 
   useGSAP(() => {
     if (isOpen) {
-      gsap.set(linkContainerRef.current, { y: '120%' });
+      gsap.set(linkContainerRef.current, { y: !isMobile ? '140%' : '140%' });
       gsap.to(linkContainerRef.current, {
-        y: '0%',
+        y: '10%',
         duration: 1,
         ease: 'power3.out',
         stagger: 0.2,
@@ -61,8 +65,22 @@ export default function Menu({ ...menuProps }) {
       });
     }
 
+    if (isOpen && isMobile) {
+      gsap.set(subnavLinksRef.current, { y: !isMobile ? '140%' : '140%' });
+      gsap.to(subnavLinksRef.current, {
+        y: '10%',
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.2,
+        delay: 1.5,
+      });
+    }
+
     if (isOpen) {
-      gsap.set(indicatorRef.current, { opacity: 0, y: '120%' });
+      gsap.set(indicatorRef.current, {
+        opacity: 0,
+        y: !isMobile ? '120%' : '140%',
+      });
       gsap.to(indicatorRef.current, {
         y: '0%',
         opacity: 1,
@@ -123,14 +141,18 @@ export default function Menu({ ...menuProps }) {
                                 <li
                                   key={index}
                                   className={styles.subnavbar__item}
-                                  ref={(el) => {
-                                    subnavLinksRef.current[index] = el;
-                                  }}
                                 >
-                                  <span>[0{index + 1}] </span>
-                                  <span>
-                                    <TransitionLink field={item.link} />
-                                  </span>
+                                  <div
+                                    ref={(el) => {
+                                      subnavLinksRef.current[index] = el;
+                                    }}
+                                    style={{ overflow: 'hidden' }}
+                                  >
+                                    <span>[0{index + 1}] </span>
+                                    <span>
+                                      <TransitionLink field={item.link} />
+                                    </span>
+                                  </div>
                                 </li>
                               )
                             )}
