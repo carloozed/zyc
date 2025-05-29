@@ -206,8 +206,8 @@
 
     .ctl__timeline__item__indicator {
         position: absolute;
-        top: -25%;
-        left: -5%;
+        top: -60%;
+        left: -10%;
         height: fit-content;
         width: 100%;
         display: flex;
@@ -254,12 +254,12 @@
     }
 
     .ctl__timeline__item__description p {
-        font-size: calc(0.5rem + 0.5vw)
+        font-size: calc(0.5rem + 0.8vw);
     }
 
     .ctl__timeline__item__description li {
         line-height: 100%;
-        font-size: calc(0.45rem + 0.45vw)
+        font-size: var(--text)
     }
 
 

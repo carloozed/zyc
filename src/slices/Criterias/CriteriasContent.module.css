@@ -69,3 +69,107 @@
     border-radius: 8px;
     font-family: var(--title-font);
 }
+
+
+/* Small Mobile */
+/* Up to 480px */
+@media (max-width: 30rem) {
+
+    .criterias__section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--padding-xl) 0;
+        gap: var(--padding-xl);
+        margin-top: var(--padding-l);
+    }
+
+    .criterias__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-l);
+        padding: var(--padding-l) var(--padding-s)
+    }
+
+    .criteria__item {
+        display: grid;
+        grid-template-columns: 0.65fr 1fr
+    }
+
+
+    .criteria__overviewcontent {
+        padding-left: var(--subtitle-l);
+        gap: var(--padding-s);
+    }
+
+
+    .criteria__overviewcontent p {
+        font-size: var(--text);
+    }
+
+    .criteria__overviewcontent ul {
+        font-size: var(--text);
+        line-height: 120%;
+    }
+
+    .criterias__buttoncontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--padding-m);
+    }
+
+    .criterias__buttoncontainer h4 {
+
+        text-align: center;
+    }
+
+
+    .criterias__buttoncontainer a {
+        font-size: var(--subtitle-s);
+        background-color: var(--buttoncolor);
+        padding: var(--padding-s);
+        border: var(--border-thin);
+        border-radius: 8px;
+        font-family: var(--title-font);
+    }
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}

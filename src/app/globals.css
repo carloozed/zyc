@@ -312,7 +312,8 @@ ol li {
         --text-large: calc(0.6rem + 0.6vw);
 
         /* 16px */
-        --text: 1rem;
+        --text: calc(0.5rem + 0.8vw);
+        ;
 
         /* 14px */
         --text-sm: 0.875rem;
@@ -341,6 +342,13 @@ ol li {
 
 
         --circle-height: calc(2.6rem + 2.6vw);
+    }
+
+    p,
+    li,
+    ul,
+    a {
+        font-size: var(--text)
     }
 }
 

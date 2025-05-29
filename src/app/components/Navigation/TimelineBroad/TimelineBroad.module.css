@@ -61,7 +61,6 @@
     .timeline__hidden {
         transform: translateY(0%) translateX(-50%) scale(0.88);
         opacity: 0;
-        background-color: red;
     }
 }
 
