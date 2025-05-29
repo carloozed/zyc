@@ -201,3 +201,251 @@
 .schedule__datecontainer .square:nth-of-type(2) {
     right: 0;
 }
+
+
+/* Small Mobile */
+/* Up to 480px */
+@media (max-width: 30rem) {
+    .schedule__container {
+        width: 93%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: var(--page-title);
+        position: relative;
+    }
+
+    /* SVG for the connecting line */
+    .connecting_line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+
+    .schedule__title_container {
+        padding-left: var(--padding-xl);
+    }
+
+    .schedule__content {
+        border: var(--border-thin);
+        border-radius: 10px;
+        padding: var(--padding-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-s);
+        position: relative;
+    }
+
+    .schedule__title {
+        border: var(--border-thin);
+        width: fit-content;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    .schedule__title h3 {
+        padding: var(--padding-s) var(--padding-m);
+        transform: translateY(1px);
+        font-size: var(--subtitle-s);
+    }
+
+    .schedule__phasecontainer {
+        display: grid;
+        grid-template-columns: 0.2fr 0.8fr;
+        column-gap: var(--padding-m);
+        min-height: calc(4rem + 4vw);
+        padding: var(--padding-s) 0;
+    }
+
+    .schedule__datecontainer {
+        border-top: var(--border-thin);
+        padding-top: var(--padding-s);
+        padding-bottom: var(--padding-m);
+        gap: var(--padding-s);
+    }
+
+    .datecontainer {
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: var(--border-thin);
+        height: calc(1.5rem + 2vw);
+        width: calc(1.5rem + 2vw);
+    }
+
+    .schedule__datecontainer * {
+        font-weight: var(--fontweight-xs);
+
+    }
+
+    .schedule__datecontainer h3 {
+        width: fit-content;
+        font-size: var(--text-large);
+        transform: translateY(2px);
+        padding: var(--padding-s);
+
+    }
+
+    .schedule__datecontainer h4 {
+        font-size: calc(0.4rem + 0.5vw);
+    }
+
+    .schedule__important {
+        padding: var(--padding-xs) 0;
+        position: relative;
+    }
+
+    .schedule__important h4 {
+        text-align: right;
+        font-family: var(--title-font);
+        font-size: var(--subtitle-s);
+        transform: translateY(5px);
+    }
+
+    .schedule__phase {
+        padding-left: 0;
+        padding: var(--padding-l) var(--padding-xs);
+        gap: var(--padding-s);
+        width: 100%;
+    }
+
+    .schedule__phase__description {
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-xs);
+        font-size: var(--text);
+        width: 100%;
+    }
+
+
+    .schedule__phase__description p,
+    .schedule__phase__description * {
+        font-size: var(--text);
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    .schedule__phase__description ol {
+        padding: var(--padding-xs) 0;
+        margin-left: var(--padding-xl)
+    }
+
+    .schedule__phase__description li {
+        font-size: var(--text);
+    }
+
+    .schedule__phase h5 {
+        width: fit-content;
+        font-size: var(--text-large);
+        font-weight: var(--fontweight-xs);
+        font-family: var(--title-font);
+    }
+
+    .schedule__date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .arrow {
+        width: 4px;
+        margin: var(--padding-s) 0;
+        height: fit-content;
+    }
+
+    .arrow_svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .circle,
+    .circleSecond {
+        position: absolute;
+        transform: translateY(0%);
+        z-index: 2;
+    }
+
+    .circleSecond {
+        left: 4.55%;
+        top: 42%
+    }
+
+    .circle div,
+    .circleSecond div {
+        position: relative;
+        height: var(--padding-xs);
+        width: var(--padding-xs);
+        border: var(--border-thin);
+        border-radius: 50%;
+        background-color: transparent;
+    }
+
+    .circle {
+        top: 42%;
+        left: var(--padding-2xs);
+    }
+
+    .square {
+        position: absolute;
+        height: var(--padding-2xs);
+        width: var(--padding-2xs);
+        background-color: var(--black);
+        top: 0;
+    }
+
+    .schedule__phase__description .square:nth-of-type(1),
+    .schedule__datecontainer .square:nth-of-type(1) {
+        left: 0;
+    }
+
+    .schedule__phase__description .square:nth-of-type(2),
+    .schedule__datecontainer .square:nth-of-type(2) {
+        right: 0;
+    }
+
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}
