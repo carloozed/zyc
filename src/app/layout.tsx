@@ -12,6 +12,7 @@ import './animationglobals.css';
 import Navigation from './components/Navigation/Navigation';
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
 import Footer from './components/Footer/Footer';
+import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
 
 export default function RootLayout({
   children,
@@ -24,6 +25,7 @@ export default function RootLayout({
         <html lang="en">
           <body>
             <SignupButtonLarge />
+            <ScrollIndicator />
             <Navigation />
             {children}
             <Footer />

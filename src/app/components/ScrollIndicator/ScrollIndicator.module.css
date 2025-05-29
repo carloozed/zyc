@@ -1,0 +1,15 @@
+.indicator {
+    position: fixed;
+    bottom: calc(var(--padding-xl));
+    right: var(--padding-xl);
+    z-index: 3;
+    scale: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-m);
+}
+
+.indicator__uppercontainer {
+    overflow: hidden;
+}
