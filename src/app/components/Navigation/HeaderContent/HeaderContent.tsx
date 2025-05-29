@@ -73,7 +73,12 @@ export default function HeaderContent({ ...headerContentProps }) {
         onClick={() => setIsOpen(false)}
         hasText={false}
       >
-        <div className={styles.header__logocontainer}>
+        <div
+          className={
+            styles.header__logocontainer +
+            (isHome ? ` ${styles.header__logo_home}` : '')
+          }
+        >
           <PrismicNextImage field={logo.data.image} />
         </div>
       </TransitionLink>

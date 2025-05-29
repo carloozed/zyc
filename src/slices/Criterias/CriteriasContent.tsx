@@ -7,6 +7,8 @@ import {
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 
+import { RevealText } from '@/app/components/RevealText/RevealText';
+
 import styles from './CriteriasContent.module.css';
 
 type Props = {
@@ -27,7 +29,11 @@ export default function CriteriasContent({
         data-slice-variation={slice.variation}
         className={styles.criterias__section}
       >
-        <PrismicRichText field={slice.primary.title} />
+        <RevealText
+          field={slice.primary.title}
+          useScrollTrigger={true}
+          as={'h2'}
+        />
         <div className={styles.criterias__container}>
           {disciplinetypes
             .find(
@@ -39,7 +45,11 @@ export default function CriteriasContent({
               <div key={index} className={styles.criteria__item}>
                 <div className={styles.criteria__titlecontainer}>
                   <div className={styles.criteria__title}>
-                    <PrismicRichText field={disciplinetype.title} />
+                    <RevealText
+                      field={disciplinetype.title}
+                      useScrollTrigger={true}
+                      as={'h3'}
+                    />
                   </div>
                 </div>
                 <div className={styles.criteria__overviewcontent}>

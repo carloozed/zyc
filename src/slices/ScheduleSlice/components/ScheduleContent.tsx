@@ -7,6 +7,7 @@ import styles from './ScheduleContent.module.css';
 
 import Arrow from './Arrow';
 import { isFilled } from '@prismicio/client';
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type Props = { slice: ScheduleSliceSlice };
 
@@ -136,12 +137,25 @@ export default function ScheduleContent({ slice }: Props) {
               </div>
               <div className={styles.schedule__phase}>
                 <div>
-                  <PrismicRichText field={item.phase_title} />
+                  <RevealText
+                    field={item.phase_title}
+                    useScrollTrigger={true}
+                    as={'h5'}
+                    staggerAmount={0}
+                    triggerStart={'top 95%'}
+                  />
                 </div>
                 <div className={styles.schedule__phase__description}>
                   <div className={styles.square}></div>
                   <div className={styles.square}></div>
-                  <PrismicRichText field={item.description} />
+
+                  <RevealText
+                    field={item.description}
+                    useScrollTrigger={true}
+                    as={'p'}
+                    staggerAmount={0}
+                    triggerStart={'top 95%'}
+                  />
                 </div>
               </div>
             </div>

@@ -22,7 +22,10 @@ type Props = {
   align?: 'center' | 'start' | 'end';
   letterByLetter?: boolean;
   delay?: number;
-  useScrollTrigger?: boolean; // New prop to toggle scroll trigger
+  useScrollTrigger?: boolean;
+  triggerStart?: string;
+  triggerEnd?: string;
+  markers?: boolean;
 };
 
 export const RevealText: React.FC<Props> = ({
@@ -35,6 +38,9 @@ export const RevealText: React.FC<Props> = ({
   duration = 1.2,
   delay = 0,
   useScrollTrigger = false,
+  triggerStart = 'top 80%',
+  triggerEnd = 'bottom 20%',
+  markers = false,
 }) => {
   const words = asText(field).split(' ');
   const componentRef = useRef<HTMLDivElement>(null);
@@ -52,10 +58,10 @@ export const RevealText: React.FC<Props> = ({
       if (useScrollTrigger) {
         ScrollTrigger.create({
           trigger: componentRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
+          start: triggerStart,
+          end: triggerEnd,
           animation: animation,
-          markers: false,
+          markers: markers,
         });
       }
     },

@@ -6,6 +6,7 @@ import { isFilled } from '@prismicio/client';
 import { regularPropsType } from '../FoldoutContent';
 
 import generalStyles from '../GeneralStyles.module.css';
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type Props = {
   regularProps: regularPropsType;
@@ -35,7 +36,12 @@ export default function RegularSlice({ regularProps }: Props) {
     <div className={generalStyles.foldout}>
       {isFilled.richText(slice.primary.section_title) && (
         <div className={generalStyles.foldout__section_title}>
-          <PrismicRichText field={slice.primary.section_title} />
+          <RevealText
+            field={slice.primary.section_title}
+            useScrollTrigger={true}
+            as={'h2'}
+            staggerAmount={0}
+          />
         </div>
       )}
 

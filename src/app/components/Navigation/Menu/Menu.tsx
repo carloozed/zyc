@@ -65,8 +65,8 @@ export default function Menu({ ...menuProps }) {
       });
     }
 
-    if (isOpen && isMobile) {
-      gsap.set(subnavLinksRef.current, { y: !isMobile ? '140%' : '140%' });
+    if (isOpen) {
+      gsap.set(subnavLinksRef.current, { y: '140%' });
       gsap.to(subnavLinksRef.current, {
         y: '10%',
         duration: 1,
@@ -141,6 +141,7 @@ export default function Menu({ ...menuProps }) {
                                 <li
                                   key={index}
                                   className={styles.subnavbar__item}
+                                  onClick={() => setSubbarIsOpen(false)}
                                 >
                                   <div
                                     ref={(el) => {
