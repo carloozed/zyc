@@ -27,11 +27,13 @@ export default function ScrollIndicator() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== '/') {
-      setIsVisible(true);
-    } else {
+    if (pathname === '/' || pathname === '/ueber_zyc') {
       setIsVisible(false);
+    } else {
+      setIsVisible(true);
     }
+
+    setHasAnimated(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -39,13 +41,11 @@ export default function ScrollIndicator() {
       const scrollY = window.scrollY;
 
       if (scrollY === 0 && !hasAnimated) {
-        // User is at top and hasn't animated yet - start animation after 1s
         setTimeout(() => {
           animateIn();
           setHasAnimated(true);
         }, 1000);
       } else if (scrollY > 0 && hasAnimated) {
-        // User scrolled down - reverse animation
         animateOut();
       }
     };
@@ -71,20 +71,18 @@ export default function ScrollIndicator() {
       textRefThree,
       textRefTwo,
       textRefOne,
-    ]; // S-C-R-O-L-L order
+    ];
 
-    // Set all paths to 0%
     gsap.set(
       textRefs.map((ref) => ref.current),
       { drawSVG: '0%' }
     );
     gsap.set(arrowRef.current, { drawSVG: '0%' });
 
-    // Animate text paths with stagger (S-C-R-O-L-L)
     gsap.to(
       textRefs.map((ref) => ref.current),
       {
-        duration: 0.8,
+        duration: 0.4,
         drawSVG: '100%',
         ease: 'power2.out',
         stagger: 0.2,
