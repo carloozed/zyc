@@ -22,7 +22,8 @@ const routes: Route[] = [
   { type: 'the_crescendo', path: '/the_crescendo' },
   { type: 'teilnahme_termine', path: '/termine' },
   { type: 'uber_zyc', path: '/ueber_zyc' },
-  { type: 'deinwegmitzyc', path: '/dein_weg_mit_zyc' },
+  { type: 'deinwegmitzyc', path: '/the_contest' },
+  { type: 'impresssum', path: '/impressum' },
 ];
 
 /**

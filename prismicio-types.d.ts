@@ -907,12 +907,61 @@ export type HomepageNavigationDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Impresssum → Impressum Content*
+ */
+export interface ImpresssumDocumentDataImpressumContentItem {
+  /**
+   * Title field in *Impresssum → Impressum Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impresssum.impressum_content[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Text field in *Impresssum → Impressum Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impresssum.impressum_content[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
 type ImpresssumDocumentDataSlicesSlice = never;
 
 /**
  * Content for Impresssum documents
  */
 interface ImpresssumDocumentData {
+  /**
+   * Title field in *Impresssum*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Impressum
+   * - **API ID Path**: impresssum.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Impressum Content field in *Impresssum*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impresssum.impressum_content[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  impressum_content: prismic.GroupField<
+    Simplify<ImpresssumDocumentDataImpressumContentItem>
+  >;
+
   /**
    * Slice Zone field in *Impresssum*
    *
@@ -2912,6 +2961,7 @@ declare module "@prismicio/client" {
       HomepageNavigationDocumentData,
       ImpresssumDocument,
       ImpresssumDocumentData,
+      ImpresssumDocumentDataImpressumContentItem,
       ImpresssumDocumentDataSlicesSlice,
       KontaktDocument,
       KontaktDocumentData,

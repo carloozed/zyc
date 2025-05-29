@@ -12,7 +12,7 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = {
-  field: RichTextField;
+  field: RichTextField | undefined;
   id?: string;
   className?: string;
   children?: React.ReactNode;
@@ -42,7 +42,7 @@ export const RevealText: React.FC<Props> = ({
   triggerEnd = 'bottom 20%',
   markers = false,
 }) => {
-  const words = asText(field).split(' ');
+  const words = field && asText(field).split(' ');
   const componentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -70,7 +70,7 @@ export const RevealText: React.FC<Props> = ({
 
   return (
     <Component ref={componentRef}>
-      {words.map((word, index) => (
+      {words?.map((word, index) => (
         <span
           key={`${word}-${index}-${id}`}
           className={`reveal-text-container ${styles.outerspan} ${align === 'center' ? styles.center : align === 'start' ? styles.start : styles.end} ${className || ''}`}

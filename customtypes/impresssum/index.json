@@ -1,14 +1,53 @@
 {
   "format": "page",
   "id": "impresssum",
+  "label": "Impresssum",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "Impressum",
+          "allowTargetBlank": true,
+          "multi": "heading1"
+        }
+      },
+      "impressum_content": {
+        "type": "Group",
+        "config": {
+          "label": "Impressum Content",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Title",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading2"
+              }
+            },
+            "text": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Text",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,strong,em,hyperlink,embed,list-item,o-list-item"
+              }
+            }
+          }
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +77,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Impresssum",
-  "repeatable": false,
-  "status": true
+  }
 }

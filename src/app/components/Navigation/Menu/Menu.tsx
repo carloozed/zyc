@@ -129,6 +129,7 @@ export default function Menu({ ...menuProps }) {
                       onMouseEnter={() => setSubbarIsOpen(index === 1)}
                       onMouseLeave={() => setSubbarIsOpen(false)}
                       onClick={() => setIsOpen(false)}
+                      style={{ backgroundColor: 'red' }}
                     >
                       <div className={styles.overlflow__container}>
                         <div

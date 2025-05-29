@@ -1,0 +1,6 @@
+.main {
+    min-height: 100svh;
+    padding: var(--padding-s);
+    padding-top: var(--page-title);
+
+}

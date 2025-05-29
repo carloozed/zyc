@@ -136,7 +136,6 @@
 
     .hamburger__open .hamburger__line:nth-of-type(1) {
         transform: rotate(45deg) translateY(380%) translateX(20%);
-        background-color: red;
     }
 
     .hamburger__open .hamburger__line:nth-of-type(3) {
