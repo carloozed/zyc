@@ -182,7 +182,7 @@
     font-size: var(--text);
     text-transform: none;
     width: fit-content;
-    font-family: var(--text-font);
+    font-family: var(--title-font);
 }
 
 .subnavbar__item span {

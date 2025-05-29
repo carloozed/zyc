@@ -161,7 +161,6 @@ export default function Menu({ ...menuProps }) {
                                     }}
                                     style={{ overflow: 'hidden' }}
                                   >
-                                    <span>[0{index + 1}] </span>
                                     <span>
                                       <TransitionLink field={item.link} />
                                     </span>
