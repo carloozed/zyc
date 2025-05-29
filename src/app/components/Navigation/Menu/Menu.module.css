@@ -225,12 +225,10 @@
 
     .menu__rightcontainer {
         width: 100%;
-
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        background-color: red;
     }
 
     .menu__wrapper {
@@ -239,25 +237,14 @@
         gap: 0;
         height: 100%;
         align-items: center;
-        width: 100%;
+        width: fit-content;
         gap: var(--padding-s);
-        justify-content: center;
-        background-color: green;
     }
 
 
-    .menu__logocontainer {
-        height: 2rem;
-        width: auto;
-        margin-bottom: var(--padding-xs);
-        width: 100%;
-    }
 
-    .menu__logocontainer img {
-        height: 100%;
-        object-fit: contain;
-        width: auto;
-    }
+
+
 
     .overlflow__container {
         overflow: hidden;
@@ -266,9 +253,6 @@
 
 
 
-    .menu__logocontainer {
-        height: 1.5rem;
-    }
 
     .menu__navlistcontainer {
         width: fit-content;
@@ -279,7 +263,20 @@
 
     }
 
+    .menu__logocontainer {
+        height: calc(1rem + 2vw);
+        width: fit-content;
+        margin-bottom: var(--padding-xs);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .menu__logocontainer img {
+        height: 100%;
+        object-fit: contain;
+        width: auto;
+    }
 
     .menu__navlistcontainer .menu__navlist {
         display: flex;
@@ -337,11 +334,6 @@
         padding-left: 0rem;
         width: fit-content;
         transition: opacity 0.2s var(--bezier);
-    }
-
-    .subnavbar__open {
-        opacity: 1;
-        pointer-events: all;
     }
 
     .subnavbar__item {

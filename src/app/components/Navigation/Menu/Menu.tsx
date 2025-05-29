@@ -160,13 +160,10 @@ export default function Menu({ ...menuProps }) {
           </div>
           <div className={styles.menu__rightcontainer}>
             <div className={styles.menu__wrapper}>
-              <div className={styles.menu__addresscontainer}>
-                <div>
-                  <div className={styles.menu__logocontainer}>
-                    <PrismicNextImage field={logo.image} />
-                  </div>
-                </div>
+              <div className={styles.menu__logocontainer}>
+                <PrismicNextImage field={logo.image} />
               </div>
+
               <div className={styles.menu__socialscontainer}>
                 <ul className={styles.menu__navlist}>
                   {socials.data.low_navigation_items.map(
