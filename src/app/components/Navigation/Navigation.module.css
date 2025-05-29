@@ -18,13 +18,11 @@
     justify-content: space-between;
     gap: var(--padding-s);
     height: 100svh;
-    backdrop-filter: blur(40px);
     transition: background-color var(--animationtime-breathe) var(--bezier);
 }
 
 .header__open {
     background-color: var(--white);
-    backdrop-filter: blur(40px);
 }
 
 

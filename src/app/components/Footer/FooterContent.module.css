@@ -40,7 +40,6 @@
     font-weight: var(--fontweight-xs);
 }
 
-.footer__address a p {}
 
 .footer__middlecontainer {
     display: grid;

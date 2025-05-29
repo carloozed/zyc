@@ -214,7 +214,7 @@
     }
 
     .foldout__item_content.open {
-        max-height: 1000px;
+        max-height: 2000px;
     }
 
 
