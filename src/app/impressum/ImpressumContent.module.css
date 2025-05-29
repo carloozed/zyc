@@ -42,31 +42,24 @@
 /* Up to 480px */
 @media (max-width: 30rem) {
     .main {
-        min-height: 100svh;
         padding: var(--padding-xl) var(--padding-s);
         padding-bottom: var(--page-title);
         padding-top: var(--page-title);
     }
 
     .content {
-        display: flex;
-        flex-direction: column;
+
         padding-top: var(--page-title);
         gap: var(--padding-l);
         padding-left: var(--padding-s);
 
     }
 
-    .main li,
-    .main p {
-        font-size: var(--text)
-    }
+
 
 
     .contentItem {
         width: 100%;
-        display: flex;
-        flex-direction: column;
         gap: var(--padding-xs);
     }
 
