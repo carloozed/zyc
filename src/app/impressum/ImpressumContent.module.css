@@ -37,3 +37,85 @@
 .contentItem p {
     width: 80%;
 }
+
+/* Small Mobile */
+/* Up to 480px */
+@media (max-width: 30rem) {
+    .main {
+        min-height: 100svh;
+        padding: var(--padding-xl) var(--padding-s);
+        padding-bottom: var(--page-title);
+        padding-top: var(--page-title);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding-top: var(--page-title);
+        gap: var(--padding-l);
+        padding-left: var(--padding-s);
+
+    }
+
+    .main li,
+    .main p {
+        font-size: var(--text)
+    }
+
+
+    .contentItem {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-xs);
+    }
+
+    .contentItem h2 {
+        width: fit-content;
+        font-size: var(--subtitle-s);
+
+    }
+
+
+    .contentItem p {
+        width: 100%;
+    }
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}
