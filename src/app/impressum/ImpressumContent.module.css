@@ -1,7 +1,7 @@
 .main {
     min-height: 100svh;
     padding: var(--padding-xl) var(--padding-s);
-
+    padding-bottom: var(--page-title);
     padding-top: var(--page-title);
 }
 
@@ -11,6 +11,7 @@
     padding-top: var(--page-title);
     gap: var(--padding-l);
     padding-left: var(--page-title);
+
 }
 
 .main li,
