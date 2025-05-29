@@ -7,6 +7,9 @@
     view-transition-name: footer;
 }
 
+.footer * {
+    font-family: var(--text-font);
+}
 
 .footer__lowercontainer {
     display: grid;

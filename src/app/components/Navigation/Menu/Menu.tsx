@@ -24,6 +24,7 @@ export default function Menu({ ...menuProps }) {
   const { isMobile } = useMobile();
   const subnavLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
   const linkContainerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lowerContainerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const legal = lownavigations[1];
   const socials = lownavigations[0];
@@ -88,6 +89,17 @@ export default function Menu({ ...menuProps }) {
         ease: 'power3.out',
         stagger: 0.2,
         delay: 1.8,
+      });
+    }
+
+    if (isOpen) {
+      gsap.set(lowerContainerRef.current, { opacity: 0, y: '140%' });
+      gsap.to(lowerContainerRef.current, {
+        y: '0%',
+        opacity: 1,
+        duration: 2,
+        ease: 'power3.out',
+        delay: 2,
       });
     }
   }, [isOpen]);
@@ -182,7 +194,7 @@ export default function Menu({ ...menuProps }) {
             </div>
           </div>
           <div className={styles.menu__rightcontainer}>
-            <div className={styles.menu__wrapper}>
+            <div className={styles.menu__wrapper} ref={lowerContainerRef}>
               <div className={styles.menu__logocontainer}>
                 <PrismicNextImage field={logo.image} />
               </div>

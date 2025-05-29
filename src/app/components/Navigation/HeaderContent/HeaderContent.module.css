@@ -30,8 +30,6 @@
 .header__logo_home img {
     filter: invert(1);
     transition: filter var(--animationtime-middle) var(--bezier);
-
-
 }
 
 .header__logocontainer img {}
