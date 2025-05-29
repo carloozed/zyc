@@ -16,6 +16,7 @@ import styles from './FooterContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { isFilled } from '@prismicio/client';
+import { TransitionLink } from '../TransitionLink/TransitionLink';
 
 type Props = {
   footer: FooterDocument;
@@ -67,8 +68,10 @@ export default function FooterContent({
                 {lownavigations[1].data.low_navigation_items.map(
                   (item, index) => (
                     <div key={index} className={styles.footer__lownavigation}>
-                      <PrismicNextLink field={item.item} />
-                      <div></div>
+                      <TransitionLink field={item.item} />{' '}
+                      {index !==
+                        lownavigations[1].data.low_navigation_items.length -
+                          1 && <div></div>}
                     </div>
                   )
                 )}
@@ -87,7 +90,7 @@ export default function FooterContent({
                 <div className={styles.footer__subnavigation}>
                   {subnavigation.data.subnavigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__link}>
-                      <PrismicNextLink field={item.link} />
+                      <TransitionLink field={item.link} />{' '}
                       <p className={styles.rotate}>&#8595;</p>
                     </div>
                   ))}

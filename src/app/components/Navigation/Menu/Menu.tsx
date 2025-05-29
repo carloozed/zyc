@@ -180,7 +180,11 @@ export default function Menu({ ...menuProps }) {
               <ul className={styles.menu__navlist}>
                 {legal.data.low_navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
-                    <li key={index} className={styles.lowernavbar__item}>
+                    <li
+                      key={index}
+                      className={styles.lowernavbar__item}
+                      onClick={() => setIsOpen(false)}
+                    >
                       <TransitionLink field={item.item} />{' '}
                       {index !==
                         socials.data.low_navigation_items.length - 1 && (
@@ -202,7 +206,11 @@ export default function Menu({ ...menuProps }) {
                 <ul className={styles.menu__navlist}>
                   {socials.data.low_navigation_items.map(
                     (item: { item: LinkField }, index: number) => (
-                      <li key={index} className={styles.lowernavbar__item}>
+                      <li
+                        key={index}
+                        className={styles.lowernavbar__item}
+                        onClick={() => setIsOpen(false)}
+                      >
                         <TransitionLink field={item.item} />
                         {index !==
                           socials.data.low_navigation_items.length - 1 && (
