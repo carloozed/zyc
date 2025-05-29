@@ -184,15 +184,17 @@
 @media (max-width: 30rem) {
     .foldout {
         padding: 0;
+
     }
 
     .foldout__itemcontainer {
-        padding: 0;
+        padding: var(--padding-l) 0;
         display: flex;
         flex-direction: column;
         gap: 0.5vw;
         height: fit-content;
         width: 100%;
+        margin-top: var(--padding-l)
     }
 
     .foldout__item {
