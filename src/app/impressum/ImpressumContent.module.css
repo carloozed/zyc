@@ -19,6 +19,10 @@
     font-size: var(--text)
 }
 
+.main a {
+    text-decoration: underline;
+}
+
 .main li {
     list-style-type: "- ";
     line-height: 150%;
@@ -58,7 +62,6 @@
         padding-top: var(--page-title);
         gap: var(--padding-l);
         padding-left: var(--padding-s);
-
     }
 
 
