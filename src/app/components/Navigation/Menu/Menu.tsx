@@ -24,6 +24,7 @@ export default function Menu({ ...menuProps }) {
   const { isMobile } = useMobile();
   const subnavLinksRef = useRef<(HTMLSpanElement | null)[]>([]);
   const linkContainerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const legalLinkContainerRef = useRef<(HTMLLIElement | null)[]>([]);
   const lowerContainerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const legal = lownavigations[1];
@@ -95,6 +96,17 @@ export default function Menu({ ...menuProps }) {
     if (isOpen) {
       gsap.set(lowerContainerRef.current, { opacity: 0, y: '140%' });
       gsap.to(lowerContainerRef.current, {
+        y: '0%',
+        opacity: 1,
+        duration: 2,
+        ease: 'power3.out',
+        delay: 2,
+      });
+    }
+
+    if (isOpen) {
+      gsap.set(legalLinkContainerRef.current, { opacity: 0, y: '140%' });
+      gsap.to(legalLinkContainerRef.current, {
         y: '0%',
         opacity: 1,
         duration: 2,
@@ -184,11 +196,17 @@ export default function Menu({ ...menuProps }) {
                       key={index}
                       className={styles.lowernavbar__item}
                       onClick={() => setIsOpen(false)}
+                      ref={(el) => {
+                        if (!legalLinkContainerRef.current) {
+                          legalLinkContainerRef.current = [];
+                        }
+                        legalLinkContainerRef.current[index] = el;
+                      }}
                     >
                       <TransitionLink field={item.item} />{' '}
                       {index !==
                         socials.data.low_navigation_items.length - 1 && (
-                        <span></span>
+                        <div></div>
                       )}
                     </li>
                   )
@@ -200,26 +218,6 @@ export default function Menu({ ...menuProps }) {
             <div className={styles.menu__wrapper} ref={lowerContainerRef}>
               <div className={styles.menu__logocontainer}>
                 <PrismicNextImage field={logo.image} />
-              </div>
-
-              <div className={styles.menu__socialscontainer}>
-                <ul className={styles.menu__navlist}>
-                  {socials.data.low_navigation_items.map(
-                    (item: { item: LinkField }, index: number) => (
-                      <li
-                        key={index}
-                        className={styles.lowernavbar__item}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <TransitionLink field={item.item} />
-                        {index !==
-                          socials.data.low_navigation_items.length - 1 && (
-                          <span></span>
-                        )}
-                      </li>
-                    )
-                  )}
-                </ul>
               </div>
             </div>
           </div>

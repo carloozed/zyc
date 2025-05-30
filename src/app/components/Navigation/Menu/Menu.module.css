@@ -192,8 +192,8 @@
 
 .lowernavbar__item {
     display: flex;
-    gap: var(--subtitle-l);
-    font-size: var(--text-sm)
+    gap: var(--padding-m);
+    font-size: var(--text-sm);
 }
 
 .lowernavbar__item a {
@@ -201,7 +201,7 @@
     pointer-events: all;
 }
 
-.lowernavbar__item span {
+.lowernavbar__item div {
     height: 100%;
     background-color: black;
     width: 0.5px;
@@ -315,6 +315,7 @@
         flex-direction: column;
         gap: var(--padding-m);
         pointer-events: none;
+        align-items: center;
         top: 0%;
         opacity: 1;
         left: 0%;
@@ -337,10 +338,31 @@
     }
 
     .subnavbar__item a {
-        font-family: var(--subtitle-font);
         font-size: var(--subtitle-s);
         text-transform: none;
-        width: fit-content;
+        width: 100%;
+        text-align: center;
+    }
+
+
+    .menu__legalcontainer .menu__navlist {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        justify-content: space-evenly;
+    }
+
+    .lowernavbar__item a {
+        font-family: var(--subtitle-font);
+        pointer-events: all;
+        padding: 0;
+        gap: 0;
+    }
+
+    .lowernavbar__item div {
+        display: none;
     }
 
 
