@@ -100,8 +100,6 @@
     position: relative;
     display: flex;
     gap: var(--padding-s);
-    border: 1px solid red;
-
 }
 
 .leftcontainer__imagecontainer img {
