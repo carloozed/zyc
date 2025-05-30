@@ -105,10 +105,10 @@ export default function Menu({ ...menuProps }) {
     }
 
     if (isOpen) {
-      gsap.set(legalLinkContainerRef.current, { opacity: 0, y: '140%' });
+      gsap.set(legalLinkContainerRef.current, { y: '140%' });
       gsap.to(legalLinkContainerRef.current, {
         y: '0%',
-        opacity: 1,
+        stagger: 0.4,
         duration: 2,
         ease: 'power3.out',
         delay: 2,
@@ -189,7 +189,10 @@ export default function Menu({ ...menuProps }) {
             </div>
 
             <div className={styles.menu__legalcontainer}>
-              <ul className={styles.menu__navlist}>
+              <ul
+                className={styles.menu__navlist}
+                style={{ overflow: 'hidden' }}
+              >
                 {legal.data.low_navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
                     <li
