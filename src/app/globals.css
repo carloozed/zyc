@@ -172,9 +172,7 @@ p {
     line-height: 150%;
 }
 
-ol li {
-    list-style-type: upper-roman;
-}
+
 
 .revealer {
     position: fixed;

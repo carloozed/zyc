@@ -21,6 +21,9 @@ export default async function Page() {
   const foldoutElements = await client
     .getAllByType('foldoutelement')
     .catch(() => notFound());
+  const isDownloadsMuted = await client
+    .getByType('isdownloadsmuted')
+    .catch(() => notFound());
 
   return (
     <ContestContent
@@ -29,6 +32,7 @@ export default async function Page() {
       disciplinetypes={disciplinetypes}
       wearehereicon={wearehereicon}
       page={page}
+      isDownloadsMuted={isDownloadsMuted}
     />
   );
 }

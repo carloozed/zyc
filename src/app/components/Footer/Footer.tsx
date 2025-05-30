@@ -10,6 +10,10 @@ export default async function Footer() {
   const lownavigations = await client.getAllByType('low_navigation');
   const address = await client.getSingle('address');
   const subnavigation = await client.getSingle('subnavigation');
+  const isDownloadsMutedObject = await client.getByType('isdownloadsmuted');
+
+  const isDownloadsMuted =
+    isDownloadsMutedObject.results[0].data.isdownloadsmuted;
 
   return (
     <FooterContent
@@ -19,6 +23,7 @@ export default async function Footer() {
       lownavigations={lownavigations}
       address={address}
       subnavigation={subnavigation}
+      isDownloadsMuted={isDownloadsMuted}
     />
   );
 }

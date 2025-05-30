@@ -647,15 +647,15 @@ export type FaqDocument<Lang extends string = string> =
  */
 export interface FoldoutelementDocumentDataContentItem {
   /**
-   * Is Foldout field in *FoldoutElement → Content*
+   * Is Hidden field in *FoldoutElement → Content*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
    * - **Default Value**: false
-   * - **API ID Path**: foldoutelement.content[].is_foldout
+   * - **API ID Path**: foldoutelement.content[].is_hidden
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
-  is_foldout: prismic.BooleanField;
+  is_hidden: prismic.BooleanField;
 
   /**
    * Subtopic Title field in *FoldoutElement → Content*
@@ -1067,6 +1067,39 @@ export type ImpresssumDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<
     Simplify<ImpresssumDocumentData>,
     "impresssum",
+    Lang
+  >;
+
+/**
+ * Content for isDownloadsMuted documents
+ */
+interface IsdownloadsmutedDocumentData {
+  /**
+   * isDownloadsMuted field in *isDownloadsMuted*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: isdownloadsmuted.isdownloadsmuted
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  isdownloadsmuted: prismic.BooleanField;
+}
+
+/**
+ * isDownloadsMuted document from Prismic
+ *
+ * - **API ID**: `isdownloadsmuted`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type IsdownloadsmutedDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<IsdownloadsmutedDocumentData>,
+    "isdownloadsmuted",
     Lang
   >;
 
@@ -1886,6 +1919,7 @@ export type AllDocumentTypes =
   | FooterDocument
   | HomepageNavigationDocument
   | ImpresssumDocument
+  | IsdownloadsmutedDocument
   | KontaktDocument
   | LandingBackgroundImageDocument
   | LogoDocument
@@ -3013,6 +3047,8 @@ declare module "@prismicio/client" {
       ImpresssumDocumentData,
       ImpresssumDocumentDataImpressumContentItem,
       ImpresssumDocumentDataSlicesSlice,
+      IsdownloadsmutedDocument,
+      IsdownloadsmutedDocumentData,
       KontaktDocument,
       KontaktDocumentData,
       KontaktDocumentDataSlicesSlice,

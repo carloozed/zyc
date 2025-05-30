@@ -25,6 +25,7 @@ type Props = {
   lownavigations: LowNavigationDocument[];
   address: AddressDocument;
   subnavigation: SubnavigationDocument;
+  isDownloadsMuted: boolean;
 };
 
 export default function FooterContent({
@@ -34,6 +35,7 @@ export default function FooterContent({
   lownavigations,
   subnavigation,
   logo,
+  isDownloadsMuted,
 }: Props) {
   const pathname = usePathname();
 
@@ -78,14 +80,16 @@ export default function FooterContent({
               </div>
             </div>
             <div className={styles.footer__middlecontainer}>
-              <div className={styles.footer__downloadcontainer}>
-                {footer.data.downloads.map((item, index) => (
-                  <div key={index} className={styles.footer__link}>
-                    <PrismicNextLink field={item.link} />
-                    <p>&#8595;</p>
-                  </div>
-                ))}
-              </div>
+              {!isDownloadsMuted && (
+                <div className={styles.footer__downloadcontainer}>
+                  {footer.data.downloads.map((item, index) => (
+                    <div key={index} className={styles.footer__link}>
+                      <PrismicNextLink field={item.link} />
+                      <p>&#8595;</p>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className={styles.footer__navigationcontainer}>
                 <div className={styles.footer__subnavigation}>
                   {subnavigation.data.subnavigation_items.map((item, index) => (
@@ -100,8 +104,7 @@ export default function FooterContent({
                     .filter(
                       (item) =>
                         item.item.text !== 'Home' &&
-                        item.item.text !== 'Über ZYC' &&
-                        item.item.text !== 'FAQ'
+                        item.item.text !== 'Dein Weg mit ZYC'
                     )
                     .map((item, index) => (
                       <div key={index} className={styles.footer__link}>

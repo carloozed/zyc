@@ -20,8 +20,9 @@
 }
 
 .main li {
-    list-style-type: disc;
+    list-style-type: "- ";
     line-height: 150%;
+    margin-left: var(--padding-m)
 }
 
 

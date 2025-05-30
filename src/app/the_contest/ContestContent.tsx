@@ -10,9 +10,10 @@ import {
   FoldoutelementDocument,
   TheContestDocument,
   WeAreHereImageDocument,
+  IsdownloadsmutedDocument,
 } from '../../../prismicio-types';
 
-import { useRevealer } from '@/hooks/useRevealer';
+import { Query } from '@prismicio/client';
 
 type Props = {
   wearehereicon: WeAreHereImageDocument<string>;
@@ -20,6 +21,7 @@ type Props = {
   signuplink: AnmeldelinkDocument<string>;
   foldoutElements: FoldoutelementDocument<string>[];
   page: TheContestDocument<string>;
+  isDownloadsMuted?: Query<IsdownloadsmutedDocument<string>>;
 };
 
 export default function ContestContent({
@@ -28,8 +30,9 @@ export default function ContestContent({
   signuplink,
   foldoutElements,
   page,
+  isDownloadsMuted,
 }: Props) {
-  useRevealer();
+  console.log(isDownloadsMuted);
 
   return (
     <section style={{ position: 'relative' }}>
@@ -41,6 +44,7 @@ export default function ContestContent({
           disciplinetypes,
           signuplink,
           foldoutElements,
+          isDownloadsMuted,
         }}
       />
     </section>

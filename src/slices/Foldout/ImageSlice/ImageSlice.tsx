@@ -122,12 +122,13 @@ export default function ImageSlice({ imageSliceProps }: Props) {
               >
                 {element.data.content &&
                   element.data.content.map((item, contentIndex) => {
-                    if (!item) return null;
+                    if (!item || item.is_hidden) return null;
 
                     return (
                       <div
                         key={contentIndex}
                         className={generalStyles.foldout__subitem}
+                        style={{ border: '1px solid red' }}
                       >
                         <div className={generalStyles.foldout__subitem_title}>
                           {isFilled.richText(item.subtopic_title) && (

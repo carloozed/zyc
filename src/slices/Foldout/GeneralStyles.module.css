@@ -162,7 +162,7 @@
 }
 
 .foldout__subitem ul li {
-    list-style-type: circle;
+    list-style-type: "- ";
 }
 
 .foldout__subitem_description {
@@ -287,9 +287,6 @@
         hyphens: auto;
     }
 
-    .foldout__subitem ul li {
-        list-style-type: circle;
-    }
 
     .foldout__subitem_description {
         display: flex;

@@ -41,10 +41,10 @@
           "label": "Content",
           "repeat": true,
           "fields": {
-            "is_foldout": {
+            "is_hidden": {
               "type": "Boolean",
               "config": {
-                "label": "Is Foldout",
+                "label": "Is Hidden",
                 "placeholder_false": "false",
                 "placeholder_true": "true",
                 "default_value": false
