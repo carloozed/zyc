@@ -1,24 +1,75 @@
 'use client';
 
 import React, { useState } from 'react';
-
 import {
   HomepageNavigationDocument,
   LandingBackgroundImageDocument,
+  DynamiclandingcontentDocument,
 } from '../../../../prismicio-types';
-import { DynamiclandingcontentDocument } from '../../../../prismicio-types';
 import styles from './LandingContent.module.css';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
-
+import { useMobile } from '@/contexts/MobileContext';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import FadeIn from '../FadeIn/FadeIn';
 import { TransitionLink } from '../TransitionLink/TransitionLink';
+import { KeyTextField, RichTextField, LinkField } from '@prismicio/client';
 
 type Props = {
   landingNavigation: HomepageNavigationDocument;
   hoverElements: DynamiclandingcontentDocument[];
   background: LandingBackgroundImageDocument;
+};
+
+type NavigationItemProps = {
+  isMobile: boolean;
+  linkField: LinkField;
+  titleField: RichTextField;
+  id: string;
+  delay?: number;
+  onHover?: () => void;
+  className?: string;
+  ctaText: KeyTextField;
+};
+
+const NavigationItem = ({
+  isMobile,
+  linkField,
+  titleField,
+  id,
+  delay = 0,
+  onHover,
+  className = '',
+  ctaText,
+}: NavigationItemProps) => {
+  const content = (
+    <div
+      className={`${className} ${styles.landing__navigationitem}`}
+      onMouseOver={onHover}
+    >
+      <div className={styles.ccc__innercontainer}>
+        <RevealText
+          field={titleField}
+          id={id}
+          staggerAmount={0.2}
+          duration={1.4}
+          as={'h4'}
+          delay={delay}
+        />
+        {!isMobile && (
+          <TransitionLink field={linkField}>
+            <h5>{ctaText}</h5>
+          </TransitionLink>
+        )}
+      </div>
+    </div>
+  );
+
+  return isMobile ? (
+    <TransitionLink field={linkField}>{content}</TransitionLink>
+  ) : (
+    content
+  );
 };
 
 export default function LandingContent({
@@ -28,11 +79,13 @@ export default function LandingContent({
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
   const [isHovered, setIsHovered] = useState(false);
+  const { isMobile } = useMobile();
 
   const mouseLeaveFunction = () => {
     setHoveredElement('');
     setIsHovered(false);
   };
+
   const {
     cta_text,
     the_contest,
@@ -49,8 +102,6 @@ export default function LandingContent({
 
   const [aboutHover, contestHover, cadenzaHover, crescendoHover] =
     hoverElements;
-
-  console.log(aboutHover);
 
   return (
     <div className={styles.landing__container}>
@@ -73,61 +124,55 @@ export default function LandingContent({
       </div>
       <div className={styles.landing__leftcontainer}>
         <div className={styles.landing__leftcontainer__content}>
-          <div
-            className={styles.leftcontainer__dynamic}
-            style={{ opacity: isHovered ? 1 : 0 }}
-          >
-            <div className={styles.decor}>
-              <div className={styles.circle}></div>
-              <div className={styles.line}></div>
-              <div className={styles.circle}></div>
+          {!isMobile && (
+            <div
+              className={styles.leftcontainer__dynamic}
+              style={{ opacity: isHovered ? 1 : 0 }}
+            >
+              <div className={styles.decor}>
+                <div className={styles.circle}></div>
+                <div className={styles.line}></div>
+                <div className={styles.circle}></div>
+              </div>
+              <div>
+                {hoveredElement === 'contest' ? (
+                  <>
+                    <PrismicRichText field={contestHover.data.title} />
+                    <PrismicRichText field={contestHover.data.description} />
+                  </>
+                ) : hoveredElement === 'cadenza' ? (
+                  <>
+                    <PrismicRichText field={crescendoHover.data.title} />
+                    <PrismicRichText field={crescendoHover.data.description} />
+                  </>
+                ) : hoveredElement === 'crescendo' ? (
+                  <>
+                    <PrismicRichText field={cadenzaHover.data.title} />
+                    <PrismicRichText field={cadenzaHover.data.description} />
+                  </>
+                ) : hoveredElement === 'about' ? (
+                  <>
+                    <PrismicRichText field={aboutHover.data.title} />
+                    <PrismicRichText field={aboutHover.data.description} />
+                  </>
+                ) : null}
+              </div>
+              <div className={styles.decor}>
+                <div className={styles.circle}></div>
+                <div className={styles.line}></div>
+                <div className={styles.circle}></div>
+              </div>
             </div>
-            <div>
-              {hoveredElement === 'contest' ? (
-                <>
-                  <PrismicRichText field={contestHover.data.title} />
-                  <PrismicRichText field={contestHover.data.description} />
-                </>
-              ) : hoveredElement === 'cadenza' ? (
-                <>
-                  <PrismicRichText field={crescendoHover.data.title} />
-                  <PrismicRichText field={crescendoHover.data.description} />
-                </>
-              ) : hoveredElement === 'crescendo' ? (
-                <>
-                  <PrismicRichText field={cadenzaHover.data.title} />
-                  <PrismicRichText field={cadenzaHover.data.description} />
-                </>
-              ) : hoveredElement === 'about' ? (
-                <>
-                  <PrismicRichText field={aboutHover.data.title} />
-                  <PrismicRichText field={aboutHover.data.description} />
-                </>
-              ) : null}
-            </div>
-            <div className={styles.decor}>
-              <div className={styles.circle}></div>
-              <div className={styles.line}></div>
-              <div className={styles.circle}></div>
-            </div>
-          </div>
-
-          <div
-            className={`${styles.landing__termine} ${styles.landing__navigationitem}`}
-          >
-            <RevealText
-              field={termine_title}
-              id="termine-hero"
-              staggerAmount={0.3}
-              duration={1}
-              as={'h4'}
-              delay={0.7}
-            />
-
-            <TransitionLink field={termine}>
-              <h5>{cta_text}</h5>
-            </TransitionLink>
-          </div>
+          )}
+          <NavigationItem
+            isMobile={isMobile}
+            linkField={termine}
+            titleField={termine_title}
+            id="termine-hero"
+            delay={0.7}
+            className={styles.landing__termine}
+            ctaText={cta_text}
+          />
         </div>
       </div>
       <div
@@ -136,77 +181,46 @@ export default function LandingContent({
         onMouseLeave={mouseLeaveFunction}
       >
         <div className={styles.landing__rightcontainer__ccc}>
-          <div
-            onMouseOver={() => setHoveredElement('contest')}
-            className={`${styles.landing__contest} ${styles.landing__navigationitem}`}
-          >
-            <div className={styles.ccc__innercontainer}>
-              <RevealText
-                field={the_contest_title}
-                id="the_contest-hero"
-                staggerAmount={0.2}
-                duration={1.4}
-                as={'h4'}
-              />
-              <TransitionLink field={the_contest}>
-                <h5>{cta_text}</h5>
-              </TransitionLink>
-            </div>
-          </div>
-          <div
-            className={`${styles.landing__cadenza} ${styles.landing__navigationitem}`}
-            onMouseOver={() => setHoveredElement('cadenza')}
-          >
-            <div className={styles.ccc__innercontainer}>
-              <RevealText
-                field={the_cadenza_title}
-                id="the_cadenza-hero"
-                staggerAmount={0.2}
-                duration={1.4}
-                as={'h4'}
-                delay={0.2}
-              />
-              <TransitionLink field={the_cadenza}>
-                <h5>{cta_text}</h5>
-              </TransitionLink>
-            </div>
-          </div>
-          <div
-            onMouseOver={() => setHoveredElement('crescendo')}
-            className={`${styles.landing__crescendo} ${styles.landing__navigationitem}`}
-          >
-            <div className={styles.ccc__innercontainer}>
-              <RevealText
-                field={the_crescendo_title}
-                id="the_crescendo-hero"
-                staggerAmount={0.2}
-                duration={1.4}
-                as={'h4'}
-                delay={0.4}
-              />
-              <TransitionLink field={the_crescendo}>
-                <h5>{cta_text}</h5>
-              </TransitionLink>
-            </div>
-          </div>
-        </div>
-        <div
-          className={`${styles.landing__about} ${styles.landing__navigationitem}`}
-          onMouseOver={() => setHoveredElement('about')}
-        >
-          {' '}
-          <RevealText
-            field={about_title}
-            id="about-hero"
-            staggerAmount={0.3}
-            duration={1}
-            as={'h4'}
-            delay={0.5}
+          <NavigationItem
+            isMobile={isMobile}
+            linkField={the_contest}
+            titleField={the_contest_title}
+            id="the_contest-hero"
+            onHover={() => setHoveredElement('contest')}
+            ctaText={cta_text}
+            className={styles.landing__contest}
           />
-          <TransitionLink field={about}>
-            <h5>{cta_text}</h5>
-          </TransitionLink>
-        </div>{' '}
+          <NavigationItem
+            isMobile={isMobile}
+            linkField={the_cadenza}
+            titleField={the_cadenza_title}
+            id="the_cadenza-hero"
+            delay={0.2}
+            onHover={() => setHoveredElement('cadenza')}
+            ctaText={cta_text}
+            className={styles.landing__cadenza}
+          />
+          <NavigationItem
+            isMobile={isMobile}
+            linkField={the_crescendo}
+            titleField={the_crescendo_title}
+            id="the_crescendo-hero"
+            delay={0.4}
+            onHover={() => setHoveredElement('crescendo')}
+            ctaText={cta_text}
+            className={styles.landing__crescendo}
+          />
+        </div>
+        <NavigationItem
+          isMobile={isMobile}
+          linkField={about}
+          titleField={about_title}
+          id="about-hero"
+          delay={0.5}
+          onHover={() => setHoveredElement('about')}
+          ctaText={cta_text}
+          className={styles.landing__about}
+        />
       </div>
     </div>
   );
