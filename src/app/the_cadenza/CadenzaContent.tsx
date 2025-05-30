@@ -4,8 +4,6 @@ import React from 'react';
 import { components } from '@/slices';
 import { SliceZone } from '@prismicio/react';
 
-import { useRevealer } from '@/hooks/useRevealer';
-
 import {
   FoldoutelementDocument,
   TheCadenzaDocument,
@@ -17,7 +15,6 @@ type Props = {
 };
 
 export default function CadenzaContent({ page, foldoutElements }: Props) {
-  useRevealer();
   return (
     <section style={{ position: 'relative' }}>
       <SliceZone

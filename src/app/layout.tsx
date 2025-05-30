@@ -5,6 +5,8 @@ import { ViewTransitions } from 'next-view-transitions';
 
 import { Providers } from '@/Providers/Providers';
 
+import LenisScrollProvider from '@/contexts/LenisContext';
+
 import './globals.css';
 import './reset.css';
 import './animationglobals.css';
@@ -27,7 +29,7 @@ export default function RootLayout({
             <SignupButtonLarge />
             <ScrollIndicator />
             <Navigation />
-            {children}
+            <LenisScrollProvider>{children}</LenisScrollProvider>
             <Footer />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
