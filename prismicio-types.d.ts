@@ -204,12 +204,61 @@ export type CriteriatypesubfieldDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Datenschutz → Datenschutz Content*
+ */
+export interface DatenschutzDocumentDataDatenschutzContentItem {
+  /**
+   * Title field in *Datenschutz → Datenschutz Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.datenschutz_content[].title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Text field in *Datenschutz → Datenschutz Content*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.datenschutz_content[].text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
 type DatenschutzDocumentDataSlicesSlice = never;
 
 /**
  * Content for Datenschutz documents
  */
 interface DatenschutzDocumentData {
+  /**
+   * Title field in *Datenschutz*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Datenschutz Content field in *Datenschutz*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: datenschutz.datenschutz_content[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  datenschutz_content: prismic.GroupField<
+    Simplify<DatenschutzDocumentDataDatenschutzContentItem>
+  >;
+
   /**
    * Slice Zone field in *Datenschutz*
    *
@@ -2937,6 +2986,7 @@ declare module "@prismicio/client" {
       CriteriatypesubfieldDocumentDataFieldcontentItem,
       DatenschutzDocument,
       DatenschutzDocumentData,
+      DatenschutzDocumentDataDatenschutzContentItem,
       DatenschutzDocumentDataSlicesSlice,
       DeinWegDocument,
       DeinWegDocumentData,

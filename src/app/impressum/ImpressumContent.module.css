@@ -19,6 +19,11 @@
     font-size: var(--text)
 }
 
+.main li {
+    list-style-type: disc;
+    line-height: 150%;
+}
+
 
 .contentItem {
     width: 60vw;

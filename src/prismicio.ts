@@ -24,6 +24,7 @@ const routes: Route[] = [
   { type: 'uber_zyc', path: '/ueber_zyc' },
   { type: 'deinwegmitzyc', path: '/the_contest' },
   { type: 'impresssum', path: '/impressum' },
+  { type: 'datenschutz', path: '/datenschutz' },
 ];
 
 /**

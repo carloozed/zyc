@@ -216,13 +216,13 @@ ol li {
 
 /* Default View Transitions */
 ::view-transition-old(root) {
-    animation: 4s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
+    animation: 7.5s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
     pointer-events: none !important;
 
 }
 
 ::view-transition-new(root) {
-    animation: 4s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+    animation: 7.5s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
     pointer-events: none !important;
 
 }
