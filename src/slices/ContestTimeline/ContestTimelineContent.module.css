@@ -273,7 +273,60 @@
 
 /* Tablet */
 /* 768px to 1184px */
-@media (min-width: 48rem) and (max-width: 74rem) {}
+@media (min-width: 48rem) and (max-width: 74rem) {
+
+
+    .ctl__timeline {
+        width: 80%;
+    }
+
+    .ctl__timeline__item {
+        display: grid;
+        grid-template-rows: 0.8fr 0.2fr;
+        row-gap: var(--padding-m);
+        width: var(--circle-height);
+        position: relative;
+        transition: transform var(--animationtime-xfast) var(--bezier), filter var(--animationtime-fast) var(--bezier);
+
+    }
+
+
+    .ctl__timeline__item__indicator {
+        position: absolute;
+        top: -45%;
+        left: -20%;
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        align-items: left;
+    }
+
+    .ctl__timeline__item__indicator img {
+
+        height: calc(2rem + 6vh);
+
+    }
+
+    .ctl__timeline__wrapper {
+        width: 70%;
+    }
+
+    .ctl__timeline__item__descriptioncontainer {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 600%;
+        transition: transform var(--animationtime-middle) var(--bezier);
+
+    }
+
+    .ctl__timeline__item__description {
+        width: 90%;
+        padding: var(--padding-l);
+    }
+
+
+}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */

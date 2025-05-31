@@ -23,6 +23,7 @@ type Props = {
 
 type NavigationItemProps = {
   isMobile: boolean;
+  isTabletPortrait?: boolean;
   linkField: LinkField;
   titleField: RichTextField;
   id: string;
@@ -35,6 +36,7 @@ type NavigationItemProps = {
 const NavigationItem = ({
   isMobile,
   linkField,
+  isTabletPortrait,
   titleField,
   id,
   delay = 0,
@@ -65,7 +67,7 @@ const NavigationItem = ({
     </div>
   );
 
-  return isMobile ? (
+  return isMobile || isTabletPortrait ? (
     <TransitionLink field={linkField}>{content}</TransitionLink>
   ) : (
     content
@@ -79,12 +81,14 @@ export default function LandingContent({
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
   const [isHovered, setIsHovered] = useState(false);
-  const { isMobile } = useMobile();
+  const { isMobile, isTabletPortrait } = useMobile();
 
   const mouseLeaveFunction = () => {
     setHoveredElement('');
     setIsHovered(false);
   };
+
+  console.log('isTabletPortrait', isTabletPortrait);
 
   const {
     cta_text,
@@ -166,6 +170,7 @@ export default function LandingContent({
           )}
           <NavigationItem
             isMobile={isMobile}
+            isTabletPortrait={isTabletPortrait}
             linkField={termine}
             titleField={termine_title}
             id="termine-hero"
@@ -183,6 +188,7 @@ export default function LandingContent({
         <div className={styles.landing__rightcontainer__ccc}>
           <NavigationItem
             isMobile={isMobile}
+            isTabletPortrait={isTabletPortrait}
             linkField={the_contest}
             titleField={the_contest_title}
             id="the_contest-hero"
@@ -192,6 +198,7 @@ export default function LandingContent({
           />
           <NavigationItem
             isMobile={isMobile}
+            isTabletPortrait={isTabletPortrait}
             linkField={the_cadenza}
             titleField={the_cadenza_title}
             id="the_cadenza-hero"
@@ -202,6 +209,7 @@ export default function LandingContent({
           />
           <NavigationItem
             isMobile={isMobile}
+            isTabletPortrait={isTabletPortrait}
             linkField={the_crescendo}
             titleField={the_crescendo_title}
             id="the_crescendo-hero"
@@ -213,6 +221,7 @@ export default function LandingContent({
         </div>
         <NavigationItem
           isMobile={isMobile}
+          isTabletPortrait={isTabletPortrait}
           linkField={about}
           titleField={about_title}
           id="about-hero"

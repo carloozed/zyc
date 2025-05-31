@@ -304,7 +304,34 @@
 
 /* Tablet */
 /* 768px to 1184px */
-@media (min-width: 48rem) and (max-width: 74rem) {}
+@media (min-width: 48rem) and (max-width: 74rem) {
+    .foldout {
+        padding: var(--padding-m) 0;
+    }
+
+    .foldout__itemcontainer {
+        padding: var(--padding-m) var(--padding-s);
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-xxs);
+        height: fit-content;
+        width: 100%;
+        background-color: transparent;
+    }
+
+    .foldout__item_uppercontainer {
+        display: flex;
+        gap: var(--padding-m);
+        align-items: center;
+        cursor: pointer;
+        width: fit-content;
+    }
+
+    .foldout__subitem_description p {
+        font-size: var(--text-sm);
+        max-width: 90vw;
+    }
+}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */

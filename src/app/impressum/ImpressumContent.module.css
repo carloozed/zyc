@@ -87,7 +87,38 @@
 
 /* Tablet */
 /* 768px to 1184px */
-@media (min-width: 48rem) and (max-width: 74rem) {}
+@media (min-width: 48rem) and (max-width: 74rem) {
+
+    .main li,
+    .main p {
+        font-size: var(--text)
+    }
+
+    .main a {
+        text-decoration: underline;
+    }
+
+    .main li {
+        list-style-type: "- ";
+        line-height: 150%;
+        margin-left: var(--padding-m)
+    }
+
+
+    .contentItem {
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-s);
+    }
+
+
+
+    .contentItem p {
+        width: 80%;
+    }
+
+}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */
