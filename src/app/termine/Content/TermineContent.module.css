@@ -88,7 +88,14 @@
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */
-@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
+
+    .svgcontainer {
+        display: flex;
+        gap: var(--padding-s);
+        transform: translateY(-0%) scale(1);
+    }
+}
 
 /* Desktop */
 /* 1184px and up */

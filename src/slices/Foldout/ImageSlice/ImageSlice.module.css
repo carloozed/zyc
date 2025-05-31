@@ -97,7 +97,44 @@
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */
-@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
+    .foldout {
+        display: flex;
+        padding: 0 var(--padding-s);
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        gap: var(--padding-xl);
+    }
+
+    .foldout__imagecontainer {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-xxs);
+        width: 100%;
+        height: fit-content;
+        align-self: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .foldout__imagecontainer img {
+        width: calc(12rem + 12vw);
+        height: auto;
+        object-fit: contain;
+    }
+
+    .foldout__decorationcontainer {
+        width: calc(12rem + 12vw);
+    }
+
+    .circle {
+        height: 1.5rem;
+        width: 1.5rem;
+    }
+}
 
 /* Desktop */
 /* 1184px and up */
