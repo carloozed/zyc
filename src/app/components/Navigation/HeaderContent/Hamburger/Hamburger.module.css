@@ -73,7 +73,7 @@
 
 /* Small Mobile */
 /* Up to 480px */
-@media (max-width: 30rem) {
+@media (max-width: 48rem) {
     .hamburger__container {
         background-color: var(--white);
         border: var(--border-thin);
@@ -148,17 +148,86 @@
     }
 }
 
-/* Mobile */
-/* Up to 768px */
-@media (max-width: 48rem) {}
-
 /* Tablet */
 /* 768px to 1184px */
 @media (min-width: 48rem) and (max-width: 74rem) {}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */
-@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
+    .hamburger__container {
+        background-color: var(--white);
+        border: var(--border-thin);
+        height: fit-content;
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: var(--padding-xs) var(--padding-s);
+        border-radius: var(--radius-s);
+        cursor: pointer;
+        gap: 0.4rem;
+    }
+
+    .hamburger__container .hamburger__line {
+        width: fit-content;
+        height: fit-content;
+        will-change: width;
+        transition: all var(--animationtime-fast) var(--bezier);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .circle {
+        position: absolute;
+        content: "";
+        height: calc(1px + 0.8vw);
+        width: calc(1px + 0.8vw);
+        background-color: white;
+        border: var(--border-thin);
+        border-radius: 50%;
+    }
+
+    .hamburger__line .circle:nth-of-type(1) {
+        right: 0;
+    }
+
+
+    .line {
+        width: calc(1.3rem + 4vw);
+        height: 1px;
+        background-color: var(--black);
+    }
+
+    .hamburger__container:hover .hamburger__line:nth-of-type(1),
+    .hamburger__container:hover .hamburger__line:nth-of-type(3) {
+        width: 2rem;
+    }
+
+
+
+
+    .hamburger__open .hamburger__line:nth-of-type(1),
+    .hamburger__open .hamburger__line:nth-of-type(3) {
+        width: 2rem;
+    }
+
+    .hamburger__open .hamburger__line:nth-of-type(1) {
+        transform: rotate(45deg) translateY(380%) translateX(20%);
+    }
+
+    .hamburger__open .hamburger__line:nth-of-type(3) {
+        transform: rotate(-45deg) translateY(-380%) translateX(20%);
+    }
+
+    .hamburger__open .hamburger__line:nth-of-type(2) {
+        opacity: 0;
+        width: 0;
+    }
+}
 
 /* Desktop */
 /* 1184px and up */
