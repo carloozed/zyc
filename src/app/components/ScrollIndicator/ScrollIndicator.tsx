@@ -19,7 +19,12 @@ export default function ScrollIndicator() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname === '/' || pathname === '/ueber_zyc') {
+    if (
+      pathname === '/' ||
+      pathname === '/ueber_zyc' ||
+      pathname === '/impressum' ||
+      pathname === '/datenschutz'
+    ) {
       setIsVisible(false);
     } else {
       setTimeout(() => {
@@ -37,22 +42,16 @@ export default function ScrollIndicator() {
         setTimeout(() => {
           animateIn();
           setHasAnimated(true);
-        }, 1000);
-      } else if (scrollY > 0 && hasAnimated) {
-        animateOut();
+        }, 2000);
+      } else {
+        if (hasAnimated) {
+          setTimeout(() => {
+            animateOut();
+          }, 5000);
+        }
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-
-    if (window.scrollY === 0 && !hasAnimated) {
-      setTimeout(() => {
-        animateIn();
-        setHasAnimated(true);
-      }, 1000);
-    }
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
   }, [hasAnimated]);
 
   const animateIn = () => {
