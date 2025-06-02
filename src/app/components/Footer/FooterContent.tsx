@@ -84,8 +84,8 @@ export default function FooterContent({
                 <div className={styles.footer__downloadcontainer}>
                   {footer.data.downloads.map((item, index) => (
                     <div key={index} className={styles.footer__link}>
-                      <PrismicNextLink field={item.link} />
-                      <p>&#8595;</p>
+                      <TransitionLink field={item.link} />{' '}
+                      <p className={styles.rotate}>&#8595;</p>
                     </div>
                   ))}
                 </div>
@@ -95,7 +95,9 @@ export default function FooterContent({
                   {subnavigation.data.subnavigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__link}>
                       <TransitionLink field={item.link} />{' '}
-                      <p className={styles.rotate}>&#8595;</p>
+                      <PrismicNextLink field={item.link}>
+                        <p className={styles.rotate}>&#8595;</p>{' '}
+                      </PrismicNextLink>
                     </div>
                   ))}
                 </div>
@@ -108,9 +110,9 @@ export default function FooterContent({
                     )
                     .map((item, index) => (
                       <div key={index} className={styles.footer__link}>
+                        <TransitionLink field={item.item} />{' '}
                         <PrismicNextLink field={item.item}>
-                          {item.item.text}
-                          <p className={styles.rotate}>&#8595;</p>
+                          <p className={styles.rotate}>&#8595;</p>{' '}
                         </PrismicNextLink>
                       </div>
                     ))}
