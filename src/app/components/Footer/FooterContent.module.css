@@ -72,7 +72,12 @@
     align-items: center;
     justify-content: space-between;
     width: 85%;
-    transform: translateY(var(--padding-xs))
+    transform: translateY(var(--padding-xs));
+}
+
+.footer__link a {
+    display: flex;
+
 }
 
 .footer__navigation .footer__link {

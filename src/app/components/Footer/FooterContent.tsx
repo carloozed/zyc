@@ -108,8 +108,10 @@ export default function FooterContent({
                     )
                     .map((item, index) => (
                       <div key={index} className={styles.footer__link}>
-                        <PrismicNextLink field={item.item} />
-                        <p className={styles.rotate}>&#8595;</p>
+                        <PrismicNextLink field={item.item}>
+                          {item.item.text}
+                          <p className={styles.rotate}>&#8595;</p>
+                        </PrismicNextLink>
                       </div>
                     ))}
                 </div>{' '}

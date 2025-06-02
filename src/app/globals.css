@@ -108,7 +108,7 @@
     --animationtime-slow: 0.8s;
     --animationtime-breathe: 1.2s;
 
-    --max-width: 1460px;
+    --max-width: 120rem;
 
 
     --circle-height: calc(4.2rem + 4.2vw);
