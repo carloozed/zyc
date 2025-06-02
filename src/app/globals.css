@@ -119,7 +119,18 @@ body {
     overflow-x: hidden;
     max-width: 100svw;
     -webkit-font-smoothing: antialiased;
+    transition-property: opacity, background-color, transform, filter;
+    transition-timing-function: var(--bezier);
+    transition-duration: 2.5s;
 }
+
+.page-transition {
+    opacity: 0;
+    background-color: var(--white);
+    transform: translateY(20px) scale(1.02);
+    filter: blur(5px)
+}
+
 
 *::selection {
     background-color: var(--contestblue);
@@ -171,6 +182,7 @@ p {
     font-size: var(--text-s);
     line-height: 150%;
 }
+
 
 
 @keyframes fade-in {

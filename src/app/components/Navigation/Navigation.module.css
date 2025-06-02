@@ -21,6 +21,7 @@
     transition: background-color var(--animationtime-breathe) var(--bezier);
 }
 
+
 .header__open {
     background-color: var(--white);
 }
