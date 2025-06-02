@@ -174,7 +174,7 @@ export default function LandingContent({
             linkField={termine}
             titleField={termine_title}
             id="termine-hero"
-            delay={0.7}
+            delay={2}
             className={styles.landing__termine}
             ctaText={cta_text}
           />
@@ -192,6 +192,7 @@ export default function LandingContent({
             linkField={the_contest}
             titleField={the_contest_title}
             id="the_contest-hero"
+            delay={1.4}
             onHover={() => setHoveredElement('contest')}
             ctaText={cta_text}
             className={styles.landing__contest}
@@ -202,7 +203,7 @@ export default function LandingContent({
             linkField={the_cadenza}
             titleField={the_cadenza_title}
             id="the_cadenza-hero"
-            delay={0.2}
+            delay={1.6}
             onHover={() => setHoveredElement('cadenza')}
             ctaText={cta_text}
             className={styles.landing__cadenza}
@@ -213,7 +214,7 @@ export default function LandingContent({
             linkField={the_crescendo}
             titleField={the_crescendo_title}
             id="the_crescendo-hero"
-            delay={0.4}
+            delay={2}
             onHover={() => setHoveredElement('crescendo')}
             ctaText={cta_text}
             className={styles.landing__crescendo}
@@ -225,7 +226,7 @@ export default function LandingContent({
           linkField={about}
           titleField={about_title}
           id="about-hero"
-          delay={0.5}
+          delay={2}
           onHover={() => setHoveredElement('about')}
           ctaText={cta_text}
           className={styles.landing__about}

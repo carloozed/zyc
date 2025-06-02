@@ -28,14 +28,14 @@ export default function DefaultHero({ ...defaultHeroProps }) {
             className={styles.revealtext}
             staggerAmount={0.2}
             duration={1.2}
-            delay={0.8}
+            delay={1.2}
             as={'h1'}
           />
           <RevealText
             field={slice.primary.supporting_text}
             staggerAmount={0.2}
             duration={1.2}
-            delay={1.0}
+            delay={1.6}
             as={'h3'}
           />
         </div>
