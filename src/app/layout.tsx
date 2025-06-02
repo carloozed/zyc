@@ -26,10 +26,13 @@ export default function RootLayout({
       <Providers>
         <html lang="en">
           <body>
-            <SignupButtonLarge />
-            <ScrollIndicator />
+            {' '}
             <Navigation />
-            <LenisScrollProvider>{children}</LenisScrollProvider>
+            <div className="transition-container">
+              <SignupButtonLarge />
+              <ScrollIndicator />
+              <LenisScrollProvider>{children}</LenisScrollProvider>
+            </div>
             <Footer />
           </body>
           <PrismicPreview repositoryName={repositoryName} />

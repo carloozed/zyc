@@ -119,9 +119,13 @@ body {
     overflow-x: hidden;
     max-width: 100svw;
     -webkit-font-smoothing: antialiased;
+
+}
+
+.transition-container {
     transition-property: opacity, background-color, transform, filter;
     transition-timing-function: var(--bezier);
-    transition-duration: 2.5s;
+    transition-duration: 2s;
 }
 
 .page-transition {
@@ -209,8 +213,8 @@ p {
     }
 }
 
+/* 
 
-/* Default View Transitions */
 ::view-transition-old(root) {
     animation: 7.5s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
     pointer-events: none;
@@ -238,11 +242,11 @@ p {
 ::view-transition-new(footer) {
     animation: none;
     z-index: 500;
-}
+} */
 
 
 
-/* Reduced Motion Preferences */
+
 @media (prefers-reduced-motion: reduce) {
 
     ::view-transition,

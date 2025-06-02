@@ -49,7 +49,7 @@ export function TransitionLink({
 
     // TODO: Run some exit animation here
 
-    const body = document.querySelector('body');
+    const body = document.querySelector('.transition-container');
     body?.classList.add('page-transition');
 
     // sleep for some time
