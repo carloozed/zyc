@@ -84,13 +84,6 @@ export default function ProgressCircle({ item, styles, delay }: Props) {
       ref={circleRef}
       className={styles.color}
       style={{ opacity: `${progressPercentage}%` }}
-    >
-      {progressPercentage === 100 && (
-        <p>
-          diese phase <br />
-          ist vorbei
-        </p>
-      )}
-    </div>
+    ></div>
   );
 }
