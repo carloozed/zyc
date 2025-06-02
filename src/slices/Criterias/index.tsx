@@ -28,11 +28,15 @@ export type CriteriasWithContextProps = SliceComponentProps<
 const Criterias: FC<CriteriasWithContextProps> = ({ slice, context }) => {
   const { disciplinetypes, signuplink } = context as CriteriasContext;
   return (
-    <CriteriasContent
-      slice={slice}
-      disciplinetypes={disciplinetypes}
-      signuplink={signuplink}
-    />
+    <>
+      {slice.primary.is_visible && (
+        <CriteriasContent
+          slice={slice}
+          disciplinetypes={disciplinetypes}
+          signuplink={signuplink}
+        />
+      )}
+    </>
   );
 };
 

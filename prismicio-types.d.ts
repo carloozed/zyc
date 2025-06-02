@@ -2216,6 +2216,17 @@ export interface CriteriasSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   slice_name: prismic.KeyTextField;
+
+  /**
+   * Is Visible field in *Criterias → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: criterias.default.primary.is_visible
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_visible: prismic.BooleanField;
 }
 
 /**

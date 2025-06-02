@@ -47,6 +47,15 @@
             "label": "Slice Name",
             "placeholder": "Name des Slice in Lowercase"
           }
+        },
+        "is_visible": {
+          "type": "Boolean",
+          "config": {
+            "label": "Is Visible",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

@@ -38,6 +38,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "standard",
 				"type": "Text"
+			},
+			"is_visible": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

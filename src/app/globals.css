@@ -173,25 +173,10 @@ p {
 }
 
 
-
-.revealer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100svw;
-    height: 200svh;
-    transform-origin: center top;
-    background-color: var(--white);
-    pointer-events: none;
-    z-index: 1000;
-}
-
-
-/* Animation Keyframes */
 @keyframes fade-in {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.98);
+        transform: translateY(20px) scale(0.9);
     }
 
     to {
@@ -208,21 +193,21 @@ p {
 
     to {
         opacity: 0;
-        transform: translateY(-20px) scale(0.98);
+        transform: translateY(-20px) scale(0.9);
     }
 }
+
 
 /* Default View Transitions */
 ::view-transition-old(root) {
     animation: 7.5s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
-    pointer-events: none !important;
+    pointer-events: none;
 
 }
 
 ::view-transition-new(root) {
     animation: 7.5s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
-    pointer-events: none !important;
-
+    pointer-events: none;
 }
 
 
@@ -240,13 +225,10 @@ p {
 ::view-transition-old(footer),
 ::view-transition-new(footer) {
     animation: none;
-    pointer-events: none !important;
+    z-index: 500;
 }
 
 
-::view-transition {
-    pointer-events: none !important;
-}
 
 /* Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
