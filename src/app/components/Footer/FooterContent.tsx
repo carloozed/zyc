@@ -28,6 +28,7 @@ type Props = {
   isDownloadsMuted: boolean;
 };
 
+// hello
 export default function FooterContent({
   footer,
   address,
