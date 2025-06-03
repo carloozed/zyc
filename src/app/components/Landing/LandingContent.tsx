@@ -95,12 +95,12 @@ export default function LandingContent({
     the_contest,
     the_cadenza,
     the_crescendo,
-    termine,
+    // termine,
     about,
     the_contest_title,
     the_cadenza_title,
     the_crescendo_title,
-    termine_title,
+    // termine_title,
     about_title,
   } = landingNavigation.data;
 
@@ -168,7 +168,7 @@ export default function LandingContent({
               </div>
             </div>
           )}
-          <NavigationItem
+          {/* <NavigationItem
             isMobile={isMobile}
             isTabletPortrait={isTabletPortrait}
             linkField={termine}
@@ -177,7 +177,7 @@ export default function LandingContent({
             delay={0.7}
             className={styles.landing__termine}
             ctaText={cta_text}
-          />
+          /> */}
         </div>
       </div>
       <div
