@@ -426,6 +426,23 @@
         width: 49%;
     }
 
+    .landing__about h4,
+    .landing__termine h4 {
+
+        font-size: var(--subtitle-l);
+        transform: 0;
+    }
+
+
+    .landing__crescendo h4,
+    .landing__cadenza h4,
+    .landing__contest h4 {
+
+        font-size: var(--subtitle-m);
+        text-align: center;
+        transform: translateY(var(--padding-m));
+    }
+
 
 
 }
