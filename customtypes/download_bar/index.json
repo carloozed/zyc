@@ -49,15 +49,6 @@
           "allowText": true,
           "repeat": false
         }
-      },
-      "is_downloadbar_visible": {
-        "type": "Boolean",
-        "config": {
-          "label": "Is Downloadbar VIsible",
-          "placeholder_false": "false",
-          "placeholder_true": "true",
-          "default_value": false
-        }
       }
     }
   }
