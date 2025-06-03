@@ -12,6 +12,15 @@
           "label": "UID"
         }
       },
+      "is_visible": {
+        "type": "Boolean",
+        "config": {
+          "label": "Is Visible",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": true
+        }
+      },
       "belongs_to_foldout": {
         "type": "Text",
         "config": {

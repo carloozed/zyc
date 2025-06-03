@@ -683,6 +683,18 @@ export interface FoldoutelementDocumentDataContentItem {
  */
 interface FoldoutelementDocumentData {
   /**
+   * Is Visible field in *FoldoutElement*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: foldoutelement.is_visible
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_visible: prismic.BooleanField;
+
+  /**
    * Belongs to Foldout field in *FoldoutElement*
    *
    * - **Field Type**: Text
@@ -1769,6 +1781,17 @@ type TimelineDocumentDataSlicesSlice = TimelinePhasesSlice;
  * Content for TImeline documents
  */
 interface TimelineDocumentData {
+  /**
+   * Timeline Is Shown At field in *TImeline*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.timeline_is_shown_at
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  timeline_is_shown_at: prismic.DateField;
+
   /**
    * Slice Zone field in *TImeline*
    *

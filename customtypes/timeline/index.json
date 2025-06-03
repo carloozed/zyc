@@ -6,6 +6,13 @@
   "status": true,
   "json": {
     "Main": {
+      "timeline_is_shown_at": {
+        "type": "Date",
+        "config": {
+          "label": "Timeline Is Shown At",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

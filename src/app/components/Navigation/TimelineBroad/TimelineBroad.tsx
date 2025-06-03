@@ -65,12 +65,24 @@ export default function TimelineBroad({ ...timelineProps }) {
       setIsHome(false);
     }
   }, [pathname]);
+  const currentDate = new Date().toISOString().split('T')[0];
+  const timelineDate =
+    timeline.data.timeline_is_shown_at?.split('T')[0] ||
+    timeline.data.timeline_is_shown_at;
+
+  console.log('Current:', currentDate);
+  console.log('Timeline:', timelineDate);
+  console.log('Match:', currentDate === timelineDate);
 
   return (
-    <div
-      className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''} ${!showTimeline ? styles.timeline__hidden : ''}`}
-    >
-      <SliceZone slices={timeline.data.slices} components={components} />
-    </div>
+    <>
+      {currentDate >= timelineDate && (
+        <div
+          className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''} ${!showTimeline ? styles.timeline__hidden : ''}`}
+        >
+          <SliceZone slices={timeline.data.slices} components={components} />
+        </div>
+      )}
+    </>
   );
 }

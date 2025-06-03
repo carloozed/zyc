@@ -34,6 +34,9 @@ export default function ImageSlice({ imageSliceProps }: Props) {
       const aIndex = a.data.itemindex || 0;
       const bIndex = b.data.itemindex || 0;
       return aIndex - bIndex;
+    })
+    .filter((item) => {
+      return item.data.is_visible === true;
     });
 
   const toggleElement = (index: number) => {
