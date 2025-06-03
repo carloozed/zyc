@@ -14,6 +14,8 @@ import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 import DownloadBar from './DownloadBar/DownloadBar';
 
+/* hello */
+
 export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
