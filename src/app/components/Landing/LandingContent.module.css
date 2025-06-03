@@ -220,13 +220,15 @@
     text-align: center;
     height: fit-content;
     width: 100%;
-    transform: translateY(var(--padding-s));
+    transform: translateY(45%);
 }
 
 .landing__about a,
 .landing__termine a {
     display: flex;
     justify-content: flex-end;
+    transform: translateY(75%);
+
 }
 
 
