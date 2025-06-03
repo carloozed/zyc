@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Content } from '@prismicio/client';
+import { Content, LinkField } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import ContactAndDownloadContent from './ContactAndDownloadContent';
 
@@ -11,6 +11,7 @@ export type ContactAndDownloadProps =
 
 type ContestAndDownloadContext = {
   isDownloadsMuted: Content.IsdownloadsmutedDocument;
+  signuplink: LinkField;
 };
 
 /**
@@ -20,11 +21,12 @@ const ContactAndDownload: FC<ContactAndDownloadProps> = ({
   slice,
   context,
 }) => {
-  const { isDownloadsMuted } = context as ContestAndDownloadContext;
+  const { isDownloadsMuted, signuplink } = context as ContestAndDownloadContext;
   return (
     <ContactAndDownloadContent
       slice={slice}
       isDownloadsMuted={isDownloadsMuted}
+      signuplink={signuplink}
     />
   );
 };
