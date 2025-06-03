@@ -12,13 +12,15 @@ import Hamburger from './Hamburger/Hamburger';
 import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
+import DownloadBar from './DownloadBar/DownloadBar';
+
 export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const { navbar } = headerContentProps;
+  const { navbar, downloadbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
   const { isOpen, setIsOpen, logo } = headerContentProps;
 
@@ -82,12 +84,11 @@ export default function HeaderContent({ ...headerContentProps }) {
           <PrismicNextImage field={logo.data.image} />
         </div>
       </TransitionLink>
-      <div></div>
-      {/* <div className={styles.header__downloadbar}>
+      <div className={styles.header__downloadbar}>
         {downloadbar.data.is_download_available !== 'Nichts' && (
           <DownloadBar downloadbar={downloadbar} />
         )}
-      </div> */}
+      </div>
       <div className={styles.header__hamburger}>
         <Hamburger {...HamburgerProps} />
       </div>

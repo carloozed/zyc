@@ -520,6 +520,18 @@ interface DownloadBarDocumentData {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Is Downloadbar VIsible field in *Download Bar*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: download_bar.is_downloadbar_visible
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_downloadbar_visible: prismic.BooleanField;
 }
 
 /**
