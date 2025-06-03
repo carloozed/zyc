@@ -200,13 +200,13 @@ p {
 
 /* Default View Transitions */
 ::view-transition-old(root) {
-    animation: 7.5s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
+    animation: 3s cubic-bezier(0.3, 1, 0.68, 1) both fade-out;
     pointer-events: none;
 
 }
 
 ::view-transition-new(root) {
-    animation: 7.5s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
+    animation: 3s cubic-bezier(0.22, 1, 0.36, 1) both fade-in;
     pointer-events: none;
 }
 
