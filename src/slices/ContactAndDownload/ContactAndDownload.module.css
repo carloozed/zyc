@@ -40,6 +40,15 @@
     font-family: var(--text-font);
 }
 
+
+.signuplink a {
+    border: var(--border-thin);
+    padding: var(--padding-s) var(--padding-m);
+    border-radius: 6px;
+    font-family: var(--title-font);
+    background-color: var(--buttoncolor);
+}
+
 /* Small Mobile */
 /* Up to 480px */
 @media (max-width: 30rem) {

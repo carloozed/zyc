@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import {
   ContactAndDownloadSlice,
@@ -8,15 +10,22 @@ import { PrismicNextLink } from '@prismicio/next';
 
 import styles from './ContactAndDownload.module.css';
 
+import { useMobile } from '@/contexts/MobileContext';
+
+import { LinkField } from '@prismicio/client';
+
 type Props = {
   slice: ContactAndDownloadSlice;
   isDownloadsMuted: IsdownloadsmutedDocument;
+  signuplink: LinkField;
 };
 
 export default function ContactAndDownloadContent({
   slice,
   isDownloadsMuted,
+  signuplink,
 }: Props) {
+  const { isMobile, isTabletPortrait } = useMobile();
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -50,6 +59,12 @@ export default function ContactAndDownloadContent({
             </div>
           </div>
         )}
+      {isMobile ||
+        (isTabletPortrait && (
+          <div className={styles.signuplink}>
+            <PrismicNextLink field={signuplink}>Anmelden!</PrismicNextLink>
+          </div>
+        ))}
     </section>
   );
 }
