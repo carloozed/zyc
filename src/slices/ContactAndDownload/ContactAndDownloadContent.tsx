@@ -59,12 +59,17 @@ export default function ContactAndDownloadContent({
             </div>
           </div>
         )}
-      {isMobile ||
-        (isTabletPortrait && (
-          <div className={styles.signuplink}>
-            <PrismicNextLink field={signuplink}>Anmelden!</PrismicNextLink>
-          </div>
-        ))}
+      {isMobile && (
+        <div className={styles.signuplink}>
+          <PrismicNextLink field={signuplink}>Anmelden!</PrismicNextLink>
+        </div>
+      )}
+
+      {isTabletPortrait && (
+        <div className={styles.signuplink}>
+          <PrismicNextLink field={signuplink}>Anmelden!</PrismicNextLink>
+        </div>
+      )}
     </section>
   );
 }
