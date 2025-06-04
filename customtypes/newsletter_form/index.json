@@ -13,6 +13,52 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "newsletter_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Newsletter Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading2"
+        }
+      },
+      "newsletter_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Newsletter Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,hyperlink,strong,em"
+        }
+      },
+      "vorname": {
+        "type": "Text",
+        "config": {
+          "label": "Vorname",
+          "placeholder": ""
+        }
+      },
+      "nachname": {
+        "type": "Text",
+        "config": {
+          "label": "Nachname",
+          "placeholder": ""
+        }
+      },
+      "email": {
+        "type": "Text",
+        "config": {
+          "label": "Email",
+          "placeholder": ""
+        }
+      },
+      "button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Button Text",
+          "placeholder": ""
+        }
       }
     }
   }

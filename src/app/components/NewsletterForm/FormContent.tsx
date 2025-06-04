@@ -4,13 +4,14 @@ import { useState } from 'react';
 import styles from './NewsletterForm.module.css';
 import { NewsletterFormDocument } from '../../../../prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
+import { PrismicRichText } from '@prismicio/react';
 
 export type NewsletterProps = {
   newsletter: NewsletterFormDocument;
 };
 
 export default function FormContent({ newsletter }: NewsletterProps) {
-  const [formIsShown, setFormIsShown] = useState(false);
+  const [formIsShown, setFormIsShown] = useState(true);
   const [email, setEmail] = useState('');
   const [firstname, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
@@ -55,15 +56,12 @@ export default function FormContent({ newsletter }: NewsletterProps) {
         </div>
         <div className={styles.form__content}>
           <div className={styles.form__header}>
-            <h2>Anmeldung Newsletter</h2>
-            <p>
-              Trag dich in unseren Newsletter ein – wir informieren dich
-              regelmäßig über Neuigkeiten und spannende Inhalte.
-            </p>
+            <PrismicRichText field={newsletter.data.newsletter_title} />
+            <PrismicRichText field={newsletter.data.newsletter_text} />
           </div>
           <div className={styles.form__inputs}>
             <div className={styles.inputGroup}>
-              <label>Vorname</label>
+              <label>{newsletter.data.vorname}</label>
               <input
                 type="text"
                 value={firstname}
@@ -72,7 +70,7 @@ export default function FormContent({ newsletter }: NewsletterProps) {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label>Nachname</label>
+              <label>{newsletter.data.nachname}</label>
               <input
                 type="text"
                 value={surname}
@@ -81,7 +79,7 @@ export default function FormContent({ newsletter }: NewsletterProps) {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label>E-Mail</label>
+              <label>{newsletter.data.email}</label>
               <input
                 type="email"
                 value={email}
@@ -90,7 +88,7 @@ export default function FormContent({ newsletter }: NewsletterProps) {
               />
             </div>
           </div>{' '}
-          <button type="submit">Für Newsletter anmelden</button>
+          <button type="submit">{newsletter.data.button_text}</button>
           <p>{status}</p>
         </div>
       </form>
