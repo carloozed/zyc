@@ -39,6 +39,8 @@ export default function FooterContent({
 }: Props) {
   const pathname = usePathname();
 
+  console.log(lownavigations[1].data.low_navigation_items);
+
   return (
     <>
       {' '}
@@ -56,7 +58,6 @@ export default function FooterContent({
                   {(isFilled.richText(address.data.street) ||
                     isFilled.richText(address.data.city)) && (
                     <>
-                      {' '}
                       <PrismicRichText field={address.data.zyc} />{' '}
                       <PrismicNextLink field={address.data.location_link}>
                         <PrismicRichText field={address.data.street} />

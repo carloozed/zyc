@@ -44,7 +44,8 @@ export default function ContactAndDownloadContent({
           ))}
         </div>
       </div>
-      {isDownloadsMuted &&
+      {slice.variation === 'default' &&
+        isDownloadsMuted &&
         isDownloadsMuted.data?.isdownloadsmuted === false && (
           <div className={styles.sectioncontainer}>
             <PrismicRichText field={slice.primary.downloads_title} />

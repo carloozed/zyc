@@ -91,8 +91,6 @@ export default function LandingContent({
     setIsHovered(false);
   };
 
-  console.log('isTabletPortrait', isTabletPortrait);
-
   const {
     cta_text,
     the_contest,
@@ -109,8 +107,6 @@ export default function LandingContent({
 
   const [contestHover, cadenzaHover, crescendoHover, aboutHover] =
     hoverElements;
-
-  console.log(aboutHover);
 
   return (
     <div className={styles.landing__container}>

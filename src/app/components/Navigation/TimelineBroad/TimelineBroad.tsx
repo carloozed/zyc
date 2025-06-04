@@ -70,10 +70,6 @@ export default function TimelineBroad({ ...timelineProps }) {
     timeline.data.timeline_is_shown_at?.split('T')[0] ||
     timeline.data.timeline_is_shown_at;
 
-  console.log('Current:', currentDate);
-  console.log('Timeline:', timelineDate);
-  console.log('Match:', currentDate === timelineDate);
-
   return (
     <>
       {currentDate >= timelineDate && (

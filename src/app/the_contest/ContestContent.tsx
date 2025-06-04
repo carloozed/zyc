@@ -32,8 +32,6 @@ export default function ContestContent({
   page,
   isDownloadsMuted,
 }: Props) {
-  console.log(isDownloadsMuted);
-
   return (
     <section style={{ position: 'relative' }}>
       <SliceZone

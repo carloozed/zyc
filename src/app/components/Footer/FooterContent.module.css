@@ -83,6 +83,7 @@
 .footer__navigation .footer__link {
     width: 70%;
 
+
 }
 
 .footer__subnavigation .footer__link {
@@ -107,7 +108,9 @@
 
 .footer__lownavigation {
     display: flex;
-    gap: var(--padding-m)
+    gap: var(--padding-m);
+    background-color: red;
+    border: 1px solid black;
 }
 
 .footer__lownavigation div {
