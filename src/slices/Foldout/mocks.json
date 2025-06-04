@@ -18,6 +18,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "certain",
 				"type": "Text"
+			},
+			"section_is_shown": {
+				"__TYPE__": "BooleanContent",
+				"value": false
 			}
 		},
 		"items": []
@@ -66,7 +70,6 @@
 				]
 			},
 			"decoration_image": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
@@ -85,6 +88,8 @@
 					"background": "transparent"
 				},
 				"alt": "central",
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			}
 		},

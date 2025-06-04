@@ -16,6 +16,29 @@
           "allowText": true,
           "repeat": false
         }
+      },
+      "show_button_date": {
+        "type": "Date",
+        "config": {
+          "label": "Show Button Date",
+          "placeholder": ""
+        }
+      },
+      "hide_button_date": {
+        "type": "Date",
+        "config": {
+          "label": "Hide Button Date",
+          "placeholder": ""
+        }
+      },
+      "hide_button_boolean": {
+        "type": "Boolean",
+        "config": {
+          "label": "Hide Button Boolean",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
       }
     }
   }

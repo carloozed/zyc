@@ -27,6 +27,43 @@ export default function SignupButtonClient({ styles, signuplink }: Props) {
     }
   }, [pathname]);
 
+  const shouldShowBasedOnDates = () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    const buttonShowDate =
+      signuplink.data.show_button_date?.split('T')[0] ||
+      signuplink.data.show_button_date;
+    const buttonHideDate =
+      signuplink.data.hide_button_date?.split('T')[0] ||
+      signuplink.data.hide_button_date;
+
+    if (!buttonShowDate) return false;
+
+    const isPastShowDate = currentDate >= buttonShowDate;
+
+    if (!buttonHideDate) return isPastShowDate;
+
+    const isBeforeHideDate = currentDate < buttonHideDate;
+
+    return isPastShowDate && isBeforeHideDate;
+  };
+
+  const shouldRenderButton = () => {
+    if (signuplink.data.hide_button_boolean === true) {
+      return false;
+    }
+
+    if (signuplink.data.hide_button_boolean === false) {
+      return shouldShowBasedOnDates();
+    }
+
+    return shouldShowBasedOnDates();
+  };
+
+  if (!shouldRenderButton()) {
+    return null;
+  }
+
   return (
     <div
       className={`${styles.signup__button} ${buttonIsVisible ? styles.signup__button__home : ''}`}

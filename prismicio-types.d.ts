@@ -106,6 +106,40 @@ interface AnmeldelinkDocumentData {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Show Button Date field in *Anmeldelink*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anmeldelink.show_button_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  show_button_date: prismic.DateField;
+
+  /**
+   * Hide Button Date field in *Anmeldelink*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: anmeldelink.hide_button_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  hide_button_date: prismic.DateField;
+
+  /**
+   * Hide Button Boolean field in *Anmeldelink*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: anmeldelink.hide_button_boolean
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  hide_button_boolean: prismic.BooleanField;
 }
 
 /**
@@ -2286,6 +2320,17 @@ export type CriteriasSlice = prismic.SharedSlice<
  * Primary content in *Foldout → Default → Primary*
  */
 export interface FoldoutSliceDefaultPrimary {
+  /**
+   * Section Is Shown field in *Foldout → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: foldout.default.primary.section_is_shown
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  section_is_shown: prismic.BooleanField;
+
   /**
    * Section Title field in *Foldout → Default → Primary*
    *

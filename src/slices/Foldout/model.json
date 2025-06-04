@@ -12,6 +12,15 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "section_is_shown": {
+          "type": "Boolean",
+          "config": {
+            "label": "Section Is Shown",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "section_title": {
           "type": "StructuredText",
           "config": {
