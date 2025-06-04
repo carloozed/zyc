@@ -11,11 +11,10 @@ import ImageSlice from './ImageSlice/ImageSlice';
 
 import styles from './FoldoutContent.module.css';
 
-// Export the type so it can be imported in child components
 export type regularPropsType = {
   slice: FoldoutSlice;
   foldoutElements: FoldoutelementDocument[];
-  signuplink: AnmeldelinkDocument; // Changed from FoldoutSlice to AnmeldelinkDocument
+  signuplink: AnmeldelinkDocument;
 };
 
 export type ImagePropsType = {
@@ -31,7 +30,7 @@ export default function FoldoutContent({
   const { slice, foldoutElements, signuplink } = regularProps;
 
   const imageSliceProps: ImagePropsType = {
-    slice: slice as FoldoutSliceFoldoutWithImage, // Type assertion since we check variation before using
+    slice: slice as FoldoutSliceFoldoutWithImage,
     foldoutElements,
     signuplink,
   };
