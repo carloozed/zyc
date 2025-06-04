@@ -19,7 +19,7 @@ type Props = {
   landingNavigation: HomepageNavigationDocument;
   hoverElements: DynamiclandingcontentDocument[];
   background: LandingBackgroundImageDocument;
-};
+}; /* changes */
 
 type NavigationItemProps = {
   isMobile: boolean;
