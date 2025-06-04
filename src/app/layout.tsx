@@ -15,6 +15,7 @@ import Navigation from './components/Navigation/Navigation';
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
 import Footer from './components/Footer/Footer';
 import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
+import NewsletterForm from './components/NewsletterForm/NewsletterForm';
 
 export default function RootLayout({
   children,
@@ -30,7 +31,7 @@ export default function RootLayout({
             <ScrollIndicator />
             <Navigation />
             <LenisScrollProvider>{children}</LenisScrollProvider>
-            <Footer />
+            <Footer /> <NewsletterForm />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
         </html>

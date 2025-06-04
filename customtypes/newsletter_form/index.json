@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "newsletter_form",
+  "label": "Newsletter Form",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "newsletter_image": {
+        "type": "Image",
+        "config": {
+          "label": "Newsletter Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

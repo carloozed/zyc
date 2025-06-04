@@ -1404,6 +1404,38 @@ export type NavigationIndicatorDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Newsletter Form documents
+ */
+interface NewsletterFormDocumentData {
+  /**
+   * Newsletter Image field in *Newsletter Form*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter_form.newsletter_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  newsletter_image: prismic.ImageField<never>;
+}
+
+/**
+ * Newsletter Form document from Prismic
+ *
+ * - **API ID**: `newsletter_form`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NewsletterFormDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NewsletterFormDocumentData>,
+    "newsletter_form",
+    Lang
+  >;
+
 type PageDocumentDataSlicesSlice = never;
 
 /**
@@ -2018,6 +2050,7 @@ export type AllDocumentTypes =
   | LowNavigationDocument
   | NavbarDocument
   | NavigationIndicatorDocument
+  | NewsletterFormDocument
   | PageDocument
   | SubnavigationDocument
   | TeilnahmeTermineDocument
@@ -3247,6 +3280,8 @@ declare module "@prismicio/client" {
       NavbarDocumentDataNavigationItemsItem,
       NavigationIndicatorDocument,
       NavigationIndicatorDocumentData,
+      NewsletterFormDocument,
+      NewsletterFormDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
