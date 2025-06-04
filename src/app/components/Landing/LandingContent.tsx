@@ -21,7 +21,7 @@ type Props = {
   hoverElements: DynamiclandingcontentDocument[];
   background: LandingBackgroundImageDocument;
   termineIsVisible: TermineIsVisibleDocument;
-}; /* changes */
+};
 
 type NavigationItemProps = {
   isMobile: boolean;
