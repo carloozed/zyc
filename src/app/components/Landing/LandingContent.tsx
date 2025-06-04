@@ -31,6 +31,7 @@ type NavigationItemProps = {
   onHover?: () => void;
   className?: string;
   ctaText: KeyTextField;
+  style?: React.CSSProperties;
 };
 
 const NavigationItem = ({
@@ -43,11 +44,13 @@ const NavigationItem = ({
   onHover,
   className = '',
   ctaText,
+  style,
 }: NavigationItemProps) => {
   const content = (
     <div
       className={`${className} ${styles.landing__navigationitem}`}
       onMouseOver={onHover}
+      style={style}
     >
       <div className={styles.ccc__innercontainer}>
         <RevealText
@@ -95,17 +98,19 @@ export default function LandingContent({
     the_contest,
     the_cadenza,
     the_crescendo,
-    // termine,
+    termine,
     about,
     the_contest_title,
     the_cadenza_title,
     the_crescendo_title,
-    // termine_title,
+    termine_title,
     about_title,
   } = landingNavigation.data;
 
-  const [aboutHover, contestHover, cadenzaHover, crescendoHover] =
+  const [contestHover, cadenzaHover, crescendoHover, aboutHover] =
     hoverElements;
+
+  console.log(aboutHover);
 
   return (
     <div className={styles.landing__container}>
@@ -168,7 +173,7 @@ export default function LandingContent({
               </div>
             </div>
           )}
-          {/* <NavigationItem
+          <NavigationItem
             isMobile={isMobile}
             isTabletPortrait={isTabletPortrait}
             linkField={termine}
@@ -177,7 +182,11 @@ export default function LandingContent({
             delay={0.7}
             className={styles.landing__termine}
             ctaText={cta_text}
-          /> */}
+            style={{
+              opacity: '0',
+              visibility: 'hidden',
+            }}
+          />
         </div>
       </div>
       <div
