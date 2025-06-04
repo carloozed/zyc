@@ -11,6 +11,8 @@ import ImageSlice from './ImageSlice/ImageSlice';
 
 import styles from './FoldoutContent.module.css';
 
+/* jladsföjldasf */
+
 export type regularPropsType = {
   slice: FoldoutSlice;
   foldoutElements: FoldoutelementDocument[];
