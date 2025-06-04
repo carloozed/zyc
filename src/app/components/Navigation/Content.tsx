@@ -9,6 +9,7 @@ import {
   NavbarDocument,
   NavigationIndicatorDocument,
   SubnavigationDocument,
+  TermineIsVisibleDocument,
   TimelineDocument,
 } from '../../../../prismicio-types';
 import { DownloadBarDocument } from '../../../../prismicio-types';
@@ -27,6 +28,7 @@ type Props = {
   indicator: NavigationIndicatorDocument;
   subnavigation: SubnavigationDocument;
   timelineBroad: TimelineDocument;
+  termineIsVisible: TermineIsVisibleDocument;
 };
 
 export default function Content({
@@ -40,6 +42,7 @@ export default function Content({
   indicator,
   subnavigation,
   timelineBroad,
+  termineIsVisible,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,6 +56,7 @@ export default function Content({
     logo: logo,
     indicator: indicator,
     subnavigation: subnavigation,
+    termineIsVisible: termineIsVisible,
   };
 
   const headerContentProps = {

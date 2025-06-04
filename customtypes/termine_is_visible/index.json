@@ -1,0 +1,20 @@
+{
+  "format": "custom",
+  "id": "termine_is_visible",
+  "label": "Termine is Visible",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "termine_is_visible": {
+        "type": "Boolean",
+        "config": {
+          "label": "Termine is Visible",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      }
+    }
+  }
+}

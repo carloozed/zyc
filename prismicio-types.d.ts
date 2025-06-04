@@ -1604,6 +1604,39 @@ export type TeilnahmeTermineDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Termine is Visible documents
+ */
+interface TermineIsVisibleDocumentData {
+  /**
+   * Termine is Visible field in *Termine is Visible*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: termine_is_visible.termine_is_visible
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  termine_is_visible: prismic.BooleanField;
+}
+
+/**
+ * Termine is Visible document from Prismic
+ *
+ * - **API ID**: `termine_is_visible`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type TermineIsVisibleDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<TermineIsVisibleDocumentData>,
+    "termine_is_visible",
+    Lang
+  >;
+
 type TheCadenzaDocumentDataSlicesSlice =
   | ContactAndDownloadSlice
   | FoldoutSlice
@@ -1988,6 +2021,7 @@ export type AllDocumentTypes =
   | PageDocument
   | SubnavigationDocument
   | TeilnahmeTermineDocument
+  | TermineIsVisibleDocument
   | TheCadenzaDocument
   | TheContestDocument
   | TheCrescendoDocument
@@ -3222,6 +3256,8 @@ declare module "@prismicio/client" {
       TeilnahmeTermineDocument,
       TeilnahmeTermineDocumentData,
       TeilnahmeTermineDocumentDataSlicesSlice,
+      TermineIsVisibleDocument,
+      TermineIsVisibleDocumentData,
       TheCadenzaDocument,
       TheCadenzaDocumentData,
       TheCadenzaDocumentDataSlicesSlice,

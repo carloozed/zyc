@@ -5,6 +5,7 @@ import {
   HomepageNavigationDocument,
   LandingBackgroundImageDocument,
   DynamiclandingcontentDocument,
+  TermineIsVisibleDocument,
 } from '../../../../prismicio-types';
 import styles from './LandingContent.module.css';
 import { PrismicNextImage } from '@prismicio/next';
@@ -19,6 +20,7 @@ type Props = {
   landingNavigation: HomepageNavigationDocument;
   hoverElements: DynamiclandingcontentDocument[];
   background: LandingBackgroundImageDocument;
+  termineIsVisible: TermineIsVisibleDocument;
 }; /* changes */
 
 type NavigationItemProps = {
@@ -81,10 +83,13 @@ export default function LandingContent({
   landingNavigation,
   hoverElements,
   background,
+  termineIsVisible,
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
   const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTabletPortrait } = useMobile();
+
+  console.log('Termine,', termineIsVisible);
 
   const mouseLeaveFunction = () => {
     setHoveredElement('');
@@ -179,8 +184,14 @@ export default function LandingContent({
             className={styles.landing__termine}
             ctaText={cta_text}
             style={{
-              opacity: '0',
-              visibility: 'hidden',
+              opacity:
+                termineIsVisible && termineIsVisible.data.termine_is_visible
+                  ? '1'
+                  : '0',
+              visibility:
+                termineIsVisible && termineIsVisible.data.termine_is_visible
+                  ? 'visible'
+                  : 'hidden',
             }}
           />
         </div>

@@ -15,6 +15,7 @@ export default async function Navigation() {
   const indicator = await client.getSingle('navigation_indicator');
   const subnavigation = await client.getSingle('subnavigation');
   const timelineBroad = await client.getSingle('timeline');
+  const termineIsVisible = await client.getSingle('termine_is_visible');
 
   const lowNavigation = lownavigations.find((item) => {
     return item.uid === 'legal-information-contact';
@@ -33,6 +34,7 @@ export default async function Navigation() {
         indicator={indicator}
         subnavigation={subnavigation}
         timelineBroad={timelineBroad}
+        termineIsVisible={termineIsVisible}
       />
     </header>
   );
