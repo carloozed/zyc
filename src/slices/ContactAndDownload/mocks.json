@@ -78,8 +78,8 @@
 							[
 								"link",
 								{
-									"__TYPE__": "LinkContent",
 									"key": "12ad36d7-7199-4d09-934c-cebc6cab252b",
+									"__TYPE__": "LinkContent",
 									"value": {
 										"__TYPE__": "ExternalLink",
 										"url": "https://prismic.io",
@@ -93,5 +93,61 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "justOneElement",
+		"primary": {
+			"subtitle_something_missing": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading3",
+						"content": {
+							"text": "Curious"
+						}
+					}
+				]
+			},
+			"text_missingsomething": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Quis enim irure occaecat aliqua enim commodo cillum do sit exercitation. Ut laborum culpa sit reprehenderit voluptate et nulla Lorem veniam incididunt Lorem. Velit ad minim laborum duis magna culpa."
+						}
+					}
+				]
+			},
+			"links": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"link",
+								{
+									"key": "9ef43438-f564-4597-a0ef-bc1106453db4",
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "certain"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

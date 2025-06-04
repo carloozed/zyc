@@ -90,6 +90,55 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "justOneElement",
+      "name": "Just one Element",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "subtitle_something_missing": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle Something Missing",
+            "placeholder": "Fehlt etwas?",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "text_missingsomething": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Text missingsomething",
+            "placeholder": "hast du noch weitere fragene etc?",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "links": {
+          "type": "Group",
+          "config": {
+            "label": "Links",
+            "repeat": true,
+            "fields": {
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Zum allgemeinen FAQ/Kontaktiere uns",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

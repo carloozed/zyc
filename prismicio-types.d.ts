@@ -2024,6 +2024,21 @@ export interface ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem {
 }
 
 /**
+ * Item in *ContactAndDownload → Just one Element → Primary → Links*
+ */
+export interface ContactAndDownloadSliceJustOneElementPrimaryLinksItem {
+  /**
+   * Link field in *ContactAndDownload → Just one Element → Primary → Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Zum allgemeinen FAQ/Kontaktiere uns
+   * - **API ID Path**: contact_and_download.justOneElement.primary.links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Primary content in *ContactAndDownload → Default → Primary*
  */
 export interface ContactAndDownloadSliceDefaultPrimary {
@@ -2106,9 +2121,62 @@ export type ContactAndDownloadSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ContactAndDownload → Just one Element → Primary*
+ */
+export interface ContactAndDownloadSliceJustOneElementPrimary {
+  /**
+   * Subtitle Something Missing field in *ContactAndDownload → Just one Element → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Fehlt etwas?
+   * - **API ID Path**: contact_and_download.justOneElement.primary.subtitle_something_missing
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle_something_missing: prismic.RichTextField;
+
+  /**
+   * Text missingsomething field in *ContactAndDownload → Just one Element → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: hast du noch weitere fragene etc?
+   * - **API ID Path**: contact_and_download.justOneElement.primary.text_missingsomething
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_missingsomething: prismic.RichTextField;
+
+  /**
+   * Links field in *ContactAndDownload → Just one Element → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_and_download.justOneElement.primary.links[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  links: prismic.GroupField<
+    Simplify<ContactAndDownloadSliceJustOneElementPrimaryLinksItem>
+  >;
+}
+
+/**
+ * Just one Element variation for ContactAndDownload Slice
+ *
+ * - **API ID**: `justOneElement`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ContactAndDownloadSliceJustOneElement =
+  prismic.SharedSliceVariation<
+    "justOneElement",
+    Simplify<ContactAndDownloadSliceJustOneElementPrimary>,
+    never
+  >;
+
+/**
  * Slice variation for *ContactAndDownload*
  */
-type ContactAndDownloadSliceVariation = ContactAndDownloadSliceDefault;
+type ContactAndDownloadSliceVariation =
+  | ContactAndDownloadSliceDefault
+  | ContactAndDownloadSliceJustOneElement;
 
 /**
  * ContactAndDownload Shared Slice
@@ -3174,8 +3242,11 @@ declare module "@prismicio/client" {
       ContactAndDownloadSliceDefaultPrimaryLinksItem,
       ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,
       ContactAndDownloadSliceDefaultPrimary,
+      ContactAndDownloadSliceJustOneElementPrimaryLinksItem,
+      ContactAndDownloadSliceJustOneElementPrimary,
       ContactAndDownloadSliceVariation,
       ContactAndDownloadSliceDefault,
+      ContactAndDownloadSliceJustOneElement,
       ContestTimelineSlice,
       ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
       ContestTimelineSliceDefaultPrimary,
