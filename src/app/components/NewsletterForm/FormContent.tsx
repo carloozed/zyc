@@ -11,7 +11,7 @@ export type NewsletterProps = {
 };
 
 export default function FormContent({ newsletter }: NewsletterProps) {
-  const [formIsShown, setFormIsShown] = useState(true);
+  const [formIsShown, setFormIsShown] = useState(false);
   const [email, setEmail] = useState('');
   const [firstname, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
@@ -32,6 +32,9 @@ export default function FormContent({ newsletter }: NewsletterProps) {
       setEmail('');
       setFirstName('');
       setSurname('');
+      setTimeout(() => {
+        setFormIsShown(false);
+      }, 1000);
     } else {
       setStatus(data.error || 'Something went wrong.');
     }
