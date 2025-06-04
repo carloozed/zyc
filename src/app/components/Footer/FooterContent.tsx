@@ -71,10 +71,17 @@ export default function FooterContent({
                 {lowNavigation &&
                   lowNavigation.data.low_navigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__lownavigation}>
-                      <TransitionLink field={item.item} />{' '}
-                      {index !==
-                        lowNavigation.data.low_navigation_items.length - 1 && (
-                        <div></div>
+                      {item.item.text !== 'Newsletter' ? (
+                        <>
+                          <TransitionLink field={item.item} />
+                          {index !==
+                            lowNavigation.data.low_navigation_items.length -
+                              1 && <div></div>}
+                        </>
+                      ) : (
+                        <span onClick={() => console.log('helloo')}>
+                          Newsletter
+                        </span>
                       )}
                     </div>
                   ))}

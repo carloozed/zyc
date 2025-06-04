@@ -65,6 +65,8 @@
     gap: var(--padding-m);
 }
 
+
+
 .footer__link {
     padding: var(--padding-xs) 0;
     display: flex;
@@ -109,6 +111,12 @@
 .footer__lownavigation {
     display: flex;
     gap: var(--padding-m);
+}
+
+.footer__lownavigation span,
+.footer__lownavigation a {
+    font-size: var(--text-font);
+    cursor: pointer;
 }
 
 .footer__lownavigation div {
