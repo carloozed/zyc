@@ -109,8 +109,6 @@
 .footer__lownavigation {
     display: flex;
     gap: var(--padding-m);
-    background-color: red;
-    border: 1px solid black;
 }
 
 .footer__lownavigation div {

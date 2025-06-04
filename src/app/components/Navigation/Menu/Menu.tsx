@@ -18,7 +18,8 @@ import { useMobile } from '@/contexts/MobileContext';
 gsap.registerPlugin(SplitText, useGSAP);
 
 export default function Menu({ ...menuProps }) {
-  const { navbar, isOpen, lownavigations, setIsOpen } = menuProps;
+  const { navbar, isOpen, lownavigations, setIsOpen, lowNavigation } =
+    menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
 
   const { isMobile } = useMobile();
@@ -193,7 +194,7 @@ export default function Menu({ ...menuProps }) {
                 className={styles.menu__navlist}
                 style={{ overflow: 'hidden' }}
               >
-                {legal.data.low_navigation_items.map(
+                {lowNavigation.data.low_navigation_items.map(
                   (item: { item: LinkField }, index: number) => (
                     <li
                       key={index}

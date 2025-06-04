@@ -22,6 +22,7 @@ type Props = {
   styles: Record<string, string>;
   navbar: NavbarDocument;
   lownavigations: LowNavigationDocument[];
+  lowNavigation: LowNavigationDocument | undefined;
   address: AddressDocument;
   indicator: NavigationIndicatorDocument;
   subnavigation: SubnavigationDocument;
@@ -34,6 +35,7 @@ export default function Content({
   styles,
   navbar,
   lownavigations,
+  lowNavigation,
   address,
   indicator,
   subnavigation,
@@ -46,6 +48,7 @@ export default function Content({
     isOpen: isOpen,
     setIsOpen: setIsOpen,
     lownavigations: lownavigations,
+    lowNavigation: lowNavigation,
     address: address,
     logo: logo,
     indicator: indicator,

@@ -16,6 +16,10 @@ export default async function Navigation() {
   const subnavigation = await client.getSingle('subnavigation');
   const timelineBroad = await client.getSingle('timeline');
 
+  const lowNavigation = lownavigations.find((item) => {
+    return item.uid === 'legal-information-contact';
+  });
+
   return (
     <header className={styles.header}>
       <Content
@@ -24,6 +28,7 @@ export default async function Navigation() {
         logo={logo}
         navbar={navbar}
         lownavigations={lownavigations}
+        lowNavigation={lowNavigation}
         address={address}
         indicator={indicator}
         subnavigation={subnavigation}

@@ -22,7 +22,7 @@ type Props = {
   footer: FooterDocument;
   logo: LogoDocument;
   navbar: NavbarDocument;
-  lownavigations: LowNavigationDocument[];
+  lowNavigation: LowNavigationDocument<string> | undefined;
   address: AddressDocument;
   subnavigation: SubnavigationDocument;
   isDownloadsMuted: boolean;
@@ -32,14 +32,14 @@ export default function FooterContent({
   footer,
   address,
   navbar,
-  lownavigations,
+  lowNavigation,
   subnavigation,
   logo,
   isDownloadsMuted,
 }: Props) {
   const pathname = usePathname();
 
-  console.log(lownavigations[1].data.low_navigation_items);
+  console.log(lowNavigation?.data.low_navigation_items);
 
   return (
     <>
@@ -68,16 +68,16 @@ export default function FooterContent({
                 </div>
               </div>
               <div className={styles.footer__lownavigationcontainer}>
-                {lownavigations[1].data.low_navigation_items.map(
-                  (item, index) => (
+                {lowNavigation &&
+                  lowNavigation.data.low_navigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__lownavigation}>
                       <TransitionLink field={item.item} />{' '}
                       {index !==
-                        lownavigations[1].data.low_navigation_items.length -
-                          1 && <div></div>}
+                        lowNavigation.data.low_navigation_items.length - 1 && (
+                        <div></div>
+                      )}
                     </div>
-                  )
-                )}
+                  ))}
               </div>
             </div>
             <div className={styles.footer__middlecontainer}>

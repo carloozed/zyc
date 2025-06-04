@@ -15,12 +15,16 @@ export default async function Footer() {
   const isDownloadsMuted =
     isDownloadsMutedObject.results[0].data.isdownloadsmuted;
 
+  const lowNavigation = lownavigations.find(
+    (item) => item.uid === 'legal-information-contact'
+  );
+
   return (
     <FooterContent
       footer={footer}
       logo={logo}
       navbar={navbar}
-      lownavigations={lownavigations}
+      lowNavigation={lowNavigation}
       address={address}
       subnavigation={subnavigation}
       isDownloadsMuted={isDownloadsMuted}
