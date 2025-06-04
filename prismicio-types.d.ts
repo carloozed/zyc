@@ -1605,6 +1605,7 @@ export type TeilnahmeTermineDocument<Lang extends string = string> =
   >;
 
 type TheCadenzaDocumentDataSlicesSlice =
+  | ContactAndDownloadSlice
   | FoldoutSlice
   | SplitVisualHeadlineSlice;
 
@@ -1743,6 +1744,7 @@ export type TheContestDocument<Lang extends string = string> =
   >;
 
 type TheCrescendoDocumentDataSlicesSlice =
+  | ContactAndDownloadSlice
   | FoldoutSlice
   | SplitVisualHeadlineSlice;
 
