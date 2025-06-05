@@ -196,9 +196,11 @@
     font-size: var(--text-sm);
 }
 
-.lowernavbar__item a {
+.lowernavbar__item a,
+.lowernavbar__item span {
     font-family: var(--subtitle-font);
     pointer-events: all;
+    cursor: pointer;
 }
 
 .lowernavbar__item div {

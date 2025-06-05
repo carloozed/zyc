@@ -14,6 +14,8 @@ import { useMobile } from '@/contexts/MobileContext';
 
 import { LinkField } from '@prismicio/client';
 
+import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
+
 type Props = {
   slice: ContactAndDownloadSlice;
   isDownloadsMuted: IsdownloadsmutedDocument;
@@ -38,7 +40,12 @@ export default function ContactAndDownloadContent({
         <div className={styles.linkscontainer}>
           {slice.primary.links.map((item, index: number) => (
             <div key={index} className={styles.downloadlink}>
-              <PrismicNextLink field={item.link} />
+              {item.link.text === 'Anmeldung Newsletter' ? (
+                <NewsletterLink hasUnderscore={true} hasAnmeldung={true} />
+              ) : (
+                <PrismicNextLink field={item.link} />
+              )}
+
               <p style={{ transform: 'rotate(-135deg)' }}>&darr;</p>
             </div>
           ))}

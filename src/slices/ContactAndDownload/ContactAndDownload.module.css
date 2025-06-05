@@ -35,9 +35,11 @@
     gap: var(--padding-s)
 }
 
-.downloadlink a {
+.downloadlink a,
+.downloadlink span {
     text-decoration: underline;
     font-family: var(--text-font);
+    cursor: pointer;
 }
 
 

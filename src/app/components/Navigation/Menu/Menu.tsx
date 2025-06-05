@@ -14,12 +14,13 @@ import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 import { useMobile } from '@/contexts/MobileContext';
 
+import NewsletterLink from '../../NewsletterLink/NewsletterLink';
+
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
 
 export default function Menu({ ...menuProps }) {
-  const { navbar, isOpen, lownavigations, setIsOpen, lowNavigation } =
-    menuProps;
+  const { navbar, isOpen, setIsOpen, lowNavigation } = menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
 
   const { isMobile } = useMobile();
@@ -29,7 +30,7 @@ export default function Menu({ ...menuProps }) {
   const lowerContainerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
   // const legal = lownavigations[1];
-  const socials = lownavigations[0];
+  // const socials = lownavigations[0];
 
   const logo = menuProps.logo.data;
   const indicator = menuProps.indicator.data;
@@ -207,10 +208,15 @@ export default function Menu({ ...menuProps }) {
                         legalLinkContainerRef.current[index] = el;
                       }}
                     >
-                      <TransitionLink field={item.item} />{' '}
-                      {index !==
-                        socials.data.low_navigation_items.length - 1 && (
-                        <div></div>
+                      {item.item.text !== 'Newsletter' ? (
+                        <>
+                          <TransitionLink field={item.item} />
+                          {index !==
+                            lowNavigation.data.low_navigation_items.length -
+                              1 && <div></div>}
+                        </>
+                      ) : (
+                        <NewsletterLink />
                       )}
                     </li>
                   )
