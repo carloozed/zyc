@@ -28,37 +28,36 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headerList = await headers();
-  const domain = headerList.get('host') || 'localhost';
+  // const headerList = await headers();
+  // const domain = headerList.get('host') || 'localhost';
 
-  const renderBody = () => {
-    if (domain.includes('zurichyouthclassical')) {
-      return <SplashScreen />;
-    } else {
-      return (
-        <>
-          <SignupButtonLarge />
-          <ScrollIndicator />
-          <Navigation />
-          <LenisScrollProvider>{children}</LenisScrollProvider>
-          <Footer />
-          <NewsletterForm />
-        </>
-      );
-    }
-  };
+  // const renderBody = () => {
+  //   if (domain.includes('zurichyouthclassical')) {
+  //     return <SplashScreen />;
+  //   } else {
+  //     return (
+  //       <>
+  //         <SignupButtonLarge />
+  //         <ScrollIndicator />
+  //         <Navigation />
+  //         <LenisScrollProvider>{children}</LenisScrollProvider>
+  //         <Footer />
+  //         <NewsletterForm />
+  //       </>
+  //     );
+  //   }
+  // };
 
   return (
     <ViewTransitions>
       <Providers>
         <html lang="en">
           <body>
-            {renderBody()}
-            {/* <SignupButtonLarge />
+            <SignupButtonLarge />
             <ScrollIndicator />
             <Navigation />
             <LenisScrollProvider>{children}</LenisScrollProvider>
-            <Footer /> <NewsletterForm /> */}
+            <Footer /> <NewsletterForm />
             <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
