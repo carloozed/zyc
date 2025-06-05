@@ -5,13 +5,13 @@ import { ViewTransitions } from 'next-view-transitions';
 
 import Script from 'next/script';
 
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 import { Providers } from '@/Providers/Providers';
 
 import LenisScrollProvider from '@/contexts/LenisContext';
 
-import SplashScreen from './components/SplashScreen/SplashScreen';
+// import SplashScreen from './components/SplashScreen/SplashScreen';
 
 import './globals.css';
 import './reset.css';
