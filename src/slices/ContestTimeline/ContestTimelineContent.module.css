@@ -5,7 +5,7 @@
     align-items: center;
     gap: var(--padding-xl);
     min-width: 100svw;
-    height: 85vh;
+    height: 90vh;
 }
 
 
@@ -88,7 +88,7 @@
     position: relative;
     height: 100%;
     overflow: hidden;
-    min-height: 18rem;
+    min-height: 20rem;
 }
 
 .ctl__timeline__item__descriptioncontainer {
