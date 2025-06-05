@@ -17,7 +17,8 @@
     gap: 10vh;
 }
 
-.splashscreen__content h2 {
+.splashscreen__content h2,
+.splashscreen__content h1 {
     text-align: center;
 }
 
