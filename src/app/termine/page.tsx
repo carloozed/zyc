@@ -11,8 +11,8 @@ export default async function Page() {
   const page = await client
     .getSingle('teilnahme_termine')
     .catch(() => notFound());
-
-  return <TermineContent page={page} />;
+  const signuplink = await client.getSingle('anmeldelink');
+  return <TermineContent page={page} signuplink={signuplink} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

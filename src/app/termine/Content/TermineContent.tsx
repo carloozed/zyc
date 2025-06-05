@@ -4,7 +4,10 @@ import React, { useRef } from 'react';
 
 import styles from './TermineContent.module.css';
 
-import { TeilnahmeTermineDocument } from '../../../../prismicio-types';
+import {
+  AnmeldelinkDocument,
+  TeilnahmeTermineDocument,
+} from '../../../../prismicio-types';
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
@@ -19,9 +22,12 @@ import ArrowDown from './components/ArrowDown';
 
 gsap.registerPlugin(useGSAP);
 
-type Props = { page: TeilnahmeTermineDocument };
+type Props = {
+  page: TeilnahmeTermineDocument;
+  signuplink: AnmeldelinkDocument;
+};
 
-export default function TermineContent({ page }: Props) {
+export default function TermineContent({ page, signuplink }: Props) {
   const lowerContainerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -64,7 +70,11 @@ export default function TermineContent({ page }: Props) {
         </div>
       </div>
       <div className={styles.termine__content} ref={lowerContainerRef}>
-        <SliceZone slices={page.data.slices} components={components} />
+        <SliceZone
+          slices={page.data.slices}
+          components={components}
+          context={signuplink}
+        />
       </div>
     </section>
   );
