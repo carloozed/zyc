@@ -182,6 +182,11 @@
     text-decoration: underline;
 }
 
+.foldout__subitem_description em {
+    font-style: normal;
+    font-size: calc(0.4rem + 0.4vw);
+}
+
 
 
 /* Small Mobile */
@@ -303,6 +308,11 @@
     .foldout__subitem_description p {
         font-size: var(--text-sm);
         max-width: 80vw;
+    }
+
+    .foldout__subitem_description em {
+        font-style: normal;
+        font-size: calc(0.4rem + 0.6vw);
     }
 }
 
