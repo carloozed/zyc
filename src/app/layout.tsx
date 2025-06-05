@@ -35,7 +35,6 @@ export default async function RootLayout({
     } else {
       return (
         <>
-          <SplashScreen />
           <SignupButtonLarge />
           <ScrollIndicator />
           <Navigation />
