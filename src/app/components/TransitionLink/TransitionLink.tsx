@@ -17,6 +17,7 @@ export type TransitionLinkProps = {
   tabIndex?: number;
   hasText?: boolean;
   hasAnimation?: boolean;
+  isDisabled?: boolean;
 } & (
   | { field: LinkField | null; document?: never; href?: never }
   | { field?: never; document: PrismicDocument | null; href?: never }
@@ -32,6 +33,7 @@ export function TransitionLink({
   onClick,
   tabIndex,
   hasText = true,
+  isDisabled = false,
 }: TransitionLinkProps) {
   const url = href ?? asLink(field ?? doc);
   const linkRef = useRef<HTMLAnchorElement>(null);
@@ -44,10 +46,13 @@ export function TransitionLink({
   return (
     <Link
       ref={linkRef}
-      href={url}
+      href={isDisabled ? '' : url}
       className={className}
       onClick={onClick}
       tabIndex={tabIndex}
+      style={{
+        visibility: isDisabled ? 'hidden' : 'visible',
+      }}
     >
       {hasText ? (field?.text ?? children) : children}
     </Link>

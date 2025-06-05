@@ -20,7 +20,8 @@ import NewsletterLink from '../../NewsletterLink/NewsletterLink';
 gsap.registerPlugin(SplitText, useGSAP);
 
 export default function Menu({ ...menuProps }) {
-  const { navbar, isOpen, setIsOpen, lowNavigation } = menuProps;
+  const { navbar, isOpen, setIsOpen, lowNavigation, termineIsVisible } =
+    menuProps;
   const [subbarIsOpen, setSubbarIsOpen] = useState(false);
 
   const { isMobile } = useMobile();
@@ -36,6 +37,8 @@ export default function Menu({ ...menuProps }) {
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
 
+  console.log(termineIsVisible.data);
+
   const pathname = usePathname();
 
   const indicatorPosition = () => {
@@ -48,9 +51,9 @@ export default function Menu({ ...menuProps }) {
         return '110%';
       case '/the_crescendo':
         return '110%';
-      case '/termine':
-        return '210%';
       case '/ueber_zyc':
+        return '210%';
+      case '/termine':
         return '310%';
       default:
         return '0%';
@@ -154,7 +157,19 @@ export default function Menu({ ...menuProps }) {
                             linkContainerRef.current[index] = el;
                           }}
                         >
-                          <TransitionLink field={item.item} />
+                          {termineIsVisible.data.termine_is_visible === false &&
+                          item.item.text == 'Termine' ? (
+                            <h2
+                              className={`${
+                                termineIsVisible.data.termine_is_visible ===
+                                  false && styles.termine_not_visible
+                              }`}
+                            >
+                              {item.item.text}
+                            </h2>
+                          ) : (
+                            <TransitionLink field={item.item} />
+                          )}
                         </div>
                       </div>
                       <div className={styles.subnavbar__container}>

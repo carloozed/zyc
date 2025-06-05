@@ -136,12 +136,23 @@
     padding-right: 2.5%;
 }
 
-.navbar__item a {
+.navbar__item a,
+.navbar__item h2 {
     font-family: var(--subtitle-font);
     font-size: var(--subtitle-l);
     font-weight: var(--fontweight-xs);
     width: fit-content;
     font-family: var(--title-font);
+}
+
+.termine_not_visible {
+    position: relative;
+}
+
+.termine_not_visible::after {
+    content: "(coming soon)";
+    padding-left: var(--padding-s);
+    font-size: var(--text);
 }
 
 
@@ -161,10 +172,6 @@
     transition: opacity 0.2s var(--bezier)
 }
 
-.subnavbar__open {
-    opacity: 1;
-    pointer-events: all;
-}
 
 .subnavbar__item {
     display: flex;
