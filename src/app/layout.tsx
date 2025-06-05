@@ -30,7 +30,7 @@ export default async function RootLayout({
   const domain = headerList.get('host') || 'localhost';
 
   const renderBody = () => {
-    if (domain.includes('splash-domain.com')) {
+    if (domain.includes('zurichyouthclassical')) {
       return <SplashScreen />;
     } else {
       return (
