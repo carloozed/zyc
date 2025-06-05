@@ -3,6 +3,8 @@ import { repositoryName } from '@/prismicio';
 
 import { ViewTransitions } from 'next-view-transitions';
 
+import Script from 'next/script';
+
 import { headers } from 'next/headers';
 
 import { Providers } from '@/Providers/Providers';
@@ -57,6 +59,7 @@ export default async function RootLayout({
             <Navigation />
             <LenisScrollProvider>{children}</LenisScrollProvider>
             <Footer /> <NewsletterForm /> */}
+            <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
         </html>

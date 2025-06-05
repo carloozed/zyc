@@ -178,6 +178,11 @@
 }
 
 
+.foldout__subitem_description a {
+    text-decoration: underline;
+}
+
+
 
 /* Small Mobile */
 /* Up to 480px */
