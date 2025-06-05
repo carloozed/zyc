@@ -40,6 +40,7 @@
     text-decoration: underline;
     font-family: var(--text-font);
     cursor: pointer;
+    font-size: calc(0.5rem + 0.5vw);
 }
 
 
