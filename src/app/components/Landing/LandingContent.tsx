@@ -89,8 +89,6 @@ export default function LandingContent({
   const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTabletPortrait } = useMobile();
 
-  console.log('Termine,', termineIsVisible);
-
   const mouseLeaveFunction = () => {
     setHoveredElement('');
     setIsHovered(false);

@@ -37,8 +37,6 @@ export default function Menu({ ...menuProps }) {
   const indicator = menuProps.indicator.data;
   const subnavigation = menuProps.subnavigation.data;
 
-  console.log(termineIsVisible.data);
-
   const pathname = usePathname();
 
   const indicatorPosition = () => {

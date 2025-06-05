@@ -16,8 +16,6 @@ export default function RegularSlice({ regularProps }: Props) {
   const { slice, foldoutElements } = regularProps;
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
 
-  console.log(slice.variation);
-
   const matchingElements = foldoutElements
     .filter((item) => {
       return (
