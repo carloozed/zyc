@@ -11,6 +11,7 @@ export default async function Footer() {
   const address = await client.getSingle('address');
   const subnavigation = await client.getSingle('subnavigation');
   const isDownloadsMutedObject = await client.getByType('isdownloadsmuted');
+  const isTermineVisible = await client.getSingle('termine_is_visible');
 
   const isDownloadsMuted =
     isDownloadsMutedObject.results[0].data.isdownloadsmuted;
@@ -28,6 +29,7 @@ export default async function Footer() {
       address={address}
       subnavigation={subnavigation}
       isDownloadsMuted={isDownloadsMuted}
+      termineIsVisible={isTermineVisible}
     />
   );
 }

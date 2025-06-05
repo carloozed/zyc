@@ -11,6 +11,7 @@ import {
   LowNavigationDocument,
   NavbarDocument,
   SubnavigationDocument,
+  TermineIsVisibleDocument,
 } from '../../../../prismicio-types';
 import styles from './FooterContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
@@ -27,6 +28,7 @@ type Props = {
   address: AddressDocument;
   subnavigation: SubnavigationDocument;
   isDownloadsMuted: boolean;
+  termineIsVisible?: TermineIsVisibleDocument;
 };
 
 export default function FooterContent({
@@ -37,6 +39,7 @@ export default function FooterContent({
   subnavigation,
   logo,
   isDownloadsMuted,
+  termineIsVisible,
 }: Props) {
   const pathname = usePathname();
 
@@ -113,14 +116,19 @@ export default function FooterContent({
                         item.item.text !== 'Dein Weg mit ZYC'
                     )
                     .map((item, index) => (
-                      <div key={index} className={styles.footer__link}>
-                        <TransitionLink field={item.item} />{' '}
-                        <PrismicNextLink field={item.item}>
-                          <p className={styles.rotate}>&#8595;</p>{' '}
-                        </PrismicNextLink>
+                      <div key={index}>
+                        {termineIsVisible?.data.termine_is_visible === false &&
+                        item.item.text === 'Termine' ? null : (
+                          <div key={index} className={styles.footer__link}>
+                            <TransitionLink field={item.item} />{' '}
+                            <PrismicNextLink field={item.item}>
+                              <p className={styles.rotate}>&#8595;</p>{' '}
+                            </PrismicNextLink>
+                          </div>
+                        )}
                       </div>
                     ))}
-                </div>{' '}
+                </div>
               </div>
             </div>
             <div className={styles.footer__datecontainer}>
