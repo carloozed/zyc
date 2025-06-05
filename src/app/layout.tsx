@@ -57,7 +57,8 @@ export default async function RootLayout({
             <ScrollIndicator />
             <Navigation />
             <LenisScrollProvider>{children}</LenisScrollProvider>
-            <Footer /> <NewsletterForm />
+            <Footer />
+            <NewsletterForm />
             <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
