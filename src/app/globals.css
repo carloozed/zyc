@@ -152,6 +152,10 @@ h6 {
     font-family: var(--subtitle-font);
 }
 
+ul {
+    list-style-position: inside;
+}
+
 p,
 li,
 ul {

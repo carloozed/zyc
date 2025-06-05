@@ -203,6 +203,14 @@
         display: flex;
         gap: var(--padding-m);
         font-family: var(--text-font);
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .footer__lownavigation span,
+    .footer__lownavigation a {
+        font-size: calc(0.6vw + 0.6rem)
     }
 
 

@@ -67,7 +67,7 @@ export default function ContactAndDownloadContent({
             </div>
           </div>
         )}
-      {isMobile && (
+      {isMobile && slice.variation === 'default' && (
         <div className={styles.signuplink}>
           <PrismicNextLink field={signuplink}>Anmelden</PrismicNextLink>
         </div>
