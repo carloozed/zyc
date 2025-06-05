@@ -11,8 +11,15 @@ export default async function Page() {
   const foldoutElements = await client
     .getAllByType('foldoutelement')
     .catch(() => notFound());
+  const signuplink = await client.getSingle('anmeldelink');
 
-  return <CreschendoContent page={page} foldoutElements={foldoutElements} />;
+  return (
+    <CreschendoContent
+      page={page}
+      foldoutElements={foldoutElements}
+      signuplink={signuplink}
+    />
+  );
 }
 
 export async function generateMetadata(): Promise<Metadata> {
