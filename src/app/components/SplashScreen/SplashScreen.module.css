@@ -14,7 +14,6 @@
     justify-content: center;
     height: 100%;
     flex-direction: column;
-    border: 1px solid black;
     gap: 10vh;
 }
 
