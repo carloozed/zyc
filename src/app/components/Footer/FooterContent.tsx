@@ -17,6 +17,7 @@ import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { isFilled } from '@prismicio/client';
 import { TransitionLink } from '../TransitionLink/TransitionLink';
+import NewsletterLink from '../NewsletterLink/NewsletterLink';
 
 type Props = {
   footer: FooterDocument;
@@ -39,11 +40,8 @@ export default function FooterContent({
 }: Props) {
   const pathname = usePathname();
 
-  console.log(lowNavigation?.data.low_navigation_items);
-
   return (
     <>
-      {' '}
       {pathname === '/' ? null : (
         <footer className={styles.footer}>
           <div className={styles.footer__logocontainer}>
@@ -79,9 +77,7 @@ export default function FooterContent({
                               1 && <div></div>}
                         </>
                       ) : (
-                        <span onClick={() => console.log('helloo')}>
-                          Newsletter
-                        </span>
+                        <NewsletterLink />
                       )}
                     </div>
                   ))}

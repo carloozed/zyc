@@ -117,6 +117,7 @@
 .footer__lownavigation a {
     font-size: var(--text-font);
     cursor: pointer;
+    line-height: 100%;
 }
 
 .footer__lownavigation div {

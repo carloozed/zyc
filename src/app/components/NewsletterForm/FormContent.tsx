@@ -6,16 +6,20 @@ import { NewsletterFormDocument } from '../../../../prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
+import useNewsletterStore from '@/stores/NewsletterStore';
+
 export type NewsletterProps = {
   newsletter: NewsletterFormDocument;
 };
 
 export default function FormContent({ newsletter }: NewsletterProps) {
-  const [formIsShown, setFormIsShown] = useState(false);
   const [email, setEmail] = useState('');
   const [firstname, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
   const [status, setStatus] = useState('');
+
+  const { isNewsletterFormShown, setNewsletterFormShown } =
+    useNewsletterStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,7 +37,7 @@ export default function FormContent({ newsletter }: NewsletterProps) {
       setFirstName('');
       setSurname('');
       setTimeout(() => {
-        setFormIsShown(false);
+        setNewsletterFormShown(false);
       }, 1000);
     } else {
       setStatus(data.error || 'Something went wrong.');
@@ -42,12 +46,12 @@ export default function FormContent({ newsletter }: NewsletterProps) {
 
   return (
     <div
-      className={`${styles.formcontainer} ${formIsShown ? styles.formcontainer__shown : ''}`}
+      className={`${styles.formcontainer} ${isNewsletterFormShown ? styles.formcontainer__shown : ''}`}
     >
       <form onSubmit={handleSubmit} className={styles.form}>
         <div
           className={styles.cross__container}
-          onClick={() => setFormIsShown(false)}
+          onClick={() => setNewsletterFormShown(false)}
         >
           <div className={styles.cross}>
             <div className={styles.line}></div>
