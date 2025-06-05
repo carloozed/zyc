@@ -144,7 +144,7 @@
         align-items: center;
         gap: var(--padding-xl);
         min-width: 100svw;
-        height: 60vh;
+        height: 55vh;
     }
 
 
@@ -251,6 +251,7 @@
 
     .ctl__timeline__item__description h3 {
         font-size: var(--subtitle-s);
+        text-align: center;
     }
 
     .ctl__timeline__item__description p {

@@ -160,6 +160,7 @@ p,
 li,
 ul {
     font-family: var(--text-font);
+    hyphens: auto;
 }
 
 h1 {

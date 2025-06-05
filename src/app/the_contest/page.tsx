@@ -24,6 +24,7 @@ export default async function Page() {
   const isDownloadsMuted = await client
     .getByType('isdownloadsmuted')
     .catch(() => notFound());
+
   return (
     <ContestContent
       signuplink={signuplink}

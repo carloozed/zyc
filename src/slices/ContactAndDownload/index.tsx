@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { Content, LinkField } from '@prismicio/client';
+import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import ContactAndDownloadContent from './ContactAndDownloadContent';
+import { AnmeldelinkDocument } from '../../../prismicio-types';
 
 /**
  * Props for `ContactAndDownload`.
@@ -11,7 +12,7 @@ export type ContactAndDownloadProps =
 
 type ContestAndDownloadContext = {
   isDownloadsMuted: Content.IsdownloadsmutedDocument;
-  signuplink: LinkField;
+  signuplink: AnmeldelinkDocument;
 };
 
 /**

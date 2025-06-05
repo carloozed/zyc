@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+  AnmeldelinkDocument,
   ContactAndDownloadSlice,
   IsdownloadsmutedDocument,
 } from '../../../prismicio-types';
@@ -12,14 +13,12 @@ import styles from './ContactAndDownload.module.css';
 
 import { useMobile } from '@/contexts/MobileContext';
 
-import { LinkField } from '@prismicio/client';
-
 import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
 
 type Props = {
   slice: ContactAndDownloadSlice;
   isDownloadsMuted: IsdownloadsmutedDocument;
-  signuplink: LinkField;
+  signuplink: AnmeldelinkDocument;
 };
 
 export default function ContactAndDownloadContent({
@@ -28,6 +27,30 @@ export default function ContactAndDownloadContent({
   signuplink,
 }: Props) {
   const { isMobile, isTabletPortrait } = useMobile();
+
+  console.log(signuplink);
+
+  const shouldShowBasedOnDates = () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    const buttonShowDate =
+      signuplink.data.show_button_date?.split('T')[0] ||
+      signuplink.data.show_button_date;
+    const buttonHideDate =
+      signuplink.data.hide_button_date?.split('T')[0] ||
+      signuplink.data.hide_button_date;
+
+    if (!buttonShowDate) return false;
+
+    const isPastShowDate = currentDate >= buttonShowDate;
+
+    if (!buttonHideDate) return isPastShowDate;
+
+    const isBeforeHideDate = currentDate < buttonHideDate;
+
+    return isPastShowDate && isBeforeHideDate;
+  };
+
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -67,15 +90,21 @@ export default function ContactAndDownloadContent({
             </div>
           </div>
         )}
-      {isMobile && slice.variation === 'default' && (
-        <div className={styles.signuplink}>
-          <PrismicNextLink field={signuplink}>Anmelden</PrismicNextLink>
-        </div>
-      )}
+      {shouldShowBasedOnDates() &&
+        isMobile &&
+        slice.variation === 'default' && (
+          <div className={styles.signuplink}>
+            <PrismicNextLink field={signuplink.data.anmeldelink}>
+              Anmelden
+            </PrismicNextLink>
+          </div>
+        )}
 
-      {isTabletPortrait && (
+      {shouldShowBasedOnDates() && isTabletPortrait && (
         <div className={styles.signuplink}>
-          <PrismicNextLink field={signuplink}>Anmelden</PrismicNextLink>
+          <PrismicNextLink field={signuplink.data.anmeldelink}>
+            Anmelden
+          </PrismicNextLink>
         </div>
       )}
     </section>
