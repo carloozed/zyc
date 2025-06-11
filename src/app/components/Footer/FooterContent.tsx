@@ -132,8 +132,7 @@ export default function FooterContent({
               </div>
             </div>
             <div className={styles.footer__datecontainer}>
-              {' '}
-              ©{new Date().getFullYear()}
+              <p>©{new Date().getFullYear()}</p>
             </div>
           </div>
         </footer>
