@@ -251,21 +251,21 @@ p {
 
 /* Small Mobile */
 /* Up to 480px */
-@media (max-width: 30rem) {
+@media (max-width: 48rem) {
     :root {
 
         /* font sizes */
 
         /* 120px */
-        --page-title: calc(2.4rem + 2.4vw);
+        --page-title: calc(2.2rem + 2.2vw);
 
-        --subtitle-xxl: calc(2rem + 2vw);
+        --subtitle-xxl: calc(1.8rem + 1.8vw);
         /* 64px */
-        --subtitle-xl: calc(1.6rem + 1.6vw);
+        --subtitle-xl: calc(1.4rem + 1.4vw);
         /* 48px */
-        --subtitle-l: calc(1.1rem + 1.5vw);
+        --subtitle-l: calc(1rem + 1.5vw);
         /* 32px */
-        --subtitle-m: 2rem;
+        --subtitle-m: calc(1rem + 1.6vw);
         /* 24px */
         --subtitle-s: calc(0.75rem + 0.75vw);
 
@@ -310,9 +310,6 @@ p {
     }
 }
 
-/* Mobile */
-/* Up to 768px */
-@media (max-width: 48rem) {}
 
 /* Tablet */
 /* 768px to 1184px */

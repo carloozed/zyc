@@ -75,8 +75,7 @@
 
     .contentItem h2 {
         width: fit-content;
-        font-size: var(--subtitle-s);
-
+        font-size: var(--subtitle-m);
     }
 
 
