@@ -20,7 +20,13 @@ export default function ScrollIndicator() {
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Pages where indicator should never show
-  const excludedPages = ['/', '/ueber_zyc', '/impressum', '/datenschutz'];
+  const excludedPages = [
+    '/',
+    '/ueber_zyc',
+    '/impressum',
+    '/datenschutz',
+    '/newsletter_confirmed',
+  ];
   const isExcludedPage = excludedPages.includes(pathname);
 
   useEffect(() => {
