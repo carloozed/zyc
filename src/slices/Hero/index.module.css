@@ -45,7 +45,10 @@
 
 .heroslice__rightcontainer h1 {
     transform: translateY(12px);
+}
 
+.heroslice__rightcontainer h3 {
+    font-weight: 200;
 }
 
 .leftcontainer__imagecontainer {
@@ -69,7 +72,8 @@
     text-align: center;
     border: var(--border-thin);
     border-radius: 6px;
-    padding: var(--padding-s)
+    padding: var(--padding-s);
+
 }
 
 .leftcontainer__linkcontainer a:nth-of-type(1) {
