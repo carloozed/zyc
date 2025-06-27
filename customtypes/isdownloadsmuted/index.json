@@ -9,7 +9,7 @@
       "isdownloadsmuted": {
         "type": "Boolean",
         "config": {
-          "label": "isDownloadsMuted",
+          "label": "Is Downloads Visible",
           "placeholder_false": "false",
           "placeholder_true": "true",
           "default_value": false

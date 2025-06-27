@@ -87,7 +87,7 @@ export default function FooterContent({
               </div>
             </div>
             <div className={styles.footer__middlecontainer}>
-              {!isDownloadsMuted && (
+              {isDownloadsMuted && (
                 <div className={styles.footer__downloadcontainer}>
                   {footer.data.downloads.map((item, index) => (
                     <div key={index} className={styles.footer__link}>

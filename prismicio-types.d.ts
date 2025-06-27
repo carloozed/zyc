@@ -1121,7 +1121,7 @@ export type ImpresssumDocument<Lang extends string = string> =
  */
 interface IsdownloadsmutedDocumentData {
   /**
-   * isDownloadsMuted field in *isDownloadsMuted*
+   * Is Downloads Visible field in *isDownloadsMuted*
    *
    * - **Field Type**: Boolean
    * - **Placeholder**: *None*
