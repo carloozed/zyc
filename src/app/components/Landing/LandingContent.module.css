@@ -69,7 +69,7 @@
 .leftcontainer__dynamic h3 {
     font-size: var(--subtitle-l);
     text-align: center;
-
+    font-weight: 200;
 
 }
 
