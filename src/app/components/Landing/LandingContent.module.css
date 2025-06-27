@@ -70,6 +70,7 @@
     font-size: var(--subtitle-l);
     text-align: center;
 
+
 }
 
 .leftcontainer__dynamic p {
@@ -116,7 +117,13 @@
     background-color: var(--white-lowopa);
     transition: transform var(--animationtime-slow) var(--bezier), background-color var(--animationtime-middle);
     border: var(--border-thin);
-    border-radius: var(--radius-s)
+    border-radius: var(--radius-s);
+
+
+}
+
+.landing__navigationitem h4 {
+    font-weight: 200;
 }
 
 .landing__navigationitem a h5 {
@@ -177,6 +184,7 @@
     align-items: center;
     padding-bottom: var(--padding-s);
 
+
 }
 
 .landing__contest .ccc__innercontainer {
@@ -216,7 +224,7 @@
 .landing__about h4,
 .landing__termine h4 {
     font-family: var(--title-font);
-    font-size: var(--subtitle-xl);
+    font-size: var(--subtitle-l);
     text-align: center;
     height: fit-content;
     width: 100%;
