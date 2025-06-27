@@ -8,7 +8,7 @@ import {
   UberZycDocument,
 } from '../../../../prismicio-types';
 
-import { RevealText } from '@/app/components/RevealText/RevealText';
+// import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type Props = {
   styles: { [key: string]: string };
@@ -19,7 +19,7 @@ type Props = {
 export default function AboutContent({ styles, page, foldoutElements }: Props) {
   return (
     <section className={styles.about__container}>
-      <RevealText as={'h1'} field={page.data.page_title} />
+      {/* <RevealText as={'h1'} field={page.data.page_title} /> */}
       <SliceZone
         slices={page.data.slices}
         components={components}

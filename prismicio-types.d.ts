@@ -1987,7 +1987,7 @@ export type TimelineDocument<Lang extends string = string> =
     Lang
   >;
 
-type UberZycDocumentDataSlicesSlice = FoldoutSlice;
+type UberZycDocumentDataSlicesSlice = SplitVisualHeadlineSlice | FoldoutSlice;
 
 /**
  * Content for Über ZYC documents
