@@ -170,6 +170,11 @@ h1 {
 
 h2 {
     font-size: var(--subtitle-l);
+    font-weight: 200;
+}
+
+h3 {
+    font-weight: 200;
 }
 
 p {
