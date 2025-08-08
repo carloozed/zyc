@@ -5,6 +5,7 @@
     gap: var(--padding-xl);
     border-top: var(--border-thin);
     view-transition-name: footer;
+
 }
 
 .footer * {
@@ -13,7 +14,7 @@
 
 .footer__lowercontainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 0.5fr;
 }
 
 .footer__leftcontainer {
@@ -30,7 +31,7 @@
 }
 
 .footer__address h4 {
-    font-size: var(--subtitle-s)
+    font-size: var(--subtitle-s);
 }
 
 .footer__address a {
@@ -47,7 +48,7 @@
 .footer__middlecontainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--padding-m);
+    padding: 0 var(--padding-m);
 }
 
 .footer__middlecontainer a {
@@ -228,10 +229,12 @@
         padding: var(--padding-xl) var(--padding-m);
         margin-top: var(--padding-xl);
         gap: var(--padding-l);
+
     }
 
     .footer * {
         font-family: var(--text-font);
+
     }
 
 
