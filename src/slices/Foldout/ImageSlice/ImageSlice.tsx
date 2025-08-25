@@ -163,6 +163,17 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                           {isFilled.richText(item.subtopic_description) && (
                             <PrismicRichText
                               field={item.subtopic_description}
+                              components={{
+                                hyperlink: ({ node, children }) => (
+                                  <a
+                                    href={node.data.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {children}
+                                  </a>
+                                ),
+                              }}
                             />
                           )}
                         </div>
