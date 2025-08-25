@@ -184,6 +184,13 @@ p {
     line-height: 150%;
 }
 
+ul,
+ol {
+    list-style-position: outside;
+    padding-left: 1.5%;
+}
+
+
 
 @keyframes fade-in {
     from {
