@@ -84,7 +84,13 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                       element.data.belongs_to_foldout === 'contestfaq' &&
                       element.data.itemindex === 1
                         ? 'var(--contestblue)'
-                        : 'transparent',
+                        : element.data.belongs_to_foldout === 'cadenzafaq' &&
+                            element.data.itemindex === 1
+                          ? 'var(--cadenzagold)'
+                          : element.data.belongs_to_foldout ===
+                                'crescendofaq' && element.data.itemindex === 1
+                            ? 'var(--crescendogold)'
+                            : 'white',
                   }}
                 >
                   <h4>{elementIndex + 1}</h4>
@@ -97,7 +103,13 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                       element.data.belongs_to_foldout === 'contestfaq' &&
                       element.data.itemindex === 1
                         ? 'var(--contestblue)'
-                        : 'transparent',
+                        : element.data.belongs_to_foldout === 'cadenzafaq' &&
+                            element.data.itemindex === 1
+                          ? 'var(--cadenzagold)'
+                          : element.data.belongs_to_foldout ===
+                                'crescendofaq' && element.data.itemindex === 1
+                            ? 'var(--crescendogold)'
+                            : 'white',
                   }}
                 >
                   {element.data.foldout_element_topic &&
