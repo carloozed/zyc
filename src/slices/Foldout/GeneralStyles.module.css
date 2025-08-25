@@ -309,10 +309,6 @@
         max-width: 80vw;
     }
 
-    .foldout__subitem_description em {
-        font-style: normal;
-        font-size: calc(0.4rem + 0.6vw);
-    }
 }
 
 
