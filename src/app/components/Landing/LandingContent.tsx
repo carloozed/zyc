@@ -108,8 +108,16 @@ export default function LandingContent({
     about_title,
   } = landingNavigation.data;
 
-  const [contestHover, cadenzaHover, crescendoHover, aboutHover] =
-    hoverElements;
+  const contestHover = hoverElements.find(
+    (element) => element.uid === 'landinghover-contest'
+  );
+  const cadenzaHover = hoverElements.find(
+    (element) => element.uid === 'cadenza'
+  );
+  const crescendoHover = hoverElements.find(
+    (element) => element.uid === 'crescendo'
+  );
+  const aboutHover = hoverElements.find((element) => element.uid === 'about');
 
   return (
     <div className={styles.landing__container}>
@@ -145,23 +153,39 @@ export default function LandingContent({
               <div>
                 {hoveredElement === 'contest' ? (
                   <>
-                    <PrismicRichText field={contestHover.data.title} />
-                    <PrismicRichText field={contestHover.data.description} />
+                    <PrismicRichText
+                      field={contestHover && contestHover.data.title}
+                    />
+                    <PrismicRichText
+                      field={contestHover && contestHover.data.description}
+                    />
                   </>
                 ) : hoveredElement === 'cadenza' ? (
                   <>
-                    <PrismicRichText field={crescendoHover.data.title} />
-                    <PrismicRichText field={crescendoHover.data.description} />
+                    <PrismicRichText
+                      field={cadenzaHover && cadenzaHover.data.title}
+                    />
+                    <PrismicRichText
+                      field={cadenzaHover && cadenzaHover.data.description}
+                    />
                   </>
                 ) : hoveredElement === 'crescendo' ? (
                   <>
-                    <PrismicRichText field={cadenzaHover.data.title} />
-                    <PrismicRichText field={cadenzaHover.data.description} />
+                    <PrismicRichText
+                      field={crescendoHover && crescendoHover.data.title}
+                    />
+                    <PrismicRichText
+                      field={crescendoHover && crescendoHover.data.description}
+                    />
                   </>
                 ) : hoveredElement === 'about' ? (
                   <>
-                    <PrismicRichText field={aboutHover.data.title} />
-                    <PrismicRichText field={aboutHover.data.description} />
+                    <PrismicRichText
+                      field={aboutHover && aboutHover.data.title}
+                    />
+                    <PrismicRichText
+                      field={aboutHover && aboutHover.data.description}
+                    />
                   </>
                 ) : null}
               </div>

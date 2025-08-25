@@ -56,6 +56,8 @@
     --subtitle-xl: calc(1.6rem + 1.6vw);
     /* 48px */
     --subtitle-l: calc(1.3rem + 1.3vw);
+
+    --subtitle-landing: calc(1rem + 1.3vw);
     /* 32px */
     --subtitle-m: 2rem;
     /* 24px */

@@ -67,10 +67,9 @@
 }
 
 .leftcontainer__dynamic h3 {
-    font-size: var(--subtitle-l);
+    font-size: var(--subtitle-landing);
     text-align: center;
     font-weight: 200;
-
 }
 
 .leftcontainer__dynamic p {
@@ -122,9 +121,7 @@
 
 }
 
-.landing__navigationitem h4 {
-    font-weight: 200;
-}
+
 
 .landing__navigationitem a h5 {
     width: fit-content;
@@ -209,7 +206,7 @@
 .landing__cadenza h4,
 .landing__contest h4 {
     width: fit-content;
-    font-size: var(--subtitle-l);
+    font-size: var(--subtitle-landing);
     font-weight: var(--fontweight-s);
     font-family: var(--title-font);
 }
@@ -224,7 +221,7 @@
 .landing__about h4,
 .landing__termine h4 {
     font-family: var(--title-font);
-    font-size: var(--subtitle-l);
+    font-size: var(--subtitle-landing);
     text-align: center;
     height: fit-content;
     width: 100%;
