@@ -17,18 +17,16 @@ import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
 
 type Props = {
   slice: ContactAndDownloadSlice;
-  isDownloadsMuted: IsdownloadsmutedDocument;
+  isDownloadsMuted?: IsdownloadsmutedDocument;
   signuplink: AnmeldelinkDocument;
 };
 
 export default function ContactAndDownloadContent({
   slice,
-  isDownloadsMuted,
+
   signuplink,
 }: Props) {
   const { isMobile, isTabletPortrait } = useMobile();
-
-  console.log(signuplink);
 
   const shouldShowBasedOnDates = () => {
     const currentDate = new Date().toISOString().split('T')[0];
@@ -74,22 +72,20 @@ export default function ContactAndDownloadContent({
           ))}
         </div>
       </div>
-      {slice.variation === 'default' &&
-        isDownloadsMuted &&
-        isDownloadsMuted.data?.isdownloadsmuted === true && (
-          <div className={styles.sectioncontainer}>
-            <PrismicRichText field={slice.primary.downloads_title} />
-            <PrismicRichText field={slice.primary.text_downloads} />
-            <div className={styles.linkscontainer}>
-              {slice.primary.download_links.map((item, index: number) => (
-                <div key={index} className={styles.downloadlink}>
-                  <PrismicNextLink field={item.link} />
-                  <p>&darr;</p>
-                </div>
-              ))}
-            </div>
+      {slice.variation === 'default' && (
+        <div className={styles.sectioncontainer}>
+          <PrismicRichText field={slice.primary.downloads_title} />
+          <PrismicRichText field={slice.primary.text_downloads} />
+          <div className={styles.linkscontainer}>
+            {slice.primary.download_links.map((item, index: number) => (
+              <div key={index} className={styles.downloadlink}>
+                <PrismicNextLink field={item.link} />
+                <p>&darr;</p>
+              </div>
+            ))}
           </div>
-        )}
+        </div>
+      )}
       {shouldShowBasedOnDates() &&
         isMobile &&
         slice.variation === 'default' && (

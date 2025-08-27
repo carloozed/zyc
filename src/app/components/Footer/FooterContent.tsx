@@ -87,16 +87,6 @@ export default function FooterContent({
               </div>
             </div>
             <div className={styles.footer__middlecontainer}>
-              {isDownloadsMuted && (
-                <div className={styles.footer__downloadcontainer}>
-                  {footer.data.downloads.map((item, index) => (
-                    <div key={index} className={styles.footer__link}>
-                      <TransitionLink field={item.link} />{' '}
-                      <p className={styles.rotate}>&#8595;</p>
-                    </div>
-                  ))}
-                </div>
-              )}
               <div className={styles.footer__navigationcontainer}>
                 <div className={styles.footer__subnavigation}>
                   {subnavigation.data.subnavigation_items.map((item, index) => (
@@ -127,9 +117,19 @@ export default function FooterContent({
                           </div>
                         )}
                       </div>
-                    ))}
+                    ))}{' '}
+                </div>{' '}
+              </div>{' '}
+              {isDownloadsMuted && (
+                <div className={styles.footer__downloadcontainer}>
+                  {footer.data.downloads.map((item, index) => (
+                    <div key={index} className={styles.footer__link}>
+                      <PrismicNextLink field={item.link} target="_blank" />{' '}
+                      <p className={styles.rotate}>&#8595;</p>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
             <div className={styles.footer__datecontainer}>
               <p>©{new Date().getFullYear()}</p>
