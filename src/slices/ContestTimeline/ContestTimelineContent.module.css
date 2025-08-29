@@ -112,7 +112,8 @@
 }
 
 .ctl__timeline__item__description h3 {
-    font-size: var(--subtitle-m)
+    font-size: var(--subtitle-m);
+    letter-spacing: 0.5px;
 }
 
 .ctl__timeline__item__description p {
