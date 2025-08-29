@@ -4,19 +4,7 @@
     fallback: url("/fonts/MaxFett-Black.woff");
 }
 
-@font-face {
-    font-family: "ABC Synt Regular";
-    src: url("/fonts/ABCSynt-Regular-Trial.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: "Review Mono";
-    src: url("/fonts/ReviewMonoRegularTrial.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
 
 
 :root {
@@ -171,19 +159,20 @@ ul {
     hyphens: auto;
 }
 
+h1,
+h2,
+h3 {
+    font-weight: 150;
+}
+
 h1 {
     font-size: var(--page-title);
-    font-weight: 200;
 }
 
 h2 {
     font-size: var(--subtitle-l);
-    font-weight: 200;
 }
 
-h3 {
-    font-weight: 200;
-}
 
 p {
     font-size: var(--text-s);

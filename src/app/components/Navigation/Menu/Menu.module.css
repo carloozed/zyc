@@ -83,6 +83,7 @@
 .menu__addresscontainer h6 {
     font-size: var(--text);
     font-weight: var(--fontweight-xs);
+
     text-decoration: underline;
 }
 
