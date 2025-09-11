@@ -58,6 +58,13 @@
                   "allowTargetBlank": true,
                   "multi": "paragraph,list-item,hyperlink,strong"
                 }
+              },
+              "individual_key": {
+                "type": "Text",
+                "config": {
+                  "label": "Individual Key",
+                  "placeholder": ""
+                }
               }
             }
           }

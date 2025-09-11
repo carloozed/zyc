@@ -15,6 +15,7 @@ import { TransitionLink } from '../../TransitionLink/TransitionLink';
 import { useMobile } from '@/contexts/MobileContext';
 
 import NewsletterLink from '../../NewsletterLink/NewsletterLink';
+import ContactLink from '../../ContactLink/ContactLink';
 
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
@@ -221,15 +222,17 @@ export default function Menu({ ...menuProps }) {
                         legalLinkContainerRef.current[index] = el;
                       }}
                     >
-                      {item.item.text !== 'Newsletter' ? (
+                      {item.item.text === 'Newsletter' ? (
+                        <NewsletterLink />
+                      ) : item.item.text === 'Kontakt' ? (
+                        <ContactLink />
+                      ) : (
                         <>
                           <TransitionLink field={item.item} />
                           {index !==
                             lowNavigation.data.low_navigation_items.length -
                               1 && <div></div>}
                         </>
-                      ) : (
-                        <NewsletterLink />
                       )}
                     </li>
                   )

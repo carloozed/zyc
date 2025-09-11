@@ -12,6 +12,7 @@ import ProgressCircle from './ProgressCircle';
 import { PrismicNextImage } from '@prismicio/next';
 
 import { RevealText } from '@/app/components/RevealText/RevealText';
+import Timer from './Timer/Timer';
 
 type Props = {
   slice: ContestTimelineSlice;
@@ -133,7 +134,6 @@ export default function ContestTimelineContent({
       <div className={styles.ctl__timeline__wrapper}>
         <div
           className={styles.ctl__timeline__item__descriptioncontainer}
-          // Use the pre-calculated translatePercentage
           style={{
             transform: `translateX(-${translatePercentage}%)`,
           }}
@@ -147,7 +147,24 @@ export default function ContestTimelineContent({
                 field={item.phase_name}
                 components={h3Components}
               />
-              <PrismicRichText field={item.phase_description} />
+              {item.individual_key === 'anmeldephase' &&
+              item.start_date &&
+              new Date() < new Date('2025-10-10') ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '5px',
+                  }}
+                >
+                  <p>Das Anmeldefenster öffnet in</p>
+                  <Timer startDate={'2025-10-10T00:00:00'} />
+                  <p>Tagen</p>
+                </div>
+              ) : (
+                <PrismicRichText field={item.phase_description} />
+              )}
             </div>
           ))}
         </div>

@@ -307,7 +307,7 @@
         background-color: var(--white-lowopa);
         transition: transform var(--animationtime-slow) var(--bezier), background-color var(--animationtime-middle);
         border: var(--border-thin);
-        border-radius: var(--radius-s)
+        border-radius: var(--radius-s);
     }
 
     .landing__navigationitem a h5 {
@@ -365,6 +365,7 @@
         justify-content: center;
         align-items: center;
         min-height: 6rem;
+
     }
 
     .landing__termine {
@@ -396,6 +397,7 @@
         font-size: var(--subtitle-m);
         text-align: center;
         transform: translateY(var(--padding-m));
+
     }
 
     .landing__crescendo a,
@@ -406,9 +408,9 @@
 
     .landing__about h4,
     .landing__termine h4 {
-
+        transform: translateY(var(--padding-s));
         font-size: var(--subtitle-l);
-        transform: 0;
+
     }
 
     .landing__about a,

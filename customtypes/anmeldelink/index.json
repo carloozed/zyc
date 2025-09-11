@@ -39,6 +39,13 @@
           "placeholder_true": "true",
           "default_value": false
         }
+      },
+      "link_url": {
+        "type": "Text",
+        "config": {
+          "label": "Link URL",
+          "placeholder": "https://login.zurichyouthclassical.ch/"
+        }
       }
     }
   }

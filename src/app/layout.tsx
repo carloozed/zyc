@@ -22,32 +22,13 @@ import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge'
 import Footer from './components/Footer/Footer';
 import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
 import NewsletterForm from './components/NewsletterForm/NewsletterForm';
+import ContactForm from './components/ContactForm/ContactForm';
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const headerList = await headers();
-  // const domain = headerList.get('host') || 'localhost';
-
-  // const renderBody = () => {
-  //   if (domain.includes('zurichyouthclassical')) {
-  //     return <SplashScreen />;
-  //   } else {
-  //     return (
-  //       <>
-  //         <SignupButtonLarge />
-  //         <ScrollIndicator />
-  //         <Navigation />
-  //         <LenisScrollProvider>{children}</LenisScrollProvider>
-  //         <Footer />
-  //         <NewsletterForm />
-  //       </>
-  //     );
-  //   }
-  // };
-
   /* hello */
   return (
     <ViewTransitions>
@@ -60,6 +41,7 @@ export default async function RootLayout({
             <LenisScrollProvider>{children}</LenisScrollProvider>
             <Footer />
             <NewsletterForm />
+            <ContactForm />
             <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
           </body>
           <PrismicPreview repositoryName={repositoryName} />

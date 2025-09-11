@@ -29,7 +29,7 @@
           "label": "Newsletter Text",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,hyperlink,strong,em"
+          "multi": "paragraph,strong,em,hyperlink"
         }
       },
       "vorname": {

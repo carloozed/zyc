@@ -140,6 +140,17 @@ interface AnmeldelinkDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#boolean
    */
   hide_button_boolean: prismic.BooleanField;
+
+  /**
+   * Link URL field in *Anmeldelink*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: https://login.zurichyouthclassical.ch/
+   * - **API ID Path**: anmeldelink.link_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_url: prismic.KeyTextField;
 }
 
 /**
@@ -158,64 +169,97 @@ export type AnmeldelinkDocument<Lang extends string = string> =
     Lang
   >;
 
-type ContactFormDocumentDataSlicesSlice = never;
-
 /**
  * Content for Contact Form documents
  */
 interface ContactFormDocumentData {
   /**
-   * Contact Image field in *Contact Form*
+   * Image field in *Contact Form*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: contact_form.contact_image
+   * - **API ID Path**: contact_form.image
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  contact_image: prismic.ImageField<never>;
+  image: prismic.ImageField<never>;
 
   /**
-   * Slice Zone field in *Contact Form*
+   * Contact Title field in *Contact Form*
    *
-   * - **Field Type**: Slice Zone
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: contact_form.slices[]
+   * - **API ID Path**: contact_form.contact_title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  slices: prismic.SliceZone<ContactFormDocumentDataSlicesSlice> /**
-   * Meta Title field in *Contact Form*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: contact_form.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
+  contact_title: prismic.RichTextField;
 
   /**
-   * Meta Description field in *Contact Form*
+   * Contact Text field in *Contact Form*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: contact_form.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Contact Form*
-   *
-   * - **Field Type**: Image
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: contact_form.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
+   * - **API ID Path**: contact_form.contact_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  meta_image: prismic.ImageField<never>;
+  contact_text: prismic.RichTextField;
+
+  /**
+   * Vorname field in *Contact Form*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.vorname
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  vorname: prismic.KeyTextField;
+
+  /**
+   * Nachname field in *Contact Form*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.nachname
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  nachname: prismic.KeyTextField;
+
+  /**
+   * Email field in *Contact Form*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email: prismic.KeyTextField;
+
+  /**
+   * Deine Nachricht field in *Contact Form*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.deine_nachricht
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  deine_nachricht: prismic.KeyTextField;
+
+  /**
+   * Button Text field in *Contact Form*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact_form.button_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
 }
 
 /**
@@ -2445,6 +2489,16 @@ export interface ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   phase_description: prismic.RichTextField;
+
+  /**
+   * Individual Key field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].individual_key
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  individual_key: prismic.KeyTextField;
 }
 
 /**
@@ -3376,7 +3430,6 @@ declare module "@prismicio/client" {
       AnmeldelinkDocumentData,
       ContactFormDocument,
       ContactFormDocumentData,
-      ContactFormDocumentDataSlicesSlice,
       CriteriatypesubfieldDocument,
       CriteriatypesubfieldDocumentData,
       CriteriatypesubfieldDocumentDataFieldcontentItem,

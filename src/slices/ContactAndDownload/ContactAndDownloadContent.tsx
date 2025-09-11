@@ -14,6 +14,7 @@ import styles from './ContactAndDownload.module.css';
 import { useMobile } from '@/contexts/MobileContext';
 
 import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
+import ContactLink from '@/app/components/ContactLink/ContactLink';
 
 type Props = {
   slice: ContactAndDownloadSlice;
@@ -64,7 +65,11 @@ export default function ContactAndDownloadContent({
               {item.link.text === 'Anmeldung Newsletter' ? (
                 <NewsletterLink hasUnderscore={true} hasAnmeldung={true} />
               ) : (
-                <PrismicNextLink field={item.link} />
+                <ContactLink
+                  hasUnderscore={true}
+                  hasBorder={false}
+                  buttonText={'Kontaktiere uns'}
+                />
               )}
 
               <p style={{ transform: 'rotate(-135deg)' }}>&darr;</p>
@@ -79,7 +84,7 @@ export default function ContactAndDownloadContent({
           <div className={styles.linkscontainer}>
             {slice.primary.download_links.map((item, index: number) => (
               <div key={index} className={styles.downloadlink}>
-                <PrismicNextLink field={item.link} />
+                <PrismicNextLink field={item.link} target="_blank" />
                 <p>&darr;</p>
               </div>
             ))}

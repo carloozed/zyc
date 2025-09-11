@@ -19,6 +19,7 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { isFilled } from '@prismicio/client';
 import { TransitionLink } from '../TransitionLink/TransitionLink';
 import NewsletterLink from '../NewsletterLink/NewsletterLink';
+import ContactLink from '../ContactLink/ContactLink';
 
 type Props = {
   footer: FooterDocument;
@@ -72,15 +73,17 @@ export default function FooterContent({
                 {lowNavigation &&
                   lowNavigation.data.low_navigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__lownavigation}>
-                      {item.item.text !== 'Newsletter' ? (
+                      {item.item.text === 'Newsletter' ? (
+                        <NewsletterLink />
+                      ) : item.item.text === 'Kontakt' ? (
+                        <ContactLink />
+                      ) : (
                         <>
                           <TransitionLink field={item.item} />
                           {index !==
                             lowNavigation.data.low_navigation_items.length -
                               1 && <div></div>}
                         </>
-                      ) : (
-                        <NewsletterLink />
                       )}
                     </div>
                   ))}

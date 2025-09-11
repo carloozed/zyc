@@ -111,9 +111,6 @@
 }
 
 
-
-
-
 /* Small Mobile */
 /* Up to 480px */
 @media (max-width: 48rem) {
@@ -154,7 +151,7 @@
     }
 
 
-    .heroslice__rightcontainer h1 {}
+
 
     .leftcontainer__imagecontainer {
         height: fit-content;
@@ -340,7 +337,7 @@
     }
 
 
-    .heroslice__rightcontainer h1 {}
+
 
     .leftcontainer__imagecontainer {
         height: fit-content;

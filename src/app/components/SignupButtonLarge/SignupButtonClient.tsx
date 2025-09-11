@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnmeldelinkDocument } from '../../../../prismicio-types';
-import { PrismicNextLink } from '@prismicio/next';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 type Props = {
   styles: Record<string, string>;
@@ -68,7 +68,9 @@ export default function SignupButtonClient({ styles, signuplink }: Props) {
     <div
       className={`${styles.signup__button} ${buttonIsVisible ? styles.signup__button__home : ''}`}
     >
-      <PrismicNextLink field={signuplink.data.anmeldelink} />
+      <Link href={signuplink.data.link_url ?? '#'} target="_blank">
+        {signuplink.data.anmeldelink.text}
+      </Link>
     </div>
   );
 }

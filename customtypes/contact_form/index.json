@@ -1,52 +1,71 @@
 {
-  "format": "page",
+  "format": "custom",
   "id": "contact_form",
   "label": "Contact Form",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "contact_image": {
+      "image": {
         "type": "Image",
         "config": {
-          "label": "Contact Image",
+          "label": "Image",
           "constraint": {},
           "thumbnails": []
         }
       },
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
+      "contact_title": {
+        "type": "StructuredText",
         "config": {
-          "choices": {}
+          "label": "Contact Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading2"
         }
-      }
-    },
-    "SEO & Metadata": {
-      "meta_title": {
-        "config": {
-          "label": "Meta Title",
-          "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
       },
-      "meta_description": {
+      "contact_text": {
+        "type": "StructuredText",
         "config": {
-          "label": "Meta Description",
-          "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
+          "label": "Contact Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
       },
-      "meta_image": {
+      "vorname": {
+        "type": "Text",
         "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
-          "label": "Meta Image",
-          "thumbnails": []
-        },
-        "type": "Image"
+          "label": "Vorname",
+          "placeholder": ""
+        }
+      },
+      "nachname": {
+        "type": "Text",
+        "config": {
+          "label": "Nachname",
+          "placeholder": ""
+        }
+      },
+      "email": {
+        "type": "Text",
+        "config": {
+          "label": "Email",
+          "placeholder": ""
+        }
+      },
+      "deine_nachricht": {
+        "type": "Text",
+        "config": {
+          "label": "Deine Nachricht",
+          "placeholder": ""
+        }
+      },
+      "button_text": {
+        "type": "Text",
+        "config": {
+          "label": "Button Text",
+          "placeholder": ""
+        }
       }
     }
   }

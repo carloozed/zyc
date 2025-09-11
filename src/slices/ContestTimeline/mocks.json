@@ -63,6 +63,14 @@
 										}
 									]
 								}
+							],
+							[
+								"individual_key",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "suit",
+									"type": "Text"
+								}
 							]
 						]
 					}
