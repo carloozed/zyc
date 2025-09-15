@@ -29,10 +29,12 @@ export default function ZYCMail({ name, message, email, surname }: FormData) {
         />
       </Head>
       <Container>
-        {' '}
         <Spacer />
         <Container style={imageContainer}>
-          <Link href="https://zurichyouthclassical.ch">
+          <Link
+            href="https://zurichyouthclassical.ch"
+            style={{ margin: 'auto' }}
+          >
             <Img
               src="https://images.prismic.io/zurichyouthclassical/aItgUKTt2nPbZmmx_logoquadratisch.png?auto=format,compress"
               alt="Logo Zurich Youth Classical"
