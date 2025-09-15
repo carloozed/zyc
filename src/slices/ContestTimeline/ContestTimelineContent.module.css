@@ -144,7 +144,7 @@
         align-items: center;
         gap: var(--padding-xl);
         min-width: 100svw;
-        height: 60vh;
+        height: 65vh;
     }
 
 
@@ -225,9 +225,9 @@
 
         width: 100%;
         position: relative;
-        height: 100%;
+        height: fit-content;
         overflow: hidden;
-        min-height: 20rem;
+        min-height: 24rem;
     }
 
     .ctl__timeline__item__descriptioncontainer {
@@ -246,7 +246,7 @@
         padding: var(--padding-l);
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: var(--padding-m);
         font-size: calc(0.5rem + 10vw)
     }
 
