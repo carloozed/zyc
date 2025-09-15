@@ -144,7 +144,8 @@
         align-items: center;
         gap: var(--padding-xl);
         min-width: 100svw;
-        height: 65vh;
+        height: fit-content;
+        background-color: red;
     }
 
 
@@ -227,7 +228,6 @@
         position: relative;
         height: fit-content;
         overflow: hidden;
-        min-height: 24rem;
     }
 
     .ctl__timeline__item__descriptioncontainer {
