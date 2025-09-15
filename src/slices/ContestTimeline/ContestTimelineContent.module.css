@@ -144,7 +144,7 @@
         align-items: center;
         gap: var(--padding-xl);
         min-width: 100svw;
-        height: 55vh;
+        height: 60vh;
     }
 
 
@@ -199,7 +199,8 @@
     .color p {
         font-size: calc(0.3rem + 0.3vw);
         text-align: center;
-        transform: rotate(-10deg)
+        transform: rotate(-10deg);
+
     }
 
 
@@ -226,7 +227,7 @@
         position: relative;
         height: 100%;
         overflow: hidden;
-        min-height: 18rem;
+        min-height: 20rem;
     }
 
     .ctl__timeline__item__descriptioncontainer {
@@ -242,10 +243,10 @@
         width: 100%;
         height: 100%;
         text-align: center;
-        padding: var(--padding-xl);
+        padding: var(--padding-l);
         display: flex;
         flex-direction: column;
-        gap: var(--padding-m);
+        gap: 2px;
         font-size: calc(0.5rem + 10vw)
     }
 
