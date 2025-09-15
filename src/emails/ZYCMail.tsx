@@ -39,6 +39,7 @@ export default function ZYCMail({ name, message, email, surname }: FormData) {
               src="https://images.prismic.io/zurichyouthclassical/aItgUKTt2nPbZmmx_logoquadratisch.png?auto=format,compress"
               alt="Logo Zurich Youth Classical"
               height="80"
+              style={{ margin: 'auto' }}
             />
           </Link>
         </Container>

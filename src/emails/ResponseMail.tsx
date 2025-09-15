@@ -31,11 +31,15 @@ export default function ResponseEmail({ name }: FormData) {
         {' '}
         <Spacer />
         <Container style={imageContainer}>
-          <Link href="https://zurichyouthclassical.ch">
+          <Link
+            href="https://zurichyouthclassical.ch"
+            style={{ margin: 'auto', width: '100%' }}
+          >
             <Img
               src="https://images.prismic.io/zurichyouthclassical/aItgUKTt2nPbZmmx_logoquadratisch.png?auto=format,compress"
               alt="Logo Zurich Youth Classical"
               height="80"
+              style={{ margin: 'auto' }}
             />
           </Link>
         </Container>
