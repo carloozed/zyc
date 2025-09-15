@@ -158,6 +158,7 @@ export default function ContestTimelineContent({
                     gap: '5px',
                   }}
                 >
+                  <h3>10.10.2025 - 31.10.2025</h3>
                   <p>Das Anmeldefenster öffnet in</p>
                   <Timer startDate={'2025-10-10T00:00:00'} />
                   <p>Tagen</p>
