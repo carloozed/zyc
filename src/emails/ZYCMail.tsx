@@ -33,7 +33,7 @@ export default function ZYCMail({ name, message, email, surname }: FormData) {
         <Container style={imageContainer}>
           <Link
             href="https://zurichyouthclassical.ch"
-            style={{ margin: 'auto' }}
+            style={{ margin: 'auto', width: '100%' }}
           >
             <Img
               src="https://images.prismic.io/zurichyouthclassical/aItgUKTt2nPbZmmx_logoquadratisch.png?auto=format,compress"
@@ -64,6 +64,7 @@ export default function ZYCMail({ name, message, email, surname }: FormData) {
 
 const imageContainer = {
   padding: '16px 0',
+  width: '100%',
 };
 
 const mainHeadingContainer = {
