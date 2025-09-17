@@ -18,13 +18,12 @@
 }
 
 .jury__members {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--padding-xl);
     padding: 0 var(--padding-xl);
     width: 100%;
-    max-width: 1300px;
+    max-width: 100rem;
     margin: 0 auto;
 }
 
@@ -59,19 +58,21 @@
 }
 
 .jury__uppercontainer {
-    gap: var(--padding-s);
+    gap: var(--padding-xl);
     display: flex;
+    align-items: center;
 }
 
 .jury__uppercontainer p {
-    width: 30%;
-    font-size: var(--text-s)
+    width: 100%;
+    font-size: var(--text-sm);
+    height: fit-content;
 }
 
 
 .jury__lowercontainer {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
 }
 
