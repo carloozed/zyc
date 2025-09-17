@@ -67,7 +67,7 @@
 
 .jury__uppercontainer p {
     width: 100%;
-    font-size: var(--text-sm);
+    font-size: var(--text-s);
     height: fit-content;
     hyphens: auto;
 }
@@ -136,6 +136,10 @@
         width: 100%;
         font-size: var(--text-sm);
         text-align: center;
+    }
+
+    .jury__container a {
+        font-size: calc(0.6rem + 0.5vw);
     }
 
 
