@@ -18,8 +18,9 @@
 }
 
 .jury__members {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: var(--padding-xl);
     padding: 0 var(--padding-xl);
     width: 100%;
@@ -27,44 +28,25 @@
     margin: 0 auto;
 }
 
-/* First element - spans both columns, centered */
-.jury__member:nth-child(1) {
-    grid-column: 1 / -1;
-    max-width: 650px;
-    margin: 0 auto;
-}
 
-/* Second and third elements - normal grid items */
-.jury__member:nth-child(2),
-.jury__member:nth-child(3) {
-    grid-column: span 1;
-}
-
-/* Fourth and fifth elements - normal grid items */
-.jury__member:nth-child(4),
-.jury__member:nth-child(5) {
-    grid-column: span 1;
-}
-
-/* Sixth element - spans both columns, centered */
-.jury__member:nth-child(6) {
-    grid-column: 1 / -1;
-    max-width: 650px;
-    margin: 0 auto;
-}
 
 .jury__member {
     background-color: #F5F5F5;
     padding-left: var(--padding-l);
     padding-top: var(--padding-l);
     width: 100%;
-    /* Ensures consistent width */
+    max-width: 40rem;
 }
 
 .jury__container {
     background-color: var(--white);
     padding: var(--padding-s) var(--padding-m);
     border-radius: 6px;
+}
+
+.jury__container img {
+    height: calc(6rem + 6vw);
+    width: auto;
 }
 
 .jury__container a {
