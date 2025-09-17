@@ -55,7 +55,7 @@
 }
 
 .jury__member h3 {
-    font-size: var(--subtitle-m);
+    font-size: var(--subtitle-s);
     padding-top: var(--padding-m)
 }
 
@@ -124,6 +124,7 @@
     .jury__container img {
         height: calc(5rem + 5vw);
         width: auto;
+        object-fit: contain;
     }
 
     .jury__uppercontainer {
