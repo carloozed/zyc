@@ -13,7 +13,7 @@ export default function JuryContent({ slice }: Props) {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.jury__sectioncontainer}
-      id="#jury"
+      id="jury"
     >
       <PrismicRichText field={slice.primary.headline} />
       <div className={styles.jury__introduction}>
