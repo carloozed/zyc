@@ -74,9 +74,9 @@ export default function FooterContent({
                   lowNavigation.data.low_navigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__lownavigation}>
                       {item.item.text === 'Newsletter' ? (
-                        <NewsletterLink hasBorder={true} />
+                        <NewsletterLink isFooter={true} />
                       ) : item.item.text === 'Kontakt' ? (
-                        <ContactLink />
+                        <ContactLink isFooter={true} />
                       ) : (
                         <>
                           <TransitionLink field={item.item} />

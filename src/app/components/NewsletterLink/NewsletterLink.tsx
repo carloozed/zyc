@@ -14,6 +14,7 @@ export default function NewsletterLink({
   hasUnderscore,
   hasAnmeldung,
   hasBorder = true,
+  isFooter = false,
 }: Props) {
   const { isNewsletterFormShown, setNewsletterFormShown } =
     useNewsletterStore();
@@ -24,8 +25,8 @@ export default function NewsletterLink({
     <span
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
-        borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : '0'}`,
+        borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : isFooter ? '0.5px solid black' : 'none'}`,
+        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : isFooter ? 'var(--padding-m)' : '0'}`,
       }}
       onClick={() => setNewsletterFormShown(!isNewsletterFormShown)}
       className="cursor-pointer"

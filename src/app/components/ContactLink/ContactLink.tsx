@@ -9,22 +9,24 @@ type Props = {
   hasAnmeldung?: boolean;
   hasBorder?: boolean;
   buttonText?: string;
+  isFooter?: boolean;
 };
 
 export default function ContactLink({
   hasUnderscore,
-  hasBorder = true,
+  hasBorder = false,
   buttonText = 'Kontakt',
+  isFooter = false,
 }: Props) {
   const { isContactFormShown, setContactFormShown } = useContactStore();
-  const { isDesktop, isTabletLandscape, isTabletPortrait } = useMobile();
+  const { isMobile } = useMobile();
 
   return (
     <span
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
-        borderRight: `${(hasBorder && isDesktop) || (hasBorder && isTabletLandscape) || (hasBorder && isTabletPortrait) ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${(hasBorder && isDesktop) || (hasBorder && isTabletLandscape) || (hasBorder && isTabletPortrait) ? 'var(--padding-m)' : '0'}`,
+        borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : isFooter ? '0.5px solid black' : 'none'}`,
+        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : isFooter ? 'var(--padding-m)' : '0'}`,
       }}
       onClick={() => setContactFormShown(!isContactFormShown)}
       className="cursor-pointer"
