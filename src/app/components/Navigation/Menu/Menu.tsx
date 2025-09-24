@@ -225,7 +225,7 @@ export default function Menu({ ...menuProps }) {
                       {item.item.text === 'Newsletter' ? (
                         <NewsletterLink />
                       ) : item.item.text === 'Kontakt' ? (
-                        <ContactLink hasBorder={false} />
+                        <ContactLink />
                       ) : (
                         <>
                           <TransitionLink field={item.item} />

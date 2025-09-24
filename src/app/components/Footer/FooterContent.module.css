@@ -110,6 +110,8 @@
 .footer__lownavigation {
     display: flex;
     gap: var(--padding-m);
+    font-size: calc(0.5rem + 0.5vw);
+    ;
 }
 
 .footer__lownavigation span,

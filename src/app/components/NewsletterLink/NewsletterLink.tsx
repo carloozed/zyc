@@ -7,24 +7,25 @@ type Props = {
   hasUnderscore?: boolean;
   hasAnmeldung?: boolean;
   hasBorder?: boolean;
+  isFooter?: boolean;
 };
 
 export default function NewsletterLink({
   hasUnderscore,
   hasAnmeldung,
-  hasBorder = false,
+  hasBorder = true,
 }: Props) {
   const { isNewsletterFormShown, setNewsletterFormShown } =
     useNewsletterStore();
 
-  const { isDesktop, isTabletLandscape, isTabletPortrait } = useMobile();
+  const { isMobile } = useMobile();
 
   return (
     <span
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
-        borderRight: `${(hasBorder && isDesktop) || (hasBorder && isTabletLandscape) || (hasBorder && isTabletPortrait) ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${(hasBorder && isDesktop) || (hasBorder && isTabletLandscape) || (hasBorder && isTabletPortrait) ? 'var(--padding-m)' : '0'}`,
+        borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : 'none'}`,
+        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : '0'}`,
       }}
       onClick={() => setNewsletterFormShown(!isNewsletterFormShown)}
       className="cursor-pointer"
