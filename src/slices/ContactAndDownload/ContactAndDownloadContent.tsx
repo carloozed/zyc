@@ -64,12 +64,14 @@ export default function ContactAndDownloadContent({
             <div key={index} className={styles.downloadlink}>
               {item.link.text === 'Anmeldung Newsletter' ? (
                 <NewsletterLink hasUnderscore={true} hasAnmeldung={true} />
-              ) : (
+              ) : item.link.text === 'Kontaktiere uns' ? (
                 <ContactLink
                   hasUnderscore={true}
                   hasBorder={false}
                   buttonText={'Kontaktiere uns'}
                 />
+              ) : (
+                <PrismicNextLink field={item.link} target="_blank" />
               )}
 
               <p style={{ transform: 'rotate(-135deg)' }}>&darr;</p>

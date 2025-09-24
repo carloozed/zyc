@@ -165,6 +165,7 @@
         gap: var(--padding-l);
         margin: 0 auto;
         max-width: 1750px;
+
     }
 
     .jury__introduction {
@@ -178,8 +179,9 @@
     }
 
     .jury__members {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: var(--padding-xl);
         padding: 0 var(--padding-s);
     }
@@ -215,10 +217,10 @@
 
 
     .jury__container img {
-        border: 1px solid black;
         height: 40%;
+        max-height: 10rem;
         width: auto;
-        aspect-ration: 16/9;
+        aspect-ratio: 1/1;
     }
 
 

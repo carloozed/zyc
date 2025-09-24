@@ -14,19 +14,14 @@
 
 .footer__lowercontainer {
     display: grid;
-    grid-template-columns: 1fr 2fr 0.5fr;
+    grid-template-columns: 1.5fr 2fr 0.1fr;
 }
 
 .footer__leftcontainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-
 }
-
-
-
 
 .footer__address {
     display: flex;
@@ -70,6 +65,7 @@
 .footer__lownavigationcontainer {
     display: flex;
     gap: var(--padding-m);
+
 }
 
 
