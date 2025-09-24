@@ -63,7 +63,11 @@ export default function ContactAndDownloadContent({
           {slice.primary.links.map((item, index: number) => (
             <div key={index} className={styles.downloadlink}>
               {item.link.text === 'Anmeldung Newsletter' ? (
-                <NewsletterLink hasUnderscore={true} hasAnmeldung={true} />
+                <NewsletterLink
+                  hasUnderscore={true}
+                  hasAnmeldung={true}
+                  hasBorder={false}
+                />
               ) : item.link.text === 'Kontaktiere uns' ? (
                 <ContactLink
                   hasUnderscore={true}
