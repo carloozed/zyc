@@ -65,6 +65,15 @@
                   "label": "Individual Key",
                   "placeholder": ""
                 }
+              },
+              "phase_date_text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Phase Date Text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading4"
+                }
               }
             }
           }

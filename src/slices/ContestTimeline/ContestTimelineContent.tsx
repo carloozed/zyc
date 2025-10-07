@@ -164,7 +164,18 @@ export default function ContestTimelineContent({
                   <p>Tagen</p>
                 </div>
               ) : (
-                <PrismicRichText field={item.phase_description} />
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '5px',
+                  }}
+                  className={styles.text}
+                >
+                  <PrismicRichText field={item.phase_date_text} />
+                  <PrismicRichText field={item.phase_description} />
+                </div>
               )}
             </div>
           ))}

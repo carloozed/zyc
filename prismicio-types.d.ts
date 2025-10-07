@@ -2499,6 +2499,16 @@ export interface ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   individual_key: prismic.KeyTextField;
+
+  /**
+   * Phase Date Text field in *ContestTimeline → Default → Primary → Timeline Contest Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contest_timeline.default.primary.timeline_contest_group[].phase_date_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  phase_date_text: prismic.RichTextField;
 }
 
 /**

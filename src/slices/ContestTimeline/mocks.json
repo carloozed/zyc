@@ -71,6 +71,20 @@
 									"value": "suit",
 									"type": "Text"
 								}
+							],
+							[
+								"phase_date_text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading4",
+											"content": {
+												"text": "Known"
+											}
+										}
+									]
+								}
 							]
 						]
 					}
