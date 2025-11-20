@@ -95,7 +95,7 @@
     position: absolute;
     display: flex;
     height: 100%;
-    width: 600%;
+    width: 500%;
     transition: transform var(--animationtime-middle) var(--bezier);
 
 }

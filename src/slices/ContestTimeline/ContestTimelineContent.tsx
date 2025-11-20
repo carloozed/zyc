@@ -71,20 +71,18 @@ export default function ContestTimelineContent({
         setTranslatePercentage(0);
         break;
       case 1:
-        setTranslatePercentage((1 / 6) * 100); // 16.67%
+        setTranslatePercentage((1 / 5) * 100); // 16.67%
         break;
       case 2:
-        setTranslatePercentage((1 / 3) * 100); // 33.33%
+        setTranslatePercentage((2 / 5) * 100); // 33.33%
         break;
       case 3:
-        setTranslatePercentage((3 / 6) * 100); // 66.67%
+        setTranslatePercentage((3 / 5) * 100); // 66.67%
         break;
       case 4:
-        setTranslatePercentage((4 / 6) * 100); // 83.33%
+        setTranslatePercentage((4 / 5) * 100); // 83.33%
         break;
-      case 5:
-        setTranslatePercentage((5 / 6) * 100); // 83.33%
-        break;
+
       default:
         setTranslatePercentage(currentPhase);
         break;
