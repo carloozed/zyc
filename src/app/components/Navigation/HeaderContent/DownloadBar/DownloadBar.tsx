@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 import { DownloadBarDocument } from '../../../../../../prismicio-types';
 import styles from './DownloadBar.module.css';
@@ -12,27 +12,27 @@ type Props = {
 
 export default function DownloadBar({ downloadbar }: Props) {
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
 
     if (currentScrollY <= 100) {
       setShowNavbar(true);
     } else {
-      if (currentScrollY > lastScrollY) {
+      if (currentScrollY > lastScrollY.current) {
         if (currentScrollY > 100) {
           setShowNavbar(false);
         }
       } else {
-        if (lastScrollY - currentScrollY >= 30) {
+        if (lastScrollY.current - currentScrollY >= 30) {
           setShowNavbar(true);
         }
       }
     }
 
-    setLastScrollY(currentScrollY);
-  };
+    lastScrollY.current = currentScrollY;
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -51,7 +51,7 @@ export default function DownloadBar({ downloadbar }: Props) {
     return () => {
       window.removeEventListener('scroll', scrollHandler);
     };
-  }, [lastScrollY]);
+  }, [handleScroll]);
   return (
     <div
       className={styles.downloadbar__container}
