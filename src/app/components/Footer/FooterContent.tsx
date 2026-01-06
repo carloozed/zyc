@@ -92,6 +92,8 @@ export default function FooterContent({
             <div className={styles.footer__middlecontainer}>
               <div className={styles.footer__navigationcontainer}>
                 <div className={styles.footer__subnavigation}>
+                  {' '}
+                  <h4>Navigation</h4>
                   {subnavigation.data.subnavigation_items.map((item, index) => (
                     <div key={index} className={styles.footer__link}>
                       <TransitionLink field={item.link} />{' '}
@@ -125,10 +127,11 @@ export default function FooterContent({
               </div>{' '}
               {isDownloadsMuted && (
                 <div className={styles.footer__downloadcontainer}>
+                  <h4>Downloads</h4>
                   {footer.data.downloads.map((item, index) => (
                     <div key={index} className={styles.footer__link}>
                       <PrismicNextLink field={item.link} target="_blank" />{' '}
-                      <p className={styles.rotate}>&#8595;</p>
+                      <p className={styles.downloadarrow}>&#8595;</p>
                     </div>
                   ))}
                 </div>
