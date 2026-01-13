@@ -1,0 +1,77 @@
+.postpreview {
+    height: 36rem;
+    width: 100%;
+    border: var(--border-thin);
+    padding: var(--padding-m);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s);
+    background-color: white;
+}
+
+.uppercontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tagscontainer {
+    display: flex;
+    gap: var(--padding-s);
+}
+
+.tagscontainer p {
+    padding: 0.1rem var(--padding-xs);
+    border: var(--border-thin);
+    border-radius: 4px;
+    font-size: var(--text-smaller);
+}
+
+.date {
+    font-family: var(--title-font)
+}
+
+.imagecontainer {
+    height: 15rem;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+.imagecontainer img {
+    height: auto;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.textcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s);
+}
+
+.textcontainer p {
+    font-size: var(--text-sm)
+}
+
+.instaicon img {
+    height: var(--padding-m);
+    width: auto;
+    object-fit: contain;
+}
+
+.linkcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.linkcontainer * {
+    font-family: var(--text-font);
+    font-size: var(--text-s);
+    text-decoration: underline;
+}

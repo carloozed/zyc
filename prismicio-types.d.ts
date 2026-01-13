@@ -1107,6 +1107,38 @@ export type ImpresssumDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Instagram Icon documents
+ */
+interface InstagramIconDocumentData {
+  /**
+   * Instagram Icon field in *Instagram Icon*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: instagram_icon.instagram_icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  instagram_icon: prismic.ImageField<never>;
+}
+
+/**
+ * Instagram Icon document from Prismic
+ *
+ * - **API ID**: `instagram_icon`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type InstagramIconDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<InstagramIconDocumentData>,
+    "instagram_icon",
+    Lang
+  >;
+
+/**
  * Content for isDownloadsMuted documents
  */
 interface IsdownloadsmutedDocumentData {
@@ -1310,6 +1342,307 @@ export type LowNavigationDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<LowNavigationDocumentData>,
     "low_navigation",
+    Lang
+  >;
+
+/**
+ * Item in *Magazin → Sorting Options*
+ */
+export interface MagazinDocumentDataSortingOptionsItem {
+  /**
+   * item field in *Magazin → Sorting Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.sorting_options[].item
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Magazin → Filter Options*
+ */
+export interface MagazinDocumentDataFilterOptionsItem {
+  /**
+   * Item field in *Magazin → Filter Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.filter_options[].item
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item: prismic.KeyTextField;
+}
+
+type MagazinDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Magazin documents
+ */
+interface MagazinDocumentData {
+  /**
+   * Title field in *Magazin*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Magazin
+   * - **API ID Path**: magazin.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Sorting Options field in *Magazin*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.sorting_options[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  sorting_options: prismic.GroupField<
+    Simplify<MagazinDocumentDataSortingOptionsItem>
+  >;
+
+  /**
+   * Filter Options field in *Magazin*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.filter_options[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  filter_options: prismic.GroupField<
+    Simplify<MagazinDocumentDataFilterOptionsItem>
+  >;
+
+  /**
+   * Slice Zone field in *Magazin*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<MagazinDocumentDataSlicesSlice> /**
+   * Meta Title field in *Magazin*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: magazin.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Magazin*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: magazin.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Magazin*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Magazin document from Prismic
+ *
+ * - **API ID**: `magazin`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MagazinDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<MagazinDocumentData>,
+    "magazin",
+    Lang
+  >;
+
+/**
+ * Item in *Magazinpost → Tags*
+ */
+export interface MagazinpostDocumentDataTagsItem {
+  /**
+   * Item field in *Magazinpost → Tags*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.tags[].item
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item: prismic.KeyTextField;
+}
+
+type MagazinpostDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Magazinpost documents
+ */
+interface MagazinpostDocumentData {
+  /**
+   * Publishing Date field in *Magazinpost*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.publishing_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#timestamp
+   */
+  publishing_date: prismic.TimestampField;
+
+  /**
+   * Tags field in *Magazinpost*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.tags[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tags: prismic.GroupField<Simplify<MagazinpostDocumentDataTagsItem>>;
+
+  /**
+   * Previewe Image field in *Magazinpost*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.previewe_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  previewe_image: prismic.ImageField<never>;
+
+  /**
+   * Preview Title field in *Magazinpost*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.preview_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  preview_title: prismic.RichTextField;
+
+  /**
+   * Preview Text field in *Magazinpost*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.preview_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  preview_text: prismic.RichTextField;
+
+  /**
+   * Redirect Link field in *Magazinpost*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.redirect_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  redirect_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Instagram Link field in *Magazinpost*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.instagram_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  instagram_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Slice Zone field in *Magazinpost*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<MagazinpostDocumentDataSlicesSlice> /**
+   * Meta Title field in *Magazinpost*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: magazinpost.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Magazinpost*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: magazinpost.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Magazinpost*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Magazinpost document from Prismic
+ *
+ * - **API ID**: `magazinpost`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MagazinpostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<MagazinpostDocumentData>,
+    "magazinpost",
     Lang
   >;
 
@@ -2098,11 +2431,14 @@ export type AllDocumentTypes =
   | FooterDocument
   | HomepageNavigationDocument
   | ImpresssumDocument
+  | InstagramIconDocument
   | IsdownloadsmutedDocument
   | KontaktDocument
   | LandingBackgroundImageDocument
   | LogoDocument
   | LowNavigationDocument
+  | MagazinDocument
+  | MagazinpostDocument
   | NavbarDocument
   | NavigationIndicatorDocument
   | NewsletterFormDocument
@@ -3334,6 +3670,8 @@ declare module "@prismicio/client" {
       ImpresssumDocumentData,
       ImpresssumDocumentDataImpressumContentItem,
       ImpresssumDocumentDataSlicesSlice,
+      InstagramIconDocument,
+      InstagramIconDocumentData,
       IsdownloadsmutedDocument,
       IsdownloadsmutedDocumentData,
       KontaktDocument,
@@ -3346,6 +3684,15 @@ declare module "@prismicio/client" {
       LowNavigationDocument,
       LowNavigationDocumentData,
       LowNavigationDocumentDataLowNavigationItemsItem,
+      MagazinDocument,
+      MagazinDocumentData,
+      MagazinDocumentDataSortingOptionsItem,
+      MagazinDocumentDataFilterOptionsItem,
+      MagazinDocumentDataSlicesSlice,
+      MagazinpostDocument,
+      MagazinpostDocumentData,
+      MagazinpostDocumentDataTagsItem,
+      MagazinpostDocumentDataSlicesSlice,
       NavbarDocument,
       NavbarDocumentData,
       NavbarDocumentDataNavigationItemsItem,

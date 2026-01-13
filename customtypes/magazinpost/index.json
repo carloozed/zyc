@@ -1,0 +1,122 @@
+{
+  "format": "page",
+  "id": "magazinpost",
+  "label": "Magazinpost",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "publishing_date": {
+        "type": "Timestamp",
+        "config": {
+          "label": "Publishing Date",
+          "placeholder": ""
+        }
+      },
+      "tags": {
+        "type": "Group",
+        "config": {
+          "label": "Tags",
+          "repeat": true,
+          "fields": {
+            "item": {
+              "type": "Text",
+              "config": {
+                "label": "Item",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      },
+      "previewe_image": {
+        "type": "Image",
+        "config": {
+          "label": "Previewe Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "preview_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Preview Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading3"
+        }
+      },
+      "preview_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Preview Text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading5,heading6,em,strong,hyperlink"
+        }
+      },
+      "redirect_link": {
+        "type": "Link",
+        "config": {
+          "label": "Redirect Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "instagram_link": {
+        "type": "Link",
+        "config": {
+          "label": "Instagram Link",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}

@@ -21,8 +21,9 @@ const routes: Route[] = [
   { type: 'the_cadenza', path: '/the_cadenza' },
   { type: 'the_crescendo', path: '/the_crescendo' },
   { type: 'teilnahme_termine', path: '/termine' },
+  { type: 'magazin', path: '/magazin' },
+  { type: 'magazinpost', path: '/magazin/:uid' },
   { type: 'uber_zyc', path: '/ueber_zyc' },
-  { type: 'deinwegmitzyc', path: '/the_contest' },
   { type: 'impresssum', path: '/impressum' },
   { type: 'datenschutz', path: '/datenschutz' },
 ];

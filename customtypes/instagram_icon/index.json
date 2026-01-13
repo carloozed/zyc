@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "instagram_icon",
+  "label": "Instagram Icon",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "instagram_icon": {
+        "type": "Image",
+        "config": {
+          "label": "Instagram Icon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

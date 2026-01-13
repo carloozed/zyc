@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
@@ -14,33 +14,42 @@ export default function TimelineBroad({ ...timelineProps }) {
 
   const [isHome, setIsHome] = useState(false);
   const [showTimeline, setShowTimeline] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isTimelineVisible, setIsTimelineVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const pathname = usePathname();
 
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY <= 100) {
-      setShowTimeline(true);
+  useEffect(() => {
+    if (!pathname.includes('/magazin')) {
+      setIsTimelineVisible(true);
     } else {
-      // Check scroll direction
-      if (currentScrollY > lastScrollY) {
-        if (currentScrollY > 100) {
-          setShowTimeline(false);
-        }
-      } else {
-        if (lastScrollY - currentScrollY >= 30) {
-          setShowTimeline(true);
-        }
-      }
+      setIsTimelineVisible(false);
     }
-
-    setLastScrollY(currentScrollY);
-  };
+  }, [pathname]);
 
   useEffect(() => {
     let ticking = false;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY <= 100) {
+        setShowTimeline(true);
+      } else {
+        // Check scroll direction
+        if (currentScrollY > lastScrollY.current) {
+          if (currentScrollY > 100) {
+            setShowTimeline(false);
+          }
+        } else {
+          if (lastScrollY.current - currentScrollY >= 30) {
+            setShowTimeline(true);
+          }
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
 
     const scrollHandler = () => {
       if (!ticking) {
@@ -56,7 +65,7 @@ export default function TimelineBroad({ ...timelineProps }) {
     return () => {
       window.removeEventListener('scroll', scrollHandler);
     };
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -74,7 +83,7 @@ export default function TimelineBroad({ ...timelineProps }) {
     <>
       {currentDate >= timelineDate && (
         <div
-          className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''} ${!showTimeline ? styles.timeline__hidden : ''}`}
+          className={`${styles.timeline__container} ${isHome ? styles.timeline__container__ishome : ''} ${!showTimeline || !isTimelineVisible ? styles.timeline__hidden : ''}`}
         >
           <SliceZone slices={timeline.data.slices} components={components} />
         </div>
