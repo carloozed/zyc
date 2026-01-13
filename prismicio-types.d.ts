@@ -472,136 +472,6 @@ export type DatenschutzDocument<Lang extends string = string> =
     Lang
   >;
 
-type DeinWegDocumentDataSlicesSlice = never;
-
-/**
- * Content for Dein Weg mit ZYC documents
- */
-interface DeinWegDocumentData {
-  /**
-   * Slice Zone field in *Dein Weg mit ZYC*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: dein_weg.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<DeinWegDocumentDataSlicesSlice> /**
-   * Meta Title field in *Dein Weg mit ZYC*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: dein_weg.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Dein Weg mit ZYC*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: dein_weg.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Dein Weg mit ZYC*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: dein_weg.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Dein Weg mit ZYC document from Prismic
- *
- * - **API ID**: `dein_weg`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type DeinWegDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<DeinWegDocumentData>,
-    "dein_weg",
-    Lang
-  >;
-
-type DeinwegmitzycDocumentDataSlicesSlice = never;
-
-/**
- * Content for DeinWegMitZYC documents
- */
-interface DeinwegmitzycDocumentData {
-  /**
-   * Slice Zone field in *DeinWegMitZYC*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: deinwegmitzyc.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<DeinwegmitzycDocumentDataSlicesSlice> /**
-   * Meta Title field in *DeinWegMitZYC*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: deinwegmitzyc.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *DeinWegMitZYC*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: deinwegmitzyc.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *DeinWegMitZYC*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: deinwegmitzyc.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * DeinWegMitZYC document from Prismic
- *
- * - **API ID**: `deinwegmitzyc`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type DeinwegmitzycDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<DeinwegmitzycDocumentData>,
-    "deinwegmitzyc",
-    Lang
-  >;
-
 /**
  * Content for Download Bar documents
  */
@@ -2221,8 +2091,6 @@ export type AllDocumentTypes =
   | ContactFormDocument
   | CriteriatypesubfieldDocument
   | DatenschutzDocument
-  | DeinWegDocument
-  | DeinwegmitzycDocument
   | DownloadBarDocument
   | DynamiclandingcontentDocument
   | FaqDocument
@@ -3447,12 +3315,6 @@ declare module "@prismicio/client" {
       DatenschutzDocumentData,
       DatenschutzDocumentDataDatenschutzContentItem,
       DatenschutzDocumentDataSlicesSlice,
-      DeinWegDocument,
-      DeinWegDocumentData,
-      DeinWegDocumentDataSlicesSlice,
-      DeinwegmitzycDocument,
-      DeinwegmitzycDocumentData,
-      DeinwegmitzycDocumentDataSlicesSlice,
       DownloadBarDocument,
       DownloadBarDocumentData,
       DynamiclandingcontentDocument,
