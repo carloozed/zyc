@@ -27,5 +27,7 @@
     left: 0;
     padding-top: var(--padding-xl);
     background-color: white;
-    padding-bottom: var(--padding-m)
+    padding-bottom: var(--padding-m);
+
+    overflow: hidden;
 }

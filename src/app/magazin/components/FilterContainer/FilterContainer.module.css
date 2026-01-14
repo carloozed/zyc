@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: var(--padding-s);
+    transform: translateY(150%)
 }
 
 .filterbar,
@@ -28,7 +29,7 @@
     font-family: var(--title-font)
 }
 
-.filterbar button {
+.filterbutton {
     padding: var(--padding-2xs) var(--padding-s);
     border: var(--border-thin);
     height: fit-content;
@@ -37,4 +38,8 @@
     background-color: white;
     font-family: var(--text-font);
     cursor: pointer;
+}
+
+.active {
+    background-color: var(--contestblue);
 }
