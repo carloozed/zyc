@@ -11,7 +11,6 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import formatIsoToDate from '../../../../../helpers/formatIsoToDate';
-import { isFilled } from '@prismicio/client';
 
 type PostPreviewProps = {
   post: MagazinpostDocument;
@@ -48,8 +47,10 @@ export default function PostPreview({
         <PrismicRichText field={post.data.preview_text} />
       </div>
       <div className={styles.linkcontainer}>
-        <PrismicNextLink field={post.data.redirect_link} />
-        {isFilled && (
+        <PrismicNextLink field={post.data.redirect_link}>
+          Mehr erfahren
+        </PrismicNextLink>
+        {post.data.has_instagram && (
           <div className={styles.instaicon}>
             <PrismicNextLink field={post.data.instagram_link}>
               <PrismicNextImage field={instaIcon.data.instagram_icon} />

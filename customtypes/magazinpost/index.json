@@ -61,6 +61,15 @@
           "multi": "paragraph,heading5,heading6,em,strong,hyperlink"
         }
       },
+      "has_redirect_link": {
+        "type": "Boolean",
+        "config": {
+          "label": "Has Redirect Link",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
       "redirect_link": {
         "type": "Link",
         "config": {
@@ -70,6 +79,15 @@
           "allowTargetBlank": true,
           "allowText": true,
           "repeat": false
+        }
+      },
+      "has_instagram": {
+        "type": "Boolean",
+        "config": {
+          "label": "Has Instagram",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
         }
       },
       "instagram_link": {

@@ -1554,6 +1554,18 @@ interface MagazinpostDocumentData {
   preview_text: prismic.RichTextField;
 
   /**
+   * Has Redirect Link field in *Magazinpost*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: magazinpost.has_redirect_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_redirect_link: prismic.BooleanField;
+
+  /**
    * Redirect Link field in *Magazinpost*
    *
    * - **Field Type**: Link
@@ -1569,6 +1581,18 @@ interface MagazinpostDocumentData {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Has Instagram field in *Magazinpost*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: magazinpost.has_instagram
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  has_instagram: prismic.BooleanField;
 
   /**
    * Instagram Link field in *Magazinpost*

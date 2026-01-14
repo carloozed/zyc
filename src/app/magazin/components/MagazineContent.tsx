@@ -7,7 +7,7 @@ import {
   MagazinpostDocument,
 } from '../../../../prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
-import PostPreview from './PostPreview/PostPreview';
+import BlogContainer from './BlogContainer/BlogContainer';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -20,6 +20,8 @@ export default function MagazineContent({
   magazinPosts,
   instaIcon,
 }: MagazineContentProps) {
+  console.log(magazinPosts);
+
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
@@ -43,16 +45,7 @@ export default function MagazineContent({
           </div>
         </div>
       </div>
-      <div className={styles.blogcontainer}>
-        {magazinPosts.map((post, index) => (
-          <PostPreview
-            post={post}
-            index={index}
-            key={index}
-            instaIcon={instaIcon}
-          />
-        ))}
-      </div>
+      <BlogContainer magazinPosts={magazinPosts} instaIcon={instaIcon} />
     </div>
   );
 }

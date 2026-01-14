@@ -57,12 +57,3 @@
     font-family: var(--text-font);
     cursor: pointer;
 }
-
-
-.blogcontainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
-    justify-content: center;
-    padding: var(--padding-l) calc(4rem + 4vw);
-    gap: var(--padding-l);
-}
