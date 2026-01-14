@@ -6,8 +6,9 @@ import {
   MagazinDocument,
   MagazinpostDocument,
 } from '../../../../prismicio-types';
-import { PrismicRichText } from '@prismicio/react';
 import BlogContainer from './BlogContainer/BlogContainer';
+import FilterContainer from './FilterContainer/FilterContainer';
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -26,26 +27,21 @@ export default function MagazineContent({
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
         <div className={styles.titleContainer}>
-          <PrismicRichText field={page.data.title} />
-        </div>
-        <div className={styles.filtercontainer}>
-          <div className={styles.sortcontainer}>
-            <h4>Sortieren nach:</h4>
-            <select>
-              {page.data.sorting_options.map((item, index) => (
-                <option key={`${index}-${item.item}`}>{item.item}</option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.filterbar}>
-            <h4>Filter: </h4>
-            {page.data.filter_options.map((item, index) => (
-              <button key={`${index}-${item.item}`}>{item.item}</button>
-            ))}
-          </div>
+          <RevealText
+            field={page.data.title}
+            staggerAmount={0.2}
+            duration={1.2}
+            delay={1.0}
+            as={'h1'}
+          />
         </div>
       </div>
-      <BlogContainer magazinPosts={magazinPosts} instaIcon={instaIcon} />
+      <div className={styles.lowercontainer}>
+        <div className={styles.filter}>
+          <FilterContainer page={page} />
+        </div>
+        <BlogContainer magazinPosts={magazinPosts} instaIcon={instaIcon} />
+      </div>
     </div>
   );
 }

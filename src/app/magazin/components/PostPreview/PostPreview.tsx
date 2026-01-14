@@ -12,6 +12,8 @@ import { PrismicRichText } from '@prismicio/react';
 
 import formatIsoToDate from '../../../../../helpers/formatIsoToDate';
 
+import FadeIn from '@/app/components/FadeIn/FadeIn';
+
 type PostPreviewProps = {
   post: MagazinpostDocument;
   index: number;
@@ -24,7 +26,11 @@ export default function PostPreview({
   instaIcon,
 }: PostPreviewProps) {
   return (
-    <div className={styles.postpreview} key={index}>
+    <FadeIn
+      className={styles.postpreview}
+      key={index}
+      vars={{ duration: 2, delay: 1.2 }}
+    >
       <div className={styles.uppercontainer}>
         <div>
           <p className={styles.date}>
@@ -39,25 +45,29 @@ export default function PostPreview({
           )}
         </div>
       </div>
-      <div className={styles.imagecontainer}>
-        <PrismicNextImage field={post.data.previewe_image} />
-      </div>
-      <div className={styles.textcontainer}>
-        <PrismicRichText field={post.data.preview_title} />
-        <PrismicRichText field={post.data.preview_text} />
-      </div>
-      <div className={styles.linkcontainer}>
-        <PrismicNextLink field={post.data.redirect_link}>
-          Mehr erfahren
-        </PrismicNextLink>
-        {post.data.has_instagram && (
-          <div className={styles.instaicon}>
-            <PrismicNextLink field={post.data.instagram_link}>
-              <PrismicNextImage field={instaIcon.data.instagram_icon} />
-            </PrismicNextLink>
+      <div className={styles.contentcontainer}>
+        <div className={styles.imagecontainer}>
+          <PrismicNextImage field={post.data.previewe_image} />
+        </div>
+        <div className={styles.rightsidecontainer}>
+          <div className={styles.textcontainer}>
+            <PrismicRichText field={post.data.preview_title} />
+            <PrismicRichText field={post.data.preview_text} />
           </div>
-        )}
+          <div className={styles.linkcontainer}>
+            <PrismicNextLink field={post.data.redirect_link}>
+              Mehr erfahren
+            </PrismicNextLink>
+            {post.data.has_instagram && (
+              <div className={styles.instaicon}>
+                <PrismicNextLink field={post.data.instagram_link}>
+                  <PrismicNextImage field={instaIcon.data.instagram_icon} />
+                </PrismicNextLink>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+    </FadeIn>
   );
 }

@@ -1,0 +1,40 @@
+.filtercontainer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--padding-s);
+}
+
+.filterbar,
+.sortcontainer {
+    display: flex;
+    gap: var(--padding-m);
+    align-items: center;
+}
+
+.sortcontainer select {
+    font-family: var(--text-font);
+    padding: var(--padding-2xs);
+    font-size: var(--text-s);
+    border: var(--border-thin);
+    border-radius: var(--border-radius);
+}
+
+.sortcontainer select:focus {
+    outline: none;
+}
+
+.filterbar h4,
+.sortcontainer h4 {
+    font-family: var(--title-font)
+}
+
+.filterbar button {
+    padding: var(--padding-2xs) var(--padding-s);
+    border: var(--border-thin);
+    height: fit-content;
+    border-radius: var(--border-radius);
+    font-size: var(--text-smaller);
+    background-color: white;
+    font-family: var(--text-font);
+    cursor: pointer;
+}
