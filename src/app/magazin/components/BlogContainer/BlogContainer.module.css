@@ -15,23 +15,39 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
     justify-content: center;
-    gap: var(--padding-m);
+    gap: var(--padding-l);
 
+}
+
+.overflow {
+    overflow: hidden
 }
 
 .monthcontainer {
     display: flex;
     gap: var(--page-title);
+    overflow: hidden;
+
+}
+
+.title,
+.imagecontainer {
+    transform: translateY(100%)
 }
 
 .imagecontainer {
     display: flex;
     align-items: center;
-
 }
+
+
 
 .imagecontainer img {
     height: 2.3rem;
     width: auto;
     object-fit: contain;
+}
+
+.image {
+    overflow: hidden;
 }

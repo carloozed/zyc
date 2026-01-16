@@ -11,6 +11,7 @@ import styles from './BlogContainer.module.css';
 import PostPreview from '../PostPreview/PostPreview';
 import useFilterStore from '@/stores/FilterStore';
 import { PrismicNextImage } from '@prismicio/next';
+import FadeIn from '@/app/components/FadeIn/FadeIn';
 
 type MagazinPostsProps = {
   magazinPosts: MagazinpostDocument[];
@@ -85,11 +86,17 @@ export default function BlogContainer({
       {groupedPosts.map((group) => (
         <div key={group.label} className={styles.monthGroup}>
           <div className={styles.monthcontainer}>
-            <h2 className={styles.monthHeader}>{group.label}</h2>
-            <div className={styles.imagecontainer}>
+            <FadeIn vars={{ delay: 2, duration: 1.3 }} className={styles.title}>
+              <h2 className={styles.monthHeader}>{group.label}</h2>
+            </FadeIn>
+            <FadeIn
+              className={styles.imagecontainer}
+              vars={{ delay: 2.4, duration: 1.6 }}
+            >
               <PrismicNextImage field={decoimage.data.image} />
-            </div>
+            </FadeIn>
           </div>
+
           <div className={styles.postsGrid}>
             {group.posts.map((post, index) => (
               <PostPreview
