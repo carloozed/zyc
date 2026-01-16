@@ -55,15 +55,18 @@ export default function PostPreview({
             <PrismicRichText field={post.data.preview_text} />
           </div>
           <div className={styles.linkcontainer}>
-            <PrismicNextLink field={post.data.redirect_link}>
-              Mehr erfahren
-            </PrismicNextLink>
+            {' '}
             {post.data.has_instagram && (
               <div className={styles.instaicon}>
                 <PrismicNextLink field={post.data.instagram_link}>
                   <PrismicNextImage field={instaIcon.data.instagram_icon} />
                 </PrismicNextLink>
               </div>
+            )}
+            {post.data.has_redirect_link && (
+              <PrismicNextLink field={post.data.redirect_link}>
+                Mehr erfahren
+              </PrismicNextLink>
             )}
           </div>
         </div>
