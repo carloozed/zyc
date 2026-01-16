@@ -1,8 +1,7 @@
 .blogcontainer {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
     justify-content: center;
-    padding: var(--padding-xl) calc(4rem + 3vw);
-    gap: var(--padding-l);
-    align-items: center;
+    padding: var(--padding-l) calc(4rem + 3vw);
+    gap: var(--padding-m);
 }
