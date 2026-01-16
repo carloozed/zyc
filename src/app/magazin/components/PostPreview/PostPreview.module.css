@@ -1,6 +1,6 @@
 .postpreview {
-    height: 32rem;
-    width: 85%;
+    height: 36rem;
+    width: 100%;
     border: var(--border-thin);
     padding: var(--padding-m);
     border-radius: 6px;
@@ -8,14 +8,11 @@
     flex-direction: column;
     gap: var(--padding-m);
     background-color: white;
-    gap: var(--padding-m);
-    opacity: 0;
-    transform: translateY(var(--page-title));
 }
 
 .uppercontainer {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
@@ -37,49 +34,32 @@
     font-size: var(--text-smaller)
 }
 
-.contentcontainer {
-    display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    gap: 20px;
-    position: relative;
-    flex: 1;
-    min-height: 0;
-    height: 100%;
-}
-
 .imagecontainer {
-    height: 100%;
+    height: calc(8rem + 7vw);
+    width: 100%;
     overflow: hidden;
-    border-radius: 10px;
+    aspect-ratio: 1/1;
+    border-radius: 6px;
+    padding: var(--padding-s) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .imagecontainer img {
-    height: 100%;
+    height: auto;
     width: 100%;
-    object-fit: cover;
-}
-
-.rightsidecontainer {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    overflow: hidden;
 }
 
 .textcontainer {
     display: flex;
     flex-direction: column;
     gap: var(--padding-s);
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-}
-
-.textcontainer h3 {
-    font-size: var(--subtitle-m)
 }
 
 .textcontainer p {
-    font-size: var(--text-m)
+    font-size: var(--text-sm)
 }
 
 .instaicon img {
@@ -92,6 +72,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 }
 
 .linkcontainer * {
