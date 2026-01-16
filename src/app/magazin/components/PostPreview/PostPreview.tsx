@@ -29,7 +29,7 @@ export default function PostPreview({
     <FadeIn
       className={styles.postpreview}
       key={index}
-      vars={{ duration: 2, delay: 1.4 }}
+      vars={{ duration: 2, delay: 1.4 + index * 0.1 }}
     >
       <div className={styles.uppercontainer}>
         <div>

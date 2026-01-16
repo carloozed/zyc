@@ -2,6 +2,7 @@ import React from 'react';
 
 import styles from './MagazineContent.module.css';
 import {
+  DecorationImageDocument,
   InstagramIconDocument,
   MagazinDocument,
   MagazinpostDocument,
@@ -14,15 +15,15 @@ type MagazineContentProps = {
   page: MagazinDocument;
   magazinPosts: MagazinpostDocument[];
   instaIcon: InstagramIconDocument;
+  decoimage: DecorationImageDocument;
 };
 
 export default function MagazineContent({
   page,
   magazinPosts,
   instaIcon,
+  decoimage,
 }: MagazineContentProps) {
-  console.log(magazinPosts);
-
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
@@ -40,7 +41,11 @@ export default function MagazineContent({
         <div className={styles.filter}>
           <FilterContainer page={page} />
         </div>
-        <BlogContainer magazinPosts={magazinPosts} instaIcon={instaIcon} />
+        <BlogContainer
+          magazinPosts={magazinPosts}
+          instaIcon={instaIcon}
+          decoimage={decoimage}
+        />
       </div>
     </div>
   );

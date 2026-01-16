@@ -1,7 +1,37 @@
 .blogcontainer {
+    padding: var(--padding-l) calc(4rem + 3vw);
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+.monthGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+}
+
+.postsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
     justify-content: center;
-    padding: var(--padding-l) calc(4rem + 3vw);
     gap: var(--padding-m);
+
+}
+
+.monthcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.imagecontainer {
+    display: flex;
+    align-items: center;
+
+}
+
+.imagecontainer img {
+    height: 2.3rem;
+    width: auto;
+    object-fit: contain;
 }

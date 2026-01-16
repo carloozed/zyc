@@ -473,6 +473,38 @@ export type DatenschutzDocument<Lang extends string = string> =
   >;
 
 /**
+ * Content for Decoration Image documents
+ */
+interface DecorationImageDocumentData {
+  /**
+   * Image field in *Decoration Image*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: decoration_image.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Decoration Image document from Prismic
+ *
+ * - **API ID**: `decoration_image`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DecorationImageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<DecorationImageDocumentData>,
+    "decoration_image",
+    Lang
+  >;
+
+/**
  * Content for Download Bar documents
  */
 interface DownloadBarDocumentData {
@@ -1417,6 +1449,18 @@ interface MagazinDocumentData {
   filter_options: prismic.GroupField<
     Simplify<MagazinDocumentDataFilterOptionsItem>
   >;
+
+  /**
+   * Filterbar Visible field in *Magazin*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: magazin.filterbar_visible
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  filterbar_visible: prismic.BooleanField;
 
   /**
    * Slice Zone field in *Magazin*
@@ -2448,6 +2492,7 @@ export type AllDocumentTypes =
   | ContactFormDocument
   | CriteriatypesubfieldDocument
   | DatenschutzDocument
+  | DecorationImageDocument
   | DownloadBarDocument
   | DynamiclandingcontentDocument
   | FaqDocument
@@ -3675,6 +3720,8 @@ declare module "@prismicio/client" {
       DatenschutzDocumentData,
       DatenschutzDocumentDataDatenschutzContentItem,
       DatenschutzDocumentDataSlicesSlice,
+      DecorationImageDocument,
+      DecorationImageDocumentData,
       DownloadBarDocument,
       DownloadBarDocumentData,
       DynamiclandingcontentDocument,

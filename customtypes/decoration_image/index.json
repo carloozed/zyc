@@ -1,0 +1,19 @@
+{
+  "format": "custom",
+  "id": "decoration_image",
+  "label": "Decoration Image",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      }
+    }
+  }
+}

@@ -1,59 +1,22 @@
 .container {
     min-height: 100svh;
-    padding: var(--padding-xl) var(--padding-s);
-    padding-bottom: var(--page-title);
+    padding: var(--page-title) var(--padding-s);
     padding-top: 0;
     --border-radius: 4px;
-
 }
 
 .uppercontainer {
     padding-top: var(--page-title);
     background-color: white;
+}
+
+.filter {
     position: sticky;
     top: 0;
-    left: 0;
-
-    padding-bottom: var(--padding-s)
-}
-
-.filtercontainer {
-    display: flex;
-    justify-content: space-between;
-    padding-top: var(--padding-s);
-}
-
-.filterbar,
-.sortcontainer {
-    display: flex;
-    gap: var(--padding-m);
-    align-items: center;
-}
-
-.sortcontainer select {
-    font-family: var(--text-font);
-    padding: var(--padding-2xs);
-    font-size: var(--text-s);
-    border: var(--border-thin);
-    border-radius: var(--border-radius);
-}
-
-.sortcontainer select:focus {
-    outline: none;
-}
-
-.filterbar h4,
-.sortcontainer h4 {
-    font-family: var(--title-font)
-}
-
-.filterbar button {
-    padding: var(--padding-2xs) var(--padding-s);
-    border: var(--border-thin);
-    height: fit-content;
-    border-radius: var(--border-radius);
-    font-size: var(--text-smaller);
+    z-index: 10;
+    padding-top: var(--padding-xl);
     background-color: white;
-    font-family: var(--text-font);
-    cursor: pointer;
+    padding-bottom: var(--padding-sm);
+    overflow: hidden;
+
 }

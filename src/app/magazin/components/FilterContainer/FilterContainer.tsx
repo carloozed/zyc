@@ -41,24 +41,26 @@ export default function FilterContainer({ page }: FilterContainerProps) {
           ))}
         </select>
       </div>
-      <div className={styles.filterbar}>
-        <h4>Filter: </h4>
-        {page.data.filter_options.map((item, index) => (
-          <button
-            key={`${index}-${item.item}`}
-            onClick={() =>
-              setFilter(
-                item.item?.toLowerCase() !== filter
-                  ? (item.item?.toLowerCase() as string)
-                  : ''
-              )
-            }
-            className={`${styles.filterbutton} ${filter === item.item?.toLowerCase() ? styles.active : ''}`}
-          >
-            {item.item}
-          </button>
-        ))}
-      </div>
+      {page.data.filterbar_visible && (
+        <div className={styles.filterbar}>
+          <h4>Filter: </h4>
+          {page.data.filter_options.map((item, index) => (
+            <button
+              key={`${index}-${item.item}`}
+              onClick={() =>
+                setFilter(
+                  item.item?.toLowerCase() !== filter
+                    ? (item.item?.toLowerCase() as string)
+                    : ''
+                )
+              }
+              className={`${styles.filterbutton} ${filter === item.item?.toLowerCase() ? styles.active : ''}`}
+            >
+              {item.item}
+            </button>
+          ))}
+        </div>
+      )}
     </FadeIn>
   );
 }

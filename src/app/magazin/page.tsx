@@ -12,12 +12,14 @@ export default async function Page() {
     .getAllByType('magazinpost')
     .catch(() => notFound());
   const instaIcon = await client.getSingle('instagram_icon');
+  const decoimage = await client.getSingle('decoration_image');
 
   return (
     <MagazineContent
       page={page}
       magazinPosts={magazinePosts}
       instaIcon={instaIcon}
+      decoimage={decoimage}
     />
   );
 }

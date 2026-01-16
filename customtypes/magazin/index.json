@@ -47,6 +47,15 @@
           }
         }
       },
+      "filterbar_visible": {
+        "type": "Boolean",
+        "config": {
+          "label": "Filterbar Visible",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
