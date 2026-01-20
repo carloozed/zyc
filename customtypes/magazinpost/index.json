@@ -101,11 +101,58 @@
           "repeat": false
         }
       },
+      "main_image": {
+        "type": "Image",
+        "config": {
+          "label": "Main Image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading3,strong,em,hyperlink"
+        }
+      },
+      "post_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Post Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading5,heading6,strong,em,hyperlink"
+        }
+      },
+      "gallery": {
+        "type": "Group",
+        "config": {
+          "label": "Instagram Gallery",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "Image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "split_visual_headline": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

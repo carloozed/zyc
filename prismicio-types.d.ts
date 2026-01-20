@@ -1536,7 +1536,22 @@ export interface MagazinpostDocumentDataTagsItem {
   item: prismic.KeyTextField;
 }
 
-type MagazinpostDocumentDataSlicesSlice = never;
+/**
+ * Item in *Magazinpost → Instagram Gallery*
+ */
+export interface MagazinpostDocumentDataGalleryItem {
+  /**
+   * Image field in *Magazinpost → Instagram Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.gallery[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+type MagazinpostDocumentDataSlicesSlice = SplitVisualHeadlineSlice;
 
 /**
  * Content for Magazinpost documents
@@ -1654,6 +1669,50 @@ interface MagazinpostDocumentData {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * Main Image field in *Magazinpost*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.main_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  main_image: prismic.ImageField<never>;
+
+  /**
+   * Title field in *Magazinpost*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Post Description field in *Magazinpost*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.post_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  post_description: prismic.RichTextField;
+
+  /**
+   * Instagram Gallery field in *Magazinpost*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazinpost.gallery[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery: prismic.GroupField<Simplify<MagazinpostDocumentDataGalleryItem>>;
 
   /**
    * Slice Zone field in *Magazinpost*
@@ -2521,6 +2580,61 @@ export type AllDocumentTypes =
   | TimelineDocument
   | UberZycDocument
   | WeAreHereImageDocument;
+
+/**
+ * Primary content in *BlogTitleImageText → Default → Primary*
+ */
+export interface BlogTitleImageTextSliceDefaultPrimary {
+  /**
+   * Slice Title field in *BlogTitleImageText → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_title_image_text.default.primary.slice_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  slice_title: prismic.RichTextField;
+
+  /**
+   * Slice Subtitle field in *BlogTitleImageText → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_title_image_text.default.primary.slice_subtitle
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  slice_subtitle: prismic.RichTextField;
+}
+
+/**
+ * Default variation for BlogTitleImageText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogTitleImageTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogTitleImageTextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *BlogTitleImageText*
+ */
+type BlogTitleImageTextSliceVariation = BlogTitleImageTextSliceDefault;
+
+/**
+ * BlogTitleImageText Shared Slice
+ *
+ * - **API ID**: `blog_title_image_text`
+ * - **Description**: BlogTitleImageText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogTitleImageTextSlice = prismic.SharedSlice<
+  "blog_title_image_text",
+  BlogTitleImageTextSliceVariation
+>;
 
 /**
  * Item in *ContactAndDownload → Default → Primary → Links*
@@ -3763,6 +3877,7 @@ declare module "@prismicio/client" {
       MagazinpostDocument,
       MagazinpostDocumentData,
       MagazinpostDocumentDataTagsItem,
+      MagazinpostDocumentDataGalleryItem,
       MagazinpostDocumentDataSlicesSlice,
       NavbarDocument,
       NavbarDocumentData,
@@ -3800,6 +3915,10 @@ declare module "@prismicio/client" {
       WeAreHereImageDocument,
       WeAreHereImageDocumentData,
       AllDocumentTypes,
+      BlogTitleImageTextSlice,
+      BlogTitleImageTextSliceDefaultPrimary,
+      BlogTitleImageTextSliceVariation,
+      BlogTitleImageTextSliceDefault,
       ContactAndDownloadSlice,
       ContactAndDownloadSliceDefaultPrimaryLinksItem,
       ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,

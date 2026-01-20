@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
+import PostContent from './components/PostContent';
 
 type Params = { uid: string };
 
@@ -15,7 +14,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     .getByUID('magazinpost', uid)
     .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  const instaIcon = await client.getSingle('instagram_icon');
+
+  return <PostContent page={page} instaIcon={instaIcon} />;
 }
 
 export async function generateMetadata({

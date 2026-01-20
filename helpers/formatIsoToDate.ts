@@ -1,4 +1,6 @@
-const formatIsoToDate = (isoDate: string | undefined) => {
+import { TimestampField } from '@prismicio/client';
+
+const formatIsoToDate = (isoDate: string | TimestampField | undefined) => {
   const date = new Date(isoDate as string);
 
   const dd = String(date.getDate()).padStart(2, '0');

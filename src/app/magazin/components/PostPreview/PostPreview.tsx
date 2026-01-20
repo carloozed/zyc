@@ -13,6 +13,7 @@ import { PrismicRichText } from '@prismicio/react';
 import formatIsoToDate from '../../../../../helpers/formatIsoToDate';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
 
 type PostPreviewProps = {
   post: MagazinpostDocument;
@@ -25,6 +26,11 @@ export default function PostPreview({
   index,
   instaIcon,
 }: PostPreviewProps) {
+  const BASEURL =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000/'
+      : 'https://www.zurichyouthclassical.ch/';
+
   return (
     <FadeIn
       className={styles.postpreview}
@@ -41,7 +47,7 @@ export default function PostPreview({
           {post.data.tags.map(
             (tag: Simplify<MagazinpostDocumentDataTagsItem>, index: number) => (
               <p key={`${index}-${tag.item}`}>{tag.item}</p>
-            )
+            ),
           )}
         </div>
       </div>
@@ -64,9 +70,9 @@ export default function PostPreview({
               </div>
             )}
             {post.data.has_redirect_link && (
-              <PrismicNextLink field={post.data.redirect_link}>
+              <TransitionLink href={`${BASEURL}/magazin/${post.uid}`}>
                 Mehr erfahren
-              </PrismicNextLink>
+              </TransitionLink>
             )}
           </div>
         </div>
