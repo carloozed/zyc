@@ -66,19 +66,23 @@ export default function BlogContainer({
 
   useEffect(() => {
     if (!filter) {
-      setMappingArray(magazinPosts);
+      setMappingArray(
+        [...magazinPosts].sort((a, b) =>
+          (b.data.publishing_date ?? '').localeCompare(a.data.publishing_date ?? ''),
+        ),
+      );
     } else {
       setMappingArray(
         magazinPosts.filter((post) =>
-          post.data.tags.some((tag) => tag.item?.toLowerCase() === filter)
-        )
+          post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
+        ),
       );
     }
   }, [filter, magazinPosts]);
 
   const groupedPosts = useMemo(
     () => groupPostsByMonth(mappingArray),
-    [mappingArray]
+    [mappingArray],
   );
 
   return (

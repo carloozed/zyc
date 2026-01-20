@@ -10,6 +10,7 @@ import {
 import BlogContainer from './BlogContainer/BlogContainer';
 import FilterContainer from './FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
+import FadeIn from '@/app/components/FadeIn/FadeIn';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -24,6 +25,8 @@ export default function MagazineContent({
   instaIcon,
   decoimage,
 }: MagazineContentProps) {
+  const postLength = magazinPosts.length.toString();
+
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
@@ -35,6 +38,17 @@ export default function MagazineContent({
             delay={1.0}
             as={'h1'}
           />
+
+          <FadeIn
+            vars={{
+              delay: 2,
+              duration: 1.3,
+              y: 0,
+            }}
+            className={styles.number}
+          >
+            <h5>({postLength})</h5>
+          </FadeIn>
         </div>
       </div>
       <div className={styles.lowercontainer}>

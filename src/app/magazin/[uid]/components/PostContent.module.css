@@ -18,6 +18,7 @@
 
 .description h5 {
     font-size: var(--subtitle-m);
+    font-family: var(--title-font);
 }
 
 .description p {

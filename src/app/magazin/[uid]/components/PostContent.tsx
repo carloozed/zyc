@@ -27,7 +27,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  const galleryThreshhold = 4;
+  const galleryThreshhold = 3;
 
   const heroslice = page.data.slices.filter(
     (slice) => slice.slice_type === 'split_visual_headline',

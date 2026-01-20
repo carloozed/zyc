@@ -5,6 +5,20 @@
     --border-radius: 4px;
 }
 
+.titleContainer {
+    display: flex;
+    overflow: hidden;
+}
+
+.number {
+    transform: translateY(-100%)
+}
+
+.titleContainer h5 {
+    font-family: var(--title-font);
+    font-size: var(--text-m);
+}
+
 .uppercontainer {
     padding-top: var(--page-title);
     background-color: white;
@@ -18,5 +32,4 @@
     background-color: white;
     padding-bottom: var(--padding-sm);
     overflow: hidden;
-
 }
