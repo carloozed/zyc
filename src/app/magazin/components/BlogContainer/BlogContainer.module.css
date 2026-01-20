@@ -1,5 +1,5 @@
 .blogcontainer {
-    padding: var(--padding-l) calc(4rem + 3vw);
+    padding: var(--page-title) calc(4rem + 3vw);
     display: flex;
     flex-direction: column;
     gap: 10rem;
