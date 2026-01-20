@@ -27,6 +27,8 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
 
+  const galleryThreshhold = 4;
+
   const heroslice = page.data.slices.filter(
     (slice) => slice.slice_type === 'split_visual_headline',
   );
@@ -94,7 +96,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
 
         <div className={styles.galleryWrapper}>
           <div className={styles.galleryRow}>
-            {galleryImages.length > 1 && (
+            {galleryImages.length > galleryThreshhold && (
               <button
                 className={styles.arrow}
                 onClick={handlePrev}
@@ -114,7 +116,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
               ))}
             </div>
 
-            {galleryImages.length > 1 && (
+            {galleryImages.length > galleryThreshhold && (
               <button
                 className={styles.arrow}
                 onClick={handleNext}
@@ -125,7 +127,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
             )}
           </div>
 
-          {galleryImages.length > 1 && (
+          {galleryImages.length > galleryThreshhold && (
             <div className={styles.dots}>
               {galleryImages.map((_, index) => (
                 <button

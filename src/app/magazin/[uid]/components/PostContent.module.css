@@ -44,7 +44,7 @@
 .gallery {
     padding: 0 var(--padding-m);
     display: flex;
-    height: calc(10rem + 10vw);
+    height: calc(11rem + 11vw);
     gap: var(--padding-l);
     overflow-x: auto;
     overflow-y: hidden;
@@ -53,6 +53,7 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    align-items: center;
 }
 
 .gallery::-webkit-scrollbar {
