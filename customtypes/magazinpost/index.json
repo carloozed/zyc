@@ -101,23 +101,6 @@
           "repeat": false
         }
       },
-      "main_image": {
-        "type": "Image",
-        "config": {
-          "label": "Main Image",
-          "constraint": {},
-          "thumbnails": []
-        }
-      },
-      "title": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Title",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading3,strong,em,hyperlink"
-        }
-      },
       "post_description": {
         "type": "StructuredText",
         "config": {

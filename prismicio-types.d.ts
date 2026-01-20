@@ -1671,28 +1671,6 @@ interface MagazinpostDocumentData {
   >;
 
   /**
-   * Main Image field in *Magazinpost*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: magazinpost.main_image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  main_image: prismic.ImageField<never>;
-
-  /**
-   * Title field in *Magazinpost*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: magazinpost.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.RichTextField;
-
-  /**
    * Post Description field in *Magazinpost*
    *
    * - **Field Type**: Rich Text

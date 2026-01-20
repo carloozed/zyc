@@ -17,7 +17,7 @@
 }
 
 .description h5 {
-    font-size: var(--subtitle-s);
+    font-size: var(--subtitle-m);
 }
 
 .description p {
@@ -89,7 +89,7 @@
     display: flex;
     gap: 0.5rem;
     justify-content: center;
-    padding-top: var(--padding-s);
+    padding-top: var(--padding-m);
     width: 100%;
 }
 
