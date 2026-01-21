@@ -9,12 +9,17 @@ import FadeIn from '@/app/components/FadeIn/FadeIn';
 
 import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
+import { KeyTextField } from '@prismicio/client';
 
 type FilterContainerProps = {
   page: MagazinDocument;
+  filters: string[] | KeyTextField[];
 };
 
-export default function FilterContainer({ page }: FilterContainerProps) {
+export default function FilterContainer({
+  page,
+  filters,
+}: FilterContainerProps) {
   const { setFilter, filter } = useFilterStore();
   const { setSortingStore } = useSortingStore();
 
@@ -44,19 +49,19 @@ export default function FilterContainer({ page }: FilterContainerProps) {
       {page.data.filterbar_visible && (
         <div className={styles.filterbar}>
           <h4>Filter: </h4>
-          {page.data.filter_options.map((item, index) => (
+          {filters.map((item, index) => (
             <button
-              key={`${index}-${item.item}`}
+              key={`${index}-${item}`}
               onClick={() =>
                 setFilter(
-                  item.item?.toLowerCase() !== filter
-                    ? (item.item?.toLowerCase() as string)
-                    : ''
+                  item?.toLowerCase() !== filter
+                    ? (item?.toLowerCase() as string)
+                    : '',
                 )
               }
-              className={`${styles.filterbutton} ${filter === item.item?.toLowerCase() ? styles.active : ''}`}
+              className={`${styles.filterbutton} ${filter === item?.toLowerCase() ? styles.active : ''}`}
             >
-              {item.item}
+              {item}
             </button>
           ))}
         </div>

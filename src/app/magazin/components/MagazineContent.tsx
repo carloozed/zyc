@@ -27,6 +27,14 @@ export default function MagazineContent({
 }: MagazineContentProps) {
   const postLength = magazinPosts.length.toString();
 
+  const filters = [
+    ...new Set(
+      magazinPosts.flatMap((post) => post.data.tags.map((tag) => tag.item)),
+    ),
+  ];
+
+  console.log(filters);
+
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
@@ -53,7 +61,7 @@ export default function MagazineContent({
       </div>
       <div className={styles.lowercontainer}>
         <div className={styles.filter}>
-          <FilterContainer page={page} />
+          <FilterContainer page={page} filters={filters} />
         </div>
         <BlogContainer
           magazinPosts={magazinPosts}
