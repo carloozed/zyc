@@ -19,12 +19,14 @@ type PostPreviewProps = {
   post: MagazinpostDocument;
   index: number;
   instaIcon: InstagramIconDocument;
+  hasAppeared: boolean;
 };
 
 export default function PostPreview({
   post,
   index,
   instaIcon,
+  hasAppeared,
 }: PostPreviewProps) {
   const BASEURL =
     process.env.NODE_ENV === 'development'
@@ -35,7 +37,10 @@ export default function PostPreview({
     <FadeIn
       className={styles.postpreview}
       key={index}
-      vars={{ duration: 2, delay: 1.4 + index * 0.1 }}
+      vars={{
+        duration: !hasAppeared ? 2 : 0,
+        delay: !hasAppeared ? 1.4 + index * 0.1 : 0,
+      }}
     >
       <div className={styles.uppercontainer}>
         <div>

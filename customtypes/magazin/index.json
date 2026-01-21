@@ -27,6 +27,13 @@
                 "label": "item",
                 "placeholder": ""
               }
+            },
+            "selectkey": {
+              "type": "Text",
+              "config": {
+                "label": "selectkey",
+                "placeholder": ""
+              }
             }
           }
         }

@@ -1390,6 +1390,16 @@ export interface MagazinDocumentDataSortingOptionsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   item: prismic.KeyTextField;
+
+  /**
+   * selectkey field in *Magazin → Sorting Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magazin.sorting_options[].selectkey
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  selectkey: prismic.KeyTextField;
 }
 
 /**

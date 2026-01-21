@@ -7,7 +7,7 @@ type SortingStoreProps = {
 };
 
 const useSortingStore = create<SortingStoreProps>((set) => ({
-  sorting: '',
+  sorting: 'neu',
   setSortingStore: (sorting) => set({ sorting: sorting }),
 }));
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import {
   DecorationImageDocument,
   InstagramIconDocument,
@@ -12,6 +12,8 @@ import PostPreview from '../PostPreview/PostPreview';
 import useFilterStore from '@/stores/FilterStore';
 import { PrismicNextImage } from '@prismicio/next';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+
+import useSortingStore from '@/stores/SortingStore';
 
 type MagazinPostsProps = {
   magazinPosts: MagazinpostDocument[];
@@ -60,42 +62,53 @@ export default function BlogContainer({
   decoimage,
 }: MagazinPostsProps) {
   const { filter } = useFilterStore();
-
-  const [mappingArray, setMappingArray] =
-    useState<MagazinpostDocument[]>(magazinPosts);
-
-  useEffect(() => {
-    if (!filter) {
-      setMappingArray(
-        [...magazinPosts].sort((a, b) =>
-          (b.data.publishing_date ?? '').localeCompare(a.data.publishing_date ?? ''),
-        ),
-      );
-    } else {
-      setMappingArray(
-        magazinPosts.filter((post) =>
-          post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
-        ),
-      );
-    }
+  const { sorting } = useSortingStore();
+  const [hasAppeared, setHasAppeared] = useState<boolean>(false);
+  const filteredPosts = useMemo(() => {
+    const sorted = [...magazinPosts].sort((a, b) =>
+      (b.data.publishing_date ?? '').localeCompare(
+        a.data.publishing_date ?? '',
+      ),
+    );
+    if (!filter) return sorted;
+    return sorted.filter((post) =>
+      post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
+    );
   }, [filter, magazinPosts]);
 
-  const groupedPosts = useMemo(
-    () => groupPostsByMonth(mappingArray),
-    [mappingArray],
-  );
+  const groupedPosts = useMemo(() => {
+    const groups = groupPostsByMonth(filteredPosts);
+    return sorting === 'neu' ? groups : [...groups].reverse();
+  }, [filteredPosts, sorting]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasAppeared(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={styles.blogcontainer}>
       {groupedPosts.map((group) => (
         <div key={group.label} className={styles.monthGroup}>
           <div className={styles.monthcontainer}>
-            <FadeIn vars={{ delay: 2, duration: 1.3 }} className={styles.title}>
+            <FadeIn
+              vars={{
+                delay: !hasAppeared ? 2 : 0,
+                duration: !hasAppeared ? 1.3 : 0,
+              }}
+              className={styles.title}
+            >
               <h2 className={styles.monthHeader}>{group.label}</h2>
             </FadeIn>
             <FadeIn
               className={styles.imagecontainer}
-              vars={{ delay: 2.4, duration: 1.6 }}
+              vars={{
+                delay: !hasAppeared ? 2.4 : 0,
+                duration: !hasAppeared ? 1.6 : 0,
+              }}
             >
               <PrismicNextImage field={decoimage.data.image} />
             </FadeIn>
@@ -108,6 +121,7 @@ export default function BlogContainer({
                 index={index}
                 key={post.id}
                 instaIcon={instaIcon}
+                hasAppeared={hasAppeared}
               />
             ))}
           </div>

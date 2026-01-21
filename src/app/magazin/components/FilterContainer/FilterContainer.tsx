@@ -33,13 +33,11 @@ export default function FilterContainer({
     >
       <div className={styles.sortcontainer}>
         <h4>Sortieren nach:</h4>
-        <select>
+        <select onChange={(e) => setSortingStore(e.target.value)}>
           {page.data.sorting_options.map((item, index) => (
             <option
               key={`${index}-${item.item}`}
-              onChange={() =>
-                setSortingStore(item.item?.toLowerCase() as string)
-              }
+              value={item.selectkey as string}
             >
               {item.item}
             </option>

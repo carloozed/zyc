@@ -33,8 +33,6 @@ export default function MagazineContent({
     ),
   ];
 
-  console.log(filters);
-
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
