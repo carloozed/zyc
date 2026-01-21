@@ -92,7 +92,15 @@
 
 /* Tablet */
 /* 768px to 1184px */
-@media (min-width: 48rem) and (max-width: 74rem) {}
+@media (min-width: 48rem) and (max-width: 74rem) {
+    .filtercontainer {
+        display: flex;
+        flex-direction: column;
+        padding-top: var(--padding-sm);
+        transform: translateY(150%);
+        gap: 1rem;
+    }
+}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */

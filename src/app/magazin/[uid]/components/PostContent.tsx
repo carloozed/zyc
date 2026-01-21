@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   InstagramIconDocument,
   MagazinpostDocument,
@@ -26,8 +26,16 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentPreviewIndex, setCurrentPreviewIndex] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const galleryThreshhold = 3;
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const galleryThreshhold = !isMobile ? 3 : 2;
 
   const heroslice = page.data.slices.filter(
     (slice) => slice.slice_type === 'split_visual_headline',
