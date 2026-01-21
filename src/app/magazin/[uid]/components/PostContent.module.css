@@ -134,3 +134,141 @@
     height: 100%;
     width: auto;
 }
+
+
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+    .container {
+        min-height: 100svh;
+        padding: 0;
+    }
+
+    .contentcontainer {
+        padding: var(--padding-m)
+    }
+
+    .description {
+        width: 100%;
+        padding-bottom: var(--padding-l);
+
+    }
+
+
+    .gallery {
+
+        height: calc(10rem + 10vw);
+        gap: var(--padding-s);
+
+        max-width: 100%;
+
+    }
+
+    .gallery::-webkit-scrollbar {
+        display: none;
+    }
+
+
+
+    .arrow {
+        background: none;
+        border: none;
+        font-size: 2.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        color: var(--black);
+        transition: opacity 0.2s ease;
+        line-height: 1;
+        flex-shrink: 0;
+    }
+
+    .arrow:hover {
+        opacity: 0.6;
+    }
+
+    .dots {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        padding-top: var(--padding-m);
+        width: 100%;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: white;
+        border: var(--border-thin);
+        padding: 0;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .dot:hover {
+        background-color: var(--black);
+    }
+
+    .dotActive {
+        background-color: var(--black);
+    }
+
+    .aside {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: var(--padding-m);
+    }
+
+    .aside p {
+
+        font-size: var(--text-s);
+    }
+
+    .instaicon {
+        height: calc(0.7rem + 0.7vw);
+    }
+
+    .instaicon img {
+        height: 100%;
+        width: auto;
+    }
+
+
+
+}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}
