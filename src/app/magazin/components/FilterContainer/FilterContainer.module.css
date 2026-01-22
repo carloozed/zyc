@@ -6,6 +6,7 @@
 }
 
 .filterbar,
+.filters,
 .sortcontainer {
     display: flex;
     gap: var(--padding-m);
@@ -58,10 +59,23 @@
     }
 
     .filterbar,
+    .filters,
     .sortcontainer {
         display: flex;
-        gap: var(--padding-s);
+        gap: var(--padding-xs);
+
         align-items: center;
+    }
+
+    .filterbar {
+        flex-wrap: wrap;
+        gap: var(--padding-xs);
+
+    }
+
+    .filters {
+        width: 100%;
+        justify-content: center;
     }
 
     .sortcontainer select {
@@ -100,6 +114,8 @@
         transform: translateY(150%);
         gap: 1rem;
     }
+
+
 }
 
 /* Tablet - Portrait Orientation */

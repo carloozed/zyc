@@ -47,21 +47,23 @@ export default function FilterContainer({
       {page.data.filterbar_visible && (
         <div className={styles.filterbar}>
           <h4>Filter: </h4>
-          {filters.map((item, index) => (
-            <button
-              key={`${index}-${item}`}
-              onClick={() =>
-                setFilter(
-                  item?.toLowerCase() !== filter
-                    ? (item?.toLowerCase() as string)
-                    : '',
-                )
-              }
-              className={`${styles.filterbutton} ${filter === item?.toLowerCase() ? styles.active : ''}`}
-            >
-              {item}
-            </button>
-          ))}
+          <div className={styles.filters}>
+            {filters.map((item, index) => (
+              <button
+                key={`${index}-${item}`}
+                onClick={() =>
+                  setFilter(
+                    item?.toLowerCase() !== filter
+                      ? (item?.toLowerCase() as string)
+                      : '',
+                  )
+                }
+                className={`${styles.filterbutton} ${filter === item?.toLowerCase() ? styles.active : ''}`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </FadeIn>
