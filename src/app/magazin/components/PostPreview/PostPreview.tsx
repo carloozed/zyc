@@ -49,11 +49,16 @@ export default function PostPreview({
           </p>
         </div>
         <div className={styles.tagscontainer}>
-          {post.data.tags.map(
-            (tag: Simplify<MagazinpostDocumentDataTagsItem>, index: number) => (
-              <p key={`${index}-${tag.item}`}>{tag.item}</p>
-            ),
-          )}
+          {post.data.tags
+            .sort((a, b) => (a.item ?? '').localeCompare(b.item ?? ''))
+            .map(
+              (
+                tag: Simplify<MagazinpostDocumentDataTagsItem>,
+                index: number,
+              ) => (
+                <p key={`${index}-${tag.item}`}>{tag.item}</p>
+              ),
+            )}
         </div>
       </div>
       <div className={styles.contentcontainer}>
