@@ -16,18 +16,17 @@ export const repositoryName =
  * The project's Prismic route resolvers. This list determines a Prismic document's URL.
  */
 const routes: Route[] = [
-  { type: 'page', uid: 'home', path: '/' },
-  { type: 'the_contest', path: '/the_contest' },
-  { type: 'the_cadenza', path: '/the_cadenza' },
-  { type: 'the_crescendo', path: '/the_crescendo' },
-  { type: 'teilnahme_termine', path: '/termine' },
-  { type: 'magazin', path: '/magazin' },
-  { type: 'magazinpost', path: '/magazin/:uid' },
-  { type: 'uber_zyc', path: '/ueber_zyc' },
-  { type: 'impresssum', path: '/impressum' },
-  { type: 'datenschutz', path: '/datenschutz' },
+  { type: 'page', uid: 'home', path: '/:lang?' },
+  { type: 'the_contest', path: '/:lang?/the_contest' },
+  { type: 'the_cadenza', path: '/:lang?/the_cadenza' },
+  { type: 'the_crescendo', path: '/:lang?/the_crescendo' },
+  { type: 'teilnahme_termine', path: '/:lang?/termine' },
+  { type: 'magazin', path: '/:lang?/magazin' },
+  { type: 'magazinpost', path: '/:lang?/magazin/:uid' },
+  { type: 'uber_zyc', path: '/:lang?/ueber_zyc' },
+  { type: 'impresssum', path: '/:lang?/impressum' },
+  { type: 'datenschutz', path: '/:lang?/datenschutz' },
 ];
-
 /**
  * Creates a Prismic client for the project's repository. The client is used to
  * query content from the Prismic API.

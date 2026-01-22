@@ -52,7 +52,7 @@ export default function Menu({ ...menuProps }) {
         return '110%';
       case '/ueber_zyc':
         return '210%';
-      case '/termine':
+      case '/magazin':
         return '310%';
       default:
         return '0%';
@@ -194,12 +194,12 @@ export default function Menu({ ...menuProps }) {
                                     </span>
                                   </div>
                                 </li>
-                              )
+                              ),
                             )}
                         </ul>
                       </div>
                     </li>
-                  )
+                  ),
                 )}
               </ul>
             </div>
@@ -235,7 +235,7 @@ export default function Menu({ ...menuProps }) {
                         </>
                       )}
                     </li>
-                  )
+                  ),
                 )}
               </ul>
             </div>

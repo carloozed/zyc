@@ -24,6 +24,13 @@ export type TransitionLinkProps = {
   | { field?: never; document?: never; href: string }
 );
 
+// Strip locale prefix from URLs for consistent display
+function stripLocalePrefix(url: string | null): string | null {
+  if (!url) return null;
+  // Remove locale prefix like /de-ch/, /en-us/, etc.
+  return url.replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, '/');
+}
+
 export function TransitionLink({
   field,
   document: doc,
@@ -35,7 +42,8 @@ export function TransitionLink({
   hasText = true,
   isDisabled = false,
 }: TransitionLinkProps) {
-  const url = href ?? asLink(field ?? doc);
+  const rawUrl = href ?? asLink(field ?? doc) ?? null;
+  const url = stripLocalePrefix(rawUrl);
   const linkRef = useRef<HTMLAnchorElement>(null);
 
   if (!url) {
