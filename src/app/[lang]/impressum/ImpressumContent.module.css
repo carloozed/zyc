@@ -30,6 +30,12 @@
 }
 
 
+.contentItem img {
+    width: calc(3.2rem + 3.2vw);
+    height: auto;
+    padding-top: var(--padding-m)
+}
+
 .contentItem {
     width: 60vw;
     display: flex;

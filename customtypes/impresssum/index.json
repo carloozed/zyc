@@ -36,7 +36,7 @@
                 "label": "Text",
                 "placeholder": "",
                 "allowTargetBlank": true,
-                "multi": "paragraph,strong,em,hyperlink,embed,list-item,o-list-item"
+                "multi": "paragraph,strong,em,hyperlink,embed,list-item,o-list-item,image"
               }
             }
           }

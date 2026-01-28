@@ -6,12 +6,14 @@ export async function middleware(request: NextRequest) {
   const repository = await client.getRepository();
 
   const locales = repository.languages.map((lang) => lang.id);
-  const defaultLocale = 'de-ch';
+  const defaultLocale =
+    process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
 
   const { pathname } = request.nextUrl;
 
   // Block en-us until ready
-  if (pathname.startsWith('/en-us')) {
+  // Block en-us until ready (only in production)
+  if (process.env.NODE_ENV !== 'development' && pathname.startsWith('/en-us')) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
