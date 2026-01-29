@@ -122,6 +122,11 @@
 				"credits": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"link_text": {
+				"__TYPE__": "FieldContent",
+				"value": "dangerous",
+				"type": "Text"
 			}
 		},
 		"items": []

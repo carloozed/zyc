@@ -3255,6 +3255,16 @@ export interface JuryGridSliceBaseGridPrimary {
   members: prismic.GroupField<
     Simplify<JuryGridSliceBaseGridPrimaryMembersItem>
   >;
+
+  /**
+   * Link Text field in *JuryGrid → Base Grid → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: jury_grid.base_grid.primary.link_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  link_text: prismic.KeyTextField;
 }
 
 /**
