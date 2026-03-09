@@ -3,6 +3,11 @@ import { asText } from '@prismicio/client';
 import { createClient } from '@/prismicio';
 import styles from './page.module.css';
 import LandingContent from '../components/Landing/LandingContent';
+import { notFound } from 'next/navigation';
+
+export const maxDuration = 15; // add this
+
+const VALID_LANGS = ['de-ch', 'en-us']; // add this — match your Prismic locales
 
 export default async function Home({
   params,
@@ -10,6 +15,9 @@ export default async function Home({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
+
+  if (!VALID_LANGS.includes(lang)) notFound(); // add this
+
   const client = createClient();
 
   // Fetch both documents in parallel for better performance
@@ -39,6 +47,9 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
+
+  if (!VALID_LANGS.includes(lang)) notFound(); // add here too
+
   const client = createClient();
   const home = await client.getByUID('page', 'home', { lang });
 

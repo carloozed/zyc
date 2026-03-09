@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/prismicio';
 
-export async function middleware(request: NextRequest) {
-  const client = createClient();
-  const repository = await client.getRepository();
+let cachedLocales: string[] | null = null;
 
-  const locales = repository.languages.map((lang) => lang.id);
+export async function middleware(request: NextRequest) {
+  if (!cachedLocales) {
+    const client = createClient();
+    const repository = await client.getRepository();
+    cachedLocales = repository.languages.map((lang) => lang.id);
+  }
+
+  const locales = cachedLocales; // use the cache, no more client/repository calls here
   const defaultLocale =
     process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
 
   const { pathname } = request.nextUrl;
 
-  // Block en-us until ready
-  // Block en-us until ready (only in production)
   if (process.env.NODE_ENV !== 'development' && pathname.startsWith('/en-us')) {
     return NextResponse.redirect(new URL('/', request.url));
   }
@@ -30,8 +33,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next, api, static files)
-    '/((?!_next|api|favicon.ico|.*\\..*).*)',
-  ],
+  matcher: ['/((?!_next|api|favicon.ico|.*\\..*).*)'],
 };
