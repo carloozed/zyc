@@ -6,16 +6,18 @@ import { createClient } from '@/prismicio';
 import Content from './Content';
 
 export default async function Navigation() {
+  const lang = process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
+
   const client = createClient();
-  const downloadbar = await client.getSingle('download_bar');
-  const logo = await client.getSingle('logo');
-  const navbar = await client.getSingle('navbar');
-  const lownavigations = await client.getAllByType('low_navigation');
-  const address = await client.getSingle('address');
-  const indicator = await client.getSingle('navigation_indicator');
-  const subnavigation = await client.getSingle('subnavigation');
-  const timelineBroad = await client.getSingle('timeline');
-  const termineIsVisible = await client.getSingle('termine_is_visible');
+  const downloadbar = await client.getSingle('download_bar', { lang });
+  const logo = await client.getSingle('logo', { lang });
+  const navbar = await client.getSingle('navbar', { lang });
+  const lownavigations = await client.getAllByType('low_navigation', { lang });
+  const address = await client.getSingle('address', { lang });
+  const indicator = await client.getSingle('navigation_indicator', { lang });
+  const subnavigation = await client.getSingle('subnavigation', { lang });
+  const timelineBroad = await client.getSingle('timeline', { lang });
+  const termineIsVisible = await client.getSingle('termine_is_visible', { lang });
 
   const lowNavigation = lownavigations.find((item) => {
     return item.uid === 'legal-information-contact';
