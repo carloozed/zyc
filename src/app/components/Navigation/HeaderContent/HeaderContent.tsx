@@ -5,7 +5,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './HeaderContent.module.css';
 
 /* Component Imports */
-// import DownloadBar from './DownloadBar/DownloadBar';
 import { PrismicNextImage } from '@prismicio/next';
 import Hamburger from './Hamburger/Hamburger';
 
@@ -13,8 +12,6 @@ import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 import DownloadBar from './DownloadBar/DownloadBar';
-
-/* hello */
 
 export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
@@ -40,7 +37,7 @@ export default function HeaderContent({ ...headerContentProps }) {
         const height = headerRef.current.offsetHeight;
         document.documentElement.style.setProperty(
           '--header-height',
-          `${height}px`
+          `${height}px`,
         );
       }
     };
@@ -87,7 +84,7 @@ export default function HeaderContent({ ...headerContentProps }) {
         </div>
       </TransitionLink>
       <div className={styles.header__downloadbar}>
-        {downloadbar.data.is_download_available !== 'Nichts' && (
+        {downloadbar.data.is_download_available != 'Nichts' && (
           <DownloadBar downloadbar={downloadbar} />
         )}
       </div>

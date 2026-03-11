@@ -54,22 +54,18 @@ export default function DownloadBar({ downloadbar }: Props) {
   }, [handleScroll]);
   return (
     <div
-      className={styles.downloadbar__container}
-      style={{
-        transform: `translateY(${showNavbar ? '0' : '-150%'})`,
-        transition: 'transform 0.3s ease-in-out',
-      }}
+      className={`${styles.downloadbar__container} ${showNavbar ? styles.downloadbar__visible : styles.downloadbar__hidden}`}
     >
       <h5 className={styles.downloadbar__text}>
-        {downloadbar.data.is_download_available === 'Stundenplan'
+        {downloadbar.data.is_download_available == 'Stundenplan'
           ? `${downloadbar.data.schedule_is_available}`
-          : downloadbar.data.is_download_available === 'Resultate'
+          : downloadbar.data.is_download_available == 'Resultate'
             ? `${downloadbar.data.results_are_available}`
             : null}
       </h5>
-      {downloadbar.data.is_download_available === 'Stundenplan' ? (
+      {downloadbar.data.is_download_available == 'Stundenplan' ? (
         <PrismicNextLink field={downloadbar.data.schedule_link} />
-      ) : downloadbar.data.is_download_available === 'Resultate' ? (
+      ) : downloadbar.data.is_download_available == 'Resultate' ? (
         <PrismicNextLink field={downloadbar.data.results_link} />
       ) : null}
     </div>
