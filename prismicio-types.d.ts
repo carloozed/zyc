@@ -859,6 +859,160 @@ export type FooterDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Gallery → Sorting Options*
+ */
+export interface GalleryDocumentDataSortingOptionsItem {
+  /**
+   * item field in *Gallery → Sorting Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.sorting_options[].item
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item: prismic.KeyTextField;
+
+  /**
+   * selectkey field in *Gallery → Sorting Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.sorting_options[].selectkey
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  selectkey: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Gallery → Filter Options*
+ */
+export interface GalleryDocumentDataFilterOptionsItem {
+  /**
+   * Item field in *Gallery → Filter Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.filter_options[].item
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  item: prismic.KeyTextField;
+}
+
+type GalleryDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Gallery documents
+ */
+interface GalleryDocumentData {
+  /**
+   * Title field in *Gallery*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Sorting Options field in *Gallery*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.sorting_options[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  sorting_options: prismic.GroupField<
+    Simplify<GalleryDocumentDataSortingOptionsItem>
+  >;
+
+  /**
+   * Filter Options field in *Gallery*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.filter_options[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  filter_options: prismic.GroupField<
+    Simplify<GalleryDocumentDataFilterOptionsItem>
+  >;
+
+  /**
+   * Filterbar Visible field in *Gallery*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: gallery.filterbar_visible
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  filterbar_visible: prismic.BooleanField;
+
+  /**
+   * Slice Zone field in *Gallery*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<GalleryDocumentDataSlicesSlice> /**
+   * Meta Title field in *Gallery*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: gallery.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Gallery*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: gallery.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Gallery document from Prismic
+ *
+ * - **API ID**: `gallery`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type GalleryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<GalleryDocumentData>,
+    "gallery",
+    Lang
+  >;
+
+/**
  * Content for Homepage Navigation documents
  */
 interface HomepageNavigationDocumentData {
@@ -2545,6 +2699,7 @@ export type AllDocumentTypes =
   | FaqDocument
   | FoldoutelementDocument
   | FooterDocument
+  | GalleryDocument
   | HomepageNavigationDocument
   | ImpresssumDocument
   | InstagramIconDocument
@@ -3847,6 +4002,11 @@ declare module "@prismicio/client" {
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataDownloadsItem,
+      GalleryDocument,
+      GalleryDocumentData,
+      GalleryDocumentDataSortingOptionsItem,
+      GalleryDocumentDataFilterOptionsItem,
+      GalleryDocumentDataSlicesSlice,
       HomepageNavigationDocument,
       HomepageNavigationDocumentData,
       ImpresssumDocument,

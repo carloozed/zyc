@@ -26,6 +26,7 @@ const routes: Route[] = [
   { type: 'uber_zyc', path: '/:lang?/ueber_zyc' },
   { type: 'impresssum', path: '/:lang?/impressum' },
   { type: 'datenschutz', path: '/:lang?/datenschutz' },
+  { type: 'galerie', path: '/:lang?/galerie' },
 ];
 /**
  * Creates a Prismic client for the project's repository. The client is used to
