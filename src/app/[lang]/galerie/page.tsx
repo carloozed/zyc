@@ -1,16 +1,22 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
-import { SliceZone } from '@prismicio/react';
 
 import { createClient } from '@/prismicio';
-import { components } from '@/slices';
 
-export default async function Page() {
+import GalleryContent from './GalleryContent/GalleryContent';
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
   const client = createClient();
   const page = await client.getSingle('gallery').catch(() => notFound());
+  const decoimage = await client.getSingle('decoration_image', { lang });
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return <GalleryContent page={page} decoimage={decoimage} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

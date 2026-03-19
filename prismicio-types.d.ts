@@ -898,7 +898,7 @@ export interface GalleryDocumentDataFilterOptionsItem {
   item: prismic.KeyTextField;
 }
 
-type GalleryDocumentDataSlicesSlice = never;
+type GalleryDocumentDataSlicesSlice = GalleryYearSlice;
 
 /**
  * Content for Gallery documents
@@ -3315,6 +3315,98 @@ export type FoldoutSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *GalleryYear → Default → Primary → Gallery*
+ */
+export interface GalleryYearSliceDefaultPrimaryGalleryItem {
+  /**
+   * Image field in *GalleryYear → Default → Primary → Gallery*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.gallery[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *GalleryYear → Default → Primary*
+ */
+export interface GalleryYearSliceDefaultPrimary {
+  /**
+   * Edition Year field in *GalleryYear → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.edition_year
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  edition_year: prismic.RichTextField;
+
+  /**
+   * Year in Number field in *GalleryYear → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.year_in_number
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  year_in_number: prismic.NumberField;
+
+  /**
+   * Event Type field in *GalleryYear → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Cadenza, Qualifikation, Contest, Crescendo etc.
+   * - **API ID Path**: gallery_year.default.primary.event_type
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  event_type: prismic.KeyTextField;
+
+  /**
+   * Gallery field in *GalleryYear → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.gallery[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  gallery: prismic.GroupField<
+    Simplify<GalleryYearSliceDefaultPrimaryGalleryItem>
+  >;
+}
+
+/**
+ * Default variation for GalleryYear Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GalleryYearSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<GalleryYearSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *GalleryYear*
+ */
+type GalleryYearSliceVariation = GalleryYearSliceDefault;
+
+/**
+ * GalleryYear Shared Slice
+ *
+ * - **API ID**: `gallery_year`
+ * - **Description**: GalleryYear
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GalleryYearSlice = prismic.SharedSlice<
+  "gallery_year",
+  GalleryYearSliceVariation
+>;
+
+/**
  * Item in *JuryGrid → Base Grid → Primary → Members*
  */
 export interface JuryGridSliceBaseGridPrimaryMembersItem {
@@ -4101,6 +4193,11 @@ declare module "@prismicio/client" {
       FoldoutSliceVariation,
       FoldoutSliceDefault,
       FoldoutSliceFoldoutWithImage,
+      GalleryYearSlice,
+      GalleryYearSliceDefaultPrimaryGalleryItem,
+      GalleryYearSliceDefaultPrimary,
+      GalleryYearSliceVariation,
+      GalleryYearSliceDefault,
       JuryGridSlice,
       JuryGridSliceBaseGridPrimaryMembersItem,
       JuryGridSliceBaseGridPrimary,

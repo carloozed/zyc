@@ -2,93 +2,43 @@
 
 import React, { useMemo } from 'react';
 
-import styles from './MagazineContent.module.css';
+import styles from './GalleryContent.module.css';
 import {
   DecorationImageDocument,
-  InstagramIconDocument,
-  MagazinDocument,
-  MagazinpostDocument,
+  GalleryDocument,
 } from '../../../../../prismicio-types';
-import BlogContainer from '../../magazin/components/BlogContainer/BlogContainer';
 import FilterContainer from '../../magazin/components/FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
-import useFilterStore from '@/stores/FilterStore';
-import useSortingStore from '@/stores/SortingStore';
+
+import { SliceZone } from '@prismicio/react';
+import { components } from '@/slices';
+
+import useGalleryFilterStore from '@/stores/GalleryFilterStore';
 
 type MagazineContentProps = {
-  page: MagazinDocument;
-  magazinPosts: MagazinpostDocument[];
-  instaIcon: InstagramIconDocument;
+  page: GalleryDocument;
   decoimage: DecorationImageDocument;
 };
 
-// Group posts by month/year
-function groupPostsByMonth(posts: MagazinpostDocument[]) {
-  const grouped: Record<string, MagazinpostDocument[]> = {};
-
-  posts.forEach((post) => {
-    const date = post.data.publishing_date
-      ? new Date(post.data.publishing_date)
-      : null;
-
-    if (date) {
-      const key = `${date.getFullYear()}-${date.getMonth()}`;
-      if (!grouped[key]) {
-        grouped[key] = [];
-      }
-      grouped[key].push(post);
-    }
-  });
-
-  // Sort keys by date (newest first)
-  const sortedKeys = Object.keys(grouped).sort((a, b) => {
-    const [yearA, monthA] = a.split('-').map(Number);
-    const [yearB, monthB] = b.split('-').map(Number);
-    return yearB - yearA || monthB - monthA;
-  });
-
-  return sortedKeys.map((key) => {
-    const [year, month] = key.split('-').map(Number);
-    const label = new Date(year, month).toLocaleDateString('de-CH', {
-      month: 'long',
-      year: 'numeric',
-    });
-    return { label, posts: grouped[key] };
-  });
-}
-
-export default function MagazineContent({
+export default function GalleryContent({
   page,
-  magazinPosts,
-  instaIcon,
   decoimage,
 }: MagazineContentProps) {
-  const { filter } = useFilterStore();
-  const { sorting } = useSortingStore();
+  const { filter } = useGalleryFilterStore();
 
   const filters = [
-    ...new Set(
-      magazinPosts.flatMap((post) => post.data.tags.map((tag) => tag.item)),
-    ),
+    ...new Set(page.data.slices.flatMap((post) => post.primary.event_type)),
   ];
 
   const filteredPosts = useMemo(() => {
-    const sorted = [...magazinPosts].sort((a, b) =>
-      (b.data.publishing_date ?? '').localeCompare(
-        a.data.publishing_date ?? '',
-      ),
+    const sorted = [...page.data.slices].sort(
+      (a, b) =>
+        (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
     );
     if (!filter) return sorted;
-    return sorted.filter((post) =>
-      post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
-    );
-  }, [filter, magazinPosts]);
-
-  const groupedPosts = useMemo(() => {
-    const groups = groupPostsByMonth(filteredPosts);
-    return sorting === 'neu' ? groups : [...groups].reverse();
-  }, [filteredPosts, sorting]);
+    return sorted.filter((post) => post.primary.event_type === filter);
+  }, [filter, page.data.slices]);
 
   return (
     <div className={styles.container}>
@@ -116,13 +66,15 @@ export default function MagazineContent({
       </div>
       <div className={styles.lowercontainer}>
         <div className={styles.filter}>
-          <FilterContainer page={page} filters={filters} />
+          <FilterContainer page={page} filters={filters} isGallery={true} />
         </div>
-        <BlogContainer
-          instaIcon={instaIcon}
-          decoimage={decoimage}
-          groupedPosts={groupedPosts}
-        />
+        <div className={styles.gallerycontainer}>
+          <SliceZone
+            slices={page.data.slices}
+            components={components}
+            context={{ decoimage }}
+          />
+        </div>
       </div>
     </div>
   );

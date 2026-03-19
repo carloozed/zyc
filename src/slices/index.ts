@@ -8,6 +8,7 @@ export const components = {
   contest_timeline: dynamic(() => import("./ContestTimeline")),
   criterias: dynamic(() => import("./Criterias")),
   foldout: dynamic(() => import("./Foldout")),
+  gallery_year: dynamic(() => import("./GalleryYear")),
   jury_grid: dynamic(() => import("./JuryGrid")),
   schedule_slice: dynamic(() => import("./ScheduleSlice")),
   split_visual_headline: dynamic(() => import("./Hero")),

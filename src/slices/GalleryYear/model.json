@@ -1,0 +1,59 @@
+{
+  "id": "gallery_year",
+  "type": "SharedSlice",
+  "name": "GalleryYear",
+  "description": "GalleryYear",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "edition_year": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Edition Year",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "year_in_number": {
+          "type": "Number",
+          "config": {
+            "label": "Year in Number",
+            "placeholder": ""
+          }
+        },
+        "event_type": {
+          "type": "Text",
+          "config": {
+            "label": "Event Type",
+            "placeholder": "Cadenza, Qualifikation, Contest, Crescendo etc. "
+          }
+        },
+        "gallery": {
+          "type": "Group",
+          "config": {
+            "label": "Gallery",
+            "repeat": true,
+            "fields": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

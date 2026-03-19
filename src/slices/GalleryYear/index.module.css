@@ -1,0 +1,119 @@
+.blogcontainer {
+    padding: var(--page-title) calc(4rem + 3vw);
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+.monthGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l);
+}
+
+.postsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
+    justify-content: center;
+    gap: var(--padding-l);
+}
+
+.overflow {
+    overflow: hidden
+}
+
+.monthcontainer {
+    display: flex;
+    gap: var(--page-title);
+    overflow: hidden;
+}
+
+.title,
+.imagecontainer {
+    transform: translateY(100%)
+}
+
+.imagecontainer {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.imagecontainer img {
+    height: 2.3rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.image {
+    overflow: hidden;
+}
+
+
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+    .blogcontainer {
+        padding: var(--padding-s);
+        padding-top: 2rem;
+        gap: 4rem;
+    }
+
+    .monthGroup {
+        gap: var(--padding-m);
+    }
+
+    .postsGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        gap: var(--padding-m);
+
+    }
+
+
+    .title,
+    .imagecontainer {
+        transform: translateY(100%)
+    }
+
+    .imagecontainer {
+        display: none
+    }
+}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}

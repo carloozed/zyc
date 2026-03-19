@@ -1,7 +1,10 @@
 'use client';
 
 import React from 'react';
-import { MagazinDocument } from '../../../../../../prismicio-types';
+import {
+  GalleryDocument,
+  MagazinDocument,
+} from '../../../../../../prismicio-types';
 
 import styles from './FilterContainer.module.css';
 
@@ -12,13 +15,15 @@ import useSortingStore from '@/stores/SortingStore';
 import { KeyTextField } from '@prismicio/client';
 
 type FilterContainerProps = {
-  page: MagazinDocument;
+  page: MagazinDocument | GalleryDocument;
   filters: string[] | KeyTextField[];
+  isGallery?: boolean;
 };
 
 export default function FilterContainer({
   page,
   filters,
+  isGallery,
 }: FilterContainerProps) {
   const { setFilter, filter } = useFilterStore();
   const { setSortingStore } = useSortingStore();
@@ -32,7 +37,7 @@ export default function FilterContainer({
       }}
     >
       <div className={styles.sortcontainer}>
-        <h4>Sortieren nach:</h4>
+        <h4>{!isGallery ? 'Sortieren nach:' : 'Edition:'}</h4>
         <select onChange={(e) => setSortingStore(e.target.value)}>
           {page.data.sorting_options.map((item, index) => (
             <option

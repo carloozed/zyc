@@ -67,7 +67,11 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "gallery_year": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },
