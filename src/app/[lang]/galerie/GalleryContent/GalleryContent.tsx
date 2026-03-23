@@ -48,10 +48,10 @@ export default function GalleryContent({
         (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
     );
 
-    // Filter by event type (Cadenza, etc.)
+    // Filter by event type — keep slices that have at least one matching image
     if (filter) {
       result = result.filter((post) =>
-        post.primary.gallery.flatMap(
+        post.primary.gallery.some(
           (item) => item.eventtag?.toLowerCase() === filter,
         ),
       );
@@ -76,23 +76,28 @@ export default function GalleryContent({
   // Flatten all images from visible slices into a flat slides array for the lightbox
   const allSlides = useMemo(() => {
     return visiblePosts.flatMap((slice) =>
-      slice.primary.gallery.map((image) => ({
-        src: image.image.url ?? '',
-        alt: image.image.alt ?? 'alttext',
-      })),
+      slice.primary.gallery
+        .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
+        .map((image) => ({
+          src: image.image.url ?? '',
+          alt: image.image.alt ?? 'alttext',
+        })),
     );
-  }, [visiblePosts]);
+  }, [visiblePosts, filter]);
 
   // Build a map of slice index -> global offset so each GalleryYear knows its starting index
   const sliceOffsets = useMemo(() => {
     const offsets = new Map<string, number>();
     let offset = 0;
     for (const slice of visiblePosts) {
+      const imageCount = filter
+        ? slice.primary.gallery.filter((i) => i.eventtag?.toLowerCase() === filter).length
+        : slice.primary.gallery.length;
       offsets.set(slice.id, offset);
-      offset += slice.primary.gallery.length;
+      offset += imageCount;
     }
     return offsets;
-  }, [visiblePosts]);
+  }, [visiblePosts, filter]);
 
   const onImageClick = useCallback((globalIndex: number) => {
     setLightboxIndex(globalIndex);
@@ -120,7 +125,7 @@ export default function GalleryContent({
           <SliceZone
             slices={visiblePosts}
             components={components}
-            context={{ decoimage, onImageClick, sliceOffsets }}
+            context={{ decoimage, onImageClick, sliceOffsets, filter }}
           />
           {hasMore && (
             <button

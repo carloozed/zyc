@@ -8,49 +8,48 @@ import { useGSAP } from '@gsap/react';
 import styles from './index.module.css';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 import { PrismicNextImage } from '@prismicio/next';
+import useGalleryAnimationStore from '@/stores/GalleryAnimationStore';
 
 /**
  * Props for `GalleryYear`.
  */
 export type GalleryYearProps = SliceComponentProps<Content.GalleryYearSlice>;
 
-// Module-level flag — survives remounts, only false on first page load
-let hasInitiallyAppeared = false;
-
 type GallerySliceContext = {
   decoimage: Content.DecorationImageDocument;
   onImageClick: (globalIndex: number) => void;
   sliceOffsets: Map<string, number>;
+  filter: string;
 };
 
 const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
-  const { decoimage, onImageClick, sliceOffsets } =
+  const { decoimage, onImageClick, sliceOffsets, filter } =
     context as GallerySliceContext;
+  const { hasAnimated, setHasAnimated } = useGalleryAnimationStore();
   const sliceOffset = sliceOffsets.get(slice.id) ?? 0;
-  const isFirstLoad = useRef(!hasInitiallyAppeared);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!hasInitiallyAppeared) {
+    if (!hasAnimated) {
       const timer = setTimeout(() => {
-        hasInitiallyAppeared = true;
+        setHasAnimated(true);
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [hasAnimated, setHasAnimated]);
 
   useGSAP(
     () => {
       gsap.to(`.${styles.galleryImage}`, {
         y: 0,
         opacity: 1,
-        duration: isFirstLoad.current ? 2.4 : 0,
-        delay: isFirstLoad.current ? 2.2 : 0,
+        duration: !hasAnimated ? 2.4 : 0,
+        delay: !hasAnimated ? 2.2 : 0,
         ease: 'power3.out',
-        stagger: isFirstLoad.current ? 0.003 : 0,
+        stagger: !hasAnimated ? 0.003 : 0,
       });
     },
-    { scope: gridRef },
+    { scope: gridRef, dependencies: [filter] },
   );
 
   return (
@@ -63,8 +62,8 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
         <div className={styles.monthcontainer}>
           <FadeIn
             vars={{
-              delay: isFirstLoad.current ? 1.2 : 0,
-              duration: isFirstLoad.current ? 1.3 : 0,
+              delay: !hasAnimated ? 1.2 : 0,
+              duration: !hasAnimated ? 1.3 : 0,
             }}
             className={styles.title}
           >
@@ -73,8 +72,8 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
           <FadeIn
             className={styles.imagecontainer}
             vars={{
-              delay: isFirstLoad.current ? 1.6 : 0,
-              duration: isFirstLoad.current ? 1.6 : 0,
+              delay: !hasAnimated ? 1.6 : 0,
+              duration: !hasAnimated ? 1.6 : 0,
             }}
           >
             <PrismicNextImage field={decoimage.data.image} />
@@ -82,7 +81,9 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
         </div>
 
         <div className={styles.postsGrid} ref={gridRef}>
-          {slice.primary.gallery.map((image, index) => (
+          {slice.primary.gallery
+            .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
+            .map((image, index) => (
             <div
               onClick={() => onImageClick(sliceOffset + index)}
               style={{ cursor: 'pointer' }}
@@ -94,7 +95,6 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
                 loading="lazy"
                 sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
                 imgixParams={{ q: 65, w: 400 }}
-                datatype={slice.primary.event_type as string}
               />
             </div>
           ))}
