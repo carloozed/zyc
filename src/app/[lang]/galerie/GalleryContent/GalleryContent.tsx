@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 
 import styles from './GalleryContent.module.css';
 import {
@@ -15,6 +15,7 @@ import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
 import useGalleryFilterStore from '@/stores/GalleryFilterStore';
+import GalleryLightbox from './components/GalleryLightbox';
 
 type MagazineContentProps = {
   page: GalleryDocument;
@@ -26,6 +27,8 @@ export default function GalleryContent({
   decoimage,
 }: MagazineContentProps) {
   const { filter } = useGalleryFilterStore();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const filters = [
     ...new Set(page.data.slices.flatMap((post) => post.primary.event_type)),
@@ -39,6 +42,32 @@ export default function GalleryContent({
     if (!filter) return sorted;
     return sorted.filter((post) => post.primary.event_type === filter);
   }, [filter, page.data.slices]);
+
+  // Flatten all images from all slices into a flat slides array for the lightbox
+  const allSlides = useMemo(() => {
+    return filteredPosts.flatMap((slice) =>
+      slice.primary.gallery.map((image) => ({
+        src: image.image.url ?? '',
+        alt: image.image.alt ?? 'alttext',
+      })),
+    );
+  }, [filteredPosts]);
+
+  // Build a map of slice index -> global offset so each GalleryYear knows its starting index
+  const sliceOffsets = useMemo(() => {
+    const offsets = new Map<string, number>();
+    let offset = 0;
+    for (const slice of filteredPosts) {
+      offsets.set(slice.id, offset);
+      offset += slice.primary.gallery.length;
+    }
+    return offsets;
+  }, [filteredPosts]);
+
+  const onImageClick = useCallback((globalIndex: number) => {
+    setLightboxIndex(globalIndex);
+    setLightboxOpen(true);
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -59,9 +88,7 @@ export default function GalleryContent({
               y: 0,
             }}
             className={styles.number}
-          >
-            <h5>({filteredPosts.length})</h5>
-          </FadeIn>
+          ></FadeIn>
         </div>
       </div>
       <div className={styles.lowercontainer}>
@@ -70,12 +97,18 @@ export default function GalleryContent({
         </div>
         <div className={styles.gallerycontainer}>
           <SliceZone
-            slices={page.data.slices}
+            slices={filteredPosts}
             components={components}
-            context={{ decoimage }}
+            context={{ decoimage, onImageClick, sliceOffsets }}
           />
         </div>
       </div>
+      <GalleryLightbox
+        slides={allSlides}
+        lightboxOpen={lightboxOpen}
+        setLightboxOpen={setLightboxOpen}
+        initialIndex={lightboxIndex}
+      />
     </div>
   );
 }

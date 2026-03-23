@@ -18,10 +18,13 @@ export type GalleryYearProps = SliceComponentProps<Content.GalleryYearSlice>;
 
 type GallerySliceContext = {
   decoimage: Content.DecorationImageDocument;
+  onImageClick: (globalIndex: number) => void;
+  sliceOffsets: Map<string, number>;
 };
 
 const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
-  const { decoimage } = context as GallerySliceContext;
+  const { decoimage, onImageClick, sliceOffsets } = context as GallerySliceContext;
+  const sliceOffset = sliceOffsets.get(slice.id) ?? 0;
   const [hasAppeared, setHasAppeared] = useState<boolean>(false);
 
   useEffect(() => {
@@ -62,7 +65,11 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
 
         <div className={styles.postsGrid}>
           {slice.primary.gallery.map((image, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              onClick={() => onImageClick(sliceOffset + index)}
+              style={{ cursor: 'pointer' }}
+            >
               <PrismicNextImage
                 field={image.image}
                 loading="lazy"
