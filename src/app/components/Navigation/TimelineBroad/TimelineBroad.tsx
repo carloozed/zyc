@@ -20,11 +20,12 @@ export default function TimelineBroad({ ...timelineProps }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!pathname.includes('/magazin')) {
-      setIsTimelineVisible(true);
-    } else {
-      setIsTimelineVisible(false);
-    }
+    const notVisiblePathname = ['/magazin', '/galerie'];
+    const shouldHide =
+      notVisiblePathname.some((path) => pathname.includes(path)) ||
+      pathname.match(/^\/[a-z]{2}$/);
+
+    setIsTimelineVisible(!shouldHide);
   }, [pathname]);
 
   useEffect(() => {

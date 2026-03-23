@@ -12,10 +12,14 @@
 }
 
 .postsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
-    justify-content: center;
-    gap: var(--padding-l);
+    columns: 4 250px;
+    gap: 1rem
+}
+
+.postsGrid img {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
 }
 
 .overflow {
@@ -36,6 +40,7 @@
 .imagecontainer {
     display: flex;
     align-items: center;
+
 }
 
 

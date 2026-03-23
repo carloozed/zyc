@@ -63,7 +63,12 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
         <div className={styles.postsGrid}>
           {slice.primary.gallery.map((image, index) => (
             <div key={index}>
-              <PrismicNextImage field={image.image} />
+              <PrismicNextImage
+                field={image.image}
+                loading="lazy"
+                sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
+                imgixParams={{ q: 65, w: 400 }}
+              />
             </div>
           ))}
         </div>
