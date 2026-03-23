@@ -2725,61 +2725,6 @@ export type AllDocumentTypes =
   | WeAreHereImageDocument;
 
 /**
- * Primary content in *BlogTitleImageText → Default → Primary*
- */
-export interface BlogTitleImageTextSliceDefaultPrimary {
-  /**
-   * Slice Title field in *BlogTitleImageText → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog_title_image_text.default.primary.slice_title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  slice_title: prismic.RichTextField;
-
-  /**
-   * Slice Subtitle field in *BlogTitleImageText → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog_title_image_text.default.primary.slice_subtitle
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  slice_subtitle: prismic.RichTextField;
-}
-
-/**
- * Default variation for BlogTitleImageText Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type BlogTitleImageTextSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<BlogTitleImageTextSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *BlogTitleImageText*
- */
-type BlogTitleImageTextSliceVariation = BlogTitleImageTextSliceDefault;
-
-/**
- * BlogTitleImageText Shared Slice
- *
- * - **API ID**: `blog_title_image_text`
- * - **Description**: BlogTitleImageText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type BlogTitleImageTextSlice = prismic.SharedSlice<
-  "blog_title_image_text",
-  BlogTitleImageTextSliceVariation
->;
-
-/**
  * Item in *ContactAndDownload → Default → Primary → Links*
  */
 export interface ContactAndDownloadSliceDefaultPrimaryLinksItem {
@@ -3327,6 +3272,16 @@ export interface GalleryYearSliceDefaultPrimaryGalleryItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * eventtag field in *GalleryYear → Default → Primary → Gallery*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.gallery[].eventtag
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  eventtag: prismic.KeyTextField;
 }
 
 /**
@@ -4165,10 +4120,6 @@ declare module "@prismicio/client" {
       WeAreHereImageDocument,
       WeAreHereImageDocumentData,
       AllDocumentTypes,
-      BlogTitleImageTextSlice,
-      BlogTitleImageTextSliceDefaultPrimary,
-      BlogTitleImageTextSliceVariation,
-      BlogTitleImageTextSliceDefault,
       ContactAndDownloadSlice,
       ContactAndDownloadSliceDefaultPrimaryLinksItem,
       ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,

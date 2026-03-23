@@ -45,6 +45,14 @@
 									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
+							],
+							[
+								"eventtag",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "got",
+									"type": "Text"
+								}
 							]
 						]
 					}

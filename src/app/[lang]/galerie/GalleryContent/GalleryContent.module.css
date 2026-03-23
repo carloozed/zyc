@@ -35,8 +35,21 @@
     overflow: hidden;
 }
 
+.loadMore {
+    display: block;
+    margin: var(--padding-xl) auto 0;
+    padding: 0.8rem 2rem;
+    background: none;
+    border: 1px solid currentColor;
+    cursor: pointer;
+    font-family: var(--title-font);
+    font-size: var(--text-sm);
+    transition: opacity 0.3s ease;
+}
 
-
+.loadMore:hover {
+    opacity: 0.6;
+}
 
 /* Mobile */
 /* Up to 768px */

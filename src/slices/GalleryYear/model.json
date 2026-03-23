@@ -48,6 +48,13 @@
                   "constraint": {},
                   "thumbnails": []
                 }
+              },
+              "eventtag": {
+                "type": "Text",
+                "config": {
+                  "label": "eventtag",
+                  "placeholder": ""
+                }
               }
             }
           }

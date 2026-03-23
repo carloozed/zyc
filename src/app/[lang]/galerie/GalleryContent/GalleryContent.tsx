@@ -9,12 +9,12 @@ import {
 } from '../../../../../prismicio-types';
 import FilterContainer from '../../magazin/components/FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
-import FadeIn from '@/app/components/FadeIn/FadeIn';
 
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
-import useGalleryFilterStore from '@/stores/GalleryFilterStore';
+import useFilterStore from '@/stores/FilterStore';
+import useSortingStore from '@/stores/SortingStore';
 import GalleryLightbox from './components/GalleryLightbox';
 
 type MagazineContentProps = {
@@ -26,43 +26,73 @@ export default function GalleryContent({
   page,
   decoimage,
 }: MagazineContentProps) {
-  const { filter } = useGalleryFilterStore();
+  const { filter } = useFilterStore();
+  const { sorting } = useSortingStore();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const filters = [
-    ...new Set(page.data.slices.flatMap((post) => post.primary.event_type)),
+    ...new Set(
+      page.data.slices.flatMap((post) =>
+        post.primary.gallery.flatMap((item) => item.eventtag),
+      ),
+    ),
   ];
 
+  const SLICES_PER_PAGE = 3;
+  const [visibleCount, setVisibleCount] = useState(SLICES_PER_PAGE);
+
   const filteredPosts = useMemo(() => {
-    const sorted = [...page.data.slices].sort(
+    let result = [...page.data.slices].sort(
       (a, b) =>
         (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
     );
-    if (!filter) return sorted;
-    return sorted.filter((post) => post.primary.event_type === filter);
-  }, [filter, page.data.slices]);
 
-  // Flatten all images from all slices into a flat slides array for the lightbox
+    // Filter by event type (Cadenza, etc.)
+    if (filter) {
+      result = result.filter((post) =>
+        post.primary.gallery.flatMap(
+          (item) => item.eventtag?.toLowerCase() === filter,
+        ),
+      );
+    }
+
+    // Filter by year (edition dropdown)
+    if (sorting && sorting !== 'neu' && sorting !== 'alt') {
+      const yearNum = Number(sorting);
+      if (!isNaN(yearNum)) {
+        result = result.filter(
+          (post) => post.primary.year_in_number === yearNum,
+        );
+      }
+    }
+
+    return result;
+  }, [filter, sorting, page.data.slices]);
+
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredPosts.length;
+
+  // Flatten all images from visible slices into a flat slides array for the lightbox
   const allSlides = useMemo(() => {
-    return filteredPosts.flatMap((slice) =>
+    return visiblePosts.flatMap((slice) =>
       slice.primary.gallery.map((image) => ({
         src: image.image.url ?? '',
         alt: image.image.alt ?? 'alttext',
       })),
     );
-  }, [filteredPosts]);
+  }, [visiblePosts]);
 
   // Build a map of slice index -> global offset so each GalleryYear knows its starting index
   const sliceOffsets = useMemo(() => {
     const offsets = new Map<string, number>();
     let offset = 0;
-    for (const slice of filteredPosts) {
+    for (const slice of visiblePosts) {
       offsets.set(slice.id, offset);
       offset += slice.primary.gallery.length;
     }
     return offsets;
-  }, [filteredPosts]);
+  }, [visiblePosts]);
 
   const onImageClick = useCallback((globalIndex: number) => {
     setLightboxIndex(globalIndex);
@@ -80,15 +110,6 @@ export default function GalleryContent({
             delay={1.0}
             as={'h1'}
           />
-
-          <FadeIn
-            vars={{
-              delay: 2,
-              duration: 1.3,
-              y: 0,
-            }}
-            className={styles.number}
-          ></FadeIn>
         </div>
       </div>
       <div className={styles.lowercontainer}>
@@ -97,10 +118,18 @@ export default function GalleryContent({
         </div>
         <div className={styles.gallerycontainer}>
           <SliceZone
-            slices={filteredPosts}
+            slices={visiblePosts}
             components={components}
             context={{ decoimage, onImageClick, sliceOffsets }}
           />
+          {hasMore && (
+            <button
+              className={styles.loadMore}
+              onClick={() => setVisibleCount((prev) => prev + SLICES_PER_PAGE)}
+            >
+              Mehr laden
+            </button>
+          )}
         </div>
       </div>
       <GalleryLightbox

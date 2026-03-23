@@ -22,6 +22,11 @@
     padding-bottom: 1rem;
 }
 
+.galleryImage {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
 .overflow {
     overflow: hidden
 }
