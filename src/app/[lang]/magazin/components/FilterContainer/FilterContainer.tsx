@@ -28,6 +28,8 @@ export default function FilterContainer({
   const { setFilter, filter } = useFilterStore();
   const { setSortingStore } = useSortingStore();
 
+  const isFilterVisible = page.data.filterbar_visible && filters.length > 1;
+
   return (
     <FadeIn
       className={styles.filtercontainer}
@@ -49,7 +51,7 @@ export default function FilterContainer({
           ))}
         </select>
       </div>
-      {page.data.filterbar_visible && (
+      {isFilterVisible && (
         <div className={styles.filterbar}>
           <h4>Filter: </h4>
           <div className={styles.filters}>
