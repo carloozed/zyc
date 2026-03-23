@@ -19,6 +19,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   return <PostContent page={page} instaIcon={instaIcon} />;
 }
 
+/* fuajldjölasföljksdf */
+
 export async function generateMetadata({
   params,
 }: {
