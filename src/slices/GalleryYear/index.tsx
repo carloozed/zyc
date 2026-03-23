@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { FC } from 'react';
 import { Content } from '@prismicio/client';
@@ -82,22 +84,24 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
 
         <div className={styles.postsGrid} ref={gridRef}>
           {slice.primary.gallery
-            .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
+            .filter(
+              (image) => !filter || image.eventtag?.toLowerCase() === filter,
+            )
             .map((image, index) => (
-            <div
-              onClick={() => onImageClick(sliceOffset + index)}
-              style={{ cursor: 'pointer' }}
-              key={index}
-              className={styles.galleryImage}
-            >
-              <PrismicNextImage
-                field={image.image}
-                loading="lazy"
-                sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
-                imgixParams={{ q: 65, w: 400 }}
-              />
-            </div>
-          ))}
+              <div
+                onClick={() => onImageClick(sliceOffset + index)}
+                style={{ cursor: 'pointer' }}
+                key={index}
+                className={styles.galleryImage}
+              >
+                <PrismicNextImage
+                  field={image.image}
+                  loading="lazy"
+                  sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
+                  imgixParams={{ q: 65, w: 400 }}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </section>
