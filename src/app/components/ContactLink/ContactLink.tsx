@@ -26,7 +26,7 @@ export default function ContactLink({
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
         borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : isFooter ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : isFooter ? 'var(--padding-m)' : '0'}`,
+        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : isFooter ? 'var(--padding-s)' : '0'}`,
       }}
       onClick={() => setContactFormShown(!isContactFormShown)}
       className="cursor-pointer"

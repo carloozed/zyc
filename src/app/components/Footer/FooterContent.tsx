@@ -108,7 +108,7 @@ export default function FooterContent({
                     .filter(
                       (item) =>
                         item.item.text !== 'Home' &&
-                        item.item.text !== 'Dein Weg mit ZYC'
+                        item.item.text !== 'Dein Weg mit ZYC',
                     )
                     .map((item, index) => (
                       <div key={index}>
