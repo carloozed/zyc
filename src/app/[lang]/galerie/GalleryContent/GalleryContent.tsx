@@ -17,7 +17,7 @@ import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
 import GalleryLightbox from './components/GalleryLightbox';
 
-type MagazineContentProps = {
+type GalleryContentProps = {
   page: GalleryDocument;
   decoimage: DecorationImageDocument;
 };
@@ -25,7 +25,7 @@ type MagazineContentProps = {
 export default function GalleryContent({
   page,
   decoimage,
-}: MagazineContentProps) {
+}: GalleryContentProps) {
   const { filter } = useFilterStore();
   const { sorting } = useSortingStore();
   const [lightboxOpen, setLightboxOpen] = useState(false);

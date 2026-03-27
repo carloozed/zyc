@@ -7,8 +7,6 @@ import DownloadIconGallery from './DownloadIconGallery';
 
 export type CustomSlideProps = {
   src: string;
-  url: string;
-  index: number;
   alt: string;
 };
 
@@ -17,17 +15,19 @@ export function CustomSlide({ slide }: { slide: CustomSlideProps }) {
   const [hasError, setHasError] = useState<boolean>(false);
 
   async function handleDownload(url: string, filename: string) {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(blobUrl);
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      window.open(url, '_blank');
+    }
   }
-
-  console.log(slide);
 
   return (
     <div className={styles.slide}>
