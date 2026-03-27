@@ -11,7 +11,7 @@ export default function DownloadIconTooltip() {
         <span className={styles.italic}>Zurich Youth Classical</span> und unter
         Nennung des Copyrights (
         <span className={styles.italic}>
-          © Fotografenname/Zurich Youth Classical
+          © Ueli Steingruber/Zurich Youth Classical
         </span>
         ) besteht keine Honorarpflicht.
       </p>
