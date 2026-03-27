@@ -1,0 +1,19 @@
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: var(--border-thin);
+    bottom: 0%;
+    padding: var(--padding-s);
+    left: -24.5rem;
+    width: 24rem;
+    border-radius: 8px;
+
+}
+
+.tooltip p {
+    font-size: var(--text);
+}
+
+.italic {
+    font-style: italic;
+}

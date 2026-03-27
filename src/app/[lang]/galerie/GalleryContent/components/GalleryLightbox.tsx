@@ -12,7 +12,12 @@ type GalleryLightboxProps = {
   initialIndex?: number;
 };
 
-export default function GalleryLightbox({ slides, lightboxOpen, setLightboxOpen, initialIndex }: GalleryLightboxProps) {
+export default function GalleryLightbox({
+  slides,
+  lightboxOpen,
+  setLightboxOpen,
+  initialIndex,
+}: GalleryLightboxProps) {
   return (
     <Lightbox
       open={lightboxOpen}
