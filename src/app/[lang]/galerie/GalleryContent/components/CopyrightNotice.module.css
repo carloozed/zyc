@@ -1,0 +1,81 @@
+.container {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    max-width: 22rem;
+    padding: var(--padding-s);
+    padding-right: calc(var(--padding-s) + 1.5rem);
+    background-color: white;
+    border: var(--border-thin);
+    border-radius: 8px;
+    z-index: 100;
+    transform: translateX(calc(-100% - 2rem));
+    opacity: 0;
+    transition: transform 1.2s ease, opacity 1.2s ease;
+}
+
+.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.text {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.closeButton:hover {
+    opacity: 1;
+}
+
+.reopenButton {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-color: white;
+    border: var(--border-thin);
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.reopenButton:hover {
+    opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 48rem) {
+    .container {
+        max-width: calc(100vw - 3rem);
+        bottom: 1rem;
+        left: 1rem;
+    }
+
+    .reopenButton {
+        bottom: 1rem;
+        left: 1rem;
+    }
+}

@@ -16,6 +16,7 @@ import { components } from '@/slices';
 import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
 import GalleryLightbox from './components/GalleryLightbox';
+import CopyrightNotice from './components/CopyrightNotice';
 
 type GalleryContentProps = {
   page: GalleryDocument;
@@ -143,6 +144,7 @@ export default function GalleryContent({
         setLightboxOpen={setLightboxOpen}
         initialIndex={lightboxIndex}
       />
+      <CopyrightNotice />
     </div>
   );
 }
