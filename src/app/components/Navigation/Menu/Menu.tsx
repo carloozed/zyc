@@ -54,6 +54,8 @@ export default function Menu({ ...menuProps }) {
         return '210%';
       case '/magazin':
         return '310%';
+      case '/galerie':
+        return '410%';
       default:
         return '0%';
     }
