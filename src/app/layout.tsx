@@ -17,9 +17,7 @@ import './globals.css';
 import './reset.css';
 import './animationglobals.css';
 
-import Navigation from './components/Navigation/Navigation';
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
-import Footer from './components/Footer/Footer';
 import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
 import NewsletterForm from './components/NewsletterForm/NewsletterForm';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -37,9 +35,8 @@ export default async function RootLayout({
           <body>
             <SignupButtonLarge />
             <ScrollIndicator />
-            <Navigation />
             <LenisScrollProvider>{children}</LenisScrollProvider>
-            <Footer />
+
             <NewsletterForm />
             <ContactForm />
             <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
