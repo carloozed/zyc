@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styles from './NewsletterForm.module.css';
-import { NewsletterFormDocument } from '../../../../prismicio-types';
+import { NewsletterFormDocument } from '@/prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 

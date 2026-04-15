@@ -5,7 +5,7 @@ import { DateField } from '@prismicio/client';
 import {
   ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
   Simplify,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -49,7 +49,7 @@ export default function ProgressCircle({ item, styles, delay }: Props) {
 
       const elapsedTime = Math.min(
         Math.max(0, currentDate.getTime() - startDate.getTime()),
-        totalDuration
+        totalDuration,
       );
 
       return (elapsedTime / totalDuration) * 100;
@@ -76,7 +76,7 @@ export default function ProgressCircle({ item, styles, delay }: Props) {
         },
       });
     },
-    { scope: circleRef }
+    { scope: circleRef },
   );
 
   return (

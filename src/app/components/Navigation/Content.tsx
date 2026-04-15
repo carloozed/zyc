@@ -11,10 +11,11 @@ import {
   SubnavigationDocument,
   TermineIsVisibleDocument,
   TimelineDocument,
-} from '../../../../prismicio-types';
-import { DownloadBarDocument } from '../../../../prismicio-types';
-import { LogoDocument } from '../../../../prismicio-types';
-import { LowNavigationDocument } from '../../../../prismicio-types';
+  DownloadBarDocument,
+  LogoDocument,
+  LowNavigationDocument,
+} from '@/prismicio-types';
+
 import TimelineBroad from './TimelineBroad/TimelineBroad';
 
 type Props = {

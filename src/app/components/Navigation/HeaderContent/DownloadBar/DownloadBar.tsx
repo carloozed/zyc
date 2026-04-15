@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-import { DownloadBarDocument } from '../../../../../../prismicio-types';
+import { DownloadBarDocument } from '@/prismicio-types';
 import styles from './DownloadBar.module.css';
 import { PrismicNextLink } from '@prismicio/next';
 

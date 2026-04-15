@@ -3,7 +3,7 @@ import {
   AnmeldelinkDocument,
   CriteriasSlice,
   CriteriatypesubfieldDocument,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 
@@ -39,7 +39,7 @@ export default function CriteriasContent({
             .find(
               (disciplinetype) =>
                 disciplinetype.data.belongs_to_slice ===
-                slice.primary.slice_name
+                slice.primary.slice_name,
             )
             ?.data.fieldcontent.map((disciplinetype, index) => (
               <div key={index} className={styles.criteria__item}>

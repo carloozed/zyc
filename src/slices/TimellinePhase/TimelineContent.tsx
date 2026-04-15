@@ -3,7 +3,7 @@
 import { PrismicRichText } from '@prismicio/react';
 import React, { useState, useEffect } from 'react';
 import { DateField } from '@prismicio/client';
-import { TimelinePhasesSlice } from '../../../prismicio-types';
+import { TimelinePhasesSlice } from '@/prismicio-types';
 
 import { useMobile } from '@/contexts/MobileContext';
 
@@ -43,7 +43,7 @@ export default function TimelineContent({ styles, slice }: Props) {
 
       const elapsedTime = Math.min(
         Math.max(0, currentDate.getTime() - startDate.getTime()),
-        totalDuration
+        totalDuration,
       );
 
       return (elapsedTime / totalDuration) * 100;

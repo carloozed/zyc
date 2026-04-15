@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './ImpressumContent.module.css';
 
-import { ImpresssumDocument } from '../../../../prismicio-types';
+import { ImpresssumDocument } from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 
 import { RevealText } from '../../components/RevealText/RevealText';

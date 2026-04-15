@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { AnmeldelinkDocument } from '../../../../prismicio-types';
+import { AnmeldelinkDocument } from '@/prismicio-types';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 

@@ -5,7 +5,7 @@ import {
   AnmeldelinkDocument,
   ContactAndDownloadSlice,
   IsdownloadsmutedDocument,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
 

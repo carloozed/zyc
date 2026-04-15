@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from '../impressum/ImpressumContent.module.css';
 
-import { DatenschutzDocument } from '../../../../prismicio-types';
+import { DatenschutzDocument } from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 
 import { RevealText } from '../../components/RevealText/RevealText';

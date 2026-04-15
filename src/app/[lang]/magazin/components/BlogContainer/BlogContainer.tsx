@@ -5,7 +5,7 @@ import {
   DecorationImageDocument,
   InstagramIconDocument,
   MagazinpostDocument,
-} from '../../../../../../prismicio-types';
+} from '@/prismicio-types';
 
 import styles from './BlogContainer.module.css';
 import PostPreview from '../PostPreview/PostPreview';

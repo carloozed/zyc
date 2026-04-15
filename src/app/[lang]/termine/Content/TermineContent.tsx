@@ -7,7 +7,7 @@ import styles from './TermineContent.module.css';
 import {
   AnmeldelinkDocument,
   TeilnahmeTermineDocument,
-} from '../../../../../prismicio-types';
+} from '@/prismicio-types';
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 

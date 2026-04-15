@@ -3,10 +3,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 
 import styles from './GalleryContent.module.css';
-import {
-  DecorationImageDocument,
-  GalleryDocument,
-} from '../../../../../prismicio-types';
+import { DecorationImageDocument, GalleryDocument } from '@/prismicio-types';
 import FilterContainer from '../../magazin/components/FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
@@ -92,7 +89,9 @@ export default function GalleryContent({
     let offset = 0;
     for (const slice of visiblePosts) {
       const imageCount = filter
-        ? slice.primary.gallery.filter((i) => i.eventtag?.toLowerCase() === filter).length
+        ? slice.primary.gallery.filter(
+            (i) => i.eventtag?.toLowerCase() === filter,
+          ).length
         : slice.primary.gallery.length;
       offsets.set(slice.id, offset);
       offset += imageCount;

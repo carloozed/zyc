@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  GalleryDocument,
-  MagazinDocument,
-} from '../../../../../../prismicio-types';
+import { GalleryDocument, MagazinDocument } from '@/prismicio-types';
 
 import styles from './FilterContainer.module.css';
 

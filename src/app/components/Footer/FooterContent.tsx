@@ -12,7 +12,7 @@ import {
   NavbarDocument,
   SubnavigationDocument,
   TermineIsVisibleDocument,
-} from '../../../../prismicio-types';
+} from '@/prismicio-types';
 import styles from './FooterContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';

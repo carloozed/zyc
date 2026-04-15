@@ -6,11 +6,11 @@ import {
   MagazinpostDocument,
   MagazinpostDocumentDataTagsItem,
   Simplify,
-} from '../../../../../../prismicio-types';
+} from '@/prismicio-types';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
-import formatIsoToDate from '../../../../../../helpers/formatIsoToDate';
+import formatIsoToDate from '@/helpers/formatIsoToDate';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';

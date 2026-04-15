@@ -1,10 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  InstagramIconDocument,
-  MagazinpostDocument,
-} from '../../../../../../prismicio-types';
+import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 
 import styles from './PostContent.module.css';
 import { PrismicRichText } from '@prismicio/react';
@@ -14,7 +11,7 @@ import PostLightbox from './PostLightbox/PostLightbox';
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
-import formatIsoToDate from '../../../../../../helpers/formatIsoToDate';
+import formatIsoToDate from '@/helpers/formatIsoToDate';
 
 type PostContentProps = {
   page: MagazinpostDocument;
