@@ -19,8 +19,6 @@ import './animationglobals.css';
 
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
 import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
-import NewsletterForm from './components/NewsletterForm/NewsletterForm';
-import ContactForm from './components/ContactForm/ContactForm';
 
 export default async function RootLayout({
   children,
@@ -37,8 +35,6 @@ export default async function RootLayout({
             <ScrollIndicator />
             <LenisScrollProvider>{children}</LenisScrollProvider>
 
-            <NewsletterForm />
-            <ContactForm />
             <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
           </body>
           <PrismicPreview repositoryName={repositoryName} />
