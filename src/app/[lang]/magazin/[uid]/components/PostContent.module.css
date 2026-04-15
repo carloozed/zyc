@@ -23,7 +23,10 @@
 
 .description p {
     font-size: var(--text-large);
+}
 
+.description a {
+    text-decoration: underline;
 }
 
 .galleryWrapper {
