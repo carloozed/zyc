@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './NewsletterForm.module.css';
 import { NewsletterFormDocument } from '@/prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
@@ -43,6 +43,20 @@ export default function FormContent({ newsletter }: NewsletterProps) {
       setStatus(data.error || 'Something went wrong.');
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isNewsletterFormShown) {
+        setNewsletterFormShown(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isNewsletterFormShown, setNewsletterFormShown]);
 
   return (
     <div

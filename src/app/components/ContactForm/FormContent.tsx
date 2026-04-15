@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ContactForm.module.css';
 import { ContactFormDocument } from '@/prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
@@ -52,6 +52,20 @@ export default function FormContent({ contactForm }: ContactFormProps) {
       setStatus(data.error || 'Something went wrong.');
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isContactFormShown) {
+        setContactFormShown(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isContactFormShown, setContactFormShown]);
 
   return (
     <div
