@@ -3,10 +3,7 @@
 import { SliceZone } from '@prismicio/react';
 import React from 'react';
 import { components } from '@/slices';
-import {
-  FoldoutelementDocument,
-  UberZycDocument,
-} from '../../../../../prismicio-types';
+import { FoldoutelementDocument, UberZycDocument } from '@/prismicio-types';
 
 // import { RevealText } from '@/app/components/RevealText/RevealText';
 

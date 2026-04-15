@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Content } from '@prismicio/client';
 import { SliceComponentProps } from '@prismicio/react';
 import ContactAndDownloadContent from './ContactAndDownloadContent';
-import { AnmeldelinkDocument } from '../../../prismicio-types';
+import { AnmeldelinkDocument } from '@/prismicio-types';
 
 /**
  * Props for `ContactAndDownload`.

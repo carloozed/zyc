@@ -5,7 +5,7 @@ import styles from './ContestTimelineContent.module.css';
 import {
   ContestTimelineSlice,
   WeAreHereImageDocument,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { JSXMapSerializer } from '@prismicio/react';
 import ProgressCircle from './ProgressCircle';
@@ -55,7 +55,7 @@ export default function ContestTimelineContent({
       const startDate = new Date(item.start_date);
       const endDate = new Date(item.end_date);
       return currentDate >= startDate && currentDate <= endDate;
-    }
+    },
   );
 
   useEffect(() => {

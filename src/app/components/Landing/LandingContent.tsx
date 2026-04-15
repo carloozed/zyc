@@ -6,7 +6,7 @@ import {
   LandingBackgroundImageDocument,
   DynamiclandingcontentDocument,
   TermineIsVisibleDocument,
-} from '../../../../prismicio-types';
+} from '@/prismicio-types';
 import styles from './LandingContent.module.css';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
@@ -109,13 +109,13 @@ export default function LandingContent({
   } = landingNavigation.data;
 
   const contestHover = hoverElements.find(
-    (element) => element.uid === 'landinghover-contest'
+    (element) => element.uid === 'landinghover-contest',
   );
   const cadenzaHover = hoverElements.find(
-    (element) => element.uid === 'cadenza'
+    (element) => element.uid === 'cadenza',
   );
   const crescendoHover = hoverElements.find(
-    (element) => element.uid === 'crescendo'
+    (element) => element.uid === 'crescendo',
   );
   const aboutHover = hoverElements.find((element) => element.uid === 'about');
 

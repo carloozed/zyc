@@ -11,7 +11,7 @@ import {
   TheContestDocument,
   WeAreHereImageDocument,
   IsdownloadsmutedDocument,
-} from '../../../../prismicio-types';
+} from '@/prismicio-types';
 
 import { Query } from '@prismicio/client';
 

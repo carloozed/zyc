@@ -7,7 +7,7 @@ import {
   AnmeldelinkDocument,
   FoldoutelementDocument,
   TheCrescendoDocument,
-} from '../../../../../prismicio-types';
+} from '@/prismicio-types';
 
 type Props = {
   page: TheCrescendoDocument<string>;

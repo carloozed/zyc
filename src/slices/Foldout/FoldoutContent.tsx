@@ -4,7 +4,7 @@ import {
   FoldoutelementDocument,
   FoldoutSlice,
   FoldoutSliceFoldoutWithImage,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 import RegularSlice from './RegularSlice/RegularSlice';
 
 import ImageSlice from './ImageSlice/ImageSlice';

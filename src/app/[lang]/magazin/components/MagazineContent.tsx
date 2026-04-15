@@ -8,7 +8,7 @@ import {
   InstagramIconDocument,
   MagazinDocument,
   MagazinpostDocument,
-} from '../../../../../prismicio-types';
+} from '@/prismicio-types';
 import BlogContainer from './BlogContainer/BlogContainer';
 import FilterContainer from './FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';

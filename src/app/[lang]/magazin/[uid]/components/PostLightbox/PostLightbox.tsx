@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import { MagazinpostDocument } from '../../../../../../../prismicio-types';
+import { MagazinpostDocument } from '@/prismicio-types';
 import { CustomSlide, CustomSlideProps } from './CustomSlide';
 
 type LightboxProps = {

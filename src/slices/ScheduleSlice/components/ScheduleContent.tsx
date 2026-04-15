@@ -1,7 +1,7 @@
 'use client';
 
 import React, { JSX, useRef, useEffect } from 'react';
-import { ScheduleSliceSlice } from '../../../../prismicio-types';
+import { ScheduleSliceSlice } from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import styles from './ScheduleContent.module.css';
 

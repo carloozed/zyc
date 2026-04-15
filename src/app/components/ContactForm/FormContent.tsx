@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styles from './ContactForm.module.css';
-import { ContactFormDocument } from '../../../../prismicio-types';
+import { ContactFormDocument } from '@/prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 

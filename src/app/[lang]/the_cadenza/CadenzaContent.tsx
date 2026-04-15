@@ -8,7 +8,7 @@ import {
   AnmeldelinkDocument,
   FoldoutelementDocument,
   TheCadenzaDocument,
-} from '../../../../prismicio-types';
+} from '@/prismicio-types';
 
 type Props = {
   page: TheCadenzaDocument<string>;

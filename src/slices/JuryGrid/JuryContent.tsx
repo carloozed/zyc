@@ -1,5 +1,5 @@
 import React from 'react';
-import { JuryGridSlice } from '../../../prismicio-types';
+import { JuryGridSlice } from '@/prismicio-types';
 
 import styles from './JuryContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';

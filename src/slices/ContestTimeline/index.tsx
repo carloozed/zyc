@@ -3,7 +3,7 @@ import ContestTimelineContent from './ContestTimelineContent';
 import {
   ContestTimelineSlice,
   WeAreHereImageDocument,
-} from '../../../prismicio-types';
+} from '@/prismicio-types';
 
 /**
  * Type for the context that includes our WeAreHereImageDocument

@@ -5,8 +5,11 @@ import styles from './Navigation.module.css';
 import { createClient } from '@/prismicio';
 import Content from './Content';
 
-export default async function Navigation() {
-  const lang = process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
+type NavigationProps = {
+  lang: string;
+};
+
+export default async function Navigation({ lang }: NavigationProps) {
 
   const client = createClient();
   const downloadbar = await client.getSingle('download_bar', { lang });
