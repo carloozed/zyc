@@ -87,6 +87,98 @@ export type AddressDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *AlertOverlay → Information Group*
+ */
+export interface AlertoverlayDocumentDataInformationGroupItem {
+  /**
+   * Item Title field in *AlertOverlay → Information Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.information_group[].item_title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  item_title: prismic.RichTextField;
+
+  /**
+   * Item Description field in *AlertOverlay → Information Group*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.information_group[].item_description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  item_description: prismic.RichTextField;
+}
+
+/**
+ * Content for AlertOverlay documents
+ */
+interface AlertoverlayDocumentData {
+  /**
+   * Title field in *AlertOverlay*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Intro Text field in *AlertOverlay*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.intro_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  intro_text: prismic.RichTextField;
+
+  /**
+   * Information Group field in *AlertOverlay*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.information_group[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  information_group: prismic.GroupField<
+    Simplify<AlertoverlayDocumentDataInformationGroupItem>
+  >;
+
+  /**
+   * Outro Text field in *AlertOverlay*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.outro_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  outro_text: prismic.RichTextField;
+}
+
+/**
+ * AlertOverlay document from Prismic
+ *
+ * - **API ID**: `alertoverlay`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AlertoverlayDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AlertoverlayDocumentData>,
+    "alertoverlay",
+    Lang
+  >;
+
+/**
  * Content for Anmeldelink documents
  */
 interface AnmeldelinkDocumentData {
@@ -2689,6 +2781,7 @@ export type WeAreHereImageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AddressDocument
+  | AlertoverlayDocument
   | AnmeldelinkDocument
   | ContactFormDocument
   | CriteriatypesubfieldDocument
@@ -4023,6 +4116,9 @@ declare module "@prismicio/client" {
     export type {
       AddressDocument,
       AddressDocumentData,
+      AlertoverlayDocument,
+      AlertoverlayDocumentData,
+      AlertoverlayDocumentDataInformationGroupItem,
       AnmeldelinkDocument,
       AnmeldelinkDocumentData,
       ContactFormDocument,
