@@ -160,6 +160,17 @@ interface AlertoverlayDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   outro_text: prismic.RichTextField;
+
+  /**
+   * decoimage field in *AlertOverlay*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: alertoverlay.decoimage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  decoimage: prismic.ImageField<never>;
 }
 
 /**

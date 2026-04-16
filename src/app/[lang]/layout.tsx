@@ -4,6 +4,8 @@ import Footer from '../components/Footer/Footer';
 import NewsletterForm from '../components/NewsletterForm/NewsletterForm';
 import ContactForm from '../components/ContactForm/ContactForm';
 
+import AlertOverlay from '../components/AlertOverlay/AlertOverlay';
+
 export default async function LangLayout({
   children,
   params,
@@ -15,6 +17,7 @@ export default async function LangLayout({
 
   return (
     <>
+      <AlertOverlay lang={lang} />
       <Navigation lang={lang} />
       {children}
       <Footer lang={lang} />

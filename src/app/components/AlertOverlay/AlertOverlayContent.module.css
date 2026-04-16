@@ -1,0 +1,111 @@
+.overlaycontainer {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    background-color: var(--white-lowopa);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    transition: all var(--animationtime-middle) var(--bezier);
+    backdrop-filter: blur(12px);
+}
+
+
+.overlaycontent {
+    height: fit-content;
+    width: fit-content;
+    background-color: white;
+    border: var(--border-thin);
+    padding: var(--padding-m);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 12px;
+    position: relative;
+    width: 50vw;
+    gap: var(--padding-l);
+    position: relative;
+
+}
+
+.uppercontainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m)
+}
+
+
+.groupcontainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    padding: 0 var(--padding-l)
+}
+
+.groupitem p {
+    width: 80%;
+}
+
+
+.overlaycontent p,
+.overlaycontent a {
+    font-size: var(--text);
+    color: var(--black);
+
+}
+
+.overlaycontent a {
+    text-decoration: underline;
+}
+
+.imagecontainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+}
+
+.imagecontainer img {
+    height: auto;
+    width: 50%;
+}
+
+
+.cross__container {
+    position: absolute;
+    top: var(--padding-m);
+    right: var(--padding-m);
+    cursor: pointer;
+}
+
+.cross {
+    position: relative;
+    height: calc(0.5rem + 1vw);
+    width: calc(0.5rem + 1vw);
+}
+
+.line {
+    position: absolute;
+    height: 0.5px;
+    width: 100%;
+    background-color: var(--black);
+    top: 50%;
+    left: 50%;
+
+}
+
+.line:nth-of-type(1) {
+
+    transform: translateY(-50%) translateX(-50%) rotate(45deg);
+}
+
+.line:nth-of-type(2) {
+
+    transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+}

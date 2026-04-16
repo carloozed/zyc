@@ -59,6 +59,14 @@
           "allowTargetBlank": true,
           "multi": "paragraph,heading4,heading5,strong,em,hyperlink"
         }
+      },
+      "decoimage": {
+        "type": "Image",
+        "config": {
+          "label": "decoimage",
+          "constraint": {},
+          "thumbnails": []
+        }
       }
     }
   }
