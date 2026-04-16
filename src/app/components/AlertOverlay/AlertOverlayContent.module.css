@@ -10,9 +10,15 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    opacity: 1;
-    transition: all var(--animationtime-middle) var(--bezier);
+    opacity: 0;
+    transition: all var(--animationtime-slow) var(--bezier);
     backdrop-filter: blur(12px);
+}
+
+.overlaycontainer__shown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
 }
 
 
@@ -21,7 +27,7 @@
     width: fit-content;
     background-color: white;
     border: var(--border-thin);
-    padding: var(--padding-m);
+    padding: var(--padding-l);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -56,6 +62,7 @@
 .overlaycontent a {
     font-size: var(--text);
     color: var(--black);
+
 
 }
 
@@ -109,3 +116,108 @@
 
     transform: translateY(-50%) translateX(-50%) rotate(-45deg);
 }
+
+
+
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+
+
+    .overlaycontainer__shown {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+
+
+    .overlaycontent {
+
+        width: 95vw;
+        gap: var(--padding-m);
+        position: relative;
+
+    }
+
+    .overlaycontent * {
+        text-align: center;
+    }
+
+    .overlaycontent p {
+        font-size: var(--text)
+    }
+
+    .uppercontainer {
+
+        gap: var(--padding-sm)
+    }
+
+
+    .groupcontainer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-m);
+        padding: 0 var(--padding-sm)
+    }
+
+    .groupitem p {
+        width: 100%;
+
+    }
+
+    .groupitem h3 {
+        font-size: var(--text-m)
+    }
+
+
+    .imagecontainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: fit-content;
+    }
+
+    .imagecontainer img {
+        height: auto;
+        width: 100%;
+    }
+
+
+
+}
+
+/* Tablet */
+/* 768px to 1184px */
+@media (min-width: 48rem) and (max-width: 74rem) {}
+
+/* Tablet - Portrait Orientation */
+/* 768px to 1184px in portrait mode */
+@media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {}
+
+/* Desktop */
+/* 1184px and up */
+@media (min-width: 74rem) {}
+
+/* Large Desktop */
+/* 1440px and up */
+@media (min-width: 90rem) {}
+
+@media (min-width: 120rem) {}
+
+/* Touch Devices */
+/* Any touch device regardless of size */
+@media (hover: none) {}
+
+/* Non-Touch Devices */
+/* Devices with precise pointer (mouse) */
+@media (hover: hover) and (pointer: fine) {}
+
+/* Prefers Dark Mode */
+/* User has set dark mode preference */
+@media (prefers-color-scheme: dark) {}
+
+/* Prefers Reduced Motion */
+/* User has requested minimal animations */
+@media (prefers-reduced-motion: reduce) {}
