@@ -4,16 +4,17 @@ import React, { useMemo, useState, useCallback } from 'react';
 
 import styles from './GalleryContent.module.css';
 import { DecorationImageDocument, GalleryDocument } from '@/prismicio-types';
-import FilterContainer from '../../magazin/components/FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
-import useFilterStore from '@/stores/FilterStore';
-import useSortingStore from '@/stores/SortingStore';
+import useGalleryFilterStore from '@/stores/GalleryFilterStore';
+import useGalleryYearStore from '@/stores/GalleryYearStore';
+
 import GalleryLightbox from './components/GalleryLightbox';
 import CopyrightNotice from './components/CopyrightNotice';
+import GalleryFilterContainer from './components/GalleryFilterContainer';
 
 type GalleryContentProps = {
   page: GalleryDocument;
@@ -24,17 +25,14 @@ export default function GalleryContent({
   page,
   decoimage,
 }: GalleryContentProps) {
-  const { filter } = useFilterStore();
-  const { sorting } = useSortingStore();
+  const filter = useGalleryFilterStore((state) => state.filter);
+
+  const galleryYear = useGalleryYearStore((state) => state.galleryYear);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const filters = [
-    ...new Set(
-      page.data.slices.flatMap((post) =>
-        post.primary.gallery.flatMap((item) => item.eventtag),
-      ),
-    ),
+    ...new Set(page.data.filter_options.flatMap((filter) => filter)),
   ];
 
   const SLICES_PER_PAGE = 3;
@@ -56,8 +54,8 @@ export default function GalleryContent({
     }
 
     // Filter by year (edition dropdown)
-    if (sorting && sorting !== 'neu' && sorting !== 'alt') {
-      const yearNum = Number(sorting);
+    if (galleryYear && galleryYear !== 'alle') {
+      const yearNum = Number(galleryYear);
       if (!isNaN(yearNum)) {
         result = result.filter(
           (post) => post.primary.year_in_number === yearNum,
@@ -66,7 +64,7 @@ export default function GalleryContent({
     }
 
     return result;
-  }, [filter, sorting, page.data.slices]);
+  }, [filter, galleryYear, page.data.slices]);
 
   const visiblePosts = filteredPosts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPosts.length;
@@ -75,6 +73,7 @@ export default function GalleryContent({
   const allSlides = useMemo(() => {
     return visiblePosts.flatMap((slice) =>
       slice.primary.gallery
+        .sort((a, b) => (b.date_added ?? '').localeCompare(a.date_added ?? ''))
         .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
         .map((image) => ({
           src: image.image.url ?? '',
@@ -119,7 +118,7 @@ export default function GalleryContent({
       </div>
       <div className={styles.lowercontainer}>
         <div className={styles.filter}>
-          <FilterContainer page={page} filters={filters} isGallery={true} />
+          <GalleryFilterContainer page={page} filters={filters} />
         </div>
         <div className={styles.gallerycontainer}>
           <SliceZone

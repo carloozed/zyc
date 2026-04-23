@@ -87,6 +87,7 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
             .filter(
               (image) => !filter || image.eventtag?.toLowerCase() === filter,
             )
+
             .map((image, index) => (
               <div
                 onClick={() => onImageClick(sliceOffset + index)}

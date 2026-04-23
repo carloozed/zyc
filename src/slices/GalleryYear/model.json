@@ -55,6 +55,13 @@
                   "label": "eventtag",
                   "placeholder": ""
                 }
+              },
+              "date_added": {
+                "type": "Date",
+                "config": {
+                  "label": "Date Added",
+                  "placeholder": ""
+                }
               }
             }
           }

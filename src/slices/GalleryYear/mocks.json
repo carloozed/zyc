@@ -53,6 +53,14 @@
 									"value": "got",
 									"type": "Text"
 								}
+							],
+							[
+								"date_added",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Date",
+									"value": "2012-10-28"
+								}
 							]
 						]
 					}

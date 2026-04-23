@@ -999,6 +999,16 @@ export interface GalleryDocumentDataFilterOptionsItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   item: prismic.KeyTextField;
+
+  /**
+   * Filter Key field in *Gallery → Filter Options*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.filter_options[].filter_key
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  filter_key: prismic.KeyTextField;
 }
 
 type GalleryDocumentDataSlicesSlice = GalleryYearSlice;
@@ -3386,6 +3396,16 @@ export interface GalleryYearSliceDefaultPrimaryGalleryItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   eventtag: prismic.KeyTextField;
+
+  /**
+   * Date Added field in *GalleryYear → Default → Primary → Gallery*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery_year.default.primary.gallery[].date_added
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date_added: prismic.DateField;
 }
 
 /**

@@ -1,30 +1,36 @@
 'use client';
 
 import React from 'react';
-import { MagazinDocument } from '@/prismicio-types';
+import {
+  GalleryDocument,
+  GalleryDocumentDataFilterOptionsItem,
+  Simplify,
+} from '@/prismicio-types';
 
-import styles from './FilterContainer.module.css';
+import styles from './GalleryFilterContainer.module.css';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 
-import useFilterStore from '@/stores/FilterStore';
-import useSortingStore from '@/stores/SortingStore';
-import { KeyTextField } from '@prismicio/client';
+import useGalleryFilterStore from '@/stores/GalleryFilterStore';
+import useGalleryYearStore from '@/stores/GalleryYearStore';
 
-type FilterContainerProps = {
-  page: MagazinDocument;
-  filters: string[] | KeyTextField[];
+type GalleryFilterContainerProps = {
+  page: GalleryDocument;
+  filters: Simplify<GalleryDocumentDataFilterOptionsItem>[];
 };
 
-export default function FilterContainer({
+export default function GalleryFilterContainer({
   page,
   filters,
-}: FilterContainerProps) {
-  const { setFilter, filter } = useFilterStore();
-  const { setSortingStore } = useSortingStore();
+}: GalleryFilterContainerProps) {
+  const filter = useGalleryFilterStore((state) => state.filter);
+  const setFilter = useGalleryFilterStore((state) => state.setFilter);
+
+  const setGalleryYear = useGalleryYearStore((state) => state.setGalleryYear);
 
   const isFilterVisible = page.data.filterbar_visible && filters.length > 1;
 
+  console.log(filters);
   return (
     <FadeIn
       className={styles.filtercontainer}
@@ -34,8 +40,8 @@ export default function FilterContainer({
       }}
     >
       <div className={styles.sortcontainer}>
-        <h4>{'Sortieren nach:'}</h4>
-        <select onChange={(e) => setSortingStore(e.target.value)}>
+        <h4>{'Edition:'}</h4>
+        <select onChange={(e) => setGalleryYear(e.target.value)}>
           {page.data.sorting_options.map((item, index) => (
             <option
               key={`${index}-${item.item}`}
@@ -55,14 +61,14 @@ export default function FilterContainer({
                 key={`${index}-${item}`}
                 onClick={() =>
                   setFilter(
-                    item?.toLowerCase() !== filter
-                      ? (item?.toLowerCase() as string)
+                    item.filter_key !== filter
+                      ? (item?.filter_key?.toLowerCase() as string)
                       : '',
                   )
                 }
-                className={`${styles.filterbutton} ${filter === item?.toLowerCase() ? styles.active : ''}`}
+                className={`${styles.filterbutton} ${filter === item?.filter_key?.toLowerCase() ? styles.active : ''}`}
               >
-                {item}
+                {item.item}
               </button>
             ))}
           </div>

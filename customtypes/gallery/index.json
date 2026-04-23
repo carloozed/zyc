@@ -50,6 +50,13 @@
                 "label": "Item",
                 "placeholder": ""
               }
+            },
+            "filter_key": {
+              "type": "Text",
+              "config": {
+                "label": "Filter Key",
+                "placeholder": ""
+              }
             }
           }
         }
