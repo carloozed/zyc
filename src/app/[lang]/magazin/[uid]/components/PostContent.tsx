@@ -91,11 +91,13 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
               Artikel veröffentlicht am:{' '}
               {formatIsoToDate(page.data.publishing_date)}
             </p>
-            <div className={styles.instaicon}>
-              <PrismicNextLink field={page.data.instagram_link}>
-                <PrismicNextImage field={instaIcon.data.instagram_icon} />
-              </PrismicNextLink>
-            </div>
+            {page.data.has_instagram && (
+              <div className={styles.instaicon}>
+                <PrismicNextLink field={page.data.instagram_link}>
+                  <PrismicNextImage field={instaIcon.data.instagram_icon} />
+                </PrismicNextLink>
+              </div>
+            )}
           </div>
         </div>
 
