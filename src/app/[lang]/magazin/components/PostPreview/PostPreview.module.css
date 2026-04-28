@@ -53,26 +53,6 @@
 
 
 
-.instaicon img {
-    height: var(--padding-m);
-    width: auto;
-    object-fit: contain;
-}
-
-.linkcontainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-items: flex-end;
-}
-
-.linkcontainer * {
-    font-family: var(--text-font);
-    font-size: var(--text-s);
-    text-decoration: underline;
-}
-
-
 
 /* Mobile */
 /* Up to 768px */

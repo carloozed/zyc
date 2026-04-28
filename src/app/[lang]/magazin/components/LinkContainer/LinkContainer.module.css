@@ -1,0 +1,24 @@
+.linkcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.linkcontainer * {
+    font-family: var(--text-font);
+    font-size: var(--text-s);
+    text-decoration: underline;
+}
+
+.instaicon img {
+    height: var(--padding-m);
+    width: auto;
+    object-fit: contain;
+}
+
+.redirectlink {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

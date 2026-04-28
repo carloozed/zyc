@@ -16,6 +16,7 @@ import FadeIn from '@/app/components/FadeIn/FadeIn';
 import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
 import HighlightedPost from './HighlightedPost/HighlightedPost';
+import StickyContainer from './StickyContainer/StickyContainer';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -121,20 +122,37 @@ export default function MagazineContent({
           </FadeIn>
         </div>
       </div>
-      <div className={styles.highlightcontainer}>
-        <h3>Im Fokus:</h3>
-        {highlightedPosts.map((post, index) => (
-          <HighlightedPost
-            key={`${post.id}-${index}`}
-            post={post}
-            instaIcon={instaIcon}
-          />
-        ))}
-      </div>
-      <div className={styles.lowercontainer}>
-        <div className={styles.filter}>
-          <FilterContainer page={page} filters={filters} />
+      {highlightedPosts.length > 0 && (
+        <div className={styles.highlights}>
+          <StickyContainer>
+            <FadeIn
+              className={styles.focus}
+              vars={{
+                duration: 1.2,
+                delay: 1,
+              }}
+            >
+              <div className={styles.focuscontainer}>
+                <h3>Im Fokus:</h3>{' '}
+              </div>
+            </FadeIn>
+          </StickyContainer>
+
+          <div className={styles.highlightedposts}>
+            {highlightedPosts.map((post, index) => (
+              <HighlightedPost
+                key={`${post.id}-${index}`}
+                post={post}
+                instaIcon={instaIcon}
+              />
+            ))}
+          </div>
         </div>
+      )}
+      <div className={styles.lowercontainer}>
+        <StickyContainer>
+          <FilterContainer page={page} filters={filters} />
+        </StickyContainer>
         <BlogContainer
           instaIcon={instaIcon}
           decoimage={decoimage}

@@ -24,15 +24,23 @@
     background-color: white;
 }
 
-.filter {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    padding-top: var(--padding-xl);
-    background-color: white;
-    padding-bottom: var(--padding-sm);
-    overflow: hidden;
+
+.highlightedposts {
+    padding: var(--padding-2xl) calc(8rem + 8vw);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l)
 }
+
+.focuscontainer {
+    padding-top: var(--padding-s);
+
+}
+
+.focus {
+    transform: translateY(150%)
+}
+
 
 
 

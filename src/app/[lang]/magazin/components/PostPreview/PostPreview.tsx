@@ -2,14 +2,15 @@ import React from 'react';
 
 import styles from './PostPreview.module.css';
 import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
-import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
 import TagsContainer from '../TagsContainer/TagsContainer';
 import PostDate from '../Date/Date';
 import TextContainer from '../TextContainer/TextContainer';
+import DateTagsContainer from '../DateTagsContainer/DateTagsContainer';
+import LinkContainer from '../LinkContainer/LinkContainer';
 
 type PostPreviewProps = {
   post: MagazinpostDocument;
@@ -33,10 +34,10 @@ export default function PostPreview({
         delay: !hasAppeared ? 1.4 + index * 0.1 : 0,
       }}
     >
-      <div className={styles.uppercontainer}>
+      <DateTagsContainer>
         <PostDate post={post} />
         <TagsContainer post={post} />
-      </div>
+      </DateTagsContainer>
       <div className={styles.contentcontainer}>
         <div className={styles.imagecontainer}>
           <PrismicNextImage field={post.data.previewe_image} />
@@ -46,21 +47,7 @@ export default function PostPreview({
             <PrismicRichText field={post.data.preview_title} />
             <PrismicRichText field={post.data.preview_text} />
           </TextContainer>
-          <div className={styles.linkcontainer}>
-            {' '}
-            {post.data.has_instagram && (
-              <div className={styles.instaicon}>
-                <PrismicNextLink field={post.data.instagram_link}>
-                  <PrismicNextImage field={instaIcon.data.instagram_icon} />
-                </PrismicNextLink>
-              </div>
-            )}
-            {post.data.has_redirect_link && (
-              <TransitionLink href={post.url ?? ''}>
-                Mehr erfahren
-              </TransitionLink>
-            )}
-          </div>
+          <LinkContainer post={post} instaIcon={instaIcon} />
         </div>
       </div>
     </FadeIn>

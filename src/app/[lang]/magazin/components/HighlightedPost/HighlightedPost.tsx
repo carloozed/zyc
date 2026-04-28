@@ -9,11 +9,11 @@ type HighlightedPostProps = {
 
 import styles from './HighlightedPost.module.css';
 import { PrismicRichText } from '@prismicio/react';
-import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
 import TagsContainer from '../TagsContainer/TagsContainer';
 import PostDate from '../Date/Date';
 import TextContainer from '../TextContainer/TextContainer';
+import DateTagsContainer from '../DateTagsContainer/DateTagsContainer';
+import LinkContainer from '../LinkContainer/LinkContainer';
 
 export default function HighlightedPost({
   post,
@@ -21,25 +21,22 @@ export default function HighlightedPost({
 }: HighlightedPostProps) {
   return (
     <div className={styles.highlightcontainer}>
-      <div className={styles.uppercontainer}>
-        <PostDate post={post} />
-        <TagsContainer post={post} />
-      </div>
-      <PrismicNextImage field={post.data.previewe_image} />
-      <TextContainer>
-        <PrismicRichText field={post.data.preview_title} />
-        <PrismicRichText field={post.data.preview_text} />
-      </TextContainer>
-      {post.data.has_instagram && (
-        <div className={styles.instaicon}>
-          <PrismicNextLink field={post.data.instagram_link}>
-            <PrismicNextImage field={instaIcon.data.instagram_icon} />
-          </PrismicNextLink>
+      <div
+        className={styles.contentcontainer}
+        style={{ backgroundImage: `url(${post.data.previewe_image.url})` }}
+      >
+        <div className={styles.content}>
+          <DateTagsContainer>
+            <PostDate post={post} />
+            <TagsContainer post={post} />
+          </DateTagsContainer>
+          <TextContainer>
+            <PrismicRichText field={post.data.preview_title} />
+            <PrismicRichText field={post.data.preview_text} />
+          </TextContainer>
+          <LinkContainer post={post} instaIcon={instaIcon} />
         </div>
-      )}
-      {post.data.has_redirect_link && (
-        <TransitionLink href={post.url ?? ''}>Mehr erfahren</TransitionLink>
-      )}
+      </div>
     </div>
   );
 }
