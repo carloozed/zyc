@@ -14,7 +14,8 @@
     transform: translateY(-100%)
 }
 
-.titleContainer h5 {
+.titleContainer h5,
+.focus h5 {
     font-family: var(--title-font);
     font-size: var(--text-m);
 }
@@ -26,7 +27,7 @@
 
 
 .highlightedposts {
-    padding: var(--padding-2xl) calc(8rem + 8vw);
+    padding: var(--padding-2xl) calc(10rem + 8vw);
     display: flex;
     flex-direction: column;
     gap: var(--padding-l)
@@ -34,6 +35,8 @@
 
 .focuscontainer {
     padding-top: var(--padding-s);
+    display: flex;
+    gap: var(--padding-xs)
 }
 
 .focuscontainer h3 {

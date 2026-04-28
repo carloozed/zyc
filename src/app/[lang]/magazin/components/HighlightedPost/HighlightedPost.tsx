@@ -15,6 +15,7 @@ import PostDate from '../Date/Date';
 import TextContainer from '../TextContainer/TextContainer';
 import DateTagsContainer from '../DateTagsContainer/DateTagsContainer';
 import LinkContainer from '../LinkContainer/LinkContainer';
+import { PrismicNextImage } from '@prismicio/next';
 
 export default function HighlightedPost({
   post,
@@ -34,7 +35,7 @@ export default function HighlightedPost({
                 <PostDate post={post} />
                 <TagsContainer post={post} />
               </DateTagsContainer>
-              <TextContainer>
+              <TextContainer variant="highlight">
                 <PrismicRichText field={post.data.preview_title} />
                 <PrismicRichText field={post.data.preview_text} />
               </TextContainer>
@@ -42,16 +43,16 @@ export default function HighlightedPost({
             </div>
           </div>
         ) : variant === 'narrow' ? (
-          <div
-            className={styles.contentcontainer}
-            style={{ backgroundImage: `url(${post.data.previewe_image.url})` }}
-          >
-            <div className={styles.content}>
+          <div className={styles.narrowcontentcontainer}>
+            <div className={styles.imagecontainer}>
+              <PrismicNextImage field={post.data.previewe_image} />
+            </div>
+            <div className={styles.narrowcontent}>
               <DateTagsContainer>
                 <PostDate post={post} />
                 <TagsContainer post={post} />
               </DateTagsContainer>
-              <TextContainer>
+              <TextContainer variant="highlight">
                 <PrismicRichText field={post.data.preview_title} />
                 <PrismicRichText field={post.data.preview_text} />
               </TextContainer>

@@ -22,3 +22,22 @@
     justify-content: flex-end;
     align-items: flex-end;
 }
+
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+
+
+    .linkcontainer {
+
+        padding-top: var(--padding-m)
+    }
+
+    .linkcontainer * {
+        font-family: var(--text-font);
+        font-size: var(--text-s);
+        text-decoration: underline;
+    }
+
+}

@@ -13,6 +13,10 @@
     align-items: center;
 }
 
+.filters {
+    flex-wrap: wrap;
+}
+
 .sortcontainer select {
     font-family: var(--text-font);
     padding: var(--padding-2xs);
@@ -112,7 +116,8 @@
         flex-direction: column;
         padding-top: var(--padding-sm);
         transform: translateY(150%);
-        gap: 1rem;
+        gap: var(--padding-sm);
+        flex-wrap: wrap;
     }
 
 

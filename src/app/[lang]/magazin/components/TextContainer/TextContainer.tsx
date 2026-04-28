@@ -4,8 +4,12 @@ import styles from './TextContainer.module.css';
 
 type TextContainerProps = {
   children: React.ReactNode;
+  variant?: 'highlight' | 'preview';
 };
 
-export default function TextContainer({ children }: TextContainerProps) {
-  return <div className={styles.textcontainer}>{children}</div>;
+export default function TextContainer({
+  children,
+  variant = 'preview',
+}: TextContainerProps) {
+  return <div className={styles[variant]}>{children}</div>;
 }
