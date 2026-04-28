@@ -1,0 +1,31 @@
+.tagscontainer {
+    display: flex;
+    gap: var(--padding-s);
+}
+
+.tagscontainer p {
+    padding: 0.1rem var(--padding-xs);
+    border: var(--border-thin);
+    border-radius: 4px;
+    font-size: var(--text-smaller);
+}
+
+
+
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+
+    .tagscontainer {
+        display: flex;
+        gap: var(--padding-s);
+    }
+
+    .tagscontainer p {
+
+        font-size: var(--text-s);
+    }
+
+
+}

@@ -19,23 +19,6 @@
     justify-content: space-between;
 }
 
-.tagscontainer {
-    display: flex;
-    gap: var(--padding-s);
-}
-
-.tagscontainer p {
-    padding: 0.1rem var(--padding-xs);
-    border: var(--border-thin);
-    border-radius: 4px;
-    font-size: var(--text-smaller);
-}
-
-.date {
-    font-family: var(--title-font);
-    font-size: var(--text-smaller)
-}
-
 
 .contentcontainer {
     display: flex;

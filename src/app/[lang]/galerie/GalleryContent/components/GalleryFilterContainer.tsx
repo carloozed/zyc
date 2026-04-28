@@ -30,7 +30,6 @@ export default function GalleryFilterContainer({
 
   const isFilterVisible = page.data.filterbar_visible && filters.length > 1;
 
-  console.log(filters);
   return (
     <FadeIn
       className={styles.filtercontainer}

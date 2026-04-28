@@ -1,19 +1,14 @@
 import React from 'react';
 
 import styles from './PostPreview.module.css';
-import {
-  InstagramIconDocument,
-  MagazinpostDocument,
-  MagazinpostDocumentDataTagsItem,
-  Simplify,
-} from '@/prismicio-types';
+import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
-import formatIsoToDate from '@/helpers/formatIsoToDate';
-
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
+import TagsContainer from '../TagsContainer/TagsContainer';
+import PostDate from '../Date/Date';
 
 type PostPreviewProps = {
   post: MagazinpostDocument;
@@ -38,23 +33,8 @@ export default function PostPreview({
       }}
     >
       <div className={styles.uppercontainer}>
-        <div>
-          <p className={styles.date}>
-            {formatIsoToDate(post.data.publishing_date as string)}
-          </p>
-        </div>
-        <div className={styles.tagscontainer}>
-          {post.data.tags
-            .sort((a, b) => (a.item ?? '').localeCompare(b.item ?? ''))
-            .map(
-              (
-                tag: Simplify<MagazinpostDocumentDataTagsItem>,
-                index: number,
-              ) => (
-                <p key={`${index}-${tag.item}`}>{tag.item}</p>
-              ),
-            )}
-        </div>
+        <PostDate post={post} />
+        <TagsContainer post={post} />
       </div>
       <div className={styles.contentcontainer}>
         <div className={styles.imagecontainer}>

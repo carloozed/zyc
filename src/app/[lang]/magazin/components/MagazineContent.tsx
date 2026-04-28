@@ -15,6 +15,7 @@ import { RevealText } from '@/app/components/RevealText/RevealText';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
+import HighlightedPost from './HighlightedPost/HighlightedPost';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -90,6 +91,12 @@ export default function MagazineContent({
     return sorting === 'neu' ? groups : [...groups].reverse();
   }, [filteredPosts, sorting]);
 
+  const highlightedPosts = magazinPosts.filter((post) => {
+    return post.tags.includes('fokus');
+  });
+
+  console.log(highlightedPosts);
+
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
@@ -113,6 +120,16 @@ export default function MagazineContent({
             <h5>({filteredPosts.length})</h5>
           </FadeIn>
         </div>
+      </div>
+      <div className={styles.highlightcontainer}>
+        <h3>Im Fokus:</h3>
+        {highlightedPosts.map((post, index) => (
+          <HighlightedPost
+            key={`${post.id}-${index}`}
+            post={post}
+            instaIcon={instaIcon}
+          />
+        ))}
       </div>
       <div className={styles.lowercontainer}>
         <div className={styles.filter}>
