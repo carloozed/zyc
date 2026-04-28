@@ -34,7 +34,10 @@
 
 .focuscontainer {
     padding-top: var(--padding-s);
+}
 
+.focuscontainer h3 {
+    font-size: var(--subtitle-l)
 }
 
 .focus {

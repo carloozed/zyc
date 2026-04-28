@@ -9,6 +9,7 @@ import {
   MagazinDocument,
   MagazinpostDocument,
 } from '@/prismicio-types';
+
 import BlogContainer from './BlogContainer/BlogContainer';
 import FilterContainer from './FilterContainer/FilterContainer';
 import { RevealText } from '@/app/components/RevealText/RevealText';
@@ -131,7 +132,8 @@ export default function MagazineContent({
               }}
             >
               <div className={styles.focuscontainer}>
-                <h3>Im Fokus:</h3>{' '}
+                <h3>Im Fokus</h3>
+                <h5>({highlightedPosts.length})</h5>
               </div>
             </FadeIn>
           </StickyContainer>
@@ -139,6 +141,7 @@ export default function MagazineContent({
           <div className={styles.highlightedposts}>
             {highlightedPosts.map((post, index) => (
               <HighlightedPost
+                variant={index % 2 === 0 ? 'wide' : 'narrow'}
                 key={`${post.id}-${index}`}
                 post={post}
                 instaIcon={instaIcon}
