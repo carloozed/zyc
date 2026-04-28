@@ -96,8 +96,6 @@ export default function MagazineContent({
     return post.tags.includes('fokus');
   });
 
-  console.log(highlightedPosts);
-
   return (
     <div className={styles.container}>
       <div className={styles.uppercontainer}>
