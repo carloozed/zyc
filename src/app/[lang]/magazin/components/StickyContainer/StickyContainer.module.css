@@ -4,7 +4,6 @@
     z-index: 10;
     padding-top: var(--padding-2xl);
     background-color: white;
-    padding-bottom: var(--padding-sm);
+    padding-bottom: var(--padding-s);
     overflow: hidden;
-
 }
