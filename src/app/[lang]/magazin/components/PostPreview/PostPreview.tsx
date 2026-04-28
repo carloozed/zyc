@@ -9,6 +9,7 @@ import FadeIn from '@/app/components/FadeIn/FadeIn';
 import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
 import TagsContainer from '../TagsContainer/TagsContainer';
 import PostDate from '../Date/Date';
+import TextContainer from '../TextContainer/TextContainer';
 
 type PostPreviewProps = {
   post: MagazinpostDocument;
@@ -41,10 +42,10 @@ export default function PostPreview({
           <PrismicNextImage field={post.data.previewe_image} />
         </div>
         <div className={styles.rightsidecontainer}>
-          <div className={styles.textcontainer}>
+          <TextContainer>
             <PrismicRichText field={post.data.preview_title} />
             <PrismicRichText field={post.data.preview_text} />
-          </div>
+          </TextContainer>
           <div className={styles.linkcontainer}>
             {' '}
             {post.data.has_instagram && (

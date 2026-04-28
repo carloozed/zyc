@@ -13,6 +13,7 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
 import TagsContainer from '../TagsContainer/TagsContainer';
 import PostDate from '../Date/Date';
+import TextContainer from '../TextContainer/TextContainer';
 
 export default function HighlightedPost({
   post,
@@ -24,9 +25,11 @@ export default function HighlightedPost({
         <PostDate post={post} />
         <TagsContainer post={post} />
       </div>
-      <PrismicRichText field={post.data.preview_title} />
       <PrismicNextImage field={post.data.previewe_image} />
-      <PrismicRichText field={post.data.preview_text} />
+      <TextContainer>
+        <PrismicRichText field={post.data.preview_title} />
+        <PrismicRichText field={post.data.preview_text} />
+      </TextContainer>
       {post.data.has_instagram && (
         <div className={styles.instaicon}>
           <PrismicNextLink field={post.data.instagram_link}>

@@ -3,7 +3,8 @@ import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
-import DatenschutzContent from './DatenschutzContent';
+
+import ImpressumDatenschutzContainer from '@/app/components/ImpressumDatenschutzContainer/ImpressumDatenschutzContainer';
 
 export default async function Page({
   params,
@@ -16,7 +17,12 @@ export default async function Page({
     .getSingle('datenschutz', { lang })
     .catch(() => notFound());
 
-  return <DatenschutzContent page={page} />;
+  return (
+    <ImpressumDatenschutzContainer
+      title={page.data.title}
+      items={page.data.datenschutz_content}
+    />
+  );
 }
 
 export async function generateMetadata({

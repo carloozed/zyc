@@ -4,7 +4,7 @@ import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
 
-import ImpressumContent from './ImpressumContent';
+import ImpressumDatenschutzContainer from '@/app/components/ImpressumDatenschutzContainer/ImpressumDatenschutzContainer';
 
 export default async function Page({
   params,
@@ -17,7 +17,12 @@ export default async function Page({
     .getSingle('impresssum', { lang })
     .catch(() => notFound());
 
-  return <ImpressumContent page={page} />;
+  return (
+    <ImpressumDatenschutzContainer
+      title={page.data.title}
+      items={page.data.impressum_content}
+    />
+  );
 }
 
 export async function generateMetadata({

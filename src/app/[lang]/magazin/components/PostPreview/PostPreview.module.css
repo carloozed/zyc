@@ -51,17 +51,7 @@
     flex: 1;
 }
 
-.textcontainer {
-    display: flex;
-    flex-direction: column;
-    gap: var(--padding-s);
-    padding-top: var(--padding-xs);
-    flex: 1;
-}
 
-.textcontainer p {
-    font-size: var(--text-sm)
-}
 
 .instaicon img {
     height: var(--padding-m);

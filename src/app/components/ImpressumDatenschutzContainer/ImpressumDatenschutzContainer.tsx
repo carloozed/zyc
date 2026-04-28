@@ -1,21 +1,22 @@
 import React from 'react';
 
-import styles from './ImpressumContent.module.css';
+import styles from './ImpressumDatenschutzContainer.module.css';
 
-import { ImpresssumDocument } from '@/prismicio-types';
+import { RichTextField } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 
 import { RevealText } from '../../components/RevealText/RevealText';
 
 type Props = {
-  page?: ImpresssumDocument;
+  title: RichTextField;
+  items: { title: RichTextField; text: RichTextField }[];
 };
 
-export default function ImpressumContent({ page }: Props) {
+export default function ImpressumDatenschutzContainer({ title, items }: Props) {
   return (
     <div className={styles.main}>
       <RevealText
-        field={page?.data.title}
+        field={title}
         useScrollTrigger={true}
         as={'h1'}
         staggerAmount={0}
@@ -23,7 +24,7 @@ export default function ImpressumContent({ page }: Props) {
       />
 
       <div className={styles.content}>
-        {page?.data.impressum_content.map((item, index) => (
+        {items.map((item, index) => (
           <div key={index} className={styles.contentItem}>
             <RevealText
               field={item.title}
