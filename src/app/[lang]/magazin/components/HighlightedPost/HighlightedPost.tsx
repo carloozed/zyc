@@ -1,12 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
-
-type HighlightedPostProps = {
-  post: MagazinpostDocument;
-  instaIcon: InstagramIconDocument;
-  variant: 'wide' | 'narrow';
-};
 
 import styles from './HighlightedPost.module.css';
 import { PrismicRichText } from '@prismicio/react';
@@ -16,14 +10,39 @@ import TextContainer from '../TextContainer/TextContainer';
 import DateTagsContainer from '../DateTagsContainer/DateTagsContainer';
 import LinkContainer from '../LinkContainer/LinkContainer';
 import { PrismicNextImage } from '@prismicio/next';
+import FadeIn from '@/app/components/FadeIn/FadeIn';
+
+type HighlightedPostProps = {
+  post: MagazinpostDocument;
+  instaIcon: InstagramIconDocument;
+  variant: 'wide' | 'narrow';
+  index: number;
+};
 
 export default function HighlightedPost({
   post,
   instaIcon,
   variant,
+  index,
 }: HighlightedPostProps) {
+  const [hasAppeared, setHasAppeared] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasAppeared(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className={styles.highlightcontainer}>
+    <FadeIn
+      className={styles.highlightcontainer}
+      vars={{
+        duration: !hasAppeared ? 2 : 0,
+        delay: !hasAppeared ? 1.4 + index * 0.1 : 0,
+      }}
+    >
       <>
         {variant === 'wide' ? (
           <div
@@ -61,6 +80,6 @@ export default function HighlightedPost({
           </div>
         ) : null}
       </>
-    </div>
+    </FadeIn>
   );
 }

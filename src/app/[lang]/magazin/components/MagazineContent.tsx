@@ -145,6 +145,7 @@ export default function MagazineContent({
                 key={`${post.id}-${index}`}
                 post={post}
                 instaIcon={instaIcon}
+                index={index}
               />
             ))}
           </div>

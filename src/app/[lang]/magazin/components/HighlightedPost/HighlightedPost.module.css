@@ -4,8 +4,9 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    height: 30rem;
-
+    height: calc(15rem + 15vw);
+    transform: translateY(40%);
+    opacity: 0;
 }
 
 .contentcontainer,
