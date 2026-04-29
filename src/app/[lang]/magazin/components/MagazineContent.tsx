@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import styles from './MagazineContent.module.css';
 import {
@@ -61,14 +61,16 @@ function groupPostsByMonth(posts: MagazinpostDocument[]) {
   });
 }
 
+const FOCUS_TAG = 'fokus';
+
 export default function MagazineContent({
   page,
   magazinPosts,
   instaIcon,
   decoimage,
 }: MagazineContentProps) {
-  const { filter } = useFilterStore();
-  const { sorting } = useSortingStore();
+  const filter = useFilterStore((s) => s.filter);
+  const sorting = useSortingStore((s) => s.sorting);
 
   const filters = [
     ...new Set(
@@ -76,26 +78,22 @@ export default function MagazineContent({
     ),
   ];
 
-  const filteredPosts = useMemo(() => {
-    const sorted = [...magazinPosts].sort((a, b) =>
-      (b.data.publishing_date ?? '').localeCompare(
-        a.data.publishing_date ?? '',
-      ),
-    );
-    if (!filter) return sorted;
-    return sorted.filter((post) =>
-      post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
-    );
-  }, [filter, magazinPosts]);
+  const sortedPosts = [...magazinPosts].sort((a, b) =>
+    (b.data.publishing_date ?? '').localeCompare(a.data.publishing_date ?? ''),
+  );
 
-  const groupedPosts = useMemo(() => {
-    const groups = groupPostsByMonth(filteredPosts);
-    return sorting === 'neu' ? groups : [...groups].reverse();
-  }, [filteredPosts, sorting]);
+  const filteredPosts = filter
+    ? sortedPosts.filter((post) =>
+        post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
+      )
+    : sortedPosts;
 
-  const highlightedPosts = magazinPosts.filter((post) => {
-    return post.tags.includes('fokus');
-  });
+  const groups = groupPostsByMonth(filteredPosts);
+  const groupedPosts = sorting === 'neu' ? groups : [...groups].reverse();
+
+  const highlightedPosts = magazinPosts.filter((post) =>
+    post.tags.includes(FOCUS_TAG),
+  );
 
   return (
     <div className={styles.container}>
