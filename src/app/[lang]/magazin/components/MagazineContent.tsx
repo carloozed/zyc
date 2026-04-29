@@ -91,9 +91,13 @@ export default function MagazineContent({
   const groups = groupPostsByMonth(filteredPosts);
   const groupedPosts = sorting === 'neu' ? groups : [...groups].reverse();
 
-  const highlightedPosts = magazinPosts.filter((post) =>
-    post.tags.includes(FOCUS_TAG),
-  );
+  const highlightedPosts = magazinPosts
+    .filter((post) => post.tags.includes(FOCUS_TAG))
+    .sort((a, b) =>
+      (b.data.publishing_date ?? '').localeCompare(
+        a.data.publishing_date ?? '',
+      ),
+    );
 
   return (
     <div className={styles.container}>

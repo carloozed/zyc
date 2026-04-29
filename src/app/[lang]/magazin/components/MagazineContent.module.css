@@ -30,7 +30,9 @@
     padding: var(--padding-2xl) calc(10rem + 8vw);
     display: flex;
     flex-direction: column;
-    gap: var(--padding-l)
+    gap: var(--padding-l);
+    align-items: center;
+    justify-content: center;
 }
 
 .focuscontainer {

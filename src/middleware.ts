@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
 
   const locales = cachedLocales; // use the cache, no more client/repository calls here
   const defaultLocale =
-    process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
+    process.env.NODE_ENV === 'development' ? 'de-ch' : 'de-ch';
 
   const { pathname } = request.nextUrl;
 

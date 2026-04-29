@@ -7,6 +7,7 @@
     height: calc(10rem + 15vw);
     transform: translateY(41%);
     opacity: 0;
+    max-width: 66rem;
 }
 
 .contentcontainer,
@@ -47,7 +48,7 @@
 }
 
 .content {
-    width: 60%;
+    width: 50%;
 }
 
 .imagecontainer {
