@@ -20,18 +20,25 @@ export default function NewsletterLink({
     useNewsletterStore();
 
   const { isMobile } = useMobile();
+  const showBorder = isFooter || (hasBorder && !isMobile);
+  const paddingRight = isFooter
+    ? 'var(--padding-s)'
+    : showBorder
+      ? 'var(--padding-m)'
+      : '0';
+  const label = hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter';
 
   return (
     <span
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
-        borderRight: `${isFooter ? '0.5px solid black' : hasBorder && !isMobile ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${isFooter ? 'var(--padding-s)' : hasBorder && !isMobile ? 'var(--padding-m)' : '0'}`,
+        borderRight: showBorder ? '0.5px solid black' : 'none',
+        paddingRight,
       }}
       onClick={() => setNewsletterFormShown(!isNewsletterFormShown)}
       className="cursor-pointer"
     >
-      {hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter'}
+      {label}
     </span>
   );
 }

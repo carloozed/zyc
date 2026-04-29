@@ -1,14 +1,9 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { asLink, LinkField, PrismicDocument } from '@prismicio/client';
 import { Link } from 'next-view-transitions';
-
-import { useGSAP } from '@gsap/react';
-import { gsap } from 'gsap';
-
-gsap.registerPlugin(useGSAP);
 
 export type TransitionLinkProps = {
   children?: React.ReactNode;
@@ -16,7 +11,6 @@ export type TransitionLinkProps = {
   onClick?: () => void;
   tabIndex?: number;
   hasText?: boolean;
-  hasAnimation?: boolean;
   isDisabled?: boolean;
 } & (
   | { field: LinkField | null; document?: never; href?: never }
@@ -25,10 +19,27 @@ export type TransitionLinkProps = {
 );
 
 // Strip locale prefix from URLs for consistent display
-function stripLocalePrefix(url: string | null): string | null {
-  if (!url) return null;
+function stripLocalePrefix(url: string) {
   // Remove locale prefix like /de-ch/, /en-us/, etc.
   return url.replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, '/');
+}
+
+function getLinkUrl({
+  field,
+  document: doc,
+  href,
+}: Pick<TransitionLinkProps, 'field' | 'document' | 'href'>) {
+  const rawUrl = href ?? asLink(field ?? doc);
+
+  return rawUrl ? stripLocalePrefix(rawUrl) : null;
+}
+
+function getLinkContent({
+  field,
+  children,
+  hasText,
+}: Pick<TransitionLinkProps, 'field' | 'children' | 'hasText'>) {
+  return hasText ? (field?.text ?? children) : children;
 }
 
 export function TransitionLink({
@@ -42,9 +53,7 @@ export function TransitionLink({
   hasText = true,
   isDisabled = false,
 }: TransitionLinkProps) {
-  const rawUrl = href ?? asLink(field ?? doc) ?? null;
-  const url = stripLocalePrefix(rawUrl);
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const url = getLinkUrl({ field, document: doc, href });
 
   if (!url) {
     console.warn('TransitionLink: No valid URL provided');
@@ -53,7 +62,6 @@ export function TransitionLink({
 
   return (
     <Link
-      ref={linkRef}
       href={isDisabled ? '' : url}
       className={className}
       onClick={onClick}
@@ -62,7 +70,7 @@ export function TransitionLink({
         visibility: isDisabled ? 'hidden' : 'visible',
       }}
     >
-      {hasText ? (field?.text ?? children) : children}
+      {getLinkContent({ field, children, hasText })}
     </Link>
   );
 }

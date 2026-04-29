@@ -31,8 +31,6 @@ export default function Menu({ ...menuProps }) {
   const legalLinkContainerRef = useRef<(HTMLLIElement | null)[]>([]);
   const lowerContainerRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
-  // const legal = lownavigations[1];
-  // const socials = lownavigations[0];
 
   const logo = menuProps.logo.data;
   const indicator = menuProps.indicator.data;

@@ -35,7 +35,7 @@ export default function GalleryContent({
     ...new Set(page.data.filter_options.flatMap((filter) => filter)),
   ];
 
-  const SLICES_PER_PAGE = 3;
+  const SLICES_PER_PAGE = 1;
   const [visibleCount, setVisibleCount] = useState(SLICES_PER_PAGE);
 
   const filteredPosts = useMemo(() => {
