@@ -12,14 +12,21 @@
 }
 
 .postsGrid {
-    columns: 4 250px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem
+}
+
+.imageColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .postsGrid img {
     width: 100%;
     height: auto;
-    padding-bottom: 1rem;
+    display: block;
 }
 
 .galleryImage {
@@ -96,7 +103,11 @@
 
 /* Tablet */
 /* 768px to 1184px */
-@media (min-width: 48rem) and (max-width: 74rem) {}
+@media (min-width: 48rem) and (max-width: 74rem) {
+    .postsGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
 
 /* Tablet - Portrait Orientation */
 /* 768px to 1184px in portrait mode */

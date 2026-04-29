@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { FC } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
@@ -24,12 +24,75 @@ type GallerySliceContext = {
   filter: string;
 };
 
+type GalleryImage = Content.GalleryYearSliceDefaultPrimaryGalleryItem;
+type GalleryImageWithIndex = {
+  image: GalleryImage;
+  chronologicalIndex: number;
+};
+
+const DESKTOP_COLUMN_COUNT = 4;
+const TABLET_COLUMN_COUNT = 3;
+
+function sortGalleryImagesByDate(images: GalleryImage[], filter: string) {
+  return [...images]
+    .sort((a, b) => (b.date_added ?? '').localeCompare(a.date_added ?? ''))
+    .filter((image) => !filter || image.eventtag?.toLowerCase() === filter);
+}
+
+function groupImagesIntoVisualColumns(
+  images: GalleryImage[],
+  columnCount: number,
+) {
+  const imagesWithIndex = images.map((image, chronologicalIndex) => ({
+    image,
+    chronologicalIndex,
+  }));
+
+  if (columnCount <= 1) {
+    return [imagesWithIndex];
+  }
+
+  const columns: GalleryImageWithIndex[][] = Array.from(
+    { length: columnCount },
+    () => [],
+  );
+
+  imagesWithIndex.forEach((image, index) => {
+    columns[index % columnCount].push(image);
+  });
+
+  return columns;
+}
+
+function getGalleryColumnCount() {
+  if (window.matchMedia('(max-width: 48rem)').matches) {
+    return 1;
+  }
+
+  if (window.matchMedia('(max-width: 74rem)').matches) {
+    return TABLET_COLUMN_COUNT;
+  }
+
+  return DESKTOP_COLUMN_COUNT;
+}
+
 const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
   const { decoimage, onImageClick, sliceOffsets, filter } =
     context as GallerySliceContext;
   const { hasAnimated, setHasAnimated } = useGalleryAnimationStore();
   const sliceOffset = sliceOffsets.get(slice.id) ?? 0;
   const gridRef = useRef<HTMLDivElement>(null);
+  const [columnCount, setColumnCount] = useState(1);
+
+  const galleryImages = useMemo(
+    () => sortGalleryImagesByDate(slice.primary.gallery, filter),
+    [slice.primary.gallery, filter],
+  );
+
+  const galleryColumns = useMemo(
+    () => groupImagesIntoVisualColumns(galleryImages, columnCount),
+    [galleryImages, columnCount],
+  );
 
   useEffect(() => {
     if (!hasAnimated) {
@@ -39,6 +102,26 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
       return () => clearTimeout(timer);
     }
   }, [hasAnimated, setHasAnimated]);
+
+  useEffect(() => {
+    const updateColumnCount = () => setColumnCount(getGalleryColumnCount());
+    const desktopQuery = window.matchMedia('(min-width: 74rem)');
+    const tabletQuery = window.matchMedia(
+      '(min-width: 48rem) and (max-width: 74rem)',
+    );
+    const mobileQuery = window.matchMedia('(max-width: 48rem)');
+
+    updateColumnCount();
+    desktopQuery.addEventListener('change', updateColumnCount);
+    tabletQuery.addEventListener('change', updateColumnCount);
+    mobileQuery.addEventListener('change', updateColumnCount);
+
+    return () => {
+      desktopQuery.removeEventListener('change', updateColumnCount);
+      tabletQuery.removeEventListener('change', updateColumnCount);
+      mobileQuery.removeEventListener('change', updateColumnCount);
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -51,7 +134,7 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
         stagger: !hasAnimated ? 0.003 : 0,
       });
     },
-    { scope: gridRef, dependencies: [filter] },
+    { scope: gridRef, dependencies: [filter, columnCount] },
   );
 
   return (
@@ -83,26 +166,25 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
         </div>
 
         <div className={styles.postsGrid} ref={gridRef}>
-          {slice.primary.gallery
-            .filter(
-              (image) => !filter || image.eventtag?.toLowerCase() === filter,
-            )
-
-            .map((image, index) => (
-              <div
-                onClick={() => onImageClick(sliceOffset + index)}
-                style={{ cursor: 'pointer' }}
-                key={index}
-                className={styles.galleryImage}
-              >
-                <PrismicNextImage
-                  field={image.image}
-                  loading="lazy"
-                  sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
-                  imgixParams={{ q: 65, w: 400 }}
-                />
-              </div>
-            ))}
+          {galleryColumns.map((column, columnIndex) => (
+            <div className={styles.imageColumn} key={columnIndex}>
+              {column.map(({ image, chronologicalIndex }) => (
+                <div
+                  onClick={() => onImageClick(sliceOffset + chronologicalIndex)}
+                  style={{ cursor: 'pointer' }}
+                  key={`${image.image.url}-${chronologicalIndex}`}
+                  className={styles.galleryImage}
+                >
+                  <PrismicNextImage
+                    field={image.image}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
+                    imgixParams={{ q: 65, w: 400 }}
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

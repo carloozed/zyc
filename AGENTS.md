@@ -110,22 +110,18 @@ Current grid CSS:
   - `gap: var(--padding-l)`
 - Mobile switches `.postsGrid` to one column.
 
-Current ordering workaround:
-
-- `BlogContainer.tsx` defines `MASONRY_ROW_COUNT = 4` and `MASONRY_LAYOUT_QUERY = '(min-width: 48rem)'`.
-- On tablet/desktop widths, `orderPostsForColumnFilledLayout(group.posts, 4)` reorders the render array so a layout that visually fills top-to-bottom in four rows still reads newest-to-oldest left-to-right.
-- On mobile widths, the component renders the original date-sorted `group.posts` order so the one-column feed remains chronological.
-- The `index` passed to `PostPreview` remains the original chronological index so animation delay still follows date order rather than the transformed render order.
-
 Important caution:
 
-- If the magazine grid CSS changes from column-filled/masonry-like behavior to normal CSS Grid row flow, revisit `orderPostsForColumnFilledLayout()`. With a normal row-major grid, that helper is no longer needed and can make the visual order wrong.
+- The magazine grid is normal CSS Grid row flow. Do not add a masonry/column reordering workaround here unless the CSS layout changes.
 
-## Gallery Grid Contrast
+## Gallery Grid Behavior
 
-- `src/slices/GalleryYear/index.module.css` uses CSS columns: `columns: 4 250px`.
-- CSS columns naturally fill top-to-bottom before moving to the next column.
-- If gallery images ever need left-to-right chronological order, use a similar ordering transform or switch away from CSS columns.
+- `src/slices/GalleryYear/index.module.css` uses a CSS Grid wrapper with explicit column stacks for a masonry-like look.
+- Desktop uses 4 rendered columns; tablet uses 3 rendered columns; mobile uses 1 column.
+- Do not use CSS `columns` here. CSS columns balance by height and fill top-to-bottom, which makes recent images read down a column instead of left-to-right.
+- To keep recency reading left-to-right visually, `src/slices/GalleryYear/index.tsx` sorts gallery images by `date_added` descending and then uses `groupImagesIntoVisualColumns()` for the active column count. Image 1 goes to column 1, image 2 to column 2, etc.; image 5 returns to column 1 on desktop.
+- The lightbox order is kept chronological by passing each image's `chronologicalIndex` to `onImageClick(sliceOffset + chronologicalIndex)`.
+- `src/app/[lang]/galerie/GalleryContent/GalleryContent.tsx` builds `allSlides` from date-sorted copies of each gallery array. Do not call `.sort()` directly on Prismic arrays without copying first.
 
 ## API Routes And Environment
 

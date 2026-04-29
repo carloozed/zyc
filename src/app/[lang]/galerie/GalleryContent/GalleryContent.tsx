@@ -72,7 +72,7 @@ export default function GalleryContent({
   // Flatten all images from visible slices into a flat slides array for the lightbox
   const allSlides = useMemo(() => {
     return visiblePosts.flatMap((slice) =>
-      slice.primary.gallery
+      [...slice.primary.gallery]
         .sort((a, b) => (b.date_added ?? '').localeCompare(a.date_added ?? ''))
         .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
         .map((image) => ({
