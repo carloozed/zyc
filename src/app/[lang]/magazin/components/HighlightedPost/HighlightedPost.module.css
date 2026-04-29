@@ -5,7 +5,7 @@
     position: relative;
     overflow: hidden;
     height: calc(10rem + 15vw);
-    transform: translateY(40%);
+    transform: translateY(41%);
     opacity: 0;
 }
 
