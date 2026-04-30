@@ -16,7 +16,6 @@
     grid-template-columns: repeat(auto-fill, minmax(min(100%, calc(12rem + 12vw)), 1fr));
     justify-content: center;
     gap: var(--padding-l);
-
 }
 
 .overflow {
@@ -27,7 +26,6 @@
     display: flex;
     gap: var(--page-title);
     overflow: hidden;
-
 }
 
 .title,
