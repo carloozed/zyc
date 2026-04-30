@@ -27,7 +27,6 @@
 /* Mobile */
 /* Up to 768px */
 @media (max-width: 48rem) {
-
     .linkcontainer {
         padding-top: var(--padding-m)
     }
