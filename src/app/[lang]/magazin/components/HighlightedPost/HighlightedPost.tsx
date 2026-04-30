@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 
@@ -17,6 +17,7 @@ type HighlightedPostProps = {
   instaIcon: InstagramIconDocument;
   variant: 'wide' | 'narrow';
   index: number;
+  hasAppeared: boolean;
 };
 
 export default function HighlightedPost({
@@ -24,17 +25,8 @@ export default function HighlightedPost({
   instaIcon,
   variant,
   index,
+  hasAppeared,
 }: HighlightedPostProps) {
-  const [hasAppeared, setHasAppeared] = useState<boolean>(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setHasAppeared(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <FadeIn
       className={styles.highlightcontainer}

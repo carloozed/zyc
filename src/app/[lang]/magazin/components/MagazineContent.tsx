@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './MagazineContent.module.css';
 import {
@@ -18,6 +18,7 @@ import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
 import HighlightedPost from './HighlightedPost/HighlightedPost';
 import StickyContainer from './StickyContainer/StickyContainer';
+import PostPreview from './PostPreview/PostPreview';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -71,6 +72,15 @@ export default function MagazineContent({
 }: MagazineContentProps) {
   const filter = useFilterStore((s) => s.filter);
   const sorting = useSortingStore((s) => s.sorting);
+  const [hasAppeared, setHasAppeared] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setHasAppeared(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const filters = [
     ...new Set(
@@ -144,10 +154,22 @@ export default function MagazineContent({
             {highlightedPosts.map((post, index) => (
               <HighlightedPost
                 variant={index % 2 === 0 ? 'wide' : 'narrow'}
-                key={`${post.id}-${index}`}
+                key={post.id}
                 post={post}
                 instaIcon={instaIcon}
                 index={index}
+                hasAppeared={hasAppeared}
+              />
+            ))}
+          </div>
+          <div className={styles.highlightedpostsmobile}>
+            {highlightedPosts.map((post, index) => (
+              <PostPreview
+                post={post}
+                key={post.id}
+                index={index}
+                instaIcon={instaIcon}
+                hasAppeared={hasAppeared}
               />
             ))}
           </div>
@@ -161,6 +183,7 @@ export default function MagazineContent({
           instaIcon={instaIcon}
           decoimage={decoimage}
           groupedPosts={groupedPosts}
+          hasAppeared={hasAppeared}
         />
       </div>
     </div>

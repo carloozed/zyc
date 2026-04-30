@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   DecorationImageDocument,
   InstagramIconDocument,
@@ -21,23 +21,15 @@ type MagazinPostsProps = {
   instaIcon: InstagramIconDocument;
   decoimage: DecorationImageDocument;
   groupedPosts: GroupPost[];
+  hasAppeared: boolean;
 };
 
 export default function BlogContainer({
   instaIcon,
   decoimage,
   groupedPosts,
+  hasAppeared,
 }: MagazinPostsProps) {
-  const [hasAppeared, setHasAppeared] = useState<boolean>(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setHasAppeared(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className={styles.blogcontainer}>
       {groupedPosts.map((group) => (
