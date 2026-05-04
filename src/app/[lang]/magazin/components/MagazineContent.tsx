@@ -153,7 +153,6 @@ export default function MagazineContent({
           <div className={styles.highlightedposts}>
             {highlightedPosts.map((post, index) => (
               <HighlightedPost
-                variant={index % 2 === 0 ? 'wide' : 'narrow'}
                 key={post.id}
                 post={post}
                 instaIcon={instaIcon}

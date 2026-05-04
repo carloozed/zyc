@@ -107,7 +107,7 @@
           "label": "Post Description",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "paragraph,heading5,heading6,strong,em,hyperlink"
+          "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink"
         }
       },
       "gallery": {

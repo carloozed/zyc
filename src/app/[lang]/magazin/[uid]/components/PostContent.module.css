@@ -29,6 +29,22 @@
     text-decoration: underline;
 }
 
+.description .quotecontainer {
+    padding: var(--padding-m) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote {
+    font-family: var(--text-font);
+    font-style: italic;
+    padding-left: var(--padding-l);
+    border-left: var(--border-thin);
+    font-size: var(--text-large);
+    width: 80%;
+}
+
 .galleryWrapper {
     display: flex;
     flex-direction: column;

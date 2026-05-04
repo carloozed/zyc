@@ -177,7 +177,8 @@ h2 {
 }
 
 
-p {
+p,
+blockquote>span {
     font-size: var(--text-s);
     line-height: 150%;
 }

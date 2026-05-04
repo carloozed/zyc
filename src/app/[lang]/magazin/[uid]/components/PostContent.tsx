@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 
 import styles from './PostContent.module.css';
-import { PrismicRichText } from '@prismicio/react';
+import { JSXMapSerializer, PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import PostLightbox from './PostLightbox/PostLightbox';
 
@@ -79,13 +79,24 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
     scrollToIndex(index);
   };
 
+  const richtextcomponents: JSXMapSerializer = {
+    preformatted: ({ children }) => (
+      <blockquote className={styles.quotecontainer}>
+        <span className={styles.quote}>{children}</span>
+      </blockquote>
+    ),
+  };
+
   return (
     <div className={styles.container}>
       {heroslice && <SliceZone slices={heroslice} components={components} />}
 
       <div className={styles.contentcontainer}>
         <div className={styles.description}>
-          <PrismicRichText field={page.data.post_description} />{' '}
+          <PrismicRichText
+            field={page.data.post_description}
+            components={richtextcomponents}
+          />{' '}
           <div className={styles.aside}>
             <p>
               Artikel veröffentlicht am:{' '}

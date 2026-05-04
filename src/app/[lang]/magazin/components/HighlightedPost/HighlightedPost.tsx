@@ -15,7 +15,6 @@ import FadeIn from '@/app/components/FadeIn/FadeIn';
 type HighlightedPostProps = {
   post: MagazinpostDocument;
   instaIcon: InstagramIconDocument;
-  variant: 'wide' | 'narrow';
   index: number;
   hasAppeared: boolean;
 };
@@ -23,7 +22,6 @@ type HighlightedPostProps = {
 export default function HighlightedPost({
   post,
   instaIcon,
-  variant,
   index,
   hasAppeared,
 }: HighlightedPostProps) {
@@ -36,7 +34,7 @@ export default function HighlightedPost({
       }}
     >
       <>
-        {variant === 'wide' ? (
+        {post.tags.some((tag) => tag === 'wide') ? (
           <div
             className={styles.contentcontainer}
             style={{ backgroundImage: `url(${post.data.previewe_image.url})` }}
@@ -53,7 +51,7 @@ export default function HighlightedPost({
               <LinkContainer post={post} instaIcon={instaIcon} />
             </div>
           </div>
-        ) : variant === 'narrow' ? (
+        ) : (
           <div className={styles.narrowcontentcontainer}>
             <div className={styles.imagecontainer}>
               <PrismicNextImage field={post.data.previewe_image} />
@@ -70,7 +68,7 @@ export default function HighlightedPost({
               <LinkContainer post={post} instaIcon={instaIcon} />
             </div>
           </div>
-        ) : null}
+        )}
       </>
     </FadeIn>
   );
