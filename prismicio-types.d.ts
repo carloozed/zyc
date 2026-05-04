@@ -1228,17 +1228,6 @@ interface HomepageNavigationDocumentData {
   the_cadenza_title: prismic.RichTextField;
 
   /**
-   * Termine Title field in *Homepage Navigation*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: Termine
-   * - **API ID Path**: homepage_navigation.termine_title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  termine_title: prismic.RichTextField;
-
-  /**
    * The Crescendo Title field in *Homepage Navigation*
    *
    * - **Field Type**: Rich Text
@@ -1259,6 +1248,17 @@ interface HomepageNavigationDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   about_title: prismic.RichTextField;
+
+  /**
+   * Magazin Title field in *Homepage Navigation*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_navigation.magazin_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  magazin_title: prismic.RichTextField;
 
   /**
    * The Contest field in *Homepage Navigation*
@@ -1312,23 +1312,6 @@ interface HomepageNavigationDocumentData {
   >;
 
   /**
-   * Termine field in *Homepage Navigation*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: Termine
-   * - **API ID Path**: homepage_navigation.termine
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  termine: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
-  >;
-
-  /**
    * About field in *Homepage Navigation*
    *
    * - **Field Type**: Link
@@ -1338,6 +1321,23 @@ interface HomepageNavigationDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/link
    */
   about: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Magazin field in *Homepage Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: homepage_navigation.magazin
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  magazin: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
 }
 
 /**

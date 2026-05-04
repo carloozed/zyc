@@ -51,7 +51,7 @@ const NavigationItem = ({
   const content = (
     <div
       className={`${className} ${styles.landing__navigationitem}`}
-      onMouseOver={onHover}
+      onMouseEnter={onHover}
       style={style}
     >
       <div className={styles.ccc__innercontainer}>
@@ -83,29 +83,26 @@ export default function LandingContent({
   landingNavigation,
   hoverElements,
   background,
-  termineIsVisible,
 }: Props) {
   const [hoveredElement, setHoveredElement] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
   const { isMobile, isTabletPortrait } = useMobile();
 
-  const mouseLeaveFunction = () => {
-    setHoveredElement('');
-    setIsHovered(false);
-  };
+  const isHovered = hoveredElement !== '';
+
+  const clearHover = () => setHoveredElement('');
 
   const {
     cta_text,
     the_contest,
     the_cadenza,
     the_crescendo,
-    termine,
     about,
+    magazin,
     the_contest_title,
     the_cadenza_title,
     the_crescendo_title,
-    termine_title,
     about_title,
+    magazin_title,
   } = landingNavigation.data;
 
   const contestHover = hoverElements.find(
@@ -118,6 +115,17 @@ export default function LandingContent({
     (element) => element.uid === 'crescendo',
   );
   const aboutHover = hoverElements.find((element) => element.uid === 'about');
+  const magazinHover = hoverElements.find(
+    (element) => element.uid === 'magazin',
+  );
+
+  const activeHover = {
+    contest: contestHover,
+    cadenza: cadenzaHover,
+    crescendo: crescendoHover,
+    about: aboutHover,
+    magazin: magazinHover,
+  }[hoveredElement];
 
   return (
     <div className={styles.landing__container}>
@@ -138,7 +146,10 @@ export default function LandingContent({
           />
         </FadeIn>
       </div>
-      <div className={styles.landing__leftcontainer}>
+      <div
+        className={styles.landing__leftcontainer}
+        onMouseLeave={clearHover}
+      >
         <div className={styles.landing__leftcontainer__content}>
           {!isMobile && (
             <div
@@ -151,43 +162,12 @@ export default function LandingContent({
                 <div className={styles.circle}></div>
               </div>
               <div>
-                {hoveredElement === 'contest' ? (
+                {activeHover && (
                   <>
-                    <PrismicRichText
-                      field={contestHover && contestHover.data.title}
-                    />
-                    <PrismicRichText
-                      field={contestHover && contestHover.data.description}
-                    />
+                    <PrismicRichText field={activeHover.data.title} />
+                    <PrismicRichText field={activeHover.data.description} />
                   </>
-                ) : hoveredElement === 'cadenza' ? (
-                  <>
-                    <PrismicRichText
-                      field={cadenzaHover && cadenzaHover.data.title}
-                    />
-                    <PrismicRichText
-                      field={cadenzaHover && cadenzaHover.data.description}
-                    />
-                  </>
-                ) : hoveredElement === 'crescendo' ? (
-                  <>
-                    <PrismicRichText
-                      field={crescendoHover && crescendoHover.data.title}
-                    />
-                    <PrismicRichText
-                      field={crescendoHover && crescendoHover.data.description}
-                    />
-                  </>
-                ) : hoveredElement === 'about' ? (
-                  <>
-                    <PrismicRichText
-                      field={aboutHover && aboutHover.data.title}
-                    />
-                    <PrismicRichText
-                      field={aboutHover && aboutHover.data.description}
-                    />
-                  </>
-                ) : null}
+                )}
               </div>
               <div className={styles.decor}>
                 <div className={styles.circle}></div>
@@ -199,29 +179,19 @@ export default function LandingContent({
           <NavigationItem
             isMobile={isMobile}
             isTabletPortrait={isTabletPortrait}
-            linkField={termine}
-            titleField={termine_title}
-            id="termine-hero"
+            linkField={magazin}
+            titleField={magazin_title}
+            id="magazin-hero"
             delay={0.7}
-            className={styles.landing__termine}
+            className={styles.landing__magazin}
             ctaText={cta_text}
-            style={{
-              opacity:
-                termineIsVisible && termineIsVisible.data.termine_is_visible
-                  ? '1'
-                  : '0',
-              visibility:
-                termineIsVisible && termineIsVisible.data.termine_is_visible
-                  ? 'visible'
-                  : 'hidden',
-            }}
+            onHover={() => setHoveredElement('magazin')}
           />
         </div>
       </div>
       <div
         className={styles.landing__rightcontainer}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={mouseLeaveFunction}
+        onMouseLeave={clearHover}
       >
         <div className={styles.landing__rightcontainer__ccc}>
           <NavigationItem

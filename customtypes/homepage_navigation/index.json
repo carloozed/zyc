@@ -31,15 +31,6 @@
           "multi": "heading4"
         }
       },
-      "termine_title": {
-        "type": "StructuredText",
-        "config": {
-          "label": "Termine Title",
-          "placeholder": "Termine",
-          "allowTargetBlank": true,
-          "multi": "heading4"
-        }
-      },
       "the_crescendo_title": {
         "type": "StructuredText",
         "config": {
@@ -54,6 +45,15 @@
         "config": {
           "label": "About Title",
           "placeholder": "About",
+          "allowTargetBlank": true,
+          "multi": "heading4"
+        }
+      },
+      "magazin_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Magazin Title",
+          "placeholder": "",
           "allowTargetBlank": true,
           "multi": "heading4"
         }
@@ -91,22 +91,22 @@
           "repeat": false
         }
       },
-      "termine": {
+      "about": {
         "type": "Link",
         "config": {
-          "label": "Termine",
-          "placeholder": "Termine",
+          "label": "About",
+          "placeholder": "About",
           "select": null,
           "allowTargetBlank": true,
           "allowText": true,
           "repeat": false
         }
       },
-      "about": {
+      "magazin": {
         "type": "Link",
         "config": {
-          "label": "About",
-          "placeholder": "About",
+          "label": "Magazin",
+          "placeholder": "",
           "select": null,
           "allowTargetBlank": true,
           "allowText": true,
