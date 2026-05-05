@@ -60,7 +60,7 @@ export default function TimelineContent({ styles, slice }: Props) {
       style={{
         width:
           slice.variation === 'default'
-            ? `${!isMobile ? '22.5%' : '30%'}`
+            ? `${!isMobile ? '100%' : '100%'}`
             : slice.variation === 'midPhase'
               ? `${!isMobile ? '17.5%' : '24%'}`
               : `${!isMobile ? '10%' : '18%'}`,
