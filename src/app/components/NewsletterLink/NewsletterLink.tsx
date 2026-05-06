@@ -20,12 +20,12 @@ export default function NewsletterLink({
     useNewsletterStore();
 
   const { isMobile } = useMobile();
-  const showBorder = isFooter || (hasBorder && !isMobile);
-  const paddingRight = isFooter
-    ? 'var(--padding-s)'
-    : showBorder
-      ? 'var(--padding-m)'
-      : '0';
+  const showBorder = hasBorder && (isFooter || !isMobile);
+  const paddingRight = !showBorder
+    ? '0'
+    : isFooter
+      ? 'var(--padding-s)'
+      : 'var(--padding-m)';
   const label = hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter';
 
   return (

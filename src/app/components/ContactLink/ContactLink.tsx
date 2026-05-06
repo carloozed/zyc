@@ -20,13 +20,19 @@ export default function ContactLink({
 }: Props) {
   const { isContactFormShown, setContactFormShown } = useContactStore();
   const { isMobile } = useMobile();
+  const showBorder = hasBorder && (isFooter || !isMobile);
+  const paddingRight = !showBorder
+    ? '0'
+    : isFooter
+      ? 'var(--padding-s)'
+      : 'var(--padding-m)';
 
   return (
     <span
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
-        borderRight: `${hasBorder && !isMobile ? '0.5px solid black' : isFooter ? '0.5px solid black' : 'none'}`,
-        paddingRight: `${hasBorder && !isMobile ? 'var(--padding-m)' : isFooter ? 'var(--padding-s)' : '0'}`,
+        borderRight: showBorder ? '0.5px solid black' : 'none',
+        paddingRight,
       }}
       onClick={() => setContactFormShown(!isContactFormShown)}
       className="cursor-pointer"
