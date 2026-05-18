@@ -1,12 +1,13 @@
 'use client';
 
-import { FC, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { PrismicNextImage } from '@prismicio/next';
 
 import styles from './index.module.css';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+import useGalleryAnimationStore from '@/stores/GalleryAnimationStore';
 
 export type VideosYearProps = SliceComponentProps<Content.VideosYearSlice>;
 
@@ -90,10 +91,20 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
 
 const VideosYear: FC<VideosYearProps> = ({ slice, context }) => {
   const { decoimage } = context as VideosSliceContext;
+  const { hasAnimated, setHasAnimated } = useGalleryAnimationStore();
   const videos = useMemo(
     () => sortVideosByDate(slice.primary.videos),
     [slice.primary.videos],
   );
+
+  useEffect(() => {
+    if (!hasAnimated) {
+      const timer = setTimeout(() => {
+        setHasAnimated(true);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [hasAnimated, setHasAnimated]);
 
   if (videos.length === 0) return null;
 
@@ -105,12 +116,21 @@ const VideosYear: FC<VideosYearProps> = ({ slice, context }) => {
     >
       <div className={styles.monthGroup}>
         <div className={styles.monthcontainer}>
-          <FadeIn vars={{ duration: 1.2 }} className={styles.title}>
+          <FadeIn
+            vars={{
+              delay: !hasAnimated ? 1.2 : 0,
+              duration: !hasAnimated ? 1.3 : 0,
+            }}
+            className={styles.title}
+          >
             <PrismicRichText field={slice.primary.edition_year} />
           </FadeIn>
           <FadeIn
             className={styles.imagecontainer}
-            vars={{ duration: 1.6 }}
+            vars={{
+              delay: !hasAnimated ? 1.6 : 0,
+              duration: !hasAnimated ? 1.6 : 0,
+            }}
           >
             <PrismicNextImage field={decoimage.data.image} />
           </FadeIn>
