@@ -3,7 +3,12 @@
 import React, { useMemo, useState, useCallback } from 'react';
 
 import styles from './GalleryContent.module.css';
-import { DecorationImageDocument, GalleryDocument } from '@/prismicio-types';
+import {
+  DecorationImageDocument,
+  GalleryDocument,
+  GalleryYearSlice,
+  VideosYearSlice,
+} from '@/prismicio-types';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
 import { SliceZone } from '@prismicio/react';
@@ -11,6 +16,7 @@ import { components } from '@/slices';
 
 import useGalleryFilterStore from '@/stores/GalleryFilterStore';
 import useGalleryYearStore from '@/stores/GalleryYearStore';
+import useGalleryMediaTypeStore from '@/stores/GalleryMediaTypeStore';
 
 import GalleryLightbox from './components/GalleryLightbox';
 import CopyrightNotice from './components/CopyrightNotice';
@@ -28,6 +34,7 @@ export default function GalleryContent({
   const filter = useGalleryFilterStore((state) => state.filter);
 
   const galleryYear = useGalleryYearStore((state) => state.galleryYear);
+  const mediaType = useGalleryMediaTypeStore((state) => state.mediaType);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -38,8 +45,26 @@ export default function GalleryContent({
   const SLICES_PER_PAGE = 1;
   const [visibleCount, setVisibleCount] = useState(SLICES_PER_PAGE);
 
+  const photoSlices = useMemo<GalleryYearSlice[]>(
+    () =>
+      [...page.data.slices].filter(
+        (slice): slice is GalleryYearSlice =>
+          slice.slice_type === 'gallery_year',
+      ),
+    [page.data.slices],
+  );
+
+  const videoSlices = useMemo<VideosYearSlice[]>(
+    () =>
+      [...page.data.slices].filter(
+        (slice): slice is VideosYearSlice =>
+          slice.slice_type === 'videos_year',
+      ),
+    [page.data.slices],
+  );
+
   const filteredPosts = useMemo(() => {
-    let result = [...page.data.slices].sort(
+    let result = [...photoSlices].sort(
       (a, b) =>
         (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
     );
@@ -64,7 +89,25 @@ export default function GalleryContent({
     }
 
     return result;
-  }, [filter, galleryYear, page.data.slices]);
+  }, [filter, galleryYear, photoSlices]);
+
+  const filteredVideoSlices = useMemo(() => {
+    let result = [...videoSlices].sort(
+      (a, b) =>
+        (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
+    );
+
+    if (galleryYear && galleryYear !== 'alle') {
+      const yearNum = Number(galleryYear);
+      if (!isNaN(yearNum)) {
+        result = result.filter(
+          (slice) => slice.primary.year_in_number === yearNum,
+        );
+      }
+    }
+
+    return result;
+  }, [galleryYear, videoSlices]);
 
   const visiblePosts = filteredPosts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPosts.length;
@@ -121,27 +164,41 @@ export default function GalleryContent({
           <GalleryFilterContainer page={page} filters={filters} />
         </div>
         <div className={styles.gallerycontainer}>
-          <SliceZone
-            slices={visiblePosts}
-            components={components}
-            context={{ decoimage, onImageClick, sliceOffsets, filter }}
-          />
-          {hasMore && (
-            <button
-              className={styles.loadMore}
-              onClick={() => setVisibleCount((prev) => prev + SLICES_PER_PAGE)}
-            >
-              Mehr laden
-            </button>
+          {mediaType === 'photos' ? (
+            <>
+              <SliceZone
+                slices={visiblePosts}
+                components={components}
+                context={{ decoimage, onImageClick, sliceOffsets, filter }}
+              />
+              {hasMore && (
+                <button
+                  className={styles.loadMore}
+                  onClick={() =>
+                    setVisibleCount((prev) => prev + SLICES_PER_PAGE)
+                  }
+                >
+                  Mehr laden
+                </button>
+              )}
+            </>
+          ) : (
+            <SliceZone
+              slices={filteredVideoSlices}
+              components={components}
+              context={{ decoimage }}
+            />
           )}
         </div>
       </div>
-      <GalleryLightbox
-        slides={allSlides}
-        lightboxOpen={lightboxOpen}
-        setLightboxOpen={setLightboxOpen}
-        initialIndex={lightboxIndex}
-      />
+      {mediaType === 'photos' && (
+        <GalleryLightbox
+          slides={allSlides}
+          lightboxOpen={lightboxOpen}
+          setLightboxOpen={setLightboxOpen}
+          initialIndex={lightboxIndex}
+        />
+      )}
       <CopyrightNotice />
     </div>
   );

@@ -13,6 +13,7 @@ import FadeIn from '@/app/components/FadeIn/FadeIn';
 
 import useGalleryFilterStore from '@/stores/GalleryFilterStore';
 import useGalleryYearStore from '@/stores/GalleryYearStore';
+import useGalleryMediaTypeStore from '@/stores/GalleryMediaTypeStore';
 
 type GalleryFilterContainerProps = {
   page: GalleryDocument;
@@ -28,7 +29,11 @@ export default function GalleryFilterContainer({
 
   const setGalleryYear = useGalleryYearStore((state) => state.setGalleryYear);
 
-  const isFilterVisible = page.data.filterbar_visible && filters.length > 1;
+  const mediaType = useGalleryMediaTypeStore((state) => state.mediaType);
+  const setMediaType = useGalleryMediaTypeStore((state) => state.setMediaType);
+
+  const isFilterVisible =
+    page.data.filterbar_visible && filters.length > 1 && mediaType === 'photos';
 
   return (
     <FadeIn
@@ -50,6 +55,22 @@ export default function GalleryFilterContainer({
             </option>
           ))}
         </select>
+      </div>
+      <div className={styles.mediatypetabs}>
+        <button
+          type="button"
+          onClick={() => setMediaType('photos')}
+          className={`${styles.filterbutton} ${mediaType === 'photos' ? styles.active : ''}`}
+        >
+          Fotos
+        </button>
+        <button
+          type="button"
+          onClick={() => setMediaType('videos')}
+          className={`${styles.filterbutton} ${mediaType === 'videos' ? styles.active : ''}`}
+        >
+          Videos
+        </button>
       </div>
       {isFilterVisible && (
         <div className={styles.filterbar}>

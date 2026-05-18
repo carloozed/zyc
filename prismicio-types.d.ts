@@ -1076,7 +1076,7 @@ export interface GalleryDocumentDataFilterOptionsItem {
   filter_key: prismic.KeyTextField;
 }
 
-type GalleryDocumentDataSlicesSlice = GalleryYearSlice;
+type GalleryDocumentDataSlicesSlice = GalleryYearSlice | VideosYearSlice;
 
 /**
  * Content for Gallery documents
@@ -3551,6 +3551,116 @@ export type GalleryYearSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *VideosYear → Default → Primary → Videos*
+ */
+export interface VideosYearSliceDefaultPrimaryVideosItem {
+  /**
+   * Vimeo URL field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: https://vimeo.com/123456789
+   * - **API ID Path**: videos_year.default.primary.videos[].vimeo_url
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  vimeo_url: prismic.KeyTextField;
+
+  /**
+   * Title field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Poster Image field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].poster_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  poster_image: prismic.ImageField<never>;
+
+  /**
+   * Date Added field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].date_added
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date_added: prismic.DateField;
+}
+
+/**
+ * Primary content in *VideosYear → Default → Primary*
+ */
+export interface VideosYearSliceDefaultPrimary {
+  /**
+   * Edition Year field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.edition_year
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  edition_year: prismic.RichTextField;
+
+  /**
+   * Year in Number field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.year_in_number
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  year_in_number: prismic.NumberField;
+
+  /**
+   * Videos field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  videos: prismic.GroupField<Simplify<VideosYearSliceDefaultPrimaryVideosItem>>;
+}
+
+/**
+ * Default variation for VideosYear Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideosYearSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideosYearSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideosYear*
+ */
+type VideosYearSliceVariation = VideosYearSliceDefault;
+
+/**
+ * VideosYear Shared Slice
+ *
+ * - **API ID**: `videos_year`
+ * - **Description**: VideosYear
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideosYearSlice = prismic.SharedSlice<
+  "videos_year",
+  VideosYearSliceVariation
+>;
+
+/**
  * Item in *JuryGrid → Base Grid → Primary → Members*
  */
 export interface JuryGridSliceBaseGridPrimaryMembersItem {
@@ -4366,6 +4476,11 @@ declare module "@prismicio/client" {
       TimelinePhasesSliceDefault,
       TimelinePhasesSliceMidPhase,
       TimelinePhasesSliceShortPhase,
+      VideosYearSlice,
+      VideosYearSliceDefaultPrimaryVideosItem,
+      VideosYearSliceDefaultPrimary,
+      VideosYearSliceVariation,
+      VideosYearSliceDefault,
     };
   }
 }

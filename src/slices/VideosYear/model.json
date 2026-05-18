@@ -1,0 +1,73 @@
+{
+  "id": "videos_year",
+  "type": "SharedSlice",
+  "name": "VideosYear",
+  "description": "VideosYear",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "edition_year": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Edition Year",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "year_in_number": {
+          "type": "Number",
+          "config": {
+            "label": "Year in Number",
+            "placeholder": ""
+          }
+        },
+        "videos": {
+          "type": "Group",
+          "config": {
+            "label": "Videos",
+            "repeat": true,
+            "fields": {
+              "vimeo_url": {
+                "type": "Text",
+                "config": {
+                  "label": "Vimeo URL",
+                  "placeholder": "https://vimeo.com/123456789"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              },
+              "poster_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Poster Image (optional)",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "date_added": {
+                "type": "Date",
+                "config": {
+                  "label": "Date Added",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

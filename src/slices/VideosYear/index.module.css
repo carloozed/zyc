@@ -1,0 +1,141 @@
+.blogcontainer {
+    padding: var(--page-title) calc(4rem + 3vw);
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+}
+
+.monthGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l);
+}
+
+.monthcontainer {
+    display: flex;
+    gap: var(--page-title);
+    overflow: hidden;
+}
+
+.title,
+.imagecontainer {
+    transform: translateY(100%);
+}
+
+.imagecontainer {
+    display: flex;
+    align-items: center;
+}
+
+.imagecontainer img {
+    height: 2.3rem;
+    width: auto;
+    object-fit: contain;
+}
+
+.videosGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.videoItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-2xs);
+}
+
+.videoFrame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #111;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: var(--border-radius, 4px);
+}
+
+.videoFrame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.posterFallback {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
+.playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+    pointer-events: none;
+}
+
+.videoFrame:hover .playButton {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: white;
+}
+
+.playButton::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0.7rem 0 0.7rem 1.1rem;
+    border-color: transparent transparent transparent #111;
+    margin-left: 0.25rem;
+}
+
+.videoTitle {
+    font-family: var(--text-font);
+    font-size: var(--text-s);
+    color: inherit;
+}
+
+/* Mobile */
+@media (max-width: 48rem) {
+    .blogcontainer {
+        padding: var(--padding-s);
+        padding-top: 2rem;
+        gap: 4rem;
+    }
+
+    .monthGroup {
+        gap: var(--padding-m);
+    }
+
+    .videosGrid {
+        grid-template-columns: 1fr;
+        gap: var(--padding-m);
+    }
+}
+
+/* Tablet */
+@media (min-width: 48rem) and (max-width: 74rem) {
+    .videosGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

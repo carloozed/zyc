@@ -12,4 +12,5 @@ export const components = {
   schedule_slice: dynamic(() => import('./ScheduleSlice')),
   split_visual_headline: dynamic(() => import('./Hero')),
   timeline_phases: dynamic(() => import('./TimellinePhase')),
+  videos_year: dynamic(() => import('./VideosYear')),
 };

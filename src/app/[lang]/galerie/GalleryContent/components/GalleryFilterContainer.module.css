@@ -1,8 +1,19 @@
 .filtercontainer {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: var(--padding-m);
     padding-top: var(--padding-s);
     transform: translateY(150%)
+}
+
+.mediatypetabs {
+    display: flex;
+    gap: var(--padding-xs);
+    align-items: center;
+}
+
+.filterbar {
+    margin-left: auto;
 }
 
 .filterbar,
