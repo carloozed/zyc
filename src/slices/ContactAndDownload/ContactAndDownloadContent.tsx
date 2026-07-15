@@ -4,7 +4,6 @@ import React from 'react';
 import {
   AnmeldelinkDocument,
   ContactAndDownloadSlice,
-  IsdownloadsmutedDocument,
 } from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
@@ -12,43 +11,51 @@ import { PrismicNextLink } from '@prismicio/next';
 import styles from './ContactAndDownload.module.css';
 
 import { useMobile } from '@/contexts/MobileContext';
+import isSignupWindowOpen from '@/helpers/isSignupWindowOpen';
 
 import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
 import ContactLink from '@/app/components/ContactLink/ContactLink';
 
 type Props = {
   slice: ContactAndDownloadSlice;
-  isDownloadsMuted?: IsdownloadsmutedDocument;
   signuplink: AnmeldelinkDocument;
 };
 
+type LinkField =
+  ContactAndDownloadSlice['primary']['links'][number]['link'];
+
+function ContactItemLink({ link }: { link: LinkField }) {
+  switch (link.text) {
+    case 'Anmeldung Newsletter':
+      return (
+        <NewsletterLink
+          hasUnderscore={true}
+          hasAnmeldung={true}
+          hasBorder={false}
+        />
+      );
+    case 'Kontaktiere uns':
+      return (
+        <ContactLink
+          hasUnderscore={true}
+          hasBorder={false}
+          buttonText={'Kontaktiere uns'}
+        />
+      );
+    default:
+      return <PrismicNextLink field={link} target="_blank" />;
+  }
+}
+
 export default function ContactAndDownloadContent({
   slice,
-
   signuplink,
 }: Props) {
   const { isMobile, isTabletPortrait } = useMobile();
 
-  const shouldShowBasedOnDates = () => {
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    const buttonShowDate =
-      signuplink.data.show_button_date?.split('T')[0] ||
-      signuplink.data.show_button_date;
-    const buttonHideDate =
-      signuplink.data.hide_button_date?.split('T')[0] ||
-      signuplink.data.hide_button_date;
-
-    if (!buttonShowDate) return false;
-
-    const isPastShowDate = currentDate >= buttonShowDate;
-
-    if (!buttonHideDate) return isPastShowDate;
-
-    const isBeforeHideDate = currentDate < buttonHideDate;
-
-    return isPastShowDate && isBeforeHideDate;
-  };
+  const showSignupLink =
+    isSignupWindowOpen(signuplink) &&
+    (isTabletPortrait || (isMobile && slice.variation === 'default'));
 
   return (
     <section
@@ -62,22 +69,7 @@ export default function ContactAndDownloadContent({
         <div className={styles.linkscontainer}>
           {slice.primary.links.map((item, index: number) => (
             <div key={index} className={styles.downloadlink}>
-              {item.link.text === 'Anmeldung Newsletter' ? (
-                <NewsletterLink
-                  hasUnderscore={true}
-                  hasAnmeldung={true}
-                  hasBorder={false}
-                />
-              ) : item.link.text === 'Kontaktiere uns' ? (
-                <ContactLink
-                  hasUnderscore={true}
-                  hasBorder={false}
-                  buttonText={'Kontaktiere uns'}
-                />
-              ) : (
-                <PrismicNextLink field={item.link} target="_blank" />
-              )}
-
+              <ContactItemLink link={item.link} />
               <p style={{ transform: 'rotate(-135deg)' }}>&darr;</p>
             </div>
           ))}
@@ -97,17 +89,7 @@ export default function ContactAndDownloadContent({
           </div>
         </div>
       )}
-      {shouldShowBasedOnDates() &&
-        isMobile &&
-        slice.variation === 'default' && (
-          <div className={styles.signuplink}>
-            <PrismicNextLink field={signuplink.data.anmeldelink}>
-              Anmelden
-            </PrismicNextLink>
-          </div>
-        )}
-
-      {shouldShowBasedOnDates() && isTabletPortrait && (
+      {showSignupLink && (
         <div className={styles.signuplink}>
           <PrismicNextLink field={signuplink.data.anmeldelink}>
             Anmelden

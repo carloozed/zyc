@@ -22,14 +22,8 @@ const ContactAndDownload: FC<ContactAndDownloadProps> = ({
   slice,
   context,
 }) => {
-  const { isDownloadsMuted, signuplink } = context as ContestAndDownloadContext;
-  return (
-    <ContactAndDownloadContent
-      slice={slice}
-      isDownloadsMuted={isDownloadsMuted}
-      signuplink={signuplink}
-    />
-  );
+  const { signuplink } = context as ContestAndDownloadContext;
+  return <ContactAndDownloadContent slice={slice} signuplink={signuplink} />;
 };
 
 export default ContactAndDownload;
