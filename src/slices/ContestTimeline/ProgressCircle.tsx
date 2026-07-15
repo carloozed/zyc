@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 
-import { useEffect, useState } from 'react';
-import { DateField } from '@prismicio/client';
 import {
   ContestTimelineSliceDefaultPrimaryTimelineContestGroupItem,
   Simplify,
 } from '@/prismicio-types';
+import useDateRangeProgress from '@/helpers/useDateRangeProgress';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -20,43 +19,12 @@ type Props = {
 };
 
 export default function ProgressCircle({ item, styles, delay }: Props) {
-  const [progressPercentage, setProgressPercentage] = useState(0);
   const circleRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const calculateProgressPercentage = () => {
-      const startDateField: DateField = item.start_date;
-      const endDateField: DateField = item.end_date;
-
-      if (!startDateField || !endDateField) {
-        return 0;
-      }
-
-      const startDate = new Date(startDateField);
-      const endDate = new Date(endDateField);
-
-      const currentDate = new Date();
-
-      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-        return 0;
-      }
-
-      const totalDuration = endDate.getTime() - startDate.getTime();
-
-      if (totalDuration <= 0) {
-        return 0;
-      }
-
-      const elapsedTime = Math.min(
-        Math.max(0, currentDate.getTime() - startDate.getTime()),
-        totalDuration,
-      );
-
-      return (elapsedTime / totalDuration) * 100;
-    };
-
-    setProgressPercentage(calculateProgressPercentage());
-  }, [item.start_date, item.end_date]);
+  const progressPercentage = useDateRangeProgress(
+    item.start_date,
+    item.end_date,
+  );
 
   useGSAP(
     () => {
