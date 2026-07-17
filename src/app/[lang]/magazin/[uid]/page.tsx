@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import buildPageMetadata from '@/helpers/buildPageMetadata';
 import PostContent from './components/PostContent';
 
 type Params = { uid: string; lang: string };
@@ -32,13 +32,7 @@ export async function generateMetadata({
     .getByUID('magazinpost', uid, { lang })
     .catch(() => notFound());
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
-    },
-  };
+  return buildPageMetadata(page.data);
 }
 
 export async function generateStaticParams() {

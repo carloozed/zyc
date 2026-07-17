@@ -1,10 +1,10 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { asImageSrc } from '@prismicio/client';
 
 import styles from './page.module.css';
 
 import { createClient } from '@/prismicio';
+import buildPageMetadata from '@/helpers/buildPageMetadata';
 
 import AboutContent from './AboutContent/AboutContent';
 
@@ -42,11 +42,5 @@ export async function generateMetadata({
     .getSingle('uber_zyc', { lang })
     .catch(() => notFound());
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
-    },
-  };
+  return buildPageMetadata(page.data);
 }

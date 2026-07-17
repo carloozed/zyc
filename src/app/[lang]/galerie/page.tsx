@@ -1,8 +1,8 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import buildPageMetadata from '@/helpers/buildPageMetadata';
 
 import GalleryContent from './GalleryContent/GalleryContent';
 
@@ -23,11 +23,5 @@ export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
   const page = await client.getSingle('gallery').catch(() => notFound());
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
-    },
-  };
+  return buildPageMetadata(page.data);
 }

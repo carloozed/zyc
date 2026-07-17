@@ -1,10 +1,7 @@
 import { type Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { asImageSrc } from '@prismicio/client';
 
-import { createClient } from '@/prismicio';
-
-import ImpressumDatenschutzContainer from '@/app/components/ImpressumDatenschutzContainer/ImpressumDatenschutzContainer';
+import LegalPage from '@/app/components/LegalPage/LegalPage';
+import buildLegalPageMetadata from '@/helpers/buildLegalPageMetadata';
 
 export default async function Page({
   params,
@@ -12,17 +9,8 @@ export default async function Page({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const client = createClient();
-  const page = await client
-    .getSingle('impresssum', { lang })
-    .catch(() => notFound());
 
-  return (
-    <ImpressumDatenschutzContainer
-      title={page.data.title}
-      items={page.data.impressum_content}
-    />
-  );
+  return <LegalPage lang={lang} documentType="impresssum" />;
 }
 
 export async function generateMetadata({
@@ -31,16 +19,6 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const client = createClient();
-  const page = await client
-    .getSingle('impresssum', { lang })
-    .catch(() => notFound());
 
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
-    openGraph: {
-      images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
-    },
-  };
+  return buildLegalPageMetadata({ lang, documentType: 'impresssum' });
 }
