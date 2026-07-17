@@ -19,25 +19,31 @@ type Props = {
   wearehereicon: WeAreHereImageDocument;
 };
 
-// Components for h4
-const h4Components: JSXMapSerializer = {
-  heading1: ({ children }) => <h4>{children}</h4>,
-  heading2: ({ children }) => <h4>{children}</h4>,
-  heading3: ({ children }) => <h4>{children}</h4>,
-  heading4: ({ children }) => <h4>{children}</h4>,
-  heading5: ({ children }) => <h4>{children}</h4>,
-  heading6: ({ children }) => <h4>{children}</h4>,
+// Renders every heading level of a rich-text field as the same fixed tag.
+const headingsAs = (Tag: 'h3' | 'h4'): JSXMapSerializer => ({
+  heading1: ({ children }) => <Tag>{children}</Tag>,
+  heading2: ({ children }) => <Tag>{children}</Tag>,
+  heading3: ({ children }) => <Tag>{children}</Tag>,
+  heading4: ({ children }) => <Tag>{children}</Tag>,
+  heading5: ({ children }) => <Tag>{children}</Tag>,
+  heading6: ({ children }) => <Tag>{children}</Tag>,
+});
+
+const h4Components = headingsAs('h4');
+const h3Components = headingsAs('h3');
+
+const columnStyle: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '5px',
 };
 
-// Components for h3
-const h3Components: JSXMapSerializer = {
-  heading1: ({ children }) => <h3>{children}</h3>,
-  heading2: ({ children }) => <h3>{children}</h3>,
-  heading3: ({ children }) => <h3>{children}</h3>,
-  heading4: ({ children }) => <h3>{children}</h3>,
-  heading5: ({ children }) => <h3>{children}</h3>,
-  heading6: ({ children }) => <h3>{children}</h3>,
-};
+function isNowWithin(start: string | null, end: string | null): boolean {
+  if (!start || !end) return false;
+  const now = new Date();
+  return now >= new Date(start) && now <= new Date(end);
+}
 
 export default function ContestTimelineContent({
   slice,
@@ -47,15 +53,8 @@ export default function ContestTimelineContent({
   const [activeIndex, setActiveIndex] = useState(currentPhase);
   const [translatePercentage, setTranslatePercentage] = useState(0);
 
-  const currentDate = new Date();
-
   const currentPhaseIndex = slice.primary.timeline_contest_group.findIndex(
-    (item) => {
-      if (!item.start_date || !item.end_date) return false;
-      const startDate = new Date(item.start_date);
-      const endDate = new Date(item.end_date);
-      return currentDate >= startDate && currentDate <= endDate;
-    },
+    (item) => isNowWithin(item.start_date, item.end_date),
   );
 
   useEffect(() => {
@@ -66,27 +65,8 @@ export default function ContestTimelineContent({
   }, [currentPhaseIndex]);
 
   useEffect(() => {
-    switch (activeIndex) {
-      case 0:
-        setTranslatePercentage(0);
-        break;
-      case 1:
-        setTranslatePercentage((1 / 5) * 100); // 16.67%
-        break;
-      case 2:
-        setTranslatePercentage((2 / 5) * 100); // 33.33%
-        break;
-      case 3:
-        setTranslatePercentage((3 / 5) * 100); // 66.67%
-        break;
-      case 4:
-        setTranslatePercentage((4 / 5) * 100); // 83.33%
-        break;
-
-      default:
-        setTranslatePercentage(currentPhase);
-        break;
-    }
+    const percentages = [0, 20, 40, 60, 80];
+    setTranslatePercentage(percentages[activeIndex] ?? currentPhase);
   }, [activeIndex, currentPhase]);
 
   return (
@@ -104,14 +84,11 @@ export default function ContestTimelineContent({
       <div className={styles.ctl__timeline}>
         {slice.primary.timeline_contest_group.map((item, index) => (
           <div key={index} className={styles.ctl__timeline__item}>
-            {item.start_date &&
-              item.end_date &&
-              new Date(item.start_date) <= new Date() &&
-              new Date(item.end_date) >= new Date() && (
-                <div className={styles.ctl__timeline__item__indicator}>
-                  <PrismicNextImage field={wearehereicon.data.image} />
-                </div>
-              )}
+            {isNowWithin(item.start_date, item.end_date) && (
+              <div className={styles.ctl__timeline__item__indicator}>
+                <PrismicNextImage field={wearehereicon.data.image} />
+              </div>
+            )}
 
             <div
               onMouseEnter={() => setActiveIndex(index)}
@@ -148,29 +125,14 @@ export default function ContestTimelineContent({
               {item.individual_key === 'anmeldephase' &&
               item.start_date &&
               new Date() < new Date('2025-10-10') ? (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '5px',
-                  }}
-                >
+                <div style={columnStyle}>
                   <h3>10.10.2025 - 31.10.2025</h3>
                   <p>Das Anmeldefenster öffnet in</p>
                   <Timer startDate={'2025-10-10T00:00:00'} />
                   <p>Tagen</p>
                 </div>
               ) : (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '5px',
-                  }}
-                  className={styles.text}
-                >
+                <div style={columnStyle} className={styles.text}>
                   <PrismicRichText field={item.phase_date_text} />
                   <PrismicRichText field={item.phase_description} />
                 </div>

@@ -11,7 +11,6 @@ export type ContactAndDownloadProps =
   SliceComponentProps<Content.ContactAndDownloadSlice>;
 
 type ContestAndDownloadContext = {
-  isDownloadsMuted: Content.IsdownloadsmutedDocument;
   signuplink: AnmeldelinkDocument;
 };
 

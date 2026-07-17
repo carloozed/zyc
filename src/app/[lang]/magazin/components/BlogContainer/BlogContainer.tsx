@@ -4,23 +4,18 @@ import React from 'react';
 import {
   DecorationImageDocument,
   InstagramIconDocument,
-  MagazinpostDocument,
 } from '@/prismicio-types';
 
 import styles from './BlogContainer.module.css';
 import PostPreview from '../PostPreview/PostPreview';
 import { PrismicNextImage } from '@prismicio/next';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
-
-type GroupPost = {
-  posts: MagazinpostDocument[];
-  label: string;
-};
+import { PostMonthGroup } from '@/helpers/magazin';
 
 type MagazinPostsProps = {
   instaIcon: InstagramIconDocument;
   decoimage: DecorationImageDocument;
-  groupedPosts: GroupPost[];
+  groupedPosts: PostMonthGroup[];
   hasAppeared: boolean;
 };
 

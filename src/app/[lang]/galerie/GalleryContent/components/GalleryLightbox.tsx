@@ -1,10 +1,24 @@
-import React from 'react';
+'use client';
 
-import Lightbox from 'yet-another-react-lightbox';
-import 'yet-another-react-lightbox/styles.css';
-
-import { CustomSlide } from './CustomSlide';
+import Lightbox from '@/app/components/Lightbox/Lightbox';
 import { GallerySlide } from '@/helpers/gallery';
+
+import DownloadIconGallery from './DownloadIconGallery';
+
+async function downloadImage(url: string, filename: string) {
+  try {
+    const res = await fetch(url);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(blobUrl);
+  } catch {
+    window.open(url, '_blank');
+  }
+}
 
 type GalleryLightboxProps = {
   slides: GallerySlide[];
@@ -21,21 +35,15 @@ export default function GalleryLightbox({
 }: GalleryLightboxProps) {
   return (
     <Lightbox
-      open={open}
-      close={onClose}
       slides={slides}
+      open={open}
+      onClose={onClose}
       index={index}
-      carousel={{ finite: false }}
-      styles={{
-        container: {
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          backdropFilter: 'blur(5px)',
-          pointerEvents: 'all',
-        },
-      }}
-      render={{
-        slide: ({ slide }) => <CustomSlide slide={slide as GallerySlide} />,
-      }}
+      renderActions={(slide) => (
+        <button onClick={() => downloadImage(slide.src, slide.alt)}>
+          <DownloadIconGallery />
+        </button>
+      )}
     />
   );
 }

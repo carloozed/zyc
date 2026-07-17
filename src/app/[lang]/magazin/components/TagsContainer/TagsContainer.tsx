@@ -12,7 +12,7 @@ type Props = { post: MagazinpostDocument };
 export default function TagsContainer({ post }: Props) {
   return (
     <div className={styles.tagscontainer}>
-      {post.data.tags
+      {[...post.data.tags]
         .sort((a, b) => (a.item ?? '').localeCompare(b.item ?? ''))
         .map(
           (tag: Simplify<MagazinpostDocumentDataTagsItem>, index: number) => (

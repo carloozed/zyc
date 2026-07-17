@@ -36,7 +36,6 @@ export default function ProgressCircle({ item, styles, delay }: Props) {
         duration: 1.2,
         ease: 'power3.out',
         delay: delay || 0,
-        markers: true,
         scrollTrigger: {
           trigger: circleRef.current,
           start: 'top 85%',

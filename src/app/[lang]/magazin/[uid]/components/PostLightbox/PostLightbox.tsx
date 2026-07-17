@@ -1,11 +1,10 @@
 'use client';
 
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-import Lightbox from 'yet-another-react-lightbox';
-import 'yet-another-react-lightbox/styles.css';
+import Lightbox from '@/app/components/Lightbox/Lightbox';
+import { GallerySlide } from '@/helpers/gallery';
 import { MagazinpostDocument } from '@/prismicio-types';
-import { CustomSlide, CustomSlideProps } from './CustomSlide';
 
 type LightboxProps = {
   page: MagazinpostDocument;
@@ -20,30 +19,17 @@ export default function PostLightbox({
   setLightboxOpen,
   initialIndex = 0,
 }: LightboxProps) {
-  const magazinslides = page.data.gallery.map((item, index) => ({
+  const slides: GallerySlide[] = page.data.gallery.map((item) => ({
     src: item.image.url as string,
-    title: item.image.id,
     alt: item.image.alt as string,
-    index: index,
   }));
 
   return (
     <Lightbox
+      slides={slides}
       open={lightboxOpen}
-      close={() => setLightboxOpen(false)}
-      slides={magazinslides}
+      onClose={() => setLightboxOpen(false)}
       index={initialIndex}
-      carousel={{ finite: false }}
-      styles={{
-        container: {
-          backgroundColor: 'rgba(255, 255, 255, 0.7)',
-          backdropFilter: 'blur(5px)',
-          pointerEvents: 'all',
-        },
-      }}
-      render={{
-        slide: ({ slide }) => <CustomSlide slide={slide as CustomSlideProps} />,
-      }}
     />
   );
 }

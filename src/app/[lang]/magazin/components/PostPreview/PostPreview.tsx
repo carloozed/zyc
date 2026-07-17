@@ -28,7 +28,6 @@ export default function PostPreview({
   return (
     <FadeIn
       className={styles.postpreview}
-      key={index}
       vars={{
         duration: !hasAppeared ? 2 : 0,
         delay: !hasAppeared ? 1.4 + index * 0.1 : 0,

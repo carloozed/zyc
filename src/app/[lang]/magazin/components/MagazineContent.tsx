@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import styles from './MagazineContent.module.css';
 import {
@@ -19,6 +19,13 @@ import useSortingStore from '@/stores/SortingStore';
 import HighlightedPost from './HighlightedPost/HighlightedPost';
 import StickyContainer from './StickyContainer/StickyContainer';
 import PostPreview from './PostPreview/PostPreview';
+import {
+  filterPostsByTag,
+  getHighlightedPosts,
+  getUniquePostTags,
+  groupPostsByMonth,
+  sortPostsByDateDesc,
+} from '@/helpers/magazin';
 
 type MagazineContentProps = {
   page: MagazinDocument;
@@ -26,43 +33,6 @@ type MagazineContentProps = {
   instaIcon: InstagramIconDocument;
   decoimage: DecorationImageDocument;
 };
-
-// Group posts by month/year
-function groupPostsByMonth(posts: MagazinpostDocument[]) {
-  const grouped: Record<string, MagazinpostDocument[]> = {};
-
-  posts.forEach((post) => {
-    const date = post.data.publishing_date
-      ? new Date(post.data.publishing_date)
-      : null;
-
-    if (date) {
-      const key = `${date.getFullYear()}-${date.getMonth()}`;
-      if (!grouped[key]) {
-        grouped[key] = [];
-      }
-      grouped[key].push(post);
-    }
-  });
-
-  // Sort keys by date (newest first)
-  const sortedKeys = Object.keys(grouped).sort((a, b) => {
-    const [yearA, monthA] = a.split('-').map(Number);
-    const [yearB, monthB] = b.split('-').map(Number);
-    return yearB - yearA || monthB - monthA;
-  });
-
-  return sortedKeys.map((key) => {
-    const [year, month] = key.split('-').map(Number);
-    const label = new Date(year, month).toLocaleDateString('de-CH', {
-      month: 'long',
-      year: 'numeric',
-    });
-    return { label, posts: grouped[key] };
-  });
-}
-
-const FOCUS_TAG = 'fokus';
 
 export default function MagazineContent({
   page,
@@ -82,32 +52,25 @@ export default function MagazineContent({
     return () => clearTimeout(timer);
   }, []);
 
-  const filters = [
-    ...new Set(
-      magazinPosts.flatMap((post) => post.data.tags.map((tag) => tag.item)),
-    ),
-  ];
-
-  const sortedPosts = [...magazinPosts].sort((a, b) =>
-    (b.data.publishing_date ?? '').localeCompare(a.data.publishing_date ?? ''),
+  const filters = useMemo(
+    () => getUniquePostTags(magazinPosts),
+    [magazinPosts],
   );
 
-  const filteredPosts = filter
-    ? sortedPosts.filter((post) =>
-        post.data.tags.some((tag) => tag.item?.toLowerCase() === filter),
-      )
-    : sortedPosts;
+  const filteredPosts = useMemo(
+    () => filterPostsByTag(sortPostsByDateDesc(magazinPosts), filter),
+    [magazinPosts, filter],
+  );
 
-  const groups = groupPostsByMonth(filteredPosts);
-  const groupedPosts = sorting === 'neu' ? groups : [...groups].reverse();
+  const groupedPosts = useMemo(() => {
+    const groups = groupPostsByMonth(filteredPosts);
+    return sorting === 'neu' ? groups : [...groups].reverse();
+  }, [filteredPosts, sorting]);
 
-  const highlightedPosts = magazinPosts
-    .filter((post) => post.tags.includes(FOCUS_TAG))
-    .sort((a, b) =>
-      (b.data.publishing_date ?? '').localeCompare(
-        a.data.publishing_date ?? '',
-      ),
-    );
+  const highlightedPosts = useMemo(
+    () => getHighlightedPosts(magazinPosts),
+    [magazinPosts],
+  );
 
   return (
     <div className={styles.container}>
