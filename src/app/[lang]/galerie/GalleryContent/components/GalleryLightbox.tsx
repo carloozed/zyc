@@ -1,29 +1,30 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
-import { CustomSlide, CustomSlideProps } from './CustomSlide';
+import { CustomSlide } from './CustomSlide';
+import { GallerySlide } from '@/helpers/gallery';
 
 type GalleryLightboxProps = {
-  slides: { src: string; alt: string }[];
-  lightboxOpen: boolean;
-  setLightboxOpen: Dispatch<SetStateAction<boolean>>;
-  initialIndex?: number;
+  slides: GallerySlide[];
+  open: boolean;
+  onClose: () => void;
+  index?: number;
 };
 
 export default function GalleryLightbox({
   slides,
-  lightboxOpen,
-  setLightboxOpen,
-  initialIndex,
+  open,
+  onClose,
+  index,
 }: GalleryLightboxProps) {
   return (
     <Lightbox
-      open={lightboxOpen}
-      close={() => setLightboxOpen(false)}
+      open={open}
+      close={onClose}
       slides={slides}
-      index={initialIndex}
+      index={index}
       carousel={{ finite: false }}
       styles={{
         container: {
@@ -33,7 +34,7 @@ export default function GalleryLightbox({
         },
       }}
       render={{
-        slide: ({ slide }) => <CustomSlide slide={slide as CustomSlideProps} />,
+        slide: ({ slide }) => <CustomSlide slide={slide as GallerySlide} />,
       }}
     />
   );

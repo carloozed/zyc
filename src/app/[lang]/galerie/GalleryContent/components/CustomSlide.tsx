@@ -4,30 +4,26 @@ import Image from 'next/image';
 
 import styles from './CustomSlide.module.css';
 import DownloadIconGallery from './DownloadIconGallery';
+import { GallerySlide } from '@/helpers/gallery';
 
-export type CustomSlideProps = {
-  src: string;
-  alt: string;
-};
-
-export function CustomSlide({ slide }: { slide: CustomSlideProps }) {
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-  const [hasError, setHasError] = useState<boolean>(false);
-
-  async function handleDownload(url: string, filename: string) {
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = blobUrl;
-      a.download = filename;
-      a.click();
-      URL.revokeObjectURL(blobUrl);
-    } catch {
-      window.open(url, '_blank');
-    }
+async function downloadImage(url: string, filename: string) {
+  try {
+    const res = await fetch(url);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(blobUrl);
+  } catch {
+    window.open(url, '_blank');
   }
+}
+
+export function CustomSlide({ slide }: { slide: GallerySlide }) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   return (
     <div className={styles.slide}>
@@ -35,32 +31,18 @@ export function CustomSlide({ slide }: { slide: CustomSlideProps }) {
         <Image
           src={slide.src}
           alt={slide.alt}
-          style={{
-            maxWidth: '100%',
-            maxHeight: '100%',
-            objectFit: 'contain',
-            opacity: isImageLoaded ? '1' : '0',
-          }}
+          className={`${styles.image} ${isImageLoaded ? styles.loaded : ''}`}
           width={800}
           height={800}
           unoptimized
           onLoad={() => setIsImageLoaded(true)}
           onError={() => setHasError(true)}
         />
-        <button onClick={() => handleDownload(slide.src, slide.alt)}>
+        <button onClick={() => downloadImage(slide.src, slide.alt)}>
           <DownloadIconGallery />
         </button>
       </span>
-      {hasError && (
-        <div
-          style={{
-            color: 'var(--green)',
-            textAlign: 'center',
-          }}
-        >
-          Failed to load image
-        </div>
-      )}
+      {hasError && <div className={styles.error}>Failed to load image</div>}
     </div>
   );
 }

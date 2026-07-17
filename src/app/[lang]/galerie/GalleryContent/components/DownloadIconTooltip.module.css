@@ -13,7 +13,3 @@
 .tooltip p {
     font-size: var(--text);
 }
-
-.italic {
-    font-style: italic;
-}

@@ -3,89 +3,89 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FC } from 'react';
 import { Content } from '@prismicio/client';
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import { SliceComponentProps } from '@prismicio/react';
+import { PrismicNextImage } from '@prismicio/next';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 import styles from './index.module.css';
-import FadeIn from '@/app/components/FadeIn/FadeIn';
-import { PrismicNextImage } from '@prismicio/next';
-import useGalleryAnimationStore from '@/stores/GalleryAnimationStore';
+import GallerySectionHeader from '@/app/components/GallerySectionHeader/GallerySectionHeader';
+import useGalleryIntroAnimation from '@/helpers/useGalleryIntroAnimation';
+import {
+  GalleryImage,
+  GalleryPageContext,
+  getVisibleGalleryImages,
+} from '@/helpers/gallery';
 
 /**
  * Props for `GalleryYear`.
  */
 export type GalleryYearProps = SliceComponentProps<Content.GalleryYearSlice>;
 
-type GallerySliceContext = {
-  decoimage: Content.DecorationImageDocument;
-  onImageClick: (globalIndex: number) => void;
-  sliceOffsets: Map<string, number>;
-  filter: string;
-};
-
-type GalleryImage = Content.GalleryYearSliceDefaultPrimaryGalleryItem;
-type GalleryImageWithIndex = {
-  image: GalleryImage;
-  chronologicalIndex: number;
-};
-
-const DESKTOP_COLUMN_COUNT = 4;
+const MOBILE_MEDIA_QUERY = '(max-width: 48rem)';
+const TABLET_MEDIA_QUERY = '(max-width: 74rem)';
 const TABLET_COLUMN_COUNT = 3;
+const DESKTOP_COLUMN_COUNT = 4;
 
-function sortGalleryImagesByDate(images: GalleryImage[], filter: string) {
-  return [...images]
-    .sort((a, b) => (b.date_added ?? '').localeCompare(a.date_added ?? ''))
-    .filter((image) => !filter || image.eventtag?.toLowerCase() === filter);
+function getGalleryColumnCount() {
+  if (window.matchMedia(MOBILE_MEDIA_QUERY).matches) return 1;
+  if (window.matchMedia(TABLET_MEDIA_QUERY).matches) return TABLET_COLUMN_COUNT;
+  return DESKTOP_COLUMN_COUNT;
 }
 
+function useGalleryColumnCount() {
+  const [columnCount, setColumnCount] = useState(1);
+
+  useEffect(() => {
+    const queries = [MOBILE_MEDIA_QUERY, TABLET_MEDIA_QUERY].map((query) =>
+      window.matchMedia(query),
+    );
+    const updateColumnCount = () => setColumnCount(getGalleryColumnCount());
+
+    updateColumnCount();
+    queries.forEach((query) =>
+      query.addEventListener('change', updateColumnCount),
+    );
+    return () =>
+      queries.forEach((query) =>
+        query.removeEventListener('change', updateColumnCount),
+      );
+  }, []);
+
+  return columnCount;
+}
+
+// Distribute images round-robin across visual columns while remembering each
+// image's position in the flat, chronological list (used for lightbox indices).
 function groupImagesIntoVisualColumns(
   images: GalleryImage[],
   columnCount: number,
 ) {
-  const imagesWithIndex = images.map((image, chronologicalIndex) => ({
-    image,
-    chronologicalIndex,
-  }));
-
-  if (columnCount <= 1) {
-    return [imagesWithIndex];
-  }
-
-  const columns: GalleryImageWithIndex[][] = Array.from(
-    { length: columnCount },
-    () => [],
+  const columns = Array.from(
+    { length: Math.max(columnCount, 1) },
+    (): { image: GalleryImage; chronologicalIndex: number }[] => [],
   );
 
-  imagesWithIndex.forEach((image, index) => {
-    columns[index % columnCount].push(image);
+  images.forEach((image, chronologicalIndex) => {
+    columns[chronologicalIndex % columns.length].push({
+      image,
+      chronologicalIndex,
+    });
   });
 
   return columns;
 }
 
-function getGalleryColumnCount() {
-  if (window.matchMedia('(max-width: 48rem)').matches) {
-    return 1;
-  }
-
-  if (window.matchMedia('(max-width: 74rem)').matches) {
-    return TABLET_COLUMN_COUNT;
-  }
-
-  return DESKTOP_COLUMN_COUNT;
-}
-
 const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
   const { decoimage, onImageClick, sliceOffsets, filter } =
-    context as GallerySliceContext;
-  const { hasAnimated, setHasAnimated } = useGalleryAnimationStore();
+    context as GalleryPageContext;
+  const hasAnimated = useGalleryIntroAnimation();
   const sliceOffset = sliceOffsets.get(slice.id) ?? 0;
   const gridRef = useRef<HTMLDivElement>(null);
-  const [columnCount, setColumnCount] = useState(1);
+  const columnCount = useGalleryColumnCount();
 
   const galleryImages = useMemo(
-    () => sortGalleryImagesByDate(slice.primary.gallery, filter),
+    () => getVisibleGalleryImages(slice.primary.gallery, filter),
     [slice.primary.gallery, filter],
   );
 
@@ -94,44 +94,15 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
     [galleryImages, columnCount],
   );
 
-  useEffect(() => {
-    if (!hasAnimated) {
-      const timer = setTimeout(() => {
-        setHasAnimated(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [hasAnimated, setHasAnimated]);
-
-  useEffect(() => {
-    const updateColumnCount = () => setColumnCount(getGalleryColumnCount());
-    const desktopQuery = window.matchMedia('(min-width: 74rem)');
-    const tabletQuery = window.matchMedia(
-      '(min-width: 48rem) and (max-width: 74rem)',
-    );
-    const mobileQuery = window.matchMedia('(max-width: 48rem)');
-
-    updateColumnCount();
-    desktopQuery.addEventListener('change', updateColumnCount);
-    tabletQuery.addEventListener('change', updateColumnCount);
-    mobileQuery.addEventListener('change', updateColumnCount);
-
-    return () => {
-      desktopQuery.removeEventListener('change', updateColumnCount);
-      tabletQuery.removeEventListener('change', updateColumnCount);
-      mobileQuery.removeEventListener('change', updateColumnCount);
-    };
-  }, []);
-
   useGSAP(
     () => {
       gsap.to(`.${styles.galleryImage}`, {
         y: 0,
         opacity: 1,
-        duration: !hasAnimated ? 2.4 : 0,
-        delay: !hasAnimated ? 2.2 : 0,
+        duration: hasAnimated ? 0 : 2.4,
+        delay: hasAnimated ? 0 : 2.2,
         ease: 'power3.out',
-        stagger: !hasAnimated ? 0.003 : 0,
+        stagger: hasAnimated ? 0 : 0.003,
       });
     },
     { scope: gridRef, dependencies: [filter, columnCount] },
@@ -144,34 +115,19 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
       className={styles.blogcontainer}
     >
       <div className={styles.monthGroup}>
-        <div className={styles.monthcontainer}>
-          <FadeIn
-            vars={{
-              delay: !hasAnimated ? 1.2 : 0,
-              duration: !hasAnimated ? 1.3 : 0,
-            }}
-            className={styles.title}
-          >
-            <PrismicRichText field={slice.primary.edition_year} />
-          </FadeIn>
-          <FadeIn
-            className={styles.imagecontainer}
-            vars={{
-              delay: !hasAnimated ? 1.6 : 0,
-              duration: !hasAnimated ? 1.6 : 0,
-            }}
-          >
-            <PrismicNextImage field={decoimage.data.image} />
-          </FadeIn>
-        </div>
+        <GallerySectionHeader
+          editionYear={slice.primary.edition_year}
+          decoimage={decoimage}
+          hasAnimated={hasAnimated}
+        />
 
         <div className={styles.postsGrid} ref={gridRef}>
           {galleryColumns.map((column, columnIndex) => (
             <div className={styles.imageColumn} key={columnIndex}>
               {column.map(({ image, chronologicalIndex }) => (
-                <div
+                <button
+                  type="button"
                   onClick={() => onImageClick(sliceOffset + chronologicalIndex)}
-                  style={{ cursor: 'pointer' }}
                   key={`${image.image.url}-${chronologicalIndex}`}
                   className={styles.galleryImage}
                 >
@@ -181,7 +137,7 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
                     sizes="(max-width: 768px) 45vw, (max-width: 1280px) 30vw, 400px"
                     imgixParams={{ q: 65, w: 400 }}
                   />
-                </div>
+                </button>
               ))}
             </div>
           ))}

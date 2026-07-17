@@ -23,3 +23,19 @@
 .slide img {
     height: calc(20rem + 30vw);
 }
+
+.image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0;
+}
+
+.image.loaded {
+    opacity: 1;
+}
+
+.error {
+    color: var(--green);
+    text-align: center;
+}

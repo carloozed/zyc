@@ -1,19 +1,16 @@
 'use client';
 
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { PrismicNextImage } from '@prismicio/next';
 
 import styles from './index.module.css';
-import FadeIn from '@/app/components/FadeIn/FadeIn';
-import useGalleryAnimationStore from '@/stores/GalleryAnimationStore';
+import GallerySectionHeader from '@/app/components/GallerySectionHeader/GallerySectionHeader';
+import useGalleryIntroAnimation from '@/helpers/useGalleryIntroAnimation';
+import { GalleryPageContext, sortVideosByIndex } from '@/helpers/gallery';
 
 export type VideosYearProps = SliceComponentProps<Content.VideosYearSlice>;
-
-type VideosSliceContext = {
-  decoimage: Content.DecorationImageDocument;
-};
 
 type VideoItem = Content.VideosYearSliceDefaultPrimaryVideosItem;
 
@@ -23,19 +20,11 @@ function extractVimeoId(url: string | null | undefined): string | null {
   return match?.[1] ?? null;
 }
 
-function sortVideosByDate(videos: VideoItem[]) {
-  return [...videos].sort((a, b) =>
-    (b.date_added ?? '').localeCompare(a.date_added ?? ''),
-  );
-}
-
 const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
   const [playing, setPlaying] = useState(false);
   const vimeoId = extractVimeoId(video.vimeo_url);
 
-  const posterFallback = vimeoId
-    ? `https://vumbnail.com/${vimeoId}.jpg`
-    : null;
+  const posterFallback = vimeoId ? `https://vumbnail.com/${vimeoId}.jpg` : null;
 
   const hasPoster = !!video.poster_image?.url;
 
@@ -84,27 +73,24 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
           </>
         )}
       </div>
-      {video.title && <span className={styles.videoTitle}>{video.title}</span>}
+      <div>
+        <span className={styles.videoTitle}>
+          <PrismicRichText field={video.performer} />
+          <PrismicRichText field={video.age_and_instrument} />
+        </span>
+        <span className={styles.songtitle}>{video.song_title}</span>
+      </div>
     </div>
   );
 };
 
 const VideosYear: FC<VideosYearProps> = ({ slice, context }) => {
-  const { decoimage } = context as VideosSliceContext;
-  const { hasAnimated, setHasAnimated } = useGalleryAnimationStore();
+  const { decoimage } = context as GalleryPageContext;
+  const hasAnimated = useGalleryIntroAnimation();
   const videos = useMemo(
-    () => sortVideosByDate(slice.primary.videos),
+    () => sortVideosByIndex(slice.primary.videos),
     [slice.primary.videos],
   );
-
-  useEffect(() => {
-    if (!hasAnimated) {
-      const timer = setTimeout(() => {
-        setHasAnimated(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [hasAnimated, setHasAnimated]);
 
   if (videos.length === 0) return null;
 
@@ -115,26 +101,11 @@ const VideosYear: FC<VideosYearProps> = ({ slice, context }) => {
       className={styles.blogcontainer}
     >
       <div className={styles.monthGroup}>
-        <div className={styles.monthcontainer}>
-          <FadeIn
-            vars={{
-              delay: !hasAnimated ? 1.2 : 0,
-              duration: !hasAnimated ? 1.3 : 0,
-            }}
-            className={styles.title}
-          >
-            <PrismicRichText field={slice.primary.edition_year} />
-          </FadeIn>
-          <FadeIn
-            className={styles.imagecontainer}
-            vars={{
-              delay: !hasAnimated ? 1.6 : 0,
-              duration: !hasAnimated ? 1.6 : 0,
-            }}
-          >
-            <PrismicNextImage field={decoimage.data.image} />
-          </FadeIn>
-        </div>
+        <GallerySectionHeader
+          editionYear={slice.primary.edition_year}
+          decoimage={decoimage}
+          hasAnimated={hasAnimated}
+        />
 
         <div className={styles.videosGrid}>
           {videos.map((video, index) => (

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 import styles from './CopyrightNotice.module.css';
+import CopyrightText from './CopyrightText';
 
 export default function CopyrightNotice() {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,10 +46,7 @@ export default function CopyrightNotice() {
         ×
       </button>
       <p className={styles.text}>
-        Bei einer Verwendung der Bilder in Zusammenhang mit einer aktuellen
-        Presseberichterstattung zu Zurich Youth Classical und unter Nennung des
-        Copyrights (© Ueli Steingruber/Zurich Youth Classical) besteht keine
-        Honorarpflicht.
+        <CopyrightText />
       </p>
     </div>
   );

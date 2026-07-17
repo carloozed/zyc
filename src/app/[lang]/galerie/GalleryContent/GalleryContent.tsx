@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 
 import styles from './GalleryContent.module.css';
 import {
@@ -14,13 +14,19 @@ import { RevealText } from '@/app/components/RevealText/RevealText';
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
-import useGalleryFilterStore from '@/stores/GalleryFilterStore';
-import useGalleryYearStore from '@/stores/GalleryYearStore';
-import useGalleryMediaTypeStore from '@/stores/GalleryMediaTypeStore';
+import useGalleryStore from '@/stores/GalleryStore';
+import {
+  GalleryPageContext,
+  GallerySlide,
+  getVisibleGalleryImages,
+  getVisibleYearSlices,
+} from '@/helpers/gallery';
 
 import GalleryLightbox from './components/GalleryLightbox';
 import CopyrightNotice from './components/CopyrightNotice';
 import GalleryFilterContainer from './components/GalleryFilterContainer';
+
+const SLICES_PER_PAGE = 1;
 
 type GalleryContentProps = {
   page: GalleryDocument;
@@ -31,21 +37,17 @@ export default function GalleryContent({
   page,
   decoimage,
 }: GalleryContentProps) {
-  const filter = useGalleryFilterStore((state) => state.filter);
+  const filter = useGalleryStore((state) => state.filter);
+  const galleryYear = useGalleryStore((state) => state.galleryYear);
+  const mediaType = useGalleryStore((state) => state.mediaType);
 
-  const galleryYear = useGalleryYearStore((state) => state.galleryYear);
-  const mediaType = useGalleryMediaTypeStore((state) => state.mediaType);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-
-  const filters = [
-    ...new Set(page.data.filter_options.flatMap((filter) => filter)),
-  ];
-
-  const SLICES_PER_PAGE = 1;
   const [visibleCount, setVisibleCount] = useState(SLICES_PER_PAGE);
 
-  const photoSlices = useMemo<GalleryYearSlice[]>(
+  // Spread first: the SliceZone tuple-union type breaks .filter's predicate
+  // narrowing when filtering it directly
+  const photoSlices = useMemo(
     () =>
       [...page.data.slices].filter(
         (slice): slice is GalleryYearSlice =>
@@ -54,97 +56,70 @@ export default function GalleryContent({
     [page.data.slices],
   );
 
-  const videoSlices = useMemo<VideosYearSlice[]>(
+  const videoSlices = useMemo(
     () =>
       [...page.data.slices].filter(
-        (slice): slice is VideosYearSlice =>
-          slice.slice_type === 'videos_year',
+        (slice): slice is VideosYearSlice => slice.slice_type === 'videos_year',
       ),
     [page.data.slices],
   );
 
-  const filteredPosts = useMemo(() => {
-    let result = [...photoSlices].sort(
-      (a, b) =>
-        (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
-    );
+  // With an event filter active, keep only slices that still have images
+  const filteredPhotoSlices = useMemo(
+    () =>
+      getVisibleYearSlices(photoSlices, galleryYear).filter(
+        (slice) =>
+          !filter ||
+          getVisibleGalleryImages(slice.primary.gallery, filter).length > 0,
+      ),
+    [filter, galleryYear, photoSlices],
+  );
 
-    // Filter by event type — keep slices that have at least one matching image
-    if (filter) {
-      result = result.filter((post) =>
-        post.primary.gallery.some(
-          (item) => item.eventtag?.toLowerCase() === filter,
-        ),
-      );
-    }
+  const filteredVideoSlices = useMemo(
+    () => getVisibleYearSlices(videoSlices, galleryYear),
+    [galleryYear, videoSlices],
+  );
 
-    // Filter by year (edition dropdown)
-    if (galleryYear && galleryYear !== 'alle') {
-      const yearNum = Number(galleryYear);
-      if (!isNaN(yearNum)) {
-        result = result.filter(
-          (post) => post.primary.year_in_number === yearNum,
-        );
-      }
-    }
+  const visiblePhotoSlices = useMemo(
+    () => filteredPhotoSlices.slice(0, visibleCount),
+    [filteredPhotoSlices, visibleCount],
+  );
+  const hasMore = visibleCount < filteredPhotoSlices.length;
 
-    return result;
-  }, [filter, galleryYear, photoSlices]);
+  // The lightbox shows one flat slides array across all visible slices; each
+  // slice gets its starting offset into it so an image click can be mapped to
+  // the matching global slide index.
+  const { slides, sliceOffsets } = useMemo(() => {
+    const offsets = new Map<string, number>();
+    const flatSlides: GallerySlide[] = [];
 
-  const filteredVideoSlices = useMemo(() => {
-    let result = [...videoSlices].sort(
-      (a, b) =>
-        (b.primary.year_in_number ?? 0) - (a.primary.year_in_number ?? 0),
-    );
-
-    if (galleryYear && galleryYear !== 'alle') {
-      const yearNum = Number(galleryYear);
-      if (!isNaN(yearNum)) {
-        result = result.filter(
-          (slice) => slice.primary.year_in_number === yearNum,
-        );
-      }
-    }
-
-    return result;
-  }, [galleryYear, videoSlices]);
-
-  const visiblePosts = filteredPosts.slice(0, visibleCount);
-  const hasMore = visibleCount < filteredPosts.length;
-
-  // Flatten all images from visible slices into a flat slides array for the lightbox
-  const allSlides = useMemo(() => {
-    return visiblePosts.flatMap((slice) =>
-      [...slice.primary.gallery]
-        .sort((a, b) => (b.date_added ?? '').localeCompare(a.date_added ?? ''))
-        .filter((image) => !filter || image.eventtag?.toLowerCase() === filter)
-        .map((image) => ({
+    for (const slice of visiblePhotoSlices) {
+      offsets.set(slice.id, flatSlides.length);
+      for (const image of getVisibleGalleryImages(
+        slice.primary.gallery,
+        filter,
+      )) {
+        flatSlides.push({
           src: image.image.url ?? '',
           alt: image.image.alt ?? 'alttext',
-        })),
-    );
-  }, [visiblePosts, filter]);
-
-  // Build a map of slice index -> global offset so each GalleryYear knows its starting index
-  const sliceOffsets = useMemo(() => {
-    const offsets = new Map<string, number>();
-    let offset = 0;
-    for (const slice of visiblePosts) {
-      const imageCount = filter
-        ? slice.primary.gallery.filter(
-            (i) => i.eventtag?.toLowerCase() === filter,
-          ).length
-        : slice.primary.gallery.length;
-      offsets.set(slice.id, offset);
-      offset += imageCount;
+        });
+      }
     }
-    return offsets;
-  }, [visiblePosts, filter]);
+
+    return { slides: flatSlides, sliceOffsets: offsets };
+  }, [visiblePhotoSlices, filter]);
 
   const onImageClick = useCallback((globalIndex: number) => {
     setLightboxIndex(globalIndex);
     setLightboxOpen(true);
   }, []);
+
+  const sliceZoneContext: GalleryPageContext = {
+    decoimage,
+    filter,
+    sliceOffsets,
+    onImageClick,
+  };
 
   return (
     <div className={styles.container}>
@@ -161,15 +136,15 @@ export default function GalleryContent({
       </div>
       <div className={styles.lowercontainer}>
         <div className={styles.filter}>
-          <GalleryFilterContainer page={page} filters={filters} />
+          <GalleryFilterContainer page={page} />
         </div>
         <div className={styles.gallerycontainer}>
           {mediaType === 'photos' ? (
             <>
               <SliceZone
-                slices={visiblePosts}
+                slices={visiblePhotoSlices}
                 components={components}
-                context={{ decoimage, onImageClick, sliceOffsets, filter }}
+                context={sliceZoneContext}
               />
               {hasMore && (
                 <button
@@ -186,17 +161,17 @@ export default function GalleryContent({
             <SliceZone
               slices={filteredVideoSlices}
               components={components}
-              context={{ decoimage }}
+              context={sliceZoneContext}
             />
           )}
         </div>
       </div>
       {mediaType === 'photos' && (
         <GalleryLightbox
-          slides={allSlides}
-          lightboxOpen={lightboxOpen}
-          setLightboxOpen={setLightboxOpen}
-          initialIndex={lightboxIndex}
+          slides={slides}
+          open={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          index={lightboxIndex}
         />
       )}
       <CopyrightNotice />
