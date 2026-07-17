@@ -1,47 +1,50 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { PrismicRichText } from '@prismicio/react';
-import { isFilled } from '@prismicio/client';
-
-import { ImagePropsType } from '../FoldoutContent';
-
-import generalStyles from '../GeneralStyles.module.css';
-
-import imageSliceStyles from './ImageSlice.module.css';
+import { CSSProperties } from 'react';
 import { PrismicNextImage } from '@prismicio/next';
 
+import { FoldoutelementDocument } from '@/prismicio-types';
+
+import { ImageSliceProps } from '../types';
+import { useFoldoutElements } from '../useFoldoutElements';
+import FoldoutItem, { FoldoutItemDescriptionComponents } from '../FoldoutItem';
+
+import generalStyles from '../GeneralStyles.module.css';
+import imageSliceStyles from './ImageSlice.module.css';
+
+const HIGHLIGHT_COLORS: Record<string, string> = {
+  contestfaq: 'var(--contestblue)',
+  cadenzafaq: 'var(--cadenzagold)',
+  crescendofaq: 'var(--crescendogold)',
+};
+
+function getHeaderStyle(element: FoldoutelementDocument): CSSProperties {
+  if (element.data.itemindex !== 1) {
+    return { backgroundColor: 'white' };
+  }
+
+  const belongsTo = element.data.belongs_to_foldout ?? '';
+  return { backgroundColor: HIGHLIGHT_COLORS[belongsTo] ?? 'white' };
+}
+
+const descriptionComponents: FoldoutItemDescriptionComponents = {
+  hyperlink: ({ node, children }) => (
+    <a href={node.data.url} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  ),
+};
+
 type Props = {
-  imageSliceProps: ImagePropsType;
+  imageSliceProps: ImageSliceProps;
 };
 
 export default function ImageSlice({ imageSliceProps }: Props) {
   const { slice, foldoutElements } = imageSliceProps;
-  const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
-
-  // Create refs for each element using arrays
-  const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  const matchingElements = foldoutElements
-    .filter((item) => {
-      return (
-        item && item.data.belongs_to_foldout === slice.primary.foldout_name
-      );
-    })
-    .sort((a, b) => {
-      const aIndex = a.data.itemindex || 0;
-      const bIndex = b.data.itemindex || 0;
-      return aIndex - bIndex;
-    })
-    .filter((item) => {
-      return item.data.is_visible === true;
+  const { matchingElements, openElementIndex, toggleElement } =
+    useFoldoutElements(foldoutElements, slice.primary.foldout_name, {
+      onlyVisible: true,
     });
-
-  const toggleElement = (index: number) => {
-    setOpenElementIndex(openElementIndex === index ? null : index);
-  };
 
   return (
     <div className={imageSliceStyles.foldout}>
@@ -59,131 +62,18 @@ export default function ImageSlice({ imageSliceProps }: Props) {
         </div>
       </div>
       <div className={generalStyles.foldout__itemcontainer}>
-        {matchingElements.map((element, elementIndex) => {
-          const isOpen = openElementIndex === elementIndex;
-
-          return (
-            <div
-              key={element.id}
-              className={generalStyles.foldout__item}
-              ref={(el) => {
-                mainContainerRefs.current[elementIndex] = el;
-              }}
-            >
-              <div
-                className={generalStyles.foldout__item_uppercontainer}
-                onClick={() => toggleElement(elementIndex)}
-                ref={(el) => {
-                  upperContainerRefs.current[elementIndex] = el;
-                }}
-              >
-                <div
-                  className={generalStyles.index}
-                  style={{
-                    backgroundColor:
-                      element.data.belongs_to_foldout === 'contestfaq' &&
-                      element.data.itemindex === 1
-                        ? 'var(--contestblue)'
-                        : element.data.belongs_to_foldout === 'cadenzafaq' &&
-                            element.data.itemindex === 1
-                          ? 'var(--cadenzagold)'
-                          : element.data.belongs_to_foldout ===
-                                'crescendofaq' && element.data.itemindex === 1
-                            ? 'var(--crescendogold)'
-                            : 'white',
-                  }}
-                >
-                  <h4>{elementIndex + 1}</h4>
-                </div>
-
-                <div
-                  className={generalStyles.foldout__item_title}
-                  style={{
-                    backgroundColor:
-                      element.data.belongs_to_foldout === 'contestfaq' &&
-                      element.data.itemindex === 1
-                        ? 'var(--contestblue)'
-                        : element.data.belongs_to_foldout === 'cadenzafaq' &&
-                            element.data.itemindex === 1
-                          ? 'var(--cadenzagold)'
-                          : element.data.belongs_to_foldout ===
-                                'crescendofaq' && element.data.itemindex === 1
-                            ? 'var(--crescendogold)'
-                            : 'white',
-                  }}
-                >
-                  {element.data.foldout_element_topic &&
-                    element.data.foldout_element_topic.length > 0 &&
-                    isFilled.richText(element.data.foldout_element_topic) && (
-                      <PrismicRichText
-                        field={element.data.foldout_element_topic}
-                      />
-                    )}
-                </div>
-
-                <div className={generalStyles.foldout__toggle_icon}>
-                  <div className={generalStyles.foldout__toggle_icondiv}></div>
-                  <div
-                    className={`${generalStyles.foldout__toggle_icondiv} ${isOpen ? generalStyles.open : ''}`}
-                  ></div>
-                </div>
-              </div>
-
-              <div
-                className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
-                ref={(el) => {
-                  contentRefs.current[elementIndex] = el;
-                }}
-              >
-                {element.data.content &&
-                  element.data.content.map((item, contentIndex) => {
-                    if (!item || item.is_hidden) return null;
-
-                    return (
-                      <div
-                        key={contentIndex}
-                        className={generalStyles.foldout__subitem}
-                      >
-                        <div className={generalStyles.foldout__subitem_title}>
-                          {isFilled.richText(item.subtopic_title) && (
-                            <div
-                              className={
-                                generalStyles.foldout__subitem_titlediv
-                              }
-                            >
-                              <h4>&#8594;</h4>
-                              <PrismicRichText field={item.subtopic_title} />
-                            </div>
-                          )}
-                        </div>
-
-                        <div
-                          className={generalStyles.foldout__subitem_description}
-                        >
-                          {isFilled.richText(item.subtopic_description) && (
-                            <PrismicRichText
-                              field={item.subtopic_description}
-                              components={{
-                                hyperlink: ({ node, children }) => (
-                                  <a
-                                    href={node.data.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {children}
-                                  </a>
-                                ),
-                              }}
-                            />
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-            </div>
-          );
-        })}
+        {matchingElements.map((element, elementIndex) => (
+          <FoldoutItem
+            key={element.id}
+            element={element}
+            displayNumber={elementIndex + 1}
+            isOpen={openElementIndex === elementIndex}
+            onToggle={() => toggleElement(elementIndex)}
+            headerStyle={getHeaderStyle(element)}
+            hideHiddenContent
+            descriptionComponents={descriptionComponents}
+          />
+        ))}
       </div>
     </div>
   );

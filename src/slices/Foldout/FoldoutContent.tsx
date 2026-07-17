@@ -1,37 +1,20 @@
-import React from 'react';
-import {
-  AnmeldelinkDocument,
-  FoldoutelementDocument,
-  FoldoutSlice,
-  FoldoutSliceFoldoutWithImage,
-} from '@/prismicio-types';
-import RegularSlice from './RegularSlice/RegularSlice';
+import { FoldoutSliceFoldoutWithImage } from '@/prismicio-types';
 
+import RegularSlice from './RegularSlice/RegularSlice';
 import ImageSlice from './ImageSlice/ImageSlice';
+
+import { ImageSliceProps, RegularSliceProps } from './types';
 
 import styles from './FoldoutContent.module.css';
 
-/* jladsföjldasf */
-
-export type regularPropsType = {
-  slice: FoldoutSlice;
-  foldoutElements: FoldoutelementDocument[];
-  signuplink: AnmeldelinkDocument;
-};
-
-export type ImagePropsType = {
-  slice: FoldoutSliceFoldoutWithImage;
-  foldoutElements: FoldoutelementDocument[];
-  signuplink: AnmeldelinkDocument;
-};
 export default function FoldoutContent({
   regularProps,
 }: {
-  regularProps: regularPropsType;
+  regularProps: RegularSliceProps;
 }) {
   const { slice, foldoutElements, signuplink } = regularProps;
 
-  const imageSliceProps: ImagePropsType = {
+  const imageSliceProps: ImageSliceProps = {
     slice: slice as FoldoutSliceFoldoutWithImage,
     foldoutElements,
     signuplink,
