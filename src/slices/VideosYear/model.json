@@ -34,11 +34,43 @@
             "label": "Videos",
             "repeat": true,
             "fields": {
+              "index": {
+                "type": "Number",
+                "config": {
+                  "label": "index",
+                  "placeholder": ""
+                }
+              },
               "vimeo_url": {
                 "type": "Text",
                 "config": {
                   "label": "Vimeo URL",
                   "placeholder": "https://vimeo.com/123456789"
+                }
+              },
+              "performer": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Performer",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "age_and_instrument": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Age and instrument",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading4"
+                }
+              },
+              "song_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Song title",
+                  "placeholder": ""
                 }
               },
               "title": {

@@ -3551,116 +3551,6 @@ export type GalleryYearSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *VideosYear → Default → Primary → Videos*
- */
-export interface VideosYearSliceDefaultPrimaryVideosItem {
-  /**
-   * Vimeo URL field in *VideosYear → Default → Primary → Videos*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: https://vimeo.com/123456789
-   * - **API ID Path**: videos_year.default.primary.videos[].vimeo_url
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  vimeo_url: prismic.KeyTextField;
-
-  /**
-   * Title field in *VideosYear → Default → Primary → Videos*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.videos[].title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Poster Image field in *VideosYear → Default → Primary → Videos*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.videos[].poster_image
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  poster_image: prismic.ImageField<never>;
-
-  /**
-   * Date Added field in *VideosYear → Default → Primary → Videos*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.videos[].date_added
-   * - **Documentation**: https://prismic.io/docs/fields/date
-   */
-  date_added: prismic.DateField;
-}
-
-/**
- * Primary content in *VideosYear → Default → Primary*
- */
-export interface VideosYearSliceDefaultPrimary {
-  /**
-   * Edition Year field in *VideosYear → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.edition_year
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  edition_year: prismic.RichTextField;
-
-  /**
-   * Year in Number field in *VideosYear → Default → Primary*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.year_in_number
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  year_in_number: prismic.NumberField;
-
-  /**
-   * Videos field in *VideosYear → Default → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: videos_year.default.primary.videos[]
-   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-   */
-  videos: prismic.GroupField<Simplify<VideosYearSliceDefaultPrimaryVideosItem>>;
-}
-
-/**
- * Default variation for VideosYear Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type VideosYearSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<VideosYearSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *VideosYear*
- */
-type VideosYearSliceVariation = VideosYearSliceDefault;
-
-/**
- * VideosYear Shared Slice
- *
- * - **API ID**: `videos_year`
- * - **Description**: VideosYear
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type VideosYearSlice = prismic.SharedSlice<
-  "videos_year",
-  VideosYearSliceVariation
->;
-
-/**
  * Item in *JuryGrid → Base Grid → Primary → Members*
  */
 export interface JuryGridSliceBaseGridPrimaryMembersItem {
@@ -4297,6 +4187,156 @@ type TimelinePhasesSliceVariation =
 export type TimelinePhasesSlice = prismic.SharedSlice<
   "timeline_phases",
   TimelinePhasesSliceVariation
+>;
+
+/**
+ * Item in *VideosYear → Default → Primary → Videos*
+ */
+export interface VideosYearSliceDefaultPrimaryVideosItem {
+  /**
+   * index field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].index
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  index: prismic.NumberField;
+
+  /**
+   * Vimeo URL field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: https://vimeo.com/123456789
+   * - **API ID Path**: videos_year.default.primary.videos[].vimeo_url
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  vimeo_url: prismic.KeyTextField;
+
+  /**
+   * Performer field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].performer
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  performer: prismic.RichTextField;
+
+  /**
+   * Age and instrument field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].age_and_instrument
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  age_and_instrument: prismic.RichTextField;
+
+  /**
+   * Song title field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].song_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  song_title: prismic.KeyTextField;
+
+  /**
+   * Title field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Poster Image (optional) field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].poster_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  poster_image: prismic.ImageField<never>;
+
+  /**
+   * Date Added field in *VideosYear → Default → Primary → Videos*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[].date_added
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date_added: prismic.DateField;
+}
+
+/**
+ * Primary content in *VideosYear → Default → Primary*
+ */
+export interface VideosYearSliceDefaultPrimary {
+  /**
+   * Edition Year field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.edition_year
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  edition_year: prismic.RichTextField;
+
+  /**
+   * Year in Number field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.year_in_number
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  year_in_number: prismic.NumberField;
+
+  /**
+   * Videos field in *VideosYear → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: videos_year.default.primary.videos[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  videos: prismic.GroupField<Simplify<VideosYearSliceDefaultPrimaryVideosItem>>;
+}
+
+/**
+ * Default variation for VideosYear Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideosYearSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideosYearSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideosYear*
+ */
+type VideosYearSliceVariation = VideosYearSliceDefault;
+
+/**
+ * VideosYear Shared Slice
+ *
+ * - **API ID**: `videos_year`
+ * - **Description**: VideosYear
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type VideosYearSlice = prismic.SharedSlice<
+  "videos_year",
+  VideosYearSliceVariation
 >;
 
 declare module "@prismicio/client" {
