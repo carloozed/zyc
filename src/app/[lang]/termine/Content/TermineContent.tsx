@@ -16,9 +16,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import Square from './components/Square';
-import ArrowUp from './components/ArrowUp';
-
-import ArrowDown from './components/ArrowDown';
+import Arrow from './components/Arrow';
 
 gsap.registerPlugin(useGSAP);
 
@@ -52,17 +50,17 @@ export default function TermineContent({ page, signuplink }: Props) {
             <Square delay={0} duration={2.4} />
 
             <div className={styles.arrowup}>
-              <ArrowUp delay={0.15} duration={2.4} />
+              <Arrow direction="up" delay={0.15} duration={2.4} />
             </div>
 
             <Square delay={0.3} duration={2.4} />
 
-            <ArrowDown delay={0.45} duration={2.4} />
+            <Arrow direction="down" delay={0.45} duration={2.4} />
 
             <Square delay={0.6} duration={2.4} />
 
             <div className={styles.arrowup}>
-              <ArrowUp delay={0.75} duration={2.4} />
+              <Arrow direction="up" delay={0.75} duration={2.4} />
             </div>
 
             <Square delay={0.9} duration={2.4} />

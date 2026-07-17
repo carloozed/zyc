@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
@@ -8,14 +8,14 @@ import { components } from '@/slices';
 import { usePathname } from 'next/navigation';
 
 import styles from './TimelineBroad.module.css';
+import useHideOnScroll from '@/app/components/Navigation/useHideOnScroll';
 
 export default function TimelineBroad({ ...timelineProps }) {
   const timeline = timelineProps.timelineBroad;
 
   const [isHome, setIsHome] = useState(false);
-  const [showTimeline, setShowTimeline] = useState(true);
   const [isTimelineVisible, setIsTimelineVisible] = useState(true);
-  const lastScrollY = useRef(0);
+  const showTimeline = useHideOnScroll();
 
   const pathname = usePathname();
 
@@ -27,46 +27,6 @@ export default function TimelineBroad({ ...timelineProps }) {
 
     setIsTimelineVisible(!shouldHide);
   }, [pathname]);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY <= 100) {
-        setShowTimeline(true);
-      } else {
-        // Check scroll direction
-        if (currentScrollY > lastScrollY.current) {
-          if (currentScrollY > 100) {
-            setShowTimeline(false);
-          }
-        } else {
-          if (lastScrollY.current - currentScrollY >= 30) {
-            setShowTimeline(true);
-          }
-        }
-      }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    const scrollHandler = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, []);
 
   useEffect(() => {
     if (pathname === '/') {

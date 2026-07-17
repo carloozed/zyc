@@ -1,57 +1,19 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React from 'react';
 
 import { DownloadBarDocument } from '@/prismicio-types';
 import styles from './DownloadBar.module.css';
 import { PrismicNextLink } from '@prismicio/next';
+import useHideOnScroll from '@/app/components/Navigation/useHideOnScroll';
 
 type Props = {
   downloadbar: DownloadBarDocument;
 };
 
 export default function DownloadBar({ downloadbar }: Props) {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const lastScrollY = useRef(0);
+  const showNavbar = useHideOnScroll();
 
-  const handleScroll = useCallback(() => {
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY <= 100) {
-      setShowNavbar(true);
-    } else {
-      if (currentScrollY > lastScrollY.current) {
-        if (currentScrollY > 100) {
-          setShowNavbar(false);
-        }
-      } else {
-        if (lastScrollY.current - currentScrollY >= 30) {
-          setShowNavbar(true);
-        }
-      }
-    }
-
-    lastScrollY.current = currentScrollY;
-  }, []);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const scrollHandler = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', scrollHandler, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    };
-  }, [handleScroll]);
   return (
     <div
       className={`${styles.downloadbar__container} ${showNavbar ? styles.downloadbar__visible : styles.downloadbar__hidden}`}

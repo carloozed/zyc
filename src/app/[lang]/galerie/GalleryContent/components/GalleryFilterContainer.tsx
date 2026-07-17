@@ -6,6 +6,7 @@ import { GalleryDocument } from '@/prismicio-types';
 import styles from './GalleryFilterContainer.module.css';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+import SortingSelect from '@/app/components/SortingSelect/SortingSelect';
 
 import useGalleryStore, { GalleryMediaType } from '@/stores/GalleryStore';
 
@@ -41,19 +42,12 @@ export default function GalleryFilterContainer({
         delay: 1,
       }}
     >
-      <div className={styles.sortcontainer}>
-        <h4>{'Edition:'}</h4>
-        <select onChange={(e) => setGalleryYear(e.target.value)}>
-          {page.data.sorting_options.map((item, index) => (
-            <option
-              key={`${index}-${item.item}`}
-              value={item.selectkey as string}
-            >
-              {item.item}
-            </option>
-          ))}
-        </select>
-      </div>
+      <SortingSelect
+        className={styles.sortcontainer}
+        label="Edition:"
+        items={page.data.sorting_options}
+        onChange={(e) => setGalleryYear(e.target.value)}
+      />
       <div className={styles.mediatypetabs}>
         {MEDIA_TYPE_TABS.map((tab) => (
           <button

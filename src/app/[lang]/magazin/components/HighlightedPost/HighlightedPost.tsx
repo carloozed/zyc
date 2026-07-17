@@ -19,6 +19,25 @@ type HighlightedPostProps = {
   hasAppeared: boolean;
 };
 
+type PostBodyProps = {
+  post: MagazinpostDocument;
+  instaIcon: InstagramIconDocument;
+};
+
+const PostBody = ({ post, instaIcon }: PostBodyProps) => (
+  <>
+    <DateTagsContainer>
+      <PostDate post={post} />
+      <TagsContainer post={post} />
+    </DateTagsContainer>
+    <TextContainer variant="highlight">
+      <PrismicRichText field={post.data.preview_title} />
+      <PrismicRichText field={post.data.preview_text} />
+    </TextContainer>
+    <LinkContainer post={post} instaIcon={instaIcon} />
+  </>
+);
+
 export default function HighlightedPost({
   post,
   instaIcon,
@@ -40,15 +59,7 @@ export default function HighlightedPost({
             style={{ backgroundImage: `url(${post.data.previewe_image.url})` }}
           >
             <div className={styles.content}>
-              <DateTagsContainer>
-                <PostDate post={post} />
-                <TagsContainer post={post} />
-              </DateTagsContainer>
-              <TextContainer variant="highlight">
-                <PrismicRichText field={post.data.preview_title} />
-                <PrismicRichText field={post.data.preview_text} />
-              </TextContainer>
-              <LinkContainer post={post} instaIcon={instaIcon} />
+              <PostBody post={post} instaIcon={instaIcon} />
             </div>
           </div>
         ) : (
@@ -57,15 +68,7 @@ export default function HighlightedPost({
               <PrismicNextImage field={post.data.previewe_image} />
             </div>
             <div className={styles.narrowcontent}>
-              <DateTagsContainer>
-                <PostDate post={post} />
-                <TagsContainer post={post} />
-              </DateTagsContainer>
-              <TextContainer variant="highlight">
-                <PrismicRichText field={post.data.preview_title} />
-                <PrismicRichText field={post.data.preview_text} />
-              </TextContainer>
-              <LinkContainer post={post} instaIcon={instaIcon} />
+              <PostBody post={post} instaIcon={instaIcon} />
             </div>
           </div>
         )}

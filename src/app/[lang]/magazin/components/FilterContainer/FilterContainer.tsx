@@ -6,6 +6,7 @@ import { MagazinDocument } from '@/prismicio-types';
 import styles from './FilterContainer.module.css';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+import SortingSelect from '@/app/components/SortingSelect/SortingSelect';
 
 import useFilterStore from '@/stores/FilterStore';
 import useSortingStore from '@/stores/SortingStore';
@@ -33,19 +34,12 @@ export default function FilterContainer({
         delay: 1,
       }}
     >
-      <div className={styles.sortcontainer}>
-        <h4>{'Sortieren nach:'}</h4>
-        <select onChange={(e) => setSortingStore(e.target.value)}>
-          {page.data.sorting_options.map((item, index) => (
-            <option
-              key={`${index}-${item.item}`}
-              value={item.selectkey as string}
-            >
-              {item.item}
-            </option>
-          ))}
-        </select>
-      </div>
+      <SortingSelect
+        className={styles.sortcontainer}
+        label="Sortieren nach:"
+        items={page.data.sorting_options}
+        onChange={(e) => setSortingStore(e.target.value)}
+      />
       {isFilterVisible && (
         <div className={styles.filterbar}>
           <h4>Filter: </h4>
