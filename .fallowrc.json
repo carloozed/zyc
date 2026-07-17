@@ -1,0 +1,5 @@
+{
+  "ignorePatterns": ["prismicio-types.d.ts", "src/slices/index.ts"],
+  "ignoreDependencies": ["eslint-config-next", "@react-email/preview-server"],
+  "dynamicallyLoaded": ["src/slices/*/index.tsx", "src/emails/*.tsx"]
+}
