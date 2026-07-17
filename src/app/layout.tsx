@@ -11,8 +11,6 @@ import { Providers } from '@/Providers/Providers';
 
 import LenisScrollProvider from '@/contexts/LenisContext';
 
-// import SplashScreen from './components/SplashScreen/SplashScreen';
-
 import './globals.css';
 import './reset.css';
 import './animationglobals.css';

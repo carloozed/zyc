@@ -54,18 +54,11 @@
 
 /* Headings — same size, baseline, and bottom spacing in every column */
 
-.footer__heading,
-.footer__headingSpacer {
+.footer__heading {
     font-size: var(--subtitle-s);
     line-height: 1.2;
     margin: 0 0 var(--padding-s) 0;
 }
-
-.footer__headingSpacer {
-    visibility: hidden;
-}
-
-
 
 /* ── Link lists (subnavigation, navigation, downloads) ── */
 
@@ -204,10 +197,6 @@
     .footer__main {
         grid-template-columns: 1fr;
         gap: var(--padding-l);
-    }
-
-    .footer__headingSpacer {
-        display: none;
     }
 
     .footer__logo img {

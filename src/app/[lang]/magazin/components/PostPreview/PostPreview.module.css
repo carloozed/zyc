@@ -13,14 +13,6 @@
 
 }
 
-.uppercontainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
 .contentcontainer {
     display: flex;
     flex-direction: column;
@@ -66,25 +58,6 @@
 
     }
 
-
-
-    .tagscontainer {
-        display: flex;
-        gap: var(--padding-s);
-    }
-
-    .tagscontainer p {
-
-        font-size: var(--text-s);
-    }
-
-    .date {
-
-        font-size: var(--text-s)
-    }
-
-
-
     .imagecontainer {
         height: calc(11rem + 7vw);
         padding: 0;
@@ -96,21 +69,6 @@
         object-fit: cover;
         overflow: hidden;
     }
-
-
-
-    .textcontainer h3 {
-
-        font-size: var(--subtitle-s)
-    }
-
-    .textcontainer p {
-        font-size: var(--text)
-    }
-
-
-
-
 }
 
 /* Tablet */
@@ -124,25 +82,6 @@
 
     }
 
-
-
-    .tagscontainer {
-        display: flex;
-        gap: var(--padding-s);
-    }
-
-    .tagscontainer p {
-
-        font-size: var(--text-s);
-    }
-
-    .date {
-
-        font-size: var(--text-s)
-    }
-
-
-
     .imagecontainer {
         height: calc(11rem + 7vw);
         padding: 0;
@@ -154,21 +93,6 @@
         object-fit: cover;
         overflow: hidden;
     }
-
-
-
-    .textcontainer h3 {
-
-        font-size: var(--subtitle-s)
-    }
-
-    .textcontainer p {
-        font-size: var(--text)
-    }
-
-
-
-
 }
 
 /* Tablet - Portrait Orientation */

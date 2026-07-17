@@ -18,10 +18,6 @@
     gap: var(--padding-l);
 }
 
-.overflow {
-    overflow: hidden
-}
-
 .monthcontainer {
     display: flex;
     gap: var(--page-title);
@@ -45,12 +41,6 @@
     width: auto;
     object-fit: contain;
 }
-
-.image {
-    overflow: hidden;
-}
-
-
 
 /* Mobile */
 /* Up to 768px */

@@ -17,7 +17,7 @@ export type GalleryPageContext = {
   onImageClick: (globalIndex: number) => void;
 };
 
-export function sortByDateAddedDesc<T extends { date_added: string | null }>(
+function sortByDateAddedDesc<T extends { date_added: string | null }>(
   items: T[],
 ): T[] {
   return [...items].sort((a, b) =>

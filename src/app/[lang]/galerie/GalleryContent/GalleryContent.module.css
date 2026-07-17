@@ -11,10 +11,6 @@
     overflow: hidden;
 }
 
-.number {
-    transform: translateY(-100%)
-}
-
 .titleContainer h5 {
     font-family: var(--title-font);
     font-size: var(--text-m);
@@ -63,10 +59,6 @@
     .titleContainer {
         display: flex;
         overflow: hidden;
-    }
-
-    .number {
-        transform: translateY(-100%)
     }
 
     .titleContainer h5 {

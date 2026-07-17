@@ -86,12 +86,6 @@
 
     }
 
-    .filter {
-        position: sticky;
-        top: 0;
-        padding-top: calc(var(--page-title) + 1rem);
-    }
-
     .highlightedposts {
         display: none;
     }
