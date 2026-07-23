@@ -30,7 +30,7 @@
 
 
 .jury__member {
-    background-color: #F5F5F5;
+    background-color: var(--lightgrey);
     padding-left: var(--padding-l);
     padding-top: var(--padding-l);
     width: 100%;
@@ -40,7 +40,7 @@
 .jury__container {
     background-color: var(--white);
     padding: var(--padding-s) var(--padding-m);
-    border-radius: 6px;
+    border-radius: var(--radius-s);
 }
 
 .jury__container img {
@@ -50,7 +50,7 @@
 
 .jury__container a {
     font-family: var(--text-font);
-    font-size: var(--text-s);
+    font-size: var(--text);
     text-decoration: underline;
 }
 
@@ -67,7 +67,7 @@
 
 .jury__uppercontainer p {
     width: 100%;
-    font-size: var(--text-s);
+    font-size: var(--text);
     height: fit-content;
     hyphens: auto;
 }

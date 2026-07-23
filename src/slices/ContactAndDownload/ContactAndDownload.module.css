@@ -3,8 +3,8 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    padding: var(--page-title) 0;
-    gap: var(--page-title)
+    padding: var(--padding-3xl) 0;
+    gap: var(--padding-3xl)
 }
 
 .sectioncontainer {
@@ -51,7 +51,7 @@
 .signuplink a {
     border: var(--border-thin);
     padding: var(--padding-s) var(--padding-m);
-    border-radius: 6px;
+    border-radius: var(--radius-s);
     font-family: var(--title-font);
     background-color: var(--buttoncolor);
 }

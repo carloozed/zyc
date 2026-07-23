@@ -71,7 +71,7 @@
     font-family: var(--title-font);
     text-align: center;
     border: var(--border-thin);
-    border-radius: 6px;
+    border-radius: var(--radius-s);
     padding: var(--padding-s);
 
 }

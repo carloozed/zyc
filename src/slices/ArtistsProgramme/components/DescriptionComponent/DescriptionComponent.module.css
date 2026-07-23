@@ -1,6 +1,6 @@
 .descriptions {
     display: grid;
-    padding-left: var(--page-title);
+    padding-left: var(--padding-3xl);
     padding-top: var(--padding-l)
 }
 

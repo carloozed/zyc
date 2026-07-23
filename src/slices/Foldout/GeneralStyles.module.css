@@ -27,7 +27,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 1.2s var(--bezier);
-    padding: 0 var(--page-title);
+    padding: 0 var(--padding-3xl);
     width: fit-content;
 }
 
@@ -83,7 +83,7 @@
     align-items: center;
     justify-content: center;
     border: var(--border-thin);
-    border-radius: 12px;
+    border-radius: var(--radius-l);
     display: flex;
 
 }
@@ -237,7 +237,7 @@
     }
 
     .foldout__item_title {
-        border-radius: 6px;
+        border-radius: var(--radius-s);
     }
 
 
@@ -332,7 +332,7 @@
     }
 
     .foldout__item_title {
-        border-radius: 6px;
+        border-radius: var(--radius-s);
     }
 
 

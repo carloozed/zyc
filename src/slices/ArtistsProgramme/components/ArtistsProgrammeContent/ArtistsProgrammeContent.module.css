@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    padding: var(--page-title) var(--padding-m);
+    padding: var(--padding-3xl) var(--padding-m);
     gap: var(--padding-m);
 
 }
@@ -21,7 +21,7 @@
     list-style: none;
     margin: 0;
     align-items: center;
-    padding: var(--padding-2xl) var(--page-title) 0;
+    padding: var(--padding-2xl) var(--padding-3xl) 0;
     position: relative;
 
 }

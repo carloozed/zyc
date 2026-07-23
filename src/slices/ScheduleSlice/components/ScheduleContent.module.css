@@ -3,7 +3,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--page-title);
+    gap: var(--padding-3xl);
     position: relative;
 }
 
@@ -20,12 +20,12 @@
 
 
 .schedule__title_container {
-    padding-left: calc(var(--page-title)* 2);
+    padding-left: calc(var(--padding-3xl) * 2);
 }
 
 .schedule__content {
     border: var(--border-thin);
-    border-radius: 10px;
+    border-radius: var(--radius-s);
     padding: var(--padding-m);
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
 .schedule__title {
     border: var(--border-thin);
     width: fit-content;
-    border-radius: 10px;
+    border-radius: var(--radius-s);
     position: relative;
 }
 
@@ -102,7 +102,7 @@
 .schedule__phase {
     border-top: var(--border-thin);
     padding: var(--padding-l) var(--padding-m);
-    padding-left: calc(var(--page-title) * 2);
+    padding-left: calc(var(--padding-3xl) * 2);
     display: flex;
     flex-direction: column;
     gap: var(--padding-m);
@@ -120,7 +120,7 @@
 .schedule__phase__description p,
 .schedule__phase__description * {
 
-    font-size: calc(0.5rem + 0.5vw);
+    font-size: var(--text);
 }
 
 .schedule__phase__description ol {
@@ -129,7 +129,7 @@
 }
 
 .schedule__phase__description li {
-    font-size: calc(0.5rem + 0.5vw);
+    font-size: var(--text);
 }
 
 .schedule__phase h5 {
@@ -218,7 +218,7 @@
     }
 
     .schedule__title {
-        border-radius: 6px;
+        border-radius: var(--radius-s);
     }
 
     .schedule__title h3 {
@@ -241,7 +241,7 @@
     }
 
     .schedule__datecontainer h4 {
-        font-size: calc(0.4rem + 0.5vw);
+        font-size: var(--text-sm);
     }
 
     .schedule__important h4 {
@@ -316,7 +316,7 @@
     }
 
     .schedule__title {
-        border-radius: 6px;
+        border-radius: var(--radius-s);
     }
 
     .schedule__title h3 {
@@ -339,7 +339,7 @@
     }
 
     .schedule__datecontainer h4 {
-        font-size: calc(0.4rem + 0.5vw);
+        font-size: var(--text-sm);
     }
 
     .schedule__important h4 {

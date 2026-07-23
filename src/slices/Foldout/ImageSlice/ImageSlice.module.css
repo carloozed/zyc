@@ -19,7 +19,7 @@
     width: calc(13rem + 13vw);
     height: auto;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: var(--radius-l);
 }
 
 .foldout__decorationcontainer {
@@ -42,7 +42,7 @@
     position: absolute;
     width: calc(100% - 2rem);
     height: 0.5px;
-    background-color: black;
+    background-color: var(--black);
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%)

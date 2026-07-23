@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, KeyboardEvent, useMemo, useState } from 'react';
+import { FC, KeyboardEvent, useMemo, useRef, useState } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { PrismicNextImage } from '@prismicio/next';
@@ -9,6 +9,13 @@ import styles from './index.module.css';
 import GallerySectionHeader from '@/app/components/GallerySectionHeader/GallerySectionHeader';
 import useGalleryIntroAnimation from '@/helpers/useGalleryIntroAnimation';
 import { GalleryPageContext, sortVideosByIndex } from '@/helpers/gallery';
+
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { siteEase } from '@/helpers/siteEase';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export type VideosYearProps = SliceComponentProps<Content.VideosYearSlice>;
 
@@ -29,7 +36,7 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
   const hasPoster = !!video.poster_image?.url;
 
   return (
-    <div className={styles.videoItem}>
+    <div className={`video-fade ${styles.videoItem}`}>
       <div
         className={styles.videoFrame}
         onClick={() => !playing && vimeoId && setPlaying(true)}
@@ -106,15 +113,35 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
 const VideosYear: FC<VideosYearProps> = ({ slice, context }) => {
   const { decoimage } = context as GalleryPageContext;
   const hasAnimated = useGalleryIntroAnimation();
+  const sectionRef = useRef<HTMLElement>(null);
   const videos = useMemo(
     () => sortVideosByIndex(slice.primary.videos),
     [slice.primary.videos],
+  );
+
+  useGSAP(
+    () => {
+      // Each tile fades up as it scrolls into view.
+      gsap.utils
+        .toArray<HTMLElement>('.video-fade', sectionRef.current)
+        .forEach((el) => {
+          gsap.from(el, {
+            autoAlpha: 0,
+            y: 24,
+            duration: 1.2,
+            ease: siteEase,
+            scrollTrigger: { trigger: el, start: 'top 85%' },
+          });
+        });
+    },
+    { scope: sectionRef },
   );
 
   if (videos.length === 0) return null;
 
   return (
     <section
+      ref={sectionRef}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.blogcontainer}

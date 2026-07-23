@@ -76,6 +76,7 @@
     --fontweight-xs: 100;
 
     /* paddings */
+    --padding-3xl: var(--page-title);
     --padding-2xl: var(--subtitle-xxl);
     --padding-xl: var(--subtitle-xl);
     --padding-l: var(--subtitle-l);

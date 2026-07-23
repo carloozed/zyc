@@ -11,7 +11,7 @@ export default function ContestHero({ ...contestHeroProps }) {
     <>
       <div
         className={styles.heroslice__container}
-        style={{ backgroundColor: slice.primary.background_color || '#FFD700' }}
+        style={{ backgroundColor: slice.primary.background_color || 'var(--cadenzagold)' }}
       >
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>

@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--padding-xl);
-    padding: var(--page-title) var(--padding-l);
+    padding: var(--padding-3xl) var(--padding-l);
 }
 
 .criteria__item {
@@ -31,7 +31,7 @@
 }
 
 .criteria__overviewcontent {
-    padding-left: var(--subtitle-xxl);
+    padding-left: var(--padding-2xl);
     border-left: var(--border-thin);
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@
     background-color: var(--buttoncolor);
     padding: var(--padding-s);
     border: var(--border-thin);
-    border-radius: 8px;
+    border-radius: var(--radius-s);
     font-family: var(--title-font);
 }
 
@@ -87,7 +87,7 @@
 
 
     .criteria__overviewcontent {
-        padding-left: var(--subtitle-l);
+        padding-left: var(--padding-l);
         gap: var(--padding-s);
     }
 
@@ -114,7 +114,7 @@
     .criterias__container {
         width: 90%;
         gap: var(--padding-l);
-        padding: var(--page-title) var(--padding-l)
+        padding: var(--padding-3xl) var(--padding-l)
     }
 
     .criteria__item {
@@ -122,7 +122,7 @@
     }
 
     .criteria__overviewcontent {
-        padding-left: var(--subtitle-xxl);
+        padding-left: var(--padding-2xl);
         gap: var(--padding-m);
     }
 
@@ -151,7 +151,7 @@
 
 
     .criteria__overviewcontent {
-        padding-left: var(--subtitle-l);
+        padding-left: var(--padding-l);
         gap: var(--padding-s);
     }
 

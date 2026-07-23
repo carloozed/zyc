@@ -26,7 +26,7 @@
 .progresscontainer__circle {
     height: calc(0.75rem + 0.75vw);
     width: calc(0.75rem + 0.75vw);
-    background-color: white;
+    background-color: var(--white);
     border-radius: 50px;
     border: var(--border-thin);
 
@@ -41,7 +41,7 @@
     height: 100%;
     z-index: -1;
     background-color: var(--contestblue);
-    border-radius: 6px;
+    border-radius: var(--radius-s);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +76,7 @@
         height: 100%;
         z-index: -1;
         background-color: var(--contestblue);
-        border-radius: 3px;
+        border-radius: var(--radius-s);
         display: flex;
         justify-content: center;
         align-items: center;
