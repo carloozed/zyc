@@ -2,23 +2,22 @@
   "id": "contest_timeline",
   "type": "SharedSlice",
   "name": "ContestTimeline",
-  "description": "ContestTimeline",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contest_timeline/default/e9554075123a343ea34a4cc80fdd91e2d34d1034.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "title": {
           "type": "StructuredText",
           "config": {
             "label": "Title",
             "placeholder": "Timeline",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "timeline_contest_group": {
@@ -46,8 +45,8 @@
                 "config": {
                   "label": "Phase Name ",
                   "placeholder": "Anmeldung",
-                  "allowTargetBlank": true,
-                  "multi": "heading4,heading3"
+                  "multi": "heading4,heading3",
+                  "allowTargetBlank": true
                 }
               },
               "phase_description": {
@@ -55,8 +54,8 @@
                 "config": {
                   "label": "Phase Description",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "paragraph,list-item,hyperlink,strong"
+                  "multi": "paragraph,list-item,hyperlink,strong",
+                  "allowTargetBlank": true
                 }
               },
               "individual_key": {
@@ -71,8 +70,8 @@
                 "config": {
                   "label": "Phase Date Text",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "heading4"
+                  "multi": "heading4",
+                  "allowTargetBlank": true
                 }
               }
             }
@@ -81,5 +80,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "ContestTimeline"
 }

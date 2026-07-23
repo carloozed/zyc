@@ -1,9 +1,7 @@
 {
-  "format": "page",
   "id": "impresssum",
   "label": "Impresssum",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "title": {
@@ -11,8 +9,8 @@
         "config": {
           "label": "Title",
           "placeholder": "Impressum",
-          "allowTargetBlank": true,
-          "multi": "heading1"
+          "multi": "heading1",
+          "allowTargetBlank": true
         }
       },
       "impressum_content": {
@@ -26,8 +24,8 @@
               "config": {
                 "label": "Title",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "heading2"
+                "multi": "heading2",
+                "allowTargetBlank": true
               }
             },
             "text": {
@@ -35,8 +33,8 @@
               "config": {
                 "label": "Text",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,strong,em,hyperlink,embed,list-item,o-list-item,image"
+                "multi": "paragraph,strong,em,hyperlink,embed,list-item,o-list-item,image",
+                "allowTargetBlank": true
               }
             }
           }
@@ -52,30 +50,32 @@
     },
     "SEO & Metadata": {
       "meta_title": {
+        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
+        }
       },
       "meta_description": {
+        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
+        }
       },
       "meta_image": {
+        "type": "Image",
         "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
           "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
           "thumbnails": []
-        },
-        "type": "Image"
+        }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "page"
 }

@@ -5,20 +5,18 @@
   "license": "Apache-2.0",
   "author": "Prismic <contact@prismic.io> (https://prismic.io)",
   "scripts": {
-    "dev": "concurrently \"npm:next:dev\" \"npm:slicemachine\" --names \"next,slicemachine\" --prefix-colors blue,magenta",
-    "next:dev": "next dev --turbopack",
+    "dev": "next dev --turbopack",
     "email": "email dev --dir src/emails",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slicemachine": "start-slicemachine",
     "format": "prettier --write ."
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@prismicio/client": "^7.17.2",
-    "@prismicio/next": "^2.0.1",
-    "@prismicio/react": "^3.2.1",
+    "@prismicio/client": "^7.21.8",
+    "@prismicio/next": "^2.3.0",
+    "@prismicio/react": "^3.4.1",
     "@react-email/components": "0.5.1",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
@@ -38,15 +36,12 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@react-email/preview-server": "^4.2.8",
-    "@slicemachine/adapter-next": "^0.3.76",
     "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "concurrently": "^9.1.2",
     "eslint": "^9.19.0",
     "eslint-config-next": "^15.1.6",
     "react-email": "4.2.8",
-    "slice-machine-ui": "^2.15.3",
     "typescript": "^5.7.3"
   }
 }

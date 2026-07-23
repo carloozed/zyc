@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "newsletter_form",
   "label": "Newsletter Form",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "newsletter_image": {
@@ -19,8 +17,8 @@
         "config": {
           "label": "Newsletter Title",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading2"
+          "multi": "heading2",
+          "allowTargetBlank": true
         }
       },
       "newsletter_text": {
@@ -28,8 +26,8 @@
         "config": {
           "label": "Newsletter Text",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,strong,em,hyperlink"
+          "multi": "paragraph,strong,em,hyperlink",
+          "allowTargetBlank": true
         }
       },
       "vorname": {
@@ -61,5 +59,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

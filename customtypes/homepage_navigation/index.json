@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "homepage_navigation",
   "label": "Homepage Navigation",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "cta_text": {
@@ -18,8 +16,8 @@
         "config": {
           "label": "The Contest Title",
           "placeholder": "The Contest",
-          "allowTargetBlank": true,
-          "multi": "heading4,heading3"
+          "multi": "heading4,heading3",
+          "allowTargetBlank": true
         }
       },
       "the_cadenza_title": {
@@ -27,8 +25,8 @@
         "config": {
           "label": "The Cadenza Title",
           "placeholder": "The Cadenza",
-          "allowTargetBlank": true,
-          "multi": "heading4"
+          "multi": "heading4",
+          "allowTargetBlank": true
         }
       },
       "the_crescendo_title": {
@@ -36,8 +34,8 @@
         "config": {
           "label": "The Crescendo Title",
           "placeholder": "The Crescendo",
-          "allowTargetBlank": true,
-          "multi": "heading4"
+          "multi": "heading4",
+          "allowTargetBlank": true
         }
       },
       "about_title": {
@@ -45,8 +43,8 @@
         "config": {
           "label": "About Title",
           "placeholder": "About",
-          "allowTargetBlank": true,
-          "multi": "heading4"
+          "multi": "heading4",
+          "allowTargetBlank": true
         }
       },
       "magazin_title": {
@@ -54,8 +52,8 @@
         "config": {
           "label": "Magazin Title",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading4"
+          "multi": "heading4",
+          "allowTargetBlank": true
         }
       },
       "the_contest": {
@@ -114,5 +112,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

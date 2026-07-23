@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "contact_form",
   "label": "Contact Form",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "image": {
@@ -19,8 +17,8 @@
         "config": {
           "label": "Contact Title",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading2"
+          "multi": "heading2",
+          "allowTargetBlank": true
         }
       },
       "contact_text": {
@@ -28,8 +26,8 @@
         "config": {
           "label": "Contact Text",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,strong,em,hyperlink"
+          "multi": "paragraph,strong,em,hyperlink",
+          "allowTargetBlank": true
         }
       },
       "vorname": {
@@ -68,5 +66,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

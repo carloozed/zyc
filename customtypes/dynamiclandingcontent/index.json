@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "dynamiclandingcontent",
   "label": "DynamicLandingContent",
   "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -17,8 +15,8 @@
         "config": {
           "label": "Title",
           "placeholder": "The Contest, The Cadenza, The Crescendo",
-          "allowTargetBlank": true,
-          "multi": "heading3"
+          "multi": "heading3",
+          "allowTargetBlank": true
         }
       },
       "description": {
@@ -26,10 +24,12 @@
         "config": {
           "label": "description",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,strong,em"
+          "multi": "paragraph,strong,em",
+          "allowTargetBlank": true
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

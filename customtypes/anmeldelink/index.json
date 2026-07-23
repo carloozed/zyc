@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "anmeldelink",
   "label": "Anmeldelink",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "anmeldelink": {
@@ -35,9 +33,9 @@
         "type": "Boolean",
         "config": {
           "label": "Hide Button Boolean",
-          "placeholder_false": "false",
+          "default_value": false,
           "placeholder_true": "true",
-          "default_value": false
+          "placeholder_false": "false"
         }
       },
       "link_url": {
@@ -48,5 +46,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

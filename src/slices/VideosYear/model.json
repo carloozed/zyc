@@ -2,23 +2,22 @@
   "id": "videos_year",
   "type": "SharedSlice",
   "name": "VideosYear",
-  "description": "VideosYear",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/videos_year/default/39051494e8a18b4ab2ae3e6c7655191ae466b35b.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "edition_year": {
           "type": "StructuredText",
           "config": {
             "label": "Edition Year",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "year_in_number": {
@@ -53,8 +52,8 @@
                 "config": {
                   "label": "Performer",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "heading3"
+                  "multi": "heading3",
+                  "allowTargetBlank": true
                 }
               },
               "age_and_instrument": {
@@ -62,8 +61,8 @@
                 "config": {
                   "label": "Age and instrument",
                   "placeholder": "",
-                  "allowTargetBlank": true,
-                  "multi": "heading4"
+                  "multi": "heading4",
+                  "allowTargetBlank": true
                 }
               },
               "song_title": {
@@ -101,5 +100,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "VideosYear"
 }

@@ -2,23 +2,22 @@
   "id": "gallery_year",
   "type": "SharedSlice",
   "name": "GalleryYear",
-  "description": "GalleryYear",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/gallery_year/default/002960319282db76042fb19b5b8dc218a66751b3.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "edition_year": {
           "type": "StructuredText",
           "config": {
             "label": "Edition Year",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "year_in_number": {
@@ -69,5 +68,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "GalleryYear"
 }

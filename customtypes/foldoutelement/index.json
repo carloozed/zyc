@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "foldoutelement",
   "label": "FoldoutElement",
   "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -16,9 +14,9 @@
         "type": "Boolean",
         "config": {
           "label": "Is Visible",
-          "placeholder_false": "false",
+          "default_value": true,
           "placeholder_true": "true",
-          "default_value": true
+          "placeholder_false": "false"
         }
       },
       "belongs_to_foldout": {
@@ -40,8 +38,8 @@
         "config": {
           "label": "Foldout Element Topic",
           "placeholder": "Online Anmeldung, Alterskategorie, Auswahlverfahren The Cadenza",
-          "allowTargetBlank": true,
-          "multi": "heading3"
+          "multi": "heading3",
+          "allowTargetBlank": true
         }
       },
       "content": {
@@ -54,9 +52,9 @@
               "type": "Boolean",
               "config": {
                 "label": "Is Hidden",
-                "placeholder_false": "false",
+                "default_value": false,
                 "placeholder_true": "true",
-                "default_value": false
+                "placeholder_false": "false"
               }
             },
             "subtopic_title": {
@@ -64,8 +62,8 @@
               "config": {
                 "label": "Subtopic Title",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "heading4"
+                "multi": "heading4",
+                "allowTargetBlank": true
               }
             },
             "subtopic_description": {
@@ -73,13 +71,15 @@
               "config": {
                 "label": "Subtopic Description",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,preformatted,strong,em,hyperlink,list-item,o-list-item,rtl"
+                "multi": "paragraph,preformatted,strong,em,hyperlink,list-item,o-list-item,rtl",
+                "allowTargetBlank": true
               }
             }
           }
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

@@ -2,23 +2,22 @@
   "id": "criterias",
   "type": "SharedSlice",
   "name": "Criterias",
-  "description": "Criterias",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/criterias/default/060b023c1c5e5178988b1351700a1f10b41d31a8.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "title": {
           "type": "StructuredText",
           "config": {
             "label": "Title",
             "placeholder": "Zulassungskriterien",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "cta_contest": {
@@ -26,8 +25,8 @@
           "config": {
             "label": "CTA Contest",
             "placeholder": "Alle Anforderungen erfüllt? Dann melde dich für THE CONTEST an!",
-            "allowTargetBlank": true,
-            "multi": "heading4"
+            "multi": "heading4",
+            "allowTargetBlank": true
           }
         },
         "signup_link": {
@@ -52,13 +51,14 @@
           "type": "Boolean",
           "config": {
             "label": "Is Visible",
-            "placeholder_false": "false",
+            "default_value": false,
             "placeholder_true": "true",
-            "default_value": false
+            "placeholder_false": "false"
           }
         }
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "Criterias"
 }

@@ -4,13 +4,13 @@ import {
   Route,
 } from '@prismicio/client';
 import { enableAutoPreviews } from '@prismicio/next';
-import sm from '../slicemachine.config.json';
+import config from '../prismic.config.json';
 
 /**
  * The project's Prismic repository name.
  */
 export const repositoryName =
-  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
+  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || config.repositoryName;
 
 /**
  * The project's Prismic route resolvers. This list determines a Prismic document's URL.
@@ -35,7 +35,7 @@ const routes: Route[] = [
  * @param config - Configuration for the Prismic client.
  */
 export function createClient(config: ClientConfig = {}) {
-  const client = baseCreateClient(sm.apiEndpoint || repositoryName, {
+  const client = baseCreateClient(repositoryName, {
     routes,
     fetchOptions:
       process.env.NODE_ENV === 'production'

@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "criteriatypesubfield",
   "label": "CriteriaTypeSubfield",
   "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -30,8 +28,8 @@
               "config": {
                 "label": "Title",
                 "placeholder": "Zulassungskriterien",
-                "allowTargetBlank": true,
-                "multi": "heading4"
+                "multi": "heading4",
+                "allowTargetBlank": true
               }
             },
             "short_overview": {
@@ -39,8 +37,8 @@
               "config": {
                 "label": "Short Overview",
                 "placeholder": "The Contest findet diesen verschiedenen Disziplinen statt:",
-                "allowTargetBlank": true,
-                "multi": "paragraph,strong,em,hyperlink"
+                "multi": "paragraph,strong,em,hyperlink",
+                "allowTargetBlank": true
               }
             },
             "conditions": {
@@ -48,13 +46,15 @@
               "config": {
                 "label": "Conditions",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item"
+                "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item",
+                "allowTargetBlank": true
               }
             }
           }
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }

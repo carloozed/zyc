@@ -2,23 +2,22 @@
   "id": "foldout",
   "type": "SharedSlice",
   "name": "Foldout",
-  "description": "Foldout",
   "variations": [
     {
       "id": "default",
       "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/default/d910ba594bbfdb0e977aee26a25139026fab57b0.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "section_is_shown": {
           "type": "Boolean",
           "config": {
             "label": "Section Is Shown",
-            "placeholder_false": "false",
+            "default_value": false,
             "placeholder_true": "true",
-            "default_value": false
+            "placeholder_false": "false"
           }
         },
         "section_title": {
@@ -26,8 +25,8 @@
           "config": {
             "label": "Section Title",
             "placeholder": "Weitere Fragen?",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "foldout_name": {
@@ -43,10 +42,10 @@
     {
       "id": "foldoutWithImage",
       "name": "Foldout With Image",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/foldoutWithImage/bce4fe2f1c3b5eb4f9ee2be7f07a92e997ce6f8d.png?auto=compress%2Cformat",
       "docURL": "...",
       "version": "initial",
-      "description": "Default",
-      "imageUrl": "",
       "primary": {
         "foldout_image": {
           "type": "Image",
@@ -68,8 +67,8 @@
           "config": {
             "label": "Section_title",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "heading2"
+            "multi": "heading2",
+            "allowTargetBlank": true
           }
         },
         "decoration_image": {
@@ -83,5 +82,6 @@
       },
       "items": {}
     }
-  ]
+  ],
+  "description": "Foldout"
 }

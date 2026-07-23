@@ -1,9 +1,7 @@
 {
-  "format": "page",
   "id": "magazinpost",
   "label": "Magazinpost",
   "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -48,8 +46,8 @@
         "config": {
           "label": "Preview Title",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading3"
+          "multi": "heading3",
+          "allowTargetBlank": true
         }
       },
       "preview_text": {
@@ -57,17 +55,17 @@
         "config": {
           "label": "Preview Text",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,heading5,heading6,em,strong,hyperlink"
+          "multi": "paragraph,heading5,heading6,em,strong,hyperlink",
+          "allowTargetBlank": true
         }
       },
       "has_redirect_link": {
         "type": "Boolean",
         "config": {
           "label": "Has Redirect Link",
-          "placeholder_false": "false",
+          "default_value": false,
           "placeholder_true": "true",
-          "default_value": false
+          "placeholder_false": "false"
         }
       },
       "redirect_link": {
@@ -85,9 +83,9 @@
         "type": "Boolean",
         "config": {
           "label": "Has Instagram",
-          "placeholder_false": "false",
+          "default_value": false,
           "placeholder_true": "true",
-          "default_value": false
+          "placeholder_false": "false"
         }
       },
       "instagram_link": {
@@ -106,8 +104,8 @@
         "config": {
           "label": "Post Description",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink"
+          "multi": "paragraph,preformatted,heading5,heading6,strong,em,hyperlink",
+          "allowTargetBlank": true
         }
       },
       "gallery": {
@@ -141,30 +139,32 @@
     },
     "SEO & Metadata": {
       "meta_title": {
+        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        },
-        "type": "Text"
+        }
       },
       "meta_description": {
+        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        },
-        "type": "Text"
+        }
       },
       "meta_image": {
+        "type": "Image",
         "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
           "label": "Meta Image",
+          "constraint": {
+            "width": 2400,
+            "height": 1260
+          },
           "thumbnails": []
-        },
-        "type": "Image"
+        }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "page"
 }

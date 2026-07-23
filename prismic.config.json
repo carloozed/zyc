@@ -1,0 +1,60 @@
+{
+  "repositoryName": "zurichyouthclassical",
+  "libraries": [
+    "./src/slices"
+  ],
+  "routes": [
+    {
+      "type": "datenschutz",
+      "path": "/datenschutz"
+    },
+    {
+      "type": "faq",
+      "path": "/faq"
+    },
+    {
+      "type": "gallery",
+      "path": "/gallery"
+    },
+    {
+      "type": "impresssum",
+      "path": "/impresssum"
+    },
+    {
+      "type": "kontakt",
+      "path": "/kontakt"
+    },
+    {
+      "type": "magazin",
+      "path": "/magazin"
+    },
+    {
+      "type": "magazinpost",
+      "path": "/magazinpost/:uid"
+    },
+    {
+      "type": "page",
+      "path": "/:uid"
+    },
+    {
+      "type": "teilnahme_termine",
+      "path": "/teilnahme-termine"
+    },
+    {
+      "type": "the_cadenza",
+      "path": "/the-cadenza"
+    },
+    {
+      "type": "the_contest",
+      "path": "/the-contest"
+    },
+    {
+      "type": "the_crescendo",
+      "path": "/the-crescendo"
+    },
+    {
+      "type": "uber_zyc",
+      "path": "/uber-zyc"
+    }
+  ]
+}

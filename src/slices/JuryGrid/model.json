@@ -1,30 +1,30 @@
 {
-  "type": "SharedSlice",
   "id": "jury_grid",
+  "type": "SharedSlice",
   "name": "JuryGrid",
   "variations": [
     {
       "id": "base_grid",
       "name": "Base Grid",
       "description": "A grid layout with a headline, introduction, and repeated jury/person entries featuring image, name, description, and optional links.",
-      "version": "initial",
-      "imageUrl": "",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/jury_grid/base_grid/16c12e2db1d41bc7108befb78ea1234fbcf6689e.png?auto=compress%2Cformat",
       "docURL": "...",
+      "version": "initial",
       "primary": {
         "headline": {
           "type": "StructuredText",
           "config": {
             "label": "Headline",
             "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading2",
+            "allowTargetBlank": true
           }
         },
         "introduction": {
           "type": "StructuredText",
           "config": {
-            "multi": "paragraph,strong,em",
-            "label": "Introduction"
+            "label": "Introduction",
+            "multi": "paragraph,strong,em"
           }
         },
         "jurymember_linkicon": {
@@ -49,15 +49,15 @@
               "name": {
                 "type": "StructuredText",
                 "config": {
-                  "single": "heading3",
-                  "label": "Name"
+                  "label": "Name",
+                  "single": "heading3"
                 }
               },
               "bio": {
                 "type": "StructuredText",
                 "config": {
-                  "multi": "paragraph,strong,em,hyperlink",
-                  "label": "Bio"
+                  "label": "Bio",
+                  "multi": "paragraph,strong,em,hyperlink"
                 }
               },
               "jurymember_link": {

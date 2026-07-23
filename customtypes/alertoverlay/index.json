@@ -1,9 +1,7 @@
 {
-  "format": "custom",
   "id": "alertoverlay",
   "label": "AlertOverlay",
   "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "title": {
@@ -11,8 +9,8 @@
         "config": {
           "label": "Title",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "heading2,heading3"
+          "multi": "heading2,heading3",
+          "allowTargetBlank": true
         }
       },
       "intro_text": {
@@ -20,8 +18,8 @@
         "config": {
           "label": "Intro Text",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,heading5,heading6,strong,em,hyperlink,rtl"
+          "multi": "paragraph,heading5,heading6,strong,em,hyperlink,rtl",
+          "allowTargetBlank": true
         }
       },
       "information_group": {
@@ -35,8 +33,8 @@
               "config": {
                 "label": "Item Title",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "heading4,heading5,em,hyperlink,strong"
+                "multi": "heading4,heading5,em,hyperlink,strong",
+                "allowTargetBlank": true
               }
             },
             "item_description": {
@@ -44,8 +42,8 @@
               "config": {
                 "label": "Item Description",
                 "placeholder": "",
-                "allowTargetBlank": true,
-                "multi": "paragraph,heading5,heading6,strong,hyperlink,list-item"
+                "multi": "paragraph,heading5,heading6,strong,hyperlink,list-item",
+                "allowTargetBlank": true
               }
             }
           }
@@ -56,8 +54,8 @@
         "config": {
           "label": "Outro Text",
           "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,heading4,heading5,strong,em,hyperlink"
+          "multi": "paragraph,heading4,heading5,strong,em,hyperlink",
+          "allowTargetBlank": true
         }
       },
       "decoimage": {
@@ -69,5 +67,7 @@
         }
       }
     }
-  }
+  },
+  "status": true,
+  "format": "custom"
 }
