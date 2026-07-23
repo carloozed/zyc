@@ -11,22 +11,40 @@ interface CategoryWrapperProps {
     | Simplify<ArtistsProgrammeSliceDefaultPrimaryCategoriesItem>
     | undefined;
   as?: React.ElementType;
-  onMouseOver?: () => void;
+  onSelect?: () => void;
 }
 
 export default function CategoryWrapper({
   category,
   as: Tag = 'li',
-  onMouseOver,
+  onSelect,
 }: CategoryWrapperProps) {
+  if (!category) return null;
+
   return (
-    <Tag className={styles.clip} onMouseOver={onMouseOver}>
+    <Tag className={styles.clip}>
       {/* .category-slide is animated by ArtistProgrammeContent; the outer
-          clip masks it so the card is invisible until it slides up. */}
-      <div className={`category-slide ${styles.wrapper}`}>
+          clip masks it so the card is invisible until it slides up.
+          A real button so touch and keyboard users can switch categories;
+          the title renders as a span because buttons only allow phrasing
+          content (styled to match the global h3 look). */}
+      <button
+        type="button"
+        className={`category-slide ${styles.wrapper}`}
+        onClick={onSelect}
+        onFocus={onSelect}
+        onMouseOver={onSelect}
+      >
         <div className={styles.circle}></div>
-        <PrismicRichText field={category && category.title} />
-      </div>
+        <PrismicRichText
+          field={category.title}
+          components={{
+            heading3: ({ children }) => (
+              <span className={styles.cardTitle}>{children}</span>
+            ),
+          }}
+        />
+      </button>
     </Tag>
   );
 }

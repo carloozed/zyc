@@ -19,7 +19,9 @@ export default function RegularSlice({ regularProps }: Props) {
   const matchingElements = foldoutElements
     .filter((item) => {
       return (
-        item && item.data.belongs_to_foldout === slice.primary.foldout_name
+        item &&
+        item.data.belongs_to_foldout === slice.primary.foldout_name &&
+        item.data.is_visible === true
       );
     })
     .sort((a, b) => {
@@ -95,7 +97,7 @@ export default function RegularSlice({ regularProps }: Props) {
                   >
                     {element.data.content &&
                       element.data.content.map((item, contentIndex) => {
-                        if (!item) return null;
+                        if (!item || item.is_hidden) return null;
 
                         return (
                           <div

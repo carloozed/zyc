@@ -34,7 +34,9 @@ function getGalleryColumnCount() {
 }
 
 function useGalleryColumnCount() {
-  const [columnCount, setColumnCount] = useState(1);
+  // Desktop-first initial value: SSR and first paint render the full grid;
+  // the effect corrects it on smaller viewports after mount.
+  const [columnCount, setColumnCount] = useState(DESKTOP_COLUMN_COUNT);
 
   useEffect(() => {
     const queries = [MOBILE_MEDIA_QUERY, TABLET_MEDIA_QUERY].map((query) =>

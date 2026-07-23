@@ -25,8 +25,9 @@ type ArtistsProgrammeContentProps = {
 export default function ArtistProgrammeContent({
   slice,
 }: ArtistsProgrammeContentProps) {
-  const [activeElement, setActiveElement] = useState<string | KeyTextField>(
-    'contest',
+  const categories = slice.primary.categories;
+  const [activeElement, setActiveElement] = useState<KeyTextField>(
+    slice.primary.descriptions[0]?.id ?? null,
   );
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -93,19 +94,19 @@ export default function ArtistProgrammeContent({
         />
       </div>
       <div className={styles.content}>
-        <section className={styles.categories}>
+        <ul className={styles.categories}>
           <CategoryWrapper
-            category={slice.primary.categories[0]}
+            category={categories[0]}
             as={'li'}
-            onMouseOver={() => setActiveElement('contest')}
+            onSelect={() => setActiveElement(categories[0]?.id ?? null)}
           />
           <div ref={straightArrowRef} style={{ display: 'contents' }}>
             <GraphicalArrow />
           </div>
           <CategoryWrapper
-            category={slice.primary.categories[1]}
+            category={categories[1]}
             as={'li'}
-            onMouseOver={() => setActiveElement('ubergang')}
+            onSelect={() => setActiveElement(categories[1]?.id ?? null)}
           />
           <div ref={curvedArrowRef} className={styles.curvedArrow}>
             <GraphicalArrowCurved />
@@ -113,20 +114,20 @@ export default function ArtistProgrammeContent({
           <div className={styles.cadenzacrescendo}>
             <div className={styles.cadenza}>
               <CategoryWrapper
-                category={slice.primary.categories[2]}
+                category={categories[2]}
                 as={'li'}
-                onMouseOver={() => setActiveElement('cadenza')}
+                onSelect={() => setActiveElement(categories[2]?.id ?? null)}
               />
             </div>
             <div className={styles.crescendo}>
               <CategoryWrapper
-                category={slice.primary.categories[3]}
+                category={categories[3]}
                 as={'li'}
-                onMouseOver={() => setActiveElement('crescendo')}
+                onSelect={() => setActiveElement(categories[3]?.id ?? null)}
               />
             </div>
           </div>
-        </section>
+        </ul>
 
         <DescriptionComponent slice={slice} activeElement={activeElement} />
       </div>

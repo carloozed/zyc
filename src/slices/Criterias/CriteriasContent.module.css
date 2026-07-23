@@ -4,7 +4,7 @@
     align-items: center;
     padding: var(--padding-xl) 0;
     gap: var(--padding-xl);
-    margin-top: var(--padding-);
+    margin-top: var(--padding-l);
 }
 
 .criterias__container {
@@ -141,7 +141,7 @@
     .criterias__section {
         padding: var(--padding-l) 0;
         gap: var(--padding-l);
-        margin-top: var(--padding-);
+        margin-top: var(--padding-l);
     }
 
     .criterias__container {

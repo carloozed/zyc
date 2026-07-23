@@ -28,7 +28,7 @@
 }
 
 .ctl__timeline h4 {
-    font-weight: var(--fontweight-thin);
+    font-weight: var(--fontweight-xs);
     font-size: var(--text-large);
     text-align: center;
 }
@@ -180,7 +180,7 @@
     }
 
     .ctl__timeline h4 {
-        font-weight: var(--fontweight-thin);
+        font-weight: var(--fontweight-xs);
         font-size: var(--text-s);
         text-align: center;
     }
@@ -379,7 +379,7 @@
     }
 
     .ctl__timeline h4 {
-        font-weight: var(--fontweight-thin);
+        font-weight: var(--fontweight-xs);
         font-size: var(--text-s);
         text-align: center;
     }

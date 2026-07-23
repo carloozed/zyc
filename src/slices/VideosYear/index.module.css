@@ -30,7 +30,7 @@
     background-color: #111;
     overflow: hidden;
     cursor: pointer;
-    border-radius: var(--border-radius, 4px);
+    border-radius: var(--radius-s);
 }
 
 .videoFrame iframe {

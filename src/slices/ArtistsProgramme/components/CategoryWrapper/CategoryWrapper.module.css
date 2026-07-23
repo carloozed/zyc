@@ -15,7 +15,16 @@
     border-radius: var(--radius-l);
     text-align: center;
     position: relative;
-    background-color: white;
+    background-color: var(--white);
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.cardTitle {
+    font-family: var(--title-font);
+    font-weight: 150;
+    font-size: var(--subtitle-s);
 }
 
 .circle {

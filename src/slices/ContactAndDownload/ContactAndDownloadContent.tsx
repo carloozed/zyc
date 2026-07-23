@@ -140,7 +140,7 @@ export default function ContactAndDownloadContent({
         </div>
       )}
       {shouldShowBasedOnDates() &&
-        isMobile &&
+        (isMobile || isTabletPortrait) &&
         slice.variation === 'default' && (
           <div className={styles.signuplink}>
             <PrismicNextLink field={signuplink.data.anmeldelink}>
@@ -148,14 +148,6 @@ export default function ContactAndDownloadContent({
             </PrismicNextLink>
           </div>
         )}
-
-      {shouldShowBasedOnDates() && isTabletPortrait && (
-        <div className={styles.signuplink}>
-          <PrismicNextLink field={signuplink.data.anmeldelink}>
-            Anmelden
-          </PrismicNextLink>
-        </div>
-      )}
     </section>
   );
 }
