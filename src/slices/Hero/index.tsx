@@ -12,29 +12,13 @@ import ContestHero from './ContestHero';
 export type SplitVisualHeadlineProps =
   SliceComponentProps<Content.SplitVisualHeadlineSlice>;
 
-type ContestHeroContext = {
-  signuplink: Content.AnmeldelinkDocument;
-  wearehereicon: Content.WeAreHereImageDocument;
-  disciplinetypes: Content.CriteriatypesubfieldDocument[];
-};
-
 /**
  * Component for "SplitVisualHeadline" Slices.
  */
-const SplitVisualHeadline: FC<SplitVisualHeadlineProps> = ({
-  slice,
-  context,
-}) => {
-  const { signuplink } = context as ContestHeroContext;
-  const defaultHeroProps = {
+const SplitVisualHeadline: FC<SplitVisualHeadlineProps> = ({ slice }) => {
+  const heroProps = {
     slice,
     styles,
-  };
-
-  const contestHeroProps = {
-    slice,
-    styles,
-    signuplink,
   };
 
   return (
@@ -44,10 +28,10 @@ const SplitVisualHeadline: FC<SplitVisualHeadlineProps> = ({
       className={styles.heroslice}
     >
       {slice.variation === 'visual_left_headline_right' && (
-        <DefaultHero {...defaultHeroProps} />
+        <DefaultHero {...heroProps} />
       )}
 
-      {slice.variation === 'contest' && <ContestHero {...contestHeroProps} />}
+      {slice.variation === 'contest' && <ContestHero {...heroProps} />}
     </section>
   );
 };

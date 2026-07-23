@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { PrismicRichText } from '@prismicio/react';
 import { isFilled } from '@prismicio/client';
 
@@ -18,10 +18,6 @@ type Props = {
 export default function ImageSlice({ imageSliceProps }: Props) {
   const { slice, foldoutElements } = imageSliceProps;
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
-
-  // Create refs for each element using arrays
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const matchingElements = foldoutElements
     .filter((item) => {
@@ -62,13 +58,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
           const isOpen = openElementIndex === elementIndex;
 
           return (
-            <div
-              key={element.id}
-              className={generalStyles.foldout__item}
-              ref={(el) => {
-                mainContainerRefs.current[elementIndex] = el;
-              }}
-            >
+            <div key={element.id} className={generalStyles.foldout__item}>
               <button
                 type="button"
                 className={generalStyles.foldout__item_uppercontainer}
@@ -131,9 +121,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
               <div
                 id={`foldout-content-${element.id}`}
                 className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
-                ref={(el) => {
-                  contentRefs.current[elementIndex] = el;
-                }}
               >
                 {element.data.content &&
                   element.data.content.map((item, contentIndex) => {

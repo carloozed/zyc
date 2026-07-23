@@ -1,13 +1,16 @@
-'use client';
-
+import { Content } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
 
 import React from 'react';
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
-export default function DefaultHero({ ...defaultHeroProps }) {
-  const { slice, styles } = defaultHeroProps;
+type Props = {
+  slice: Content.SplitVisualHeadlineSlice;
+  styles: Readonly<Record<string, string>>;
+};
+
+export default function DefaultHero({ slice, styles }: Props) {
   return (
     <>
       <div

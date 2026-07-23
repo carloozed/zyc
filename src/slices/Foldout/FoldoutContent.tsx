@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  AnmeldelinkDocument,
   FoldoutelementDocument,
   FoldoutSlice,
+  FoldoutSliceDefault,
   FoldoutSliceFoldoutWithImage,
 } from '@/prismicio-types';
 import RegularSlice from './RegularSlice/RegularSlice';
@@ -11,31 +11,24 @@ import ImageSlice from './ImageSlice/ImageSlice';
 
 import styles from './FoldoutContent.module.css';
 
-/* jladsföjldasf */
-
 export type regularPropsType = {
-  slice: FoldoutSlice;
+  slice: FoldoutSliceDefault;
   foldoutElements: FoldoutelementDocument[];
-  signuplink: AnmeldelinkDocument;
 };
 
 export type ImagePropsType = {
   slice: FoldoutSliceFoldoutWithImage;
   foldoutElements: FoldoutelementDocument[];
-  signuplink: AnmeldelinkDocument;
 };
 export default function FoldoutContent({
   regularProps,
 }: {
-  regularProps: regularPropsType;
-}) {
-  const { slice, foldoutElements, signuplink } = regularProps;
-
-  const imageSliceProps: ImagePropsType = {
-    slice: slice as FoldoutSliceFoldoutWithImage,
-    foldoutElements,
-    signuplink,
+  regularProps: {
+    slice: FoldoutSlice;
+    foldoutElements: FoldoutelementDocument[];
   };
+}) {
+  const { slice, foldoutElements } = regularProps;
 
   return (
     <section
@@ -44,10 +37,10 @@ export default function FoldoutContent({
       className={styles.foldout__container}
     >
       {slice.variation === 'default' && (
-        <RegularSlice regularProps={regularProps} />
+        <RegularSlice regularProps={{ slice, foldoutElements }} />
       )}
       {slice.variation === 'foldoutWithImage' && (
-        <ImageSlice imageSliceProps={imageSliceProps} />
+        <ImageSlice imageSliceProps={{ slice, foldoutElements }} />
       )}
     </section>
   );

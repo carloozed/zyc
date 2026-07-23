@@ -36,7 +36,7 @@ export default function RegularSlice({ regularProps }: Props) {
 
   return (
     <>
-      {slice.variation === 'default' && slice.primary.section_is_shown && (
+      {slice.primary.section_is_shown && (
         <div className={generalStyles.foldout}>
           {isFilled.richText(slice.primary.section_title) && (
             <div className={generalStyles.foldout__section_title}>

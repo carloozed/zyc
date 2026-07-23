@@ -1,12 +1,16 @@
 import React from 'react';
 
+import { Content } from '@prismicio/client';
 import { PrismicNextImage } from '@prismicio/next';
 
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
-export default function ContestHero({ ...contestHeroProps }) {
-  const { slice, styles } = contestHeroProps;
+type Props = {
+  slice: Content.SplitVisualHeadlineSlice;
+  styles: Readonly<Record<string, string>>;
+};
 
+export default function ContestHero({ slice, styles }: Props) {
   return (
     <>
       <div

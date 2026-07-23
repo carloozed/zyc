@@ -30,12 +30,16 @@
 
 
 .curvedArrow {
-    height: 26rem;
-    width: 15rem;
+    /* Values tuned to the curved-arrow artwork */
+    --arrow-h: 26rem;
+    --arrow-w: 15rem;
+    --arrow-offset: translateY(22%) translateX(-2%);
+    height: var(--arrow-h);
+    width: var(--arrow-w);
 }
 
 .curvedArrow div {
-    transform: translateY(22%) translateX(-2%)
+    transform: var(--arrow-offset)
 }
 
 .cadenzacrescendo {

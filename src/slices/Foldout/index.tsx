@@ -11,19 +11,17 @@ export type FoldoutProps = SliceComponentProps<Content.FoldoutSlice>;
 
 type FoldoutSliceContext = {
   foldoutElements: Content.FoldoutelementDocument[];
-  signuplink: Content.AnmeldelinkDocument;
 };
 
 /**
  * Component for "Foldout" Slices.
  */
 const Foldout: FC<FoldoutProps> = ({ slice, context }) => {
-  const { foldoutElements, signuplink } = context as FoldoutSliceContext;
+  const { foldoutElements } = context as FoldoutSliceContext;
 
   const regularProps = {
     slice,
     foldoutElements,
-    signuplink,
   };
 
   return <FoldoutContent regularProps={regularProps} />;
