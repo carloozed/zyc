@@ -44,7 +44,7 @@ export default function TermineContent({ page, signuplink }: Props) {
     { scope: lowerContainerRef },
   );
   return (
-    <section className={styles.container}>
+    <section className={`page-container ${styles.container}`}>
       <div className={styles.termine__hero}>
         <RevealText field={page.data.page_title} as={'h1'} delay={0.7} />
         <div className={styles.terime_illustrationcontainer}>

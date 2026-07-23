@@ -22,7 +22,7 @@ export default function CadenzaContent({
   signuplink,
 }: Props) {
   return (
-    <section style={{ position: 'relative' }}>
+    <section className="page-container" style={{ position: 'relative' }}>
       <SliceZone
         slices={page.data.slices}
         components={components}

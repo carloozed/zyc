@@ -15,7 +15,7 @@ type Props = {
 
 export default function AboutContent({ styles, page, foldoutElements }: Props) {
   return (
-    <section className={styles.about__container}>
+    <section className={`page-container ${styles.about__container}`}>
       <SliceZone
         slices={page.data.slices}
         components={components}

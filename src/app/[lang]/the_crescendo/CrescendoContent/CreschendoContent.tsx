@@ -21,7 +21,7 @@ export default function CreschendoContent({
   signuplink,
 }: Props) {
   return (
-    <section>
+    <section className="page-container">
       <SliceZone
         slices={page.data.slices}
         components={components}

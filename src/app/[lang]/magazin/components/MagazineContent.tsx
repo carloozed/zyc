@@ -110,7 +110,7 @@ export default function MagazineContent({
     );
 
   return (
-    <div className={styles.container}>
+    <div className={`page-container ${styles.container}`}>
       <div className={styles.uppercontainer}>
         <div className={styles.titleContainer}>
           <RevealText

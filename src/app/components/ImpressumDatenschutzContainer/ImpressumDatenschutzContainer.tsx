@@ -14,7 +14,7 @@ type Props = {
 
 export default function ImpressumDatenschutzContainer({ title, items }: Props) {
   return (
-    <div className={styles.main}>
+    <div className={`page-container ${styles.main}`}>
       <RevealText
         field={title}
         useScrollTrigger={true}

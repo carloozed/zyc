@@ -88,7 +88,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`page-container ${styles.container}`}>
       {heroslice && <SliceZone slices={heroslice} components={components} />}
 
       <div className={styles.contentcontainer}>
