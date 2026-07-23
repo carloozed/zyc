@@ -54,11 +54,11 @@
     /* 20px */
     --text-large: calc(0.6rem + 0.6vw);
 
-    /* 16px */
-    --text: 1rem;
+    /* 16px, growing to 22px on large screens */
+    --text: clamp(1rem, 0.55rem + 0.55vw, 1.4rem);
 
-    /* 14px */
-    --text-sm: 0.875rem;
+    /* 14px, growing to 19px on large screens */
+    --text-sm: clamp(0.875rem, 0.5rem + 0.45vw, 1.2rem);
 
 
     /* 12px */
@@ -183,6 +183,13 @@ p,
 blockquote>span {
     font-size: var(--text-s);
     line-height: 150%;
+}
+
+/* Subpages (everything wrapped in .page-container) use body size for bare
+   paragraphs; the landing keeps the small default above. */
+.page-container p,
+.page-container blockquote>span {
+    font-size: var(--text);
 }
 
 ul,
