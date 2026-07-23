@@ -1,0 +1,10 @@
+{
+  "id": "artist_programme",
+  "label": "Artist Programme",
+  "repeatable": false,
+  "json": {
+    "Main": {}
+  },
+  "status": true,
+  "format": "custom"
+}
