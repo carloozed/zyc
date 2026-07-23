@@ -18,8 +18,9 @@
     transition: height 1.2s var(--bezier);
     margin-top: 1rem;
     background-color: transparent;
-
-
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
 }
 
 .foldout__item_content {
@@ -43,18 +44,6 @@
     align-items: center;
     cursor: pointer;
     width: fit-content;
-}
-
-.foldout__item_content {
-    padding: 0 var(--page-title);
-    width: fit-content;
-}
-
-
-.foldout__item {
-    display: flex;
-    height: fit-content;
-    flex-direction: column;
 }
 
 .foldout__item h4,
@@ -199,38 +188,18 @@
 
     .foldout__itemcontainer {
         padding: var(--padding-l) 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--padding-2xs);
-        height: fit-content;
-        width: 100%;
         margin-top: var(--padding-l)
     }
 
     .foldout__item {
-        overflow: hidden;
         transition: height 0.9s var(--bezier);
         margin-top: 0.5rem;
-        background-color: transparent;
         width: 100%;
     }
 
     .foldout__item_content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 1.2s var(--bezier);
         padding: 0 var(--padding-s);
         width: 100%;
-    }
-
-    .foldout__item_content.open {
-        max-height: 2000px;
-    }
-
-
-
-    .foldout__item_uppercontainer {
-        gap: var(--padding-m);
     }
 
     .foldout__item_content {
@@ -239,9 +208,6 @@
 
 
     .foldout__item {
-        display: flex;
-        height: fit-content;
-        flex-direction: column;
         width: 100%;
     }
 
@@ -254,8 +220,6 @@
 
 
     .foldout__item_content h4 {
-        width: fit-content;
-        font-size: var(--text-large);
         padding-bottom: var(--padding-xs);
         align-items: center;
     }
@@ -266,20 +230,12 @@
 
 
     .index h4 {
-        text-align: center;
         height: fit-content;
         width: fit-content;
     }
 
     .foldout__subitem_titlediv {
-        display: flex;
         gap: var(--padding-s);
-        align-items: center;
-
-    }
-
-    .foldout__subitem_titlediv h4 {
-        line-height: 120%;
     }
 
     .foldout__toggle_icon {
@@ -292,20 +248,12 @@
     .foldout__subitem p,
     .foldout__subitem li {
         line-height: 120%;
-        font-size: var(--text) !important;
         text-align: justify;
         hyphens: auto;
     }
 
 
-    .foldout__subitem_description {
-        display: flex;
-        flex-direction: column;
-        gap: var(--padding-s);
-    }
-
     .foldout__subitem_description p {
-        font-size: var(--text-sm);
         max-width: 80vw;
     }
 
@@ -315,30 +263,11 @@
 /* Tablet */
 /* 768px to 1184px */
 @media (min-width: 48rem) and (max-width: 74rem) {
-    .foldout {
-        padding: var(--padding-m) 0;
-    }
-
     .foldout__itemcontainer {
         padding: var(--padding-m) var(--padding-s);
-        display: flex;
-        flex-direction: column;
-        gap: var(--padding-2xs);
-        height: fit-content;
-        width: 100%;
-        background-color: transparent;
-    }
-
-    .foldout__item_uppercontainer {
-        display: flex;
-        gap: var(--padding-m);
-        align-items: center;
-        cursor: pointer;
-        width: fit-content;
     }
 
     .foldout__subitem_description p {
-        font-size: var(--text-sm);
         max-width: 90vw;
     }
 }
@@ -353,38 +282,18 @@
 
     .foldout__itemcontainer {
         padding: var(--padding-l) 0;
-        display: flex;
-        flex-direction: column;
-        gap: var(--padding-2xs);
-        height: fit-content;
-        width: 100%;
         margin-top: var(--padding-l)
     }
 
     .foldout__item {
-        overflow: hidden;
         transition: height 0.9s var(--bezier);
         margin-top: 0.5rem;
-        background-color: transparent;
         width: 100%;
     }
 
     .foldout__item_content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 1.2s var(--bezier);
         padding: 0 var(--padding-s);
         width: 100%;
-    }
-
-    .foldout__item_content.open {
-        max-height: 2000px;
-    }
-
-
-
-    .foldout__item_uppercontainer {
-        gap: var(--padding-m);
     }
 
     .foldout__item_content {
@@ -393,9 +302,6 @@
 
 
     .foldout__item {
-        display: flex;
-        height: fit-content;
-        flex-direction: column;
         width: 100%;
     }
 
@@ -408,8 +314,6 @@
 
 
     .foldout__item_content h4 {
-        width: fit-content;
-        font-size: var(--text-large);
         padding-bottom: var(--padding-xs);
         align-items: center;
     }
@@ -420,20 +324,12 @@
 
 
     .index h4 {
-        text-align: center;
         height: fit-content;
         width: fit-content;
     }
 
     .foldout__subitem_titlediv {
-        display: flex;
         gap: var(--padding-s);
-        align-items: center;
-
-    }
-
-    .foldout__subitem_titlediv h4 {
-        line-height: 120%;
     }
 
     .foldout__toggle_icon {
@@ -446,47 +342,16 @@
     .foldout__subitem p,
     .foldout__subitem li {
         line-height: 120%;
-        font-size: var(--text) !important;
         text-align: justify;
         hyphens: auto;
     }
 
 
     .foldout__subitem_description {
-        display: flex;
-        flex-direction: column;
-        gap: var(--padding-s);
         padding-left: var(--padding-m)
     }
 
     .foldout__subitem_description p {
-        font-size: var(--text-sm);
         max-width: 80vw;
     }
 }
-
-/* Desktop */
-/* 1184px and up */
-@media (min-width: 74rem) {}
-
-/* Large Desktop */
-/* 1440px and up */
-@media (min-width: 90rem) {}
-
-@media (min-width: 120rem) {}
-
-/* Touch Devices */
-/* Any touch device regardless of size */
-@media (hover: none) {}
-
-/* Non-Touch Devices */
-/* Devices with precise pointer (mouse) */
-@media (hover: hover) and (pointer: fine) {}
-
-/* Prefers Dark Mode */
-/* User has set dark mode preference */
-@media (prefers-color-scheme: dark) {}
-
-/* Prefers Reduced Motion */
-/* User has requested minimal animations */
-@media (prefers-reduced-motion: reduce) {}
