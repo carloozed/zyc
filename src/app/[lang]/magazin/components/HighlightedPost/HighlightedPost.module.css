@@ -32,6 +32,11 @@
     gap: var(--padding-s)
 }
 
+.narrowcontent p,
+.content p {
+    font-size: var(--text-sm);
+}
+
 .narrowcontent,
 .content {
     background-color: white;

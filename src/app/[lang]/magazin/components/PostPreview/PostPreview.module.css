@@ -46,6 +46,10 @@
     overflow: hidden;
 }
 
+.rightsidecontainer p {
+    font-size: var(--text-sm);
+}
+
 .rightsidecontainer {
     display: flex;
     flex-direction: column;
