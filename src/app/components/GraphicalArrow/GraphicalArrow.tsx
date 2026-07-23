@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './GraphicalArrow.module.css';
 
+/* .draw is a stroked path so DrawSVG can draw it; .head keeps the original
+   filled triangle and is scaled in from the line's tip by the animation. */
 export default function GraphicalArrow() {
   return (
     <div className={styles.wrapper}>
-      {' '}
       <svg
         width={219}
         height={9}
@@ -12,8 +13,10 @@ export default function GraphicalArrow() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        <path className="draw" d="M0 4.05H212.23" stroke="black" strokeWidth={1.4} />
         <path
-          d="M218.559 4.05029L211.519 -0.000143979L211.536 8.11883L218.559 4.05029ZM0.00195312 4.33154L0.00342635 5.03467L212.232 4.76156L212.231 4.05844L212.229 3.35531L0.000479899 3.62842L0.00195312 4.33154Z"
+          className="head"
+          d="M218.559 4.05029L211.519 -0.000143979L211.536 8.11883L218.559 4.05029Z"
           fill="black"
         />
       </svg>

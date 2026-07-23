@@ -1,3 +1,8 @@
+.clip {
+    display: block;
+    overflow: hidden;
+}
+
 .wrapper {
     --distance: 0.5rem;
     border: var(--border-thin);

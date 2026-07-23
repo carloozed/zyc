@@ -12,19 +12,16 @@
 }
 
 .content {
-    padding: 2rem 0;
-    height: 45vw;
+    padding: var(--padding-l) 0;
 }
 
 
 .categories {
     display: flex;
     list-style: none;
-    padding: 0;
     margin: 0;
     align-items: center;
-    gap: 0rem;
-    padding: 4rem 8rem 0rem 8rem;
+    padding: var(--padding-2xl) var(--page-title) 0;
     position: relative;
 
 }

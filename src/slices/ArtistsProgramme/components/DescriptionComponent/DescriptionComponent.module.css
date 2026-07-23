@@ -1,11 +1,22 @@
 .descriptions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--padding-m);
-    padding-left: 8rem;
+    display: grid;
+    padding-left: var(--page-title);
     padding-top: var(--padding-l)
 }
 
+/* All items occupy the same grid cell, so the container is always as
+   tall as the tallest description — switching never shifts the layout. */
+.item {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    visibility: hidden;
+}
+
+.item.active {
+    visibility: visible;
+}
 
 .description {
     width: 50%;

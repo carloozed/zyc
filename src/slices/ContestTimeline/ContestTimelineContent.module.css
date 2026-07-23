@@ -59,7 +59,7 @@
 }
 
 .color p {
-    font-size: calc(0.3rem + 0.3vw);
+    font-size: var(--text-smaller);
     text-align: center;
     transform: rotate(-10deg)
 }
@@ -110,18 +110,18 @@
 }
 
 .ctl__timeline__item__description h3 {
-    font-size: var(--subtitle-m);
+    font-size: var(--subtitle-s);
     letter-spacing: 0.5px;
 }
 
 .ctl__timeline__item__description p {
-    font-size: calc(0.5rem + 0.5vw);
+    font-size: var(--text);
 
 }
 
 .ctl__timeline__item__description li {
     line-height: 100%;
-    font-size: calc(0.45rem + 0.45vw)
+    font-size: var(--text-sm)
 }
 
 
@@ -136,12 +136,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: var(--padding-2xs);
 }
 
 .text h4 {
     font-family: var(--title-font);
-    font-size: var(--padding-m);
+    font-size: var(--text-large);
 
 }
 
@@ -211,7 +211,7 @@
     }
 
     .color p {
-        font-size: calc(0.3rem + 0.3vw);
+        font-size: var(--text-smaller);
         text-align: center;
         transform: rotate(-10deg);
     }
@@ -410,7 +410,7 @@
     }
 
     .color p {
-        font-size: calc(0.3rem + 0.3vw);
+        font-size: var(--text-smaller);
         text-align: center;
         transform: rotate(-10deg)
     }
@@ -466,7 +466,7 @@
     }
 
     .ctl__timeline__item__description p {
-        font-size: calc(0.5rem + 0.8vw);
+        font-size: var(--text);
     }
 
     .ctl__timeline__item__description li {

@@ -12,18 +12,24 @@ export default function DescriptionComponent({
   slice,
   activeElement,
 }: DescriptionComponentProps) {
-  const shownElement = slice.primary.descriptions.find(
-    (item) => item.id === activeElement,
-  );
-
-  if (!shownElement) return null;
-
   return (
     <div className={styles.descriptions}>
-      <PrismicRichText field={shownElement.title} />
-      <div className={styles.description}>
-        <PrismicRichText field={shownElement.description} />
-      </div>
+      {slice.primary.descriptions.map((item, index) => {
+        const isActive = item.id === activeElement;
+
+        return (
+          <div
+            key={item.id || index}
+            className={`${styles.item} ${isActive ? styles.active : ''}`}
+            aria-hidden={!isActive}
+          >
+            <PrismicRichText field={item.title} />
+            <div className={styles.description}>
+              <PrismicRichText field={item.description} />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

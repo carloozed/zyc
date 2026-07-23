@@ -20,9 +20,13 @@ export default function CategoryWrapper({
   onMouseOver,
 }: CategoryWrapperProps) {
   return (
-    <Tag className={styles.wrapper} onMouseOver={onMouseOver}>
-      <div className={styles.circle}></div>
-      <PrismicRichText field={category && category.title} />
+    <Tag className={styles.clip} onMouseOver={onMouseOver}>
+      {/* .category-slide is animated by ArtistProgrammeContent; the outer
+          clip masks it so the card is invisible until it slides up. */}
+      <div className={`category-slide ${styles.wrapper}`}>
+        <div className={styles.circle}></div>
+        <PrismicRichText field={category && category.title} />
+      </div>
     </Tag>
   );
 }

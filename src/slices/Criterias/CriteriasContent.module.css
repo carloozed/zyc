@@ -56,13 +56,13 @@
 }
 
 .criterias__buttoncontainer h4 {
-    font-size: var(--subtitle-xs);
+    font-size: var(--text-large);
     font-family: var(--title-font);
 }
 
 
 .criterias__buttoncontainer a {
-    font-size: var(--subtitle-s);
+    font-size: var(--text-large);
     background-color: var(--buttoncolor);
     padding: var(--padding-s);
     border: var(--border-thin);
@@ -125,7 +125,7 @@
 
 
     .criterias__buttoncontainer a {
-        font-size: var(--subtitle-s);
+        font-size: var(--text-large);
         background-color: var(--buttoncolor);
         padding: var(--padding-s);
         border: var(--border-thin);
@@ -193,13 +193,13 @@
     }
 
     .criterias__buttoncontainer h4 {
-        font-size: var(--subtitle-xs);
+        font-size: var(--text-large);
         font-family: var(--title-font);
     }
 
 
     .criterias__buttoncontainer a {
-        font-size: var(--subtitle-s);
+        font-size: var(--text-large);
         background-color: var(--buttoncolor);
         padding: var(--padding-s);
         border: var(--border-thin);
@@ -261,7 +261,7 @@
 
 
     .criterias__buttoncontainer a {
-        font-size: var(--subtitle-s);
+        font-size: var(--text-large);
         background-color: var(--buttoncolor);
         padding: var(--padding-s);
         border: var(--border-thin);

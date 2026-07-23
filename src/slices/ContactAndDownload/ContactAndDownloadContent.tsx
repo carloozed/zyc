@@ -8,6 +8,7 @@ import {
 } from '@/prismicio-types';
 import { PrismicRichText } from '@prismicio/react';
 import { PrismicNextLink } from '@prismicio/next';
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 import styles from './ContactAndDownload.module.css';
 
@@ -57,7 +58,11 @@ export default function ContactAndDownloadContent({
       className={styles.section}
     >
       <div className={styles.sectioncontainer}>
-        <PrismicRichText field={slice.primary.subtitle_something_missing} />
+        <RevealText
+          field={slice.primary.subtitle_something_missing}
+          useScrollTrigger={true}
+          as={'h3'}
+        />
         <PrismicRichText field={slice.primary.text_missingsomething} />
         <div className={styles.linkscontainer}>
           {slice.primary.links.map((item, index: number) => (
@@ -85,7 +90,11 @@ export default function ContactAndDownloadContent({
       </div>
       {slice.variation === 'default' && (
         <div className={styles.sectioncontainer}>
-          <PrismicRichText field={slice.primary.downloads_title} />
+          <RevealText
+            field={slice.primary.downloads_title}
+            useScrollTrigger={true}
+            as={'h3'}
+          />
           <PrismicRichText field={slice.primary.text_downloads} />
           <div className={styles.linkscontainer}>
             {slice.primary.download_links.map((item, index: number) => (

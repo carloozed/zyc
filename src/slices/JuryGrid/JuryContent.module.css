@@ -140,7 +140,7 @@
     }
 
     .jury__container a {
-        font-size: calc(0.6rem + 0.5vw);
+        font-size: var(--text);
     }
 
 

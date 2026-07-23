@@ -4,6 +4,7 @@ import { JuryGridSlice } from '@/prismicio-types';
 import styles from './JuryContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
+import { RevealText } from '@/app/components/RevealText/RevealText';
 
 type Props = { slice: JuryGridSlice };
 
@@ -15,7 +16,11 @@ export default function JuryContent({ slice }: Props) {
       className={styles.jury__sectioncontainer}
       id="jury"
     >
-      <PrismicRichText field={slice.primary.headline} />
+      <RevealText
+        field={slice.primary.headline}
+        useScrollTrigger={true}
+        as={'h2'}
+      />
       <div className={styles.jury__introduction}>
         <PrismicRichText field={slice.primary.introduction} />
       </div>
