@@ -89,6 +89,7 @@
     /* borders */
     --border-thin: 0.5px solid var(--black);
     --radius-s: 8px;
+    --radius-l: 16px;
 
 
     /* animation stuff */

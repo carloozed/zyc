@@ -1,0 +1,51 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: var(--page-title) var(--padding-m);
+    gap: var(--padding-m);
+
+}
+
+
+.wrapper h3 {
+    font-size: var(--subtitle-s)
+}
+
+.content {
+    padding: 2rem 0;
+    height: 45vw;
+}
+
+
+.categories {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    gap: 0rem;
+    padding: 4rem 8rem 0rem 8rem;
+    position: relative;
+
+}
+
+
+
+
+.curvedArrow {
+    height: 26rem;
+    width: 15rem;
+}
+
+.curvedArrow div {
+    transform: translateY(22%) translateX(-2%)
+}
+
+.cadenzacrescendo {
+    position: relative;
+}
+
+.crescendo {
+
+    transform: translateX(70%) translateY(-30%)
+}
