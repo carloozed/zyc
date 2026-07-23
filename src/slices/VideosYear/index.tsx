@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useMemo, useState } from 'react';
+import { FC, KeyboardEvent, useMemo, useState } from 'react';
 import { Content } from '@prismicio/client';
 import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
 import { PrismicNextImage } from '@prismicio/next';
@@ -33,14 +33,19 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
       <div
         className={styles.videoFrame}
         onClick={() => !playing && vimeoId && setPlaying(true)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if ((e.key === 'Enter' || e.key === ' ') && vimeoId && !playing) {
-            e.preventDefault();
-            setPlaying(true);
-          }
-        }}
+        {...(!playing && {
+          role: 'button',
+          tabIndex: 0,
+          'aria-label': video.title
+            ? `Video abspielen: ${video.title}`
+            : 'Video abspielen',
+          onKeyDown: (e: KeyboardEvent<HTMLDivElement>) => {
+            if ((e.key === 'Enter' || e.key === ' ') && vimeoId) {
+              e.preventDefault();
+              setPlaying(true);
+            }
+          },
+        })}
       >
         {playing && vimeoId ? (
           <iframe
@@ -75,8 +80,22 @@ const VideoTile: FC<{ video: VideoItem }> = ({ video }) => {
       </div>
       <div>
         <span className={styles.videoTitle}>
-          <PrismicRichText field={video.performer} />
-          <PrismicRichText field={video.age_and_instrument} />
+          <PrismicRichText
+            field={video.performer}
+            components={{
+              heading3: ({ children }) => (
+                <span className={styles.performer}>{children}</span>
+              ),
+            }}
+          />
+          <PrismicRichText
+            field={video.age_and_instrument}
+            components={{
+              heading4: ({ children }) => (
+                <span className={styles.ageAndInstrument}>{children}</span>
+              ),
+            }}
+          />
         </span>
         <span className={styles.songtitle}>{video.song_title}</span>
       </div>

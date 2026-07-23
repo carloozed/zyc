@@ -2,7 +2,7 @@
 
 import { PrismicRichText } from '@prismicio/react';
 import React, { useState, useEffect } from 'react';
-import { DateField } from '@prismicio/client';
+import { asText, DateField } from '@prismicio/client';
 import { TimelinePhasesSlice } from '@/prismicio-types';
 
 import { useMobile } from '@/contexts/MobileContext';
@@ -60,7 +60,7 @@ export default function TimelineContent({ styles, slice }: Props) {
       style={{
         width:
           slice.variation === 'default'
-            ? `${!isMobile ? '100%' : '100%'}`
+            ? '100%'
             : slice.variation === 'midPhase'
               ? `${!isMobile ? '17.5%' : '24%'}`
               : `${!isMobile ? '10%' : '18%'}`,
@@ -77,8 +77,14 @@ export default function TimelineContent({ styles, slice }: Props) {
           <div
             className={styles.progresscontainer__progressbar}
             style={{ width: `${progressPercentage}%` }}
+            role="progressbar"
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(progressPercentage)}
+            aria-label={`Fortschritt: ${asText(slice.primary.phase_title)}`}
           >
             <svg
+              aria-hidden="true"
               width="100%"
               height="6"
               viewBox="0 0 314 6"

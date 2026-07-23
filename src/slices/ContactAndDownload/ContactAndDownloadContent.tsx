@@ -114,7 +114,9 @@ export default function ContactAndDownloadContent({
                 <PrismicNextLink field={item.link} target="_blank" />
               )}
 
-              <p style={{ transform: 'rotate(-135deg)' }}>&darr;</p>
+              <p aria-hidden="true" className={styles.rotatedarrow}>
+                &darr;
+              </p>
             </div>
           ))}
         </div>
@@ -133,7 +135,7 @@ export default function ContactAndDownloadContent({
             {slice.primary.download_links.map((item, index: number) => (
               <div key={index} className={`cd-fade ${styles.downloadlink}`}>
                 <PrismicNextLink field={item.link} target="_blank" />
-                <p>&darr;</p>
+                <p aria-hidden="true">&darr;</p>
               </div>
             ))}
           </div>

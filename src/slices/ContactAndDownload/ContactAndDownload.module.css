@@ -43,6 +43,10 @@
     font-size: var(--text);
 }
 
+.rotatedarrow {
+    transform: rotate(-135deg);
+}
+
 
 .signuplink a {
     border: var(--border-thin);

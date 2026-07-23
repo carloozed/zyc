@@ -96,6 +96,25 @@
     gap: 0.5rem;
 }
 
+/* Replicates the global h3 styling (title-font/weight, heading size) */
+.performer {
+    font-family: var(--title-font);
+    font-weight: 150;
+    font-size: 1.17em;
+    line-height: 1;
+    hyphens: auto;
+    color: var(--black);
+}
+
+/* Replicates the global h4 styling (subtitle-font, bold) */
+.ageAndInstrument {
+    font-family: var(--subtitle-font);
+    font-weight: bold;
+    line-height: 1;
+    hyphens: auto;
+    color: var(--black);
+}
+
 .songtitle {
     font-family: var(--text-font);
     font-size: var(--text-s);

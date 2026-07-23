@@ -44,10 +44,19 @@
     align-items: center;
     cursor: pointer;
     width: fit-content;
+    /* button reset — the header is a <button> for keyboard operability */
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
 }
 
 .foldout__item h4,
-.foldout__item_title h3 {
+.foldout__item_title h3,
+.index span,
+.foldout__subitem_titlediv > span {
     font-weight: var(--fontweight-xs);
     font-family: var(--subtitle-font);
 
@@ -55,7 +64,8 @@
 
 
 .foldout__item_uppercontainer h3,
-.foldout__item_uppercontainer h4 {
+.foldout__item_uppercontainer h4,
+.index span {
     padding: var(--padding-s);
     font-size: var(--subtitle-s);
 }
@@ -91,7 +101,8 @@
 
 }
 
-.index h4 {
+.index h4,
+.index span {
     text-align: center;
 }
 
@@ -103,7 +114,8 @@
 
 }
 
-.foldout__subitem_titlediv h4 {
+.foldout__subitem_titlediv h4,
+.foldout__subitem_titlediv > span {
     line-height: 120%;
 }
 
@@ -229,7 +241,8 @@
     }
 
 
-    .index h4 {
+    .index h4,
+    .index span {
         height: fit-content;
         width: fit-content;
     }
@@ -323,7 +336,8 @@
     }
 
 
-    .index h4 {
+    .index h4,
+    .index span {
         height: fit-content;
         width: fit-content;
     }

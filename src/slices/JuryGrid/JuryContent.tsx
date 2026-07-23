@@ -1,4 +1,5 @@
 import React from 'react';
+import { asText } from '@prismicio/client';
 import { JuryGridSlice } from '@/prismicio-types';
 
 import styles from './JuryContent.module.css';
@@ -35,7 +36,10 @@ export default function JuryContent({ slice }: Props) {
                 </div>
                 <div className={styles.jury__lowercontainer}>
                   <PrismicRichText field={item.name} />
-                  <PrismicNextLink field={item.jurymember_link}>
+                  <PrismicNextLink
+                    field={item.jurymember_link}
+                    aria-label={`${slice.primary.link_text} – ${asText(item.name)}`}
+                  >
                     {slice.primary.link_text}
                   </PrismicNextLink>
                 </div>

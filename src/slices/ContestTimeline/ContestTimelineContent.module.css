@@ -27,7 +27,7 @@
 
 }
 
-.ctl__timeline h4 {
+.phaselabel {
     font-weight: var(--fontweight-xs);
     font-size: var(--text-large);
     text-align: center;
@@ -40,6 +40,11 @@
     border: var(--border-thin);
     position: relative;
     overflow: hidden;
+    /* button reset — the circle is a <button> for keyboard operability */
+    padding: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
 }
 
 .ctl__timeline__item:hover {
@@ -163,7 +168,7 @@
         row-gap: var(--padding-s);
     }
 
-    .ctl__timeline h4 {
+    .phaselabel {
         font-size: var(--text-s);
     }
 
@@ -257,7 +262,7 @@
         row-gap: var(--padding-s);
     }
 
-    .ctl__timeline h4 {
+    .phaselabel {
         font-size: var(--text-s);
     }
 

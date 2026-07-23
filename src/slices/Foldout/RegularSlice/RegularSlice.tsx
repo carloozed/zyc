@@ -62,12 +62,15 @@ export default function RegularSlice({ regularProps }: Props) {
 
               return (
                 <div key={element.id} className={generalStyles.foldout__item}>
-                  <div
+                  <button
+                    type="button"
                     className={generalStyles.foldout__item_uppercontainer}
                     onClick={() => toggleElement(elementIndex)}
+                    aria-expanded={isOpen}
+                    aria-controls={`foldout-content-${element.id}`}
                   >
                     <div className={generalStyles.index}>
-                      <h4>{elementIndex + 1}</h4>
+                      <span>{elementIndex + 1}</span>
                     </div>
 
                     <div className={generalStyles.foldout__item_title}>
@@ -90,9 +93,10 @@ export default function RegularSlice({ regularProps }: Props) {
                         className={`${generalStyles.foldout__toggle_icondiv} ${isOpen ? generalStyles.open : ''}`}
                       ></div>
                     </div>
-                  </div>
+                  </button>
 
                   <div
+                    id={`foldout-content-${element.id}`}
                     className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
                   >
                     {element.data.content &&
@@ -113,7 +117,7 @@ export default function RegularSlice({ regularProps }: Props) {
                                     generalStyles.foldout__subitem_titlediv
                                   }
                                 >
-                                  <h4>&#8594;</h4>
+                                  <span aria-hidden="true">&#8594;</span>
                                   <PrismicRichText
                                     field={item.subtopic_title}
                                   />

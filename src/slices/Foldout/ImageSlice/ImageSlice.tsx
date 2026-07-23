@@ -20,7 +20,6 @@ export default function ImageSlice({ imageSliceProps }: Props) {
   const [openElementIndex, setOpenElementIndex] = useState<number | null>(null);
 
   // Create refs for each element using arrays
-  const upperContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mainContainerRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -70,12 +69,12 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                 mainContainerRefs.current[elementIndex] = el;
               }}
             >
-              <div
+              <button
+                type="button"
                 className={generalStyles.foldout__item_uppercontainer}
                 onClick={() => toggleElement(elementIndex)}
-                ref={(el) => {
-                  upperContainerRefs.current[elementIndex] = el;
-                }}
+                aria-expanded={isOpen}
+                aria-controls={`foldout-content-${element.id}`}
               >
                 <div
                   className={generalStyles.index}
@@ -93,7 +92,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                             : 'white',
                   }}
                 >
-                  <h4>{elementIndex + 1}</h4>
+                  <span>{elementIndex + 1}</span>
                 </div>
 
                 <div
@@ -127,9 +126,10 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                     className={`${generalStyles.foldout__toggle_icondiv} ${isOpen ? generalStyles.open : ''}`}
                   ></div>
                 </div>
-              </div>
+              </button>
 
               <div
+                id={`foldout-content-${element.id}`}
                 className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
                 ref={(el) => {
                   contentRefs.current[elementIndex] = el;
@@ -151,7 +151,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                                 generalStyles.foldout__subitem_titlediv
                               }
                             >
-                              <h4>&#8594;</h4>
+                              <span aria-hidden="true">&#8594;</span>
                               <PrismicRichText field={item.subtopic_title} />
                             </div>
                           )}

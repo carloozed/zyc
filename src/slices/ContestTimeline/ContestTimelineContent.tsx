@@ -6,6 +6,7 @@ import {
   ContestTimelineSlice,
   WeAreHereImageDocument,
 } from '@/prismicio-types';
+import { asText } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import { JSXMapSerializer } from '@prismicio/react';
 import ProgressCircle from './ProgressCircle';
@@ -18,14 +19,15 @@ type Props = {
   wearehereicon: WeAreHereImageDocument;
 };
 
-// Components for h4
-const h4Components: JSXMapSerializer = {
-  heading1: ({ children }) => <h4>{children}</h4>,
-  heading2: ({ children }) => <h4>{children}</h4>,
-  heading3: ({ children }) => <h4>{children}</h4>,
-  heading4: ({ children }) => <h4>{children}</h4>,
-  heading5: ({ children }) => <h4>{children}</h4>,
-  heading6: ({ children }) => <h4>{children}</h4>,
+// The circle labels are repeated as h3 in the descriptions below, so they
+// render as styled paragraphs to keep the heading outline in order.
+const labelComponents: JSXMapSerializer = {
+  heading1: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
+  heading2: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
+  heading3: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
+  heading4: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
+  heading5: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
+  heading6: ({ children }) => <p className={styles.phaselabel}>{children}</p>,
 };
 
 // Components for h3
@@ -89,16 +91,20 @@ export default function ContestTimelineContent({
                 </div>
               )}
 
-            <div
+            <button
+              type="button"
               onMouseEnter={() => setActiveIndex(index)}
+              onClick={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              aria-label={asText(item.phase_name)}
               className={styles.ctl__timeline__item__circle}
             >
               <ProgressCircle item={item} styles={styles} delay={index * 0.2} />
-            </div>
+            </button>
             <div className={styles.ctl__timeline__item__title}>
               <PrismicRichText
                 field={item.phase_name}
-                components={h4Components}
+                components={labelComponents}
               />
             </div>
           </div>

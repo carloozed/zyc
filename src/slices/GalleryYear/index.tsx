@@ -132,6 +132,11 @@ const GalleryYear: FC<GalleryYearProps> = ({ slice, context }) => {
                   onClick={() => onImageClick(sliceOffset + chronologicalIndex)}
                   key={`${image.image.url}-${chronologicalIndex}`}
                   className={styles.galleryImage}
+                  aria-label={
+                    image.image.alt
+                      ? `${image.image.alt} in Vollansicht öffnen`
+                      : `Bild ${sliceOffset + chronologicalIndex + 1} in Vollansicht öffnen`
+                  }
                 >
                   <PrismicNextImage
                     field={image.image}
