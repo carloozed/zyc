@@ -1,0 +1,86 @@
+{
+  "id": "artists_programme",
+  "type": "SharedSlice",
+  "name": "ArtistsProgramme",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/artists_programme/default/2c518a58bc61b8964deb8e669c90247e9dbf5541.png?auto=compress%2Cformat",
+      "docURL": "...",
+      "version": "initial",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "multi": "heading2",
+            "allowTargetBlank": true
+          }
+        },
+        "categories": {
+          "type": "Group",
+          "config": {
+            "label": "Categories",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "multi": "heading3",
+                  "allowTargetBlank": true
+                }
+              },
+              "id": {
+                "type": "Text",
+                "config": {
+                  "label": "ID",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "descriptions": {
+          "type": "Group",
+          "config": {
+            "label": "Descriptions",
+            "repeat": true,
+            "fields": {
+              "title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "",
+                  "multi": "heading3",
+                  "allowTargetBlank": true
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "multi": "paragraph,strong,em,heading5,heading6,hyperlink,list-item",
+                  "allowTargetBlank": true
+                }
+              },
+              "id": {
+                "type": "Text",
+                "config": {
+                  "label": "ID",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "ArtistsProgramme"
+}

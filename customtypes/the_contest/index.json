@@ -26,6 +26,9 @@
             },
             "split_visual_headline": {
               "type": "SharedSlice"
+            },
+            "artists_programme": {
+              "type": "SharedSlice"
             }
           }
         }

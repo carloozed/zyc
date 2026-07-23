@@ -2317,7 +2317,7 @@ interface TheCadenzaDocumentData {
  */
 export type TheCadenzaDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TheCadenzaDocumentData>, "the_cadenza", Lang>;
 
-type TheContestDocumentDataSlicesSlice = JuryGridSlice | ContactAndDownloadSlice | CriteriasSlice | ContestTimelineSlice | FoldoutSlice | SplitVisualHeadlineSlice
+type TheContestDocumentDataSlicesSlice = JuryGridSlice | ContactAndDownloadSlice | CriteriasSlice | ContestTimelineSlice | FoldoutSlice | SplitVisualHeadlineSlice | ArtistsProgrammeSlice
 
 /**
  * Content for The Contest documents
@@ -2576,6 +2576,124 @@ interface WeAreHereImageDocumentData {
 export type WeAreHereImageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<WeAreHereImageDocumentData>, "we_are_here_image", Lang>;
 
 export type AllDocumentTypes = AddressDocument | AlertoverlayDocument | AnmeldelinkDocument | ContactFormDocument | CriteriatypesubfieldDocument | DatenschutzDocument | DecorationImageDocument | DownloadBarDocument | DynamiclandingcontentDocument | FaqDocument | FoldoutelementDocument | FooterDocument | GalleryDocument | HomepageNavigationDocument | ImpresssumDocument | InstagramIconDocument | IsdownloadsmutedDocument | KontaktDocument | LandingBackgroundImageDocument | LogoDocument | LowNavigationDocument | MagazinDocument | MagazinpostDocument | NavbarDocument | NavigationIndicatorDocument | NewsletterFormDocument | PageDocument | SubnavigationDocument | TeilnahmeTermineDocument | TermineIsVisibleDocument | TheCadenzaDocument | TheContestDocument | TheCrescendoDocument | TimelineDocument | UberZycDocument | WeAreHereImageDocument;
+
+/**
+ * Item in *ArtistsProgramme → Default → Primary → Categories*
+ */
+export interface ArtistsProgrammeSliceDefaultPrimaryCategoriesItem {
+	/**
+	 * Title field in *ArtistsProgramme → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.categories[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * ID field in *ArtistsProgramme → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.categories[].id
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	id: prismic.KeyTextField;
+}
+
+/**
+ * Item in *ArtistsProgramme → Default → Primary → Descriptions*
+ */
+export interface ArtistsProgrammeSliceDefaultPrimaryDescriptionsItem {
+	/**
+	 * Title field in *ArtistsProgramme → Default → Primary → Descriptions*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.descriptions[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * Description field in *ArtistsProgramme → Default → Primary → Descriptions*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.descriptions[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+	
+	/**
+	 * ID field in *ArtistsProgramme → Default → Primary → Descriptions*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.descriptions[].id
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	id: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ArtistsProgramme → Default → Primary*
+ */
+export interface ArtistsProgrammeSliceDefaultPrimary {
+	/**
+	 * Title field in *ArtistsProgramme → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+	
+	/**
+	 * Categories field in *ArtistsProgramme → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.categories[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	categories: prismic.GroupField<Simplify<ArtistsProgrammeSliceDefaultPrimaryCategoriesItem>>;
+	
+	/**
+	 * Descriptions field in *ArtistsProgramme → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: artists_programme.default.primary.descriptions[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	descriptions: prismic.GroupField<Simplify<ArtistsProgrammeSliceDefaultPrimaryDescriptionsItem>>;
+}
+
+/**
+ * Default variation for ArtistsProgramme Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ArtistsProgrammeSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ArtistsProgrammeSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *ArtistsProgramme*
+ */
+type ArtistsProgrammeSliceVariation = ArtistsProgrammeSliceDefault
+
+/**
+ * ArtistsProgramme Shared Slice
+ *
+ * - **API ID**: `artists_programme`
+ * - **Description**: ArtistsProgramme
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ArtistsProgrammeSlice = prismic.SharedSlice<"artists_programme", ArtistsProgrammeSliceVariation>;
 
 /**
  * Item in *ContactAndDownload → Default → Primary → Links*
@@ -3991,6 +4109,12 @@ declare module "@prismicio/client" {
 			WeAreHereImageDocument,
 			WeAreHereImageDocumentData,
 			AllDocumentTypes,
+			ArtistsProgrammeSlice,
+			ArtistsProgrammeSliceDefaultPrimaryCategoriesItem,
+			ArtistsProgrammeSliceDefaultPrimaryDescriptionsItem,
+			ArtistsProgrammeSliceDefaultPrimary,
+			ArtistsProgrammeSliceVariation,
+			ArtistsProgrammeSliceDefault,
 			ContactAndDownloadSlice,
 			ContactAndDownloadSliceDefaultPrimaryLinksItem,
 			ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,
