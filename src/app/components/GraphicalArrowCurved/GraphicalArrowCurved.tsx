@@ -20,11 +20,13 @@ export default function GraphicalArrowCurved() {
           stroke="black"
           strokeWidth={1.1}
         />
-        <path
-          className="head"
-          d="M295.261 11.0027L286.535 12.3277L287.346 6.3897L295.261 11.0027Z"
-          fill="black"
-        />
+        <g className="headScale">
+          <path
+            className="head"
+            d="M295.261 11.0027L286.535 12.3277L287.346 6.3897L295.261 11.0027Z"
+            fill="black"
+          />
+        </g>
       </svg>
     </div>
   );

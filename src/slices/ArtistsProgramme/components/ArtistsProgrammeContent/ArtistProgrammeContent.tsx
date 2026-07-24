@@ -100,7 +100,7 @@ export default function ArtistProgrammeContent({
             as={'li'}
             onSelect={() => setActiveElement(categories[0]?.id ?? null)}
           />
-          <div ref={straightArrowRef} style={{ display: 'contents' }}>
+          <div ref={straightArrowRef} className={styles.straightArrow}>
             <GraphicalArrow />
           </div>
           <CategoryWrapper

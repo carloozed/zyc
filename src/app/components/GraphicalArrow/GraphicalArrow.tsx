@@ -14,11 +14,13 @@ export default function GraphicalArrow() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <path className="draw" d="M0 4.05H212.23" stroke="black" strokeWidth={1.4} />
-        <path
-          className="head"
-          d="M218.559 4.05029L211.519 -0.000143979L211.536 8.11883L218.559 4.05029Z"
-          fill="black"
-        />
+        <g className="headScale">
+          <path
+            className="head"
+            d="M218.559 4.05029L211.519 -0.000143979L211.536 8.11883L218.559 4.05029Z"
+            fill="black"
+          />
+        </g>
       </svg>
     </div>
   );
