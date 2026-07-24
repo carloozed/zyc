@@ -132,6 +132,7 @@ button,
 nav {
     color: var(--black);
     line-height: 1;
+    -webkit-hyphens: auto;
     hyphens: auto;
 }
 
@@ -161,6 +162,7 @@ p,
 li,
 ul {
     font-family: var(--text-font);
+    -webkit-hyphens: auto;
     hyphens: auto;
 }
 
@@ -370,6 +372,7 @@ ol {
 /* Prefers Reduced Motion */
 /* User has requested minimal animations */
 @media (prefers-reduced-motion: reduce) {}
+
 /* Shared page constraint: every page except the landing wraps its content
    in this class so sections stay centered on large screens. */
 .page-container {

@@ -16,13 +16,17 @@ export default async function LangLayout({
   const { lang } = await params;
 
   return (
-    <>
+    /* The root layout can't know the locale, so the html tag says lang="en".
+       This wrapper re-declares the real locale for everything below it —
+       without it the browser hyphenates German text with the English
+       dictionary, i.e. not at all. display: contents keeps it out of layout. */
+    <div lang={lang} style={{ display: 'contents' }}>
       <AlertOverlay lang={lang} />
       <Navigation lang={lang} />
       {children}
       <Footer lang={lang} />
       <NewsletterForm lang={lang} />
       <ContactForm lang={lang} />
-    </>
+    </div>
   );
 }
