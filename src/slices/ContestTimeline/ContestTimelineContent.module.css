@@ -150,57 +150,130 @@
 
 }
 
+/* Vertical accordion timeline — only rendered visually on mobile */
+.ctl__vertical {
+    display: none;
+}
+
 
 
 /* Small Mobile */
 /* Up to 480px */
 @media (max-width: 48rem) {
 
-
-    .ctl__timeline {
-        width: 100%;
-        padding: 0 var(--padding-s);
-        padding-top: var(--padding-l);
-        margin: auto;
-    }
-
-    .ctl__timeline__item {
-        row-gap: var(--padding-s);
-    }
-
-    .phaselabel {
-        font-size: var(--text-s);
-    }
-
-    .ctl__timeline__item__indicator {
-        top: -60%;
-        left: -10%;
-    }
-
-    .ctl__timeline__item__indicator img {
-        height: calc(2rem + 3vh);
-    }
-
+    /* The horizontal circles + sliding descriptions are replaced by the
+       vertical accordion below this breakpoint. */
+    .ctl__timeline,
     .ctl__timeline__wrapper {
+        display: none;
+    }
 
+    .ctl__vertical {
+        --dot: 1.75rem;
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        height: fit-content;
-
+        margin: 0;
+        padding: var(--padding-m) var(--padding-l) 0;
+        list-style: none;
     }
 
-    .ctl__timeline__item__descriptioncontainer {
-        padding: 0;
+    .ctl__vertical__item {
+        position: relative;
     }
 
-    .ctl__timeline__item__description {
-        padding: var(--padding-m);
+    /* Connecting line between the dots */
+    .ctl__vertical__item::before {
+        content: '';
+        position: absolute;
+        left: calc(var(--dot) / 2);
+        top: 0;
+        bottom: 0;
+        width: 0.5px;
+        background: var(--black);
     }
 
-    .ctl__timeline__item__description h3 {
-        text-align: center;
+    .ctl__vertical__item:first-child::before {
+        top: calc(var(--padding-s) + var(--dot) / 2);
     }
 
-    .ctl__timeline__item__description li {
+    .ctl__vertical__item:last-child::before {
+        bottom: calc(100% - var(--padding-s) - var(--dot) / 2);
+    }
+
+    .ctl__vertical__step {
+        display: flex;
+        align-items: center;
+        gap: var(--padding-m);
+        width: 100%;
+        padding: var(--padding-s) 0;
+        background: none;
+        border: none;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .ctl__vertical__dot {
+        flex: 0 0 var(--dot);
+        height: var(--dot);
+        border-radius: 50%;
+        border: var(--border-thin);
+        background: var(--white);
+        position: relative;
+        z-index: 1;
+        transition: background-color var(--animationtime-xfast) var(--bezier);
+    }
+
+    .ctl__vertical__step[aria-expanded="true"] .ctl__vertical__dot {
+        background: var(--contestblue);
+    }
+
+    .ctl__vertical__label .phaselabel {
+        font-size: var(--subtitle-s);
+        text-align: left;
+    }
+
+    .ctl__vertical__indicator {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .ctl__vertical__indicator img {
+        display: block;
+        height: 2.5rem;
+        width: auto;
+    }
+
+    /* 0fr -> 1fr grid trick animates the foldout without fixed heights */
+    .ctl__vertical__description {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--animationtime-middle) var(--bezier);
+        margin-left: calc(var(--dot) + var(--padding-m));
+    }
+
+    .ctl__vertical__description[data-open="true"] {
+        grid-template-rows: 1fr;
+    }
+
+    .ctl__vertical__description>div {
+        overflow: hidden;
+        min-height: 0;
+    }
+
+    .ctl__vertical__description>div>*:last-child {
+        margin-bottom: var(--padding-m);
+    }
+
+    .ctl__vertical__description h4 {
+        font-family: var(--title-font);
+        font-size: var(--text-sm);
+        margin-bottom: var(--padding-2xs);
+    }
+
+    .ctl__vertical__description p,
+    .ctl__vertical__description li {
         font-size: var(--text);
     }
 }

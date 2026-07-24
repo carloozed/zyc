@@ -135,6 +135,54 @@ export default function ContestTimelineContent({
           ))}
         </div>
       </div>
+
+      {/* Mobile-only vertical accordion; the circle row above is hidden
+          below 48rem and this list is hidden above it. */}
+      <ol className={styles.ctl__vertical}>
+        {slice.primary.timeline_contest_group.map((item, index) => {
+          const isCurrent =
+            !!item.start_date &&
+            !!item.end_date &&
+            new Date(item.start_date) <= currentDate &&
+            new Date(item.end_date) >= currentDate;
+          const isOpen = activeIndex === index;
+          return (
+            <li key={index} className={styles.ctl__vertical__item}>
+              <button
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-expanded={isOpen}
+                className={styles.ctl__vertical__step}
+              >
+                <span
+                  className={styles.ctl__vertical__dot}
+                  aria-hidden="true"
+                />
+                <span className={styles.ctl__vertical__label}>
+                  <PrismicRichText
+                    field={item.phase_name}
+                    components={labelComponents}
+                  />
+                </span>
+                {isCurrent && (
+                  <span className={styles.ctl__vertical__indicator}>
+                    <PrismicNextImage field={wearehereicon.data.image} />
+                  </span>
+                )}
+              </button>
+              <div
+                className={styles.ctl__vertical__description}
+                data-open={isOpen}
+              >
+                <div>
+                  <PrismicRichText field={item.phase_date_text} />
+                  <PrismicRichText field={item.phase_description} />
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ol>
     </section>
   );
 }
