@@ -23,17 +23,24 @@
     flex-direction: column;
 }
 
+/* 0fr -> 1fr animates the real content height, so opening one item and
+   closing another run concurrently (max-height made closing lag, since
+   most of the 2000px -> 0 transition happened above the true height). */
 .foldout__item_content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 1.2s var(--bezier);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--animationtime-middle) var(--bezier);
     padding: 0 var(--padding-3xl);
     width: fit-content;
 }
 
 .foldout__item_content.open {
-    max-height: 2000px;
-    /* Safe high value, or dynamically measured if needed */
+    grid-template-rows: 1fr;
+}
+
+.foldout__item_content_inner {
+    overflow: hidden;
+    min-height: 0;
 }
 
 

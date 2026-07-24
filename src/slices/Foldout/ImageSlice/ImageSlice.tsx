@@ -122,6 +122,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                 id={`foldout-content-${element.id}`}
                 className={`${generalStyles.foldout__item_content} ${isOpen ? generalStyles.open : generalStyles.closed}`}
               >
+                <div className={generalStyles.foldout__item_content_inner}>
                 {element.data.content &&
                   element.data.content.map((item, contentIndex) => {
                     if (!item || item.is_hidden) return null;
@@ -167,6 +168,7 @@ export default function ImageSlice({ imageSliceProps }: Props) {
                       </div>
                     );
                   })}
+                </div>
               </div>
             </div>
           );
