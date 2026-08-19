@@ -1,88 +1,123 @@
 {
   "id": "jury_grid",
-  "type": "SharedSlice",
   "name": "JuryGrid",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "base_grid",
-      "name": "Base Grid",
       "description": "A grid layout with a headline, introduction, and repeated jury/person entries featuring image, name, description, and optional links.",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/jury_grid/base_grid/16c12e2db1d41bc7108befb78ea1234fbcf6689e.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "base_grid",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/jury_grid/base_grid/16c12e2db1d41bc7108befb78ea1234fbcf6689e.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Base Grid",
       "primary": {
         "headline": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Headline",
             "placeholder": "",
-            "single": "heading2",
-            "allowTargetBlank": true
-          }
+            "single": "heading2"
+          },
+          "type": "StructuredText"
         },
         "introduction": {
-          "type": "StructuredText",
           "config": {
             "label": "Introduction",
             "multi": "paragraph,strong,em"
-          }
+          },
+          "type": "StructuredText"
         },
         "jurymember_linkicon": {
-          "type": "Image",
           "config": {
-            "label": "Jurymember Linkicon",
             "constraint": {},
+            "label": "Jurymember Linkicon",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "members": {
-          "type": "Group",
           "config": {
-            "label": "Members",
             "fields": {
               "photo": {
-                "type": "Image",
                 "config": {
                   "label": "Photo"
-                }
+                },
+                "type": "Image"
               },
               "name": {
-                "type": "StructuredText",
                 "config": {
                   "label": "Name",
                   "single": "heading3"
-                }
+                },
+                "type": "StructuredText"
               },
               "bio": {
-                "type": "StructuredText",
                 "config": {
                   "label": "Bio",
                   "multi": "paragraph,strong,em,hyperlink"
-                }
+                },
+                "type": "StructuredText"
               },
               "jurymember_link": {
-                "type": "Link",
                 "config": {
-                  "label": "Jurymember Link",
-                  "placeholder": "",
-                  "select": null,
                   "allowTargetBlank": true,
                   "allowText": true,
-                  "repeat": false
-                }
+                  "label": "Jurymember Link",
+                  "placeholder": "",
+                  "repeat": false,
+                  "select": null
+                },
+                "type": "Link"
               }
-            }
-          }
+            },
+            "label": "Members"
+          },
+          "type": "Group"
         },
         "link_text": {
-          "type": "Text",
           "config": {
             "label": "Link Text",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
+        },
+        "past_title": {
+          "config": {
+            "label": "Past Juries Title",
+            "placeholder": "Ehemalige Jurymitglieder"
+          },
+          "type": "Text"
+        },
+        "past_members": {
+          "config": {
+            "fields": {
+              "year": {
+                "config": {
+                  "label": "Year",
+                  "placeholder": "2025"
+                },
+                "type": "Number"
+              },
+              "name": {
+                "config": {
+                  "label": "Name"
+                },
+                "type": "Text"
+              },
+              "website": {
+                "config": {
+                  "allowTargetBlank": true,
+                  "label": "Website"
+                },
+                "type": "Link"
+              }
+            },
+            "label": "Past Members"
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

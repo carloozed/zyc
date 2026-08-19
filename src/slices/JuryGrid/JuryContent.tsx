@@ -1,8 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { asText } from '@prismicio/client';
-import { JuryGridSlice } from '@/prismicio-types';
+import React, { useMemo, useRef, useState } from 'react';
+import { asText, isFilled } from '@prismicio/client';
+import {
+  JuryGridSlice,
+  JuryGridSliceBaseGridPrimaryPastMembersItem,
+} from '@/prismicio-types';
 
 import styles from './JuryContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
@@ -20,6 +23,26 @@ type Props = { slice: JuryGridSlice };
 
 export default function JuryContent({ slice }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
+  const [pastOpen, setPastOpen] = useState(false);
+
+  // Rows are entered flat in Prismic; the year number on each row decides
+  // which season it belongs to. Members serving several seasons get one row
+  // per year. Missing years sink to the bottom instead of disappearing.
+  const pastByYear = useMemo(() => {
+    const rows = (slice.primary.past_members ?? []).filter(
+      (row: JuryGridSliceBaseGridPrimaryPastMembersItem) =>
+        isFilled.keyText(row.name),
+    );
+    const byYear = new Map<
+      number,
+      JuryGridSliceBaseGridPrimaryPastMembersItem[]
+    >();
+    rows.forEach((row) => {
+      const year = row.year ?? 0;
+      byYear.set(year, [...(byYear.get(year) ?? []), row]);
+    });
+    return [...byYear.entries()].sort(([a], [b]) => b - a);
+  }, [slice.primary.past_members]);
 
   useGSAP(
     () => {
@@ -78,6 +101,54 @@ export default function JuryContent({ slice }: Props) {
           </div>
         ))}
       </div>
+      {pastByYear.length > 0 && (
+        <div className={`jury-fade ${styles.jury__past}`}>
+          <button
+            type="button"
+            className={styles.jury__past_toggle}
+            onClick={() => setPastOpen(!pastOpen)}
+            aria-expanded={pastOpen}
+            aria-controls="jury-past-content"
+          >
+            <div className={styles.jury__past_title}>
+              <h3>{slice.primary.past_title}</h3>
+            </div>
+            <div className={styles.jury__past_icon}>
+              <div className={styles.jury__past_icondiv}></div>
+              <div
+                className={`${styles.jury__past_icondiv} ${pastOpen ? styles.open : ''}`}
+              ></div>
+            </div>
+          </button>
+          <div
+            id="jury-past-content"
+            className={`${styles.jury__past_content} ${pastOpen ? styles.open : ''}`}
+          >
+            <div className={styles.jury__past_inner}>
+              {pastByYear.map(([year, members]) => (
+                <div key={year} className={styles.jury__past_year}>
+                  {year > 0 && <h4>{year}</h4>}
+                  <ul>
+                    {members.map((member, memberIndex) => (
+                      <li key={memberIndex} className={styles.jury__past_row}>
+                        <span>{member.name}</span>
+                        {isFilled.link(member.website) && (
+                          <PrismicNextLink
+                            field={member.website}
+                            aria-label={`${slice.primary.link_text} – ${member.name}`}
+                          >
+                            {slice.primary.link_text}
+                          </PrismicNextLink>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

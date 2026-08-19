@@ -3326,6 +3326,41 @@ export interface JuryGridSliceBaseGridPrimaryMembersItem {
 }
 
 /**
+ * Item in *JuryGrid → Base Grid → Primary → Past Members*
+ */
+export interface JuryGridSliceBaseGridPrimaryPastMembersItem {
+	/**
+	 * Year field in *JuryGrid → Base Grid → Primary → Past Members*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: 2025
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[].year
+	 * - **Documentation**: https://prismic.io/docs/fields/number
+	 */
+	year: prismic.NumberField;
+	
+	/**
+	 * Name field in *JuryGrid → Base Grid → Primary → Past Members*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[].name
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+	
+	/**
+	 * Website field in *JuryGrid → Base Grid → Primary → Past Members*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[].website
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	website: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Primary content in *JuryGrid → Base Grid → Primary*
  */
 export interface JuryGridSliceBaseGridPrimary {
@@ -3378,6 +3413,26 @@ export interface JuryGridSliceBaseGridPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	link_text: prismic.KeyTextField;
+	
+	/**
+	 * Past Juries Title field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Ehemalige Jurymitglieder
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	past_title: prismic.KeyTextField;
+	
+	/**
+	 * Past Members field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	past_members: prismic.GroupField<Simplify<JuryGridSliceBaseGridPrimaryPastMembersItem>>;
 }
 
 /**
@@ -4146,6 +4201,7 @@ declare module "@prismicio/client" {
 			GalleryYearSliceDefault,
 			JuryGridSlice,
 			JuryGridSliceBaseGridPrimaryMembersItem,
+			JuryGridSliceBaseGridPrimaryPastMembersItem,
 			JuryGridSliceBaseGridPrimary,
 			JuryGridSliceVariation,
 			JuryGridSliceBaseGrid,
