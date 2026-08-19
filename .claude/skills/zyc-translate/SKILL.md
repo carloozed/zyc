@@ -113,6 +113,9 @@ Translation conventions:
   Zurich · Teilnahmeberechtigung → eligibility.
 - Gender-inclusive German forms (`:innen`) map to neutral English
   plurals.
+- Numeric dates stay dd/mm/yyyy in BOTH locales (Carlo, 2026-08-19: the
+  audience is from Zurich and used to it). Only month NAMES are
+  localized — never reorder numeric date components.
 
 Validate every returned payload: same keys, markers parse back, no
 leftover German. Reject and re-run a batch that fails.
