@@ -101,7 +101,7 @@ export default function JuryContent({ slice }: Props) {
           </div>
         ))}
       </div>
-      {pastByYear.length > 0 && (
+      {isFilled.keyText(slice.primary.past_title) && pastByYear.length > 0 && (
         <div className={`jury-fade ${styles.jury__past}`}>
           <button
             type="button"

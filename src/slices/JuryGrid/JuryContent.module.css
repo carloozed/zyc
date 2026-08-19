@@ -85,7 +85,6 @@
     width: 100%;
     max-width: 100rem;
     margin: 0 auto;
-    background-color: var(--lightgrey);
     border-top: var(--border-thin);
     border-bottom: var(--border-thin);
     padding: var(--padding-l) var(--padding-xl);
@@ -172,9 +171,9 @@
 }
 
 .jury__past_year h4 {
-    font-size: var(--text-large);
-    font-weight: var(--fontweight-xs);
-    font-family: var(--subtitle-font);
+    font-size: var(--subtitle-s);
+    font-weight: 150;
+    font-family: var(--title-font);
     padding-bottom: var(--padding-xs);
 }
 
@@ -202,7 +201,7 @@
 
 .jury__past_row span {
     font-family: var(--text-font);
-    font-size: var(--text-s);
+    font-size: var(--text-large);
 }
 
 .jury__past_row a {
@@ -296,7 +295,11 @@
         width: calc(0.3rem + 0.5vw);
     }
 
-    .jury__past_row span,
+    /* Mobile token scale inverts: --text-sm (14px fixed) > --text (~11px). */
+    .jury__past_row span {
+        font-size: var(--text-sm);
+    }
+
     .jury__past_row a {
         font-size: var(--text);
     }
