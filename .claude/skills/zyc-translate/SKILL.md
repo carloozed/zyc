@@ -140,6 +140,23 @@ After publishing, spot-check `/en-us/...` pages on the dev server
 (`/en-us` works in development). Report what was created vs updated and
 anything skipped.
 
+## Document naming convention (always check before writing)
+
+The `title` passed to `createDocument`/`updateDocument` is the document's
+display name in the Prismic editor list. Carlo filters the list by type, so
+repeating the type in the title is redundant — the title must say what the
+document contains. Verify every payload's title against this convention
+before each write (`updateDocument` renames existing documents, so writes
+both fix and can break names):
+
+- `foldoutelement`: `<Parent> - <element title>` — parent derived from
+  `belongs_to_foldout` (`contestfaq` → Contest FAQ · `cadenzafaq` → Cadenza
+  FAQ · `crescendofaq` → Crescendo FAQ · `juryfaq` → Jury FAQ ·
+  `aboutfoldout` → About ZYC; extend `FOLDOUT_PARENTS` in
+  `scripts/assemble.mjs` when a new foldout appears), element title from the
+  translated `foldout_element_topic` text (uid as fallback).
+- Other types: `<type>/<uid> (en)`, uid omitted for singletons.
+
 ## Pitfalls
 
 - Prismic returns `[]` (not `undefined`) for empty group fields on

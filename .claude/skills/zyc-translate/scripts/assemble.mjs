@@ -90,6 +90,25 @@ function remapLinks(node, docLabel) {
 // ---- German leftover heuristic (soft) -------------------------------------
 const DE_RE = /\b(der|die|das|und|für|mit|nicht|werden|sind|eine?|wir|sie|bei|auf|zum|zur|über)\b/i;
 
+// ---- document titles (naming convention, see SKILL.md) --------------------
+// Editor list names. Carlo filters by type, so the type name is redundant —
+// foldoutelement titles carry the parent foldout + element title instead.
+const FOLDOUT_PARENTS = {
+  contestfaq: 'Contest FAQ',
+  cadenzafaq: 'Cadenza FAQ',
+  crescendofaq: 'Crescendo FAQ',
+  juryfaq: 'Jury FAQ',
+  aboutfoldout: 'About ZYC',
+};
+function docTitle(deDoc, data) {
+  if (deDoc.type === 'foldoutelement') {
+    const parent = FOLDOUT_PARENTS[deDoc.data.belongs_to_foldout] ?? deDoc.data.belongs_to_foldout;
+    const topic = data.foldout_element_topic?.find((b) => b.text?.trim())?.text?.trim();
+    return `${parent} - ${topic ?? deDoc.uid}`;
+  }
+  return `${deDoc.type}${deDoc.uid ? '/' + deDoc.uid : ''} (en)`;
+}
+
 // ---- assemble -------------------------------------------------------------
 const byDoc = new Map();
 for (const e of entries) {
@@ -142,7 +161,7 @@ for (const [docId, es] of byDoc) {
     deId: deDoc.id,
     enId: enDoc?.id,
     tags: deDoc.tags,
-    title: `${label} (en)`,
+    title: docTitle(deDoc, data),
     strings: applied,
     data,
   });

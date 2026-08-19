@@ -1,6 +1,6 @@
 // Write assembled en-us payloads to a Prismic migration release.
 // Usage: node write.mjs <tmpdir> --only type[/uid]     (trial run, one/few docs)
-//        node write.mjs <tmpdir> --all                 (everything in payloads.json)
+//        node write.mjs <tmpdir> --all [--except type/uid,type/uid]  (everything else)
 // Requires PRISMIC_WRITE_TOKEN in .env.local. Documents land in a migration
 // release in Prismic — nothing is published by this script.
 import * as prismic from '@prismicio/client';
@@ -29,6 +29,10 @@ if (only) {
   const [t, u] = only.split('/');
   payloads = payloads.filter((p) => p.type === t && (u === undefined || p.uid === u));
 }
+const except = process.argv.includes('--except')
+  ? process.argv[process.argv.indexOf('--except') + 1].split(',')
+  : [];
+payloads = payloads.filter((p) => !except.includes(`${p.type}/${p.uid}`));
 if (!payloads.length) { console.error('nothing matches'); process.exit(1); }
 console.log(`writing ${payloads.length} docs (${payloads.filter((p) => p.action === 'update').length} updates, ${payloads.filter((p) => p.action === 'create').length} creates)`);
 
