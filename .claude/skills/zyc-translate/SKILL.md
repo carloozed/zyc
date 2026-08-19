@@ -181,5 +181,9 @@ both fix and can break names):
 - After Carlo publishes a release, run the inventory again: skipped
   drafts and pending title fixes resolve as plain updates on a second
   pass.
+- Post-assembly text touch-ups on rich text (e.g. normalizing Swiss
+  «guillemets» to English quotes) must be LENGTH-SAFE character swaps —
+  span indices are already computed, so any replacement that changes
+  string length corrupts formatting.
 - Re-runs are cheap: the inventory's stale-check makes this workflow
   the ongoing sync tool, not a one-shot.
