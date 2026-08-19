@@ -173,6 +173,15 @@
     width: 100% !important;
 }
 
+/* Bullets sit outside the li box (global list-style-position: outside), and
+   the global 1.5% ul padding is too small inside the foldout, whose inner
+   container clips overflow - markers were cut off at the left edge. A fixed
+   em padding scales with the text and gives them room. */
+.foldout__subitem ul,
+.foldout__subitem ol {
+    padding-left: 1.5em;
+}
+
 .foldout__subitem ul li {
     list-style-type: circle;
 }
