@@ -7,6 +7,7 @@ import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import useNewsletterStore from '@/stores/NewsletterStore';
+import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
 
 export type NewsletterProps = {
   newsletter: NewsletterFormDocument;
@@ -17,13 +18,15 @@ export default function FormContent({ newsletter }: NewsletterProps) {
   const [firstname, setFirstName] = useState('');
   const [surname, setSurname] = useState('');
   const [status, setStatus] = useState('');
+  const lang = useLocaleFromPathname();
+  const en = lang === 'en-us';
 
   const { isNewsletterFormShown, setNewsletterFormShown } =
     useNewsletterStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('Loading...');
+    setStatus(en ? 'Sending...' : 'Wird gesendet...');
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -32,7 +35,9 @@ export default function FormContent({ newsletter }: NewsletterProps) {
 
     const data = await res.json();
     if (res.ok) {
-      setStatus('Deine Anmeldung war erfolgreich!');
+      setStatus(
+        en ? 'You have successfully signed up!' : 'Deine Anmeldung war erfolgreich!',
+      );
       setEmail('');
       setFirstName('');
       setSurname('');
@@ -40,7 +45,9 @@ export default function FormContent({ newsletter }: NewsletterProps) {
         setNewsletterFormShown(false);
       }, 1000);
     } else {
-      setStatus(data.error || 'Something went wrong.');
+      setStatus(
+        data.error || (en ? 'Something went wrong.' : 'Etwas ist schiefgelaufen.'),
+      );
     }
   };
 

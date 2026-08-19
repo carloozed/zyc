@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function page() {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const en = lang === 'en-us';
+
   return (
     <div
       style={{
@@ -12,8 +19,16 @@ export default function page() {
         gap: '1rem',
       }}
     >
-      <h2>Du hast dich erfolgreich für den Newsletter angemeldet!</h2>
-      <h3>In Kürze erhälst du eine Bestätigungs-Mail</h3>
+      <h2>
+        {en
+          ? 'You have successfully signed up for the newsletter!'
+          : 'Du hast dich erfolgreich für den Newsletter angemeldet!'}
+      </h2>
+      <h3>
+        {en
+          ? 'You will receive a confirmation email shortly'
+          : 'In Kürze erhältst du eine Bestätigungs-Mail'}
+      </h3>
     </div>
   );
 }

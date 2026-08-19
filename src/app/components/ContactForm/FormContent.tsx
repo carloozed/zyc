@@ -7,6 +7,7 @@ import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import useContactStore from '@/stores/ContactFormStore';
+import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
 
 export type ContactFormProps = {
   contactForm: ContactFormDocument;
@@ -28,10 +29,12 @@ export default function FormContent({ contactForm }: ContactFormProps) {
   const [message, setMessage] = useState('');
 
   const { isContactFormShown, setContactFormShown } = useContactStore();
+  const lang = useLocaleFromPathname();
+  const en = lang === 'en-us';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('Loading...');
+    setStatus(en ? 'Sending...' : 'Wird gesendet...');
     const res = await fetch('/api/emails/main', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -40,7 +43,11 @@ export default function FormContent({ contactForm }: ContactFormProps) {
 
     const data = await res.json();
     if (res.ok) {
-      setStatus('Herzlichen Dank für deine Nachricht!');
+      setStatus(
+        en
+          ? 'Thank you for your message!'
+          : 'Herzlichen Dank für deine Nachricht!',
+      );
       setEmail('');
       setFirstName('');
       setSurname('');
@@ -49,7 +56,9 @@ export default function FormContent({ contactForm }: ContactFormProps) {
         setContactFormShown(false);
       }, 1000);
     } else {
-      setStatus(data.error || 'Something went wrong.');
+      setStatus(
+        data.error || (en ? 'Something went wrong.' : 'Etwas ist schiefgelaufen.'),
+      );
     }
   };
 
