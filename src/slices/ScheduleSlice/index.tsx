@@ -6,14 +6,16 @@ import ScheduleContent from './components/ScheduleContent';
 /**
  * Props for `ScheduleSlice`.
  */
-export type ScheduleSliceProps =
-  SliceComponentProps<Content.ScheduleSliceSlice>;
+export type ScheduleSliceProps = SliceComponentProps<
+  Content.ScheduleSliceSlice,
+  { lang?: string }
+>;
 
 /**
  * Component for "ScheduleSlice" Slices.
  */
-const ScheduleSlice: FC<ScheduleSliceProps> = ({ slice }) => {
-  return <ScheduleContent slice={slice} />;
+const ScheduleSlice: FC<ScheduleSliceProps> = ({ slice, context }) => {
+  return <ScheduleContent slice={slice} lang={context?.lang} />;
 };
 
 export default ScheduleSlice;

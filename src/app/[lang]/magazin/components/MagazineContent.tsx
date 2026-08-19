@@ -28,7 +28,7 @@ type MagazineContentProps = {
 };
 
 // Group posts by month/year
-function groupPostsByMonth(posts: MagazinpostDocument[]) {
+function groupPostsByMonth(posts: MagazinpostDocument[], lang: string) {
   const grouped: Record<string, MagazinpostDocument[]> = {};
 
   posts.forEach((post) => {
@@ -54,7 +54,7 @@ function groupPostsByMonth(posts: MagazinpostDocument[]) {
 
   return sortedKeys.map((key) => {
     const [year, month] = key.split('-').map(Number);
-    const label = new Date(year, month).toLocaleDateString('de-CH', {
+    const label = new Date(year, month).toLocaleDateString(lang, {
       month: 'long',
       year: 'numeric',
     });
@@ -98,7 +98,7 @@ export default function MagazineContent({
       )
     : sortedPosts;
 
-  const groups = groupPostsByMonth(filteredPosts);
+  const groups = groupPostsByMonth(filteredPosts, page.lang);
   const groupedPosts = sorting === 'neu' ? groups : [...groups].reverse();
 
   const highlightedPosts = magazinPosts

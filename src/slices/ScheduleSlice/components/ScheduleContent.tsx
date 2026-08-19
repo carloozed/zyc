@@ -7,16 +7,15 @@ import Arrow from './Arrow';
 import { isFilled } from '@prismicio/client';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 
-type Props = { slice: ScheduleSliceSlice };
+type Props = { slice: ScheduleSliceSlice; lang?: string };
 
-// Helper function that returns JSX
-const formatToGermanDate = (dateString: string): JSX.Element => {
+// Month name follows the document locale (Prismic lang codes like "de-ch"
+// are valid BCP 47 tags, so Intl accepts them directly).
+const formatDate = (dateString: string, lang: string): JSX.Element => {
   const date = new Date(dateString);
 
   const day = date.getDate();
-  const month = new Intl.DateTimeFormat('de-CH', { month: 'long' }).format(
-    date,
-  );
+  const month = new Intl.DateTimeFormat(lang, { month: 'long' }).format(date);
 
   return (
     <div className={styles.schedule__date}>
@@ -28,7 +27,7 @@ const formatToGermanDate = (dateString: string): JSX.Element => {
   );
 };
 
-export default function ScheduleContent({ slice }: Props) {
+export default function ScheduleContent({ slice, lang = 'de-ch' }: Props) {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -56,7 +55,7 @@ export default function ScheduleContent({ slice }: Props) {
                     <div className={styles.arrow}>
                       <Arrow />
                     </div>
-                    {item.end_date && formatToGermanDate(item.end_date)}
+                    {item.end_date && formatDate(item.end_date, lang)}
                   </>
                 )}
               </div>

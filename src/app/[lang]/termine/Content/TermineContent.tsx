@@ -73,7 +73,7 @@ export default function TermineContent({ page, signuplink }: Props) {
         <SliceZone
           slices={page.data.slices}
           components={components}
-          context={signuplink}
+          context={{ lang: page.lang, signuplink }}
         />
       </div>
     </section>
