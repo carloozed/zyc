@@ -37,29 +37,54 @@ if (!payloads.length) { console.error('nothing matches'); process.exit(1); }
 console.log(`writing ${payloads.length} docs (${payloads.filter((p) => p.action === 'update').length} updates, ${payloads.filter((p) => p.action === 'create').length} creates)`);
 
 const client = prismic.createWriteClient('zurichyouthclassical', { writeToken: token });
-const migration = prismic.createMigration();
+const reporter = (e) => {
+  if (e.type === 'documents:creating' || e.type === 'documents:updating')
+    console.log(`${e.type} ${e.data.current ?? ''}/${e.data.total ?? ''} ${e.data.document?.title ?? ''}`);
+};
 
-for (const p of payloads) {
-  if (p.action === 'update') {
-    const enDoc = structuredClone(enById.get(p.enId));
-    if (!enDoc) { console.error(`SKIP ${p.title}: en doc ${p.enId} not in dump`); continue; }
-    enDoc.data = p.data;
-    migration.updateDocument(enDoc, p.title);
-  } else {
-    const deDoc = deById.get(p.deId);
-    migration.createDocument(
-      { type: p.type, uid: p.uid ?? null, lang: 'en-us', tags: p.tags, data: p.data },
-      p.title,
-      { masterLanguageDocument: deDoc },
-    );
+// Phase A: creates run one migration each, so an "already has a translation"
+// conflict (e.g. an unpublished en-us draft, invisible to the public
+// Document API the inventory uses) skips that document instead of killing
+// the whole run before any updates happen.
+const skipped = [];
+for (const p of payloads.filter((x) => x.action === 'create')) {
+  const m = prismic.createMigration();
+  m.createDocument(
+    { type: p.type, uid: p.uid ?? null, lang: 'en-us', tags: p.tags, data: p.data },
+    p.title,
+    { masterLanguageDocument: deById.get(p.deId) },
+  );
+  try {
+    await client.migrate(m, { reporter });
+    console.log(`created: ${p.title}`);
+  } catch (e) {
+    if (String(e.message).includes('already an existing translation')) {
+      skipped.push(p);
+      console.log(`SKIP create ${p.title}: an en-us variant already exists (unpublished draft or earlier run)`);
+    } else throw e;
   }
 }
 
-await client.migrate(migration, {
-  reporter: (e) => {
-    if (e.type === 'documents:creating' || e.type === 'documents:updating')
-      console.log(`${e.type} ${e.data.current ?? ''}/${e.data.total ?? ''} ${e.data.document?.title ?? ''}`);
-    else if (!String(e.type).includes('assets')) console.log(e.type);
-  },
-});
+// Phase B: updates, one migration each (idempotent, safe to re-run), so a
+// single model-validation failure can't block the rest.
+const failed = [];
+const updates = payloads.filter((x) => x.action === 'update');
+for (const [i, p] of updates.entries()) {
+  const enDoc = structuredClone(enById.get(p.enId));
+  if (!enDoc) { console.error(`SKIP ${p.title}: en doc ${p.enId} not in dump`); continue; }
+  enDoc.data = p.data;
+  const m = prismic.createMigration();
+  m.updateDocument(enDoc, p.title);
+  try {
+    await client.migrate(m, { reporter: () => {} });
+    console.log(`updated ${i + 1}/${updates.length}: ${p.title}`);
+  } catch (e) {
+    failed.push({ p, details: e.response?.details ?? e.message });
+    console.log(`FAILED ${p.title}: ${JSON.stringify(e.response?.details ?? e.message)}`);
+  }
+}
+
 console.log('\nmigration executed — documents are in the migration release in Prismic (not published)');
+if (failed.length) console.log(`update failures: ${failed.length}`);
+if (skipped.length)
+  console.log(`skipped creates needing manual attention (existing en-us draft the pipeline cannot see): ${skipped.map((p) => `${p.type}/${p.uid}`).join(', ')}`);

@@ -165,5 +165,21 @@ both fix and can break names):
   (AGENTS.md).
 - A document that exists in neither locale can't be "translated" —
   flag it; authoring is a separate ask.
+- The public Document API only sees PUBLISHED docs: a doc "missing" in
+  en-us may exist as an unpublished draft, and the Migration API then
+  rejects the create ("already an existing translation"). `write.mjs`
+  skips these and reports them — Carlo publishes or deletes the drafts,
+  and a re-run after publishing handles them as plain updates.
+- The Migration API validates strictly against the CURRENT model; legacy
+  published content may violate it (e.g. a paragraph block in a
+  heading3-only rich text on the_cadenza, 2026-08). Coerce the block to
+  the allowed type when sibling documents agree on it; otherwise discuss
+  a model change. The de-ch original keeps the anomaly — flag it.
+- `write.mjs` runs every create and update as its own migration call, so
+  one failing document can never block the rest (`migrate()` is
+  all-or-nothing per call).
+- After Carlo publishes a release, run the inventory again: skipped
+  drafts and pending title fixes resolve as plain updates on a second
+  pass.
 - Re-runs are cheap: the inventory's stale-check makes this workflow
   the ongoing sync tool, not a one-shot.
