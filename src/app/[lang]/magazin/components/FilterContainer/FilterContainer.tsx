@@ -34,7 +34,7 @@ export default function FilterContainer({
       }}
     >
       <div className={styles.sortcontainer}>
-        <h4>{'Sortieren nach:'}</h4>
+        <h4>{page.lang === 'en-us' ? 'Sort by:' : 'Sortieren nach:'}</h4>
         <select onChange={(e) => setSortingStore(e.target.value)}>
           {page.data.sorting_options.map((item, index) => (
             <option

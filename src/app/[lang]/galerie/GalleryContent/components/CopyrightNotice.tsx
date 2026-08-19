@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 
 import styles from './CopyrightNotice.module.css';
 import CopyrightText from './CopyrightText';
+import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
 
 export default function CopyrightNotice() {
+  const lang = useLocaleFromPathname();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -29,7 +31,11 @@ export default function CopyrightNotice() {
       <button
         className={styles.reopenButton}
         onClick={handleReopen}
-        aria-label="Copyright-Hinweis anzeigen"
+        aria-label={
+          lang === 'en-us'
+            ? 'Show copyright notice'
+            : 'Copyright-Hinweis anzeigen'
+        }
       >
         ©
       </button>
@@ -41,7 +47,7 @@ export default function CopyrightNotice() {
       <button
         className={styles.closeButton}
         onClick={handleDismiss}
-        aria-label="Schliessen"
+        aria-label={lang === 'en-us' ? 'Close' : 'Schliessen'}
       >
         ×
       </button>
