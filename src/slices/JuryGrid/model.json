@@ -27,6 +27,13 @@
           },
           "type": "StructuredText"
         },
+        "season_label": {
+          "config": {
+            "label": "Season Label",
+            "placeholder": "2026/2027"
+          },
+          "type": "Text"
+        },
         "jurymember_linkicon": {
           "config": {
             "constraint": {},

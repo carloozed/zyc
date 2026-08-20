@@ -3385,6 +3385,16 @@ export interface JuryGridSliceBaseGridPrimary {
 	introduction: prismic.RichTextField;
 	
 	/**
+	 * Season Label field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 2026/2027
+	 * - **API ID Path**: jury_grid.base_grid.primary.season_label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	season_label: prismic.KeyTextField;
+	
+	/**
 	 * Jurymember Linkicon field in *JuryGrid → Base Grid → Primary*
 	 *
 	 * - **Field Type**: Image

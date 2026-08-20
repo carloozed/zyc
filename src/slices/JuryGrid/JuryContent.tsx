@@ -78,28 +78,35 @@ export default function JuryContent({ slice }: Props) {
       <div className={`jury-fade ${styles.jury__introduction}`}>
         <PrismicRichText field={slice.primary.introduction} />
       </div>
-      <div className={styles.jury__members}>
-        {slice.primary.members.map((item, index) => (
-          <div key={index} className={`jury-fade ${styles.jury__member}`}>
-            <div>
-              <div className={styles.jury__container}>
-                <div className={styles.jury__uppercontainer}>
-                  <PrismicNextImage field={item.photo} />
-                  <PrismicRichText field={item.bio} />
-                </div>
-                <div className={styles.jury__lowercontainer}>
-                  <PrismicRichText field={item.name} />
-                  <PrismicNextLink
-                    field={item.jurymember_link}
-                    aria-label={`${slice.primary.link_text} – ${asText(item.name)}`}
-                  >
-                    {slice.primary.link_text}
-                  </PrismicNextLink>
+      <div className={styles.jury__current}>
+        {isFilled.keyText(slice.primary.season_label) && (
+          <p className={`jury-fade ${styles.jury__season}`}>
+            {slice.primary.season_label}
+          </p>
+        )}
+        <div className={styles.jury__members}>
+          {slice.primary.members.map((item, index) => (
+            <div key={index} className={`jury-fade ${styles.jury__member}`}>
+              <div>
+                <div className={styles.jury__container}>
+                  <div className={styles.jury__uppercontainer}>
+                    <PrismicNextImage field={item.photo} />
+                    <PrismicRichText field={item.bio} />
+                  </div>
+                  <div className={styles.jury__lowercontainer}>
+                    <PrismicRichText field={item.name} />
+                    <PrismicNextLink
+                      field={item.jurymember_link}
+                      aria-label={`${slice.primary.link_text} – ${asText(item.name)}`}
+                    >
+                      {slice.primary.link_text}
+                    </PrismicNextLink>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       {isFilled.keyText(slice.primary.past_title) && pastByYear.length > 0 && (
         <div className={`jury-fade ${styles.jury__past}`}>

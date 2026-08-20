@@ -17,14 +17,30 @@
     font-size: var(--text);
 }
 
-.jury__members {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--padding-xl);
+.jury__current {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
     padding: 0 var(--padding-xl);
     width: 100%;
     max-width: 100rem;
     margin: 0 auto;
+}
+
+/* Same face and weight as the year headings in the past-members list,
+   one size step up. Nested selector on purpose: globals.css has
+   `.page-container p` (0,1,1), which outranks a lone `.jury__season`
+   (0,1,0) on font-size — that is why a bare class needed !important. */
+.jury__current .jury__season {
+    font-family: var(--title-font);
+    font-size: var(--subtitle-m);
+    font-weight: 150;
+}
+
+.jury__members {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--padding-xl);
 }
 
 
@@ -232,11 +248,14 @@
         font-size: var(--text);
     }
 
+    .jury__current {
+        padding: 0 var(--padding-s);
+    }
+
     .jury__members {
         display: grid;
         grid-template-columns: 1fr;
         gap: var(--padding-xl);
-        padding: 0 var(--padding-s);
     }
 
 
@@ -326,12 +345,15 @@
         font-size: var(--text);
     }
 
+    .jury__current {
+        padding: 0 var(--padding-s);
+    }
+
     .jury__members {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: var(--padding-xl);
-        padding: 0 var(--padding-s);
     }
 
     .jury__member:nth-child(1) {
