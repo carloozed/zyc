@@ -26,8 +26,11 @@ export default function JuryContent({ slice }: Props) {
   const [pastOpen, setPastOpen] = useState(false);
 
   // Rows are entered flat in Prismic; the year number on each row decides
-  // which season it belongs to. Members serving several seasons get one row
-  // per year. Missing years sink to the bottom instead of disappearing.
+  // which edition it belongs to. Members serving several editions get one
+  // row per year. Missing years sink to the bottom instead of disappearing.
+  // The group heading is the rows' optional Edition label (e.g. "2025/2026")
+  // or, when none is filled, the site's default edition naming derived from
+  // the year — same convention as the gallery's edition_year/year_in_number.
   const pastByYear = useMemo(() => {
     const rows = (slice.primary.past_members ?? []).filter(
       (row: JuryGridSliceBaseGridPrimaryPastMembersItem) =>
@@ -41,7 +44,15 @@ export default function JuryContent({ slice }: Props) {
       const year = row.year ?? 0;
       byYear.set(year, [...(byYear.get(year) ?? []), row]);
     });
-    return [...byYear.entries()].sort(([a], [b]) => b - a);
+    return [...byYear.entries()]
+      .sort(([a], [b]) => b - a)
+      .map(([year, members]) => ({
+        year,
+        label:
+          members.find((m) => isFilled.keyText(m.edition))?.edition ??
+          (year > 0 ? `${year}/${year + 1}` : ''),
+        members,
+      }));
   }, [slice.primary.past_members]);
 
   useGSAP(
@@ -132,9 +143,9 @@ export default function JuryContent({ slice }: Props) {
             className={`${styles.jury__past_content} ${pastOpen ? styles.open : ''}`}
           >
             <div className={styles.jury__past_inner}>
-              {pastByYear.map(([year, members]) => (
+              {pastByYear.map(({ year, label, members }) => (
                 <div key={year} className={styles.jury__past_year}>
-                  {year > 0 && <h4>{year}</h4>}
+                  {label && <h4>{label}</h4>}
                   <ul>
                     {members.map((member, memberIndex) => (
                       <li key={memberIndex} className={styles.jury__past_row}>

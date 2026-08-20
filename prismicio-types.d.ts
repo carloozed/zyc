@@ -3340,6 +3340,16 @@ export interface JuryGridSliceBaseGridPrimaryPastMembersItem {
 	year: prismic.NumberField;
 	
 	/**
+	 * Edition field in *JuryGrid → Base Grid → Primary → Past Members*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: 2025/2026
+	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[].edition
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	edition: prismic.KeyTextField;
+	
+	/**
 	 * Name field in *JuryGrid → Base Grid → Primary → Past Members*
 	 *
 	 * - **Field Type**: Text
