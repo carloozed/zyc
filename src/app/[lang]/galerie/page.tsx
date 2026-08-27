@@ -13,15 +13,24 @@ export default async function Page({
 }) {
   const { lang } = await params;
   const client = createClient();
-  const page = await client.getSingle('gallery').catch(() => notFound());
+  const page = await client
+    .getSingle('gallery', { lang })
+    .catch(() => notFound());
   const decoimage = await client.getSingle('decoration_image', { lang });
 
   return <GalleryContent page={page} decoimage={decoimage} />;
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
   const client = createClient();
-  const page = await client.getSingle('gallery').catch(() => notFound());
+  const page = await client
+    .getSingle('gallery', { lang })
+    .catch(() => notFound());
 
   return {
     title: page.data.meta_title,

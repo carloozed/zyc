@@ -13,10 +13,15 @@ type GalleryFilterContainerProps = {
   page: GalleryDocument;
 };
 
-const MEDIA_TYPE_TABS: { mediaType: GalleryMediaType; label: string }[] = [
-  { mediaType: 'photos', label: 'Fotos' },
-  { mediaType: 'videos', label: 'Videos' },
-];
+const MEDIA_TYPE_TABS: GalleryMediaType[] = ['photos', 'videos'];
+
+const MEDIA_TYPE_LABELS: Record<
+  GalleryMediaType,
+  { 'de-ch': string; 'en-us': string }
+> = {
+  photos: { 'de-ch': 'Fotos', 'en-us': 'Photos' },
+  videos: { 'de-ch': 'Videos', 'en-us': 'Videos' },
+};
 
 export default function GalleryFilterContainer({
   page,
@@ -28,6 +33,7 @@ export default function GalleryFilterContainer({
   const setMediaType = useGalleryStore((state) => state.setMediaType);
 
   const filterOptions = page.data.filter_options;
+  const labelLang = page.lang === 'en-us' ? 'en-us' : 'de-ch';
   const isFilterVisible =
     page.data.filterbar_visible &&
     filterOptions.length > 1 &&
@@ -57,12 +63,12 @@ export default function GalleryFilterContainer({
       <div className={styles.mediatypetabs}>
         {MEDIA_TYPE_TABS.map((tab) => (
           <button
-            key={tab.mediaType}
+            key={tab}
             type="button"
-            onClick={() => setMediaType(tab.mediaType)}
-            className={`${styles.filterbutton} ${mediaType === tab.mediaType ? styles.active : ''}`}
+            onClick={() => setMediaType(tab)}
+            className={`${styles.filterbutton} ${mediaType === tab ? styles.active : ''}`}
           >
-            {tab.label}
+            {MEDIA_TYPE_LABELS[tab][labelLang]}
           </button>
         ))}
       </div>
@@ -76,7 +82,9 @@ export default function GalleryFilterContainer({
                 <button
                   key={`${index}-${item.item}`}
                   type="button"
-                  onClick={() => setFilter(filterKey === filter ? '' : filterKey)}
+                  onClick={() =>
+                    setFilter(filterKey === filter ? '' : filterKey)
+                  }
                   className={`${styles.filterbutton} ${filter === filterKey ? styles.active : ''}`}
                 >
                   {item.item}

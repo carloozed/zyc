@@ -153,7 +153,7 @@ export default function GalleryContent({
                     setVisibleCount((prev) => prev + SLICES_PER_PAGE)
                   }
                 >
-                  Mehr laden
+                  {page.lang === 'en-us' ? 'Load more' : 'Mehr laden'}
                 </button>
               )}
             </>
