@@ -43,3 +43,6 @@ yarn-error.log*
 next-env.d.ts
 
 .fallow
+/docs
+export-proofread.mjs
+build-proofread.sh
