@@ -74,7 +74,7 @@ function Block({
 }) {
   return (
     <div className={`cd-section ${styles.sectioncontainer}`}>
-      <RevealText field={title} useScrollTrigger={true} as={'h3'} />
+      <RevealText field={title} useScrollTrigger={true} as={'h2'} />
       <div className="cd-fade">
         <PrismicRichText field={text} />
       </div>

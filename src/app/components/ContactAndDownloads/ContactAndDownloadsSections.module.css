@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.sectioncontainer h3 {
+.sectioncontainer h2 {
     font-size: var(--subtitle-s);
 }
 
@@ -29,6 +29,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: var(--padding-m) var(--padding-xl);
 }
 
@@ -68,9 +69,15 @@
 /* Up to 480px */
 @media (max-width: 30rem) {
     .section {
+        padding: var(--padding-3xl) 0 var(--padding-2xl);
+        /* gap = bottom + top padding, so blocks are evenly spaced whether or
+           not a slice boundary sits between them */
+        gap: calc(var(--padding-2xl) + var(--padding-3xl));
+    }
 
-        padding: var(--padding-l) 0;
-        gap: var(--padding-l);
+    /* on mobile the titles step up to the page-section scale (Timeline, Die Jury) */
+    .sectioncontainer h2 {
+        font-size: var(--subtitle-l);
     }
 
     .sectioncontainer {
@@ -93,9 +100,9 @@
 
     .linkscontainer {
         padding-top: var(--padding-m);
-        gap: var(--padding-m);
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--padding-s);
     }
 
     .downloadlink {
