@@ -3409,16 +3409,6 @@ export interface JuryGridSliceBaseGridPrimary {
 	season_label: prismic.KeyTextField;
 	
 	/**
-	 * Jurymember Linkicon field in *JuryGrid → Base Grid → Primary*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.jurymember_linkicon
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	jurymember_linkicon: prismic.ImageField<never>;
-	
-	/**
 	 * Members field in *JuryGrid → Base Grid → Primary*
 	 *
 	 * - **Field Type**: Group
@@ -3457,6 +3447,37 @@ export interface JuryGridSliceBaseGridPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	past_members: prismic.GroupField<Simplify<JuryGridSliceBaseGridPrimaryPastMembersItem>>;
+	
+	/**
+	 * Current jury published field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: jury_grid.base_grid.primary.current_jury_published
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	current_jury_published: prismic.BooleanField;
+	
+	/**
+	 * Coming soon text field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Shown instead of the jury members while the current jury is not published
+	 * - **API ID Path**: jury_grid.base_grid.primary.coming_soon_text
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	coming_soon_text: prismic.RichTextField;
+	
+	/**
+	 * Coming soon title field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Demnächst
+	 * - **API ID Path**: jury_grid.base_grid.primary.coming_soon_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	coming_soon_title: prismic.KeyTextField;
 }
 
 /**

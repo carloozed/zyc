@@ -34,14 +34,6 @@
           },
           "type": "Text"
         },
-        "jurymember_linkicon": {
-          "config": {
-            "constraint": {},
-            "label": "Jurymember Linkicon",
-            "thumbnails": []
-          },
-          "type": "Image"
-        },
         "members": {
           "config": {
             "fields": {
@@ -129,6 +121,30 @@
             "label": "Past Members"
           },
           "type": "Group"
+        },
+        "current_jury_published": {
+          "config": {
+            "default_value": true,
+            "label": "Current jury published",
+            "placeholder_false": "Coming soon",
+            "placeholder_true": "Published"
+          },
+          "type": "Boolean"
+        },
+        "coming_soon_text": {
+          "config": {
+            "label": "Coming soon text",
+            "multi": "paragraph,strong,em",
+            "placeholder": "Shown instead of the jury members while the current jury is not published"
+          },
+          "type": "StructuredText"
+        },
+        "coming_soon_title": {
+          "config": {
+            "label": "Coming soon title",
+            "placeholder": "Demnächst"
+          },
+          "type": "Text"
         }
       },
       "version": "initial"

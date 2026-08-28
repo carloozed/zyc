@@ -6,13 +6,16 @@ import JuryContent from './JuryContent';
 /**
  * Props for `JuryGrid`.
  */
-export type JuryGridProps = SliceComponentProps<Content.JuryGridSlice>;
+export type JuryGridProps = SliceComponentProps<
+  Content.JuryGridSlice,
+  { lang?: string }
+>;
 
 /**
  * Component for "JuryGrid" Slices.
  */
-const JuryGrid: FC<JuryGridProps> = ({ slice }) => {
-  return <JuryContent slice={slice} />;
+const JuryGrid: FC<JuryGridProps> = ({ slice, context }) => {
+  return <JuryContent slice={slice} lang={context?.lang} />;
 };
 
 export default JuryGrid;

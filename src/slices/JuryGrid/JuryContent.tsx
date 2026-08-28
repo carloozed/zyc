@@ -11,6 +11,7 @@ import styles from './JuryContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 import { RevealText } from '@/app/components/RevealText/RevealText';
+import Ornament from './Ornament';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -19,11 +20,46 @@ import { siteEase } from '@/helpers/siteEase';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-type Props = { slice: JuryGridSlice };
+type Props = { slice: JuryGridSlice; lang?: string };
 
-export default function JuryContent({ slice }: Props) {
+// Fallbacks for the "Coming soon" placeholder when the slice's own title /
+// text are empty; keyed by the document locale.
+const COMING_SOON_FALLBACK: Record<
+  'de-ch' | 'en-us',
+  { title: string; text: string }
+> = {
+  'de-ch': {
+    title: 'Demnächst',
+    text: 'Die Jury wird in Kürze bekannt gegeben.',
+  },
+  'en-us': {
+    title: 'Coming soon',
+    text: 'The jury will be announced shortly.',
+  },
+};
+
+export default function JuryContent({ slice, lang }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const [pastOpen, setPastOpen] = useState(false);
+
+  // The toggle was added after the documents were published, so the API
+  // returns undefined for it on untouched documents — only an explicit
+  // "false" hides the current jury behind the placeholder.
+  const juryPublished = slice.primary.current_jury_published !== false;
+  const comingSoonFallback =
+    COMING_SOON_FALLBACK[lang === 'en-us' ? 'en-us' : 'de-ch'];
+  // A filled title stands on its own; the fallback subline only appears when
+  // the editor left both placeholder fields empty.
+  const hasComingSoonTitle = isFilled.keyText(slice.primary.coming_soon_title);
+  const hasComingSoonText = isFilled.richText(slice.primary.coming_soon_text);
+  const comingSoonTitle = hasComingSoonTitle
+    ? slice.primary.coming_soon_title
+    : comingSoonFallback.title;
+  const comingSoonText = hasComingSoonText ? (
+    <PrismicRichText field={slice.primary.coming_soon_text} />
+  ) : hasComingSoonTitle ? null : (
+    <p>{comingSoonFallback.text}</p>
+  );
 
   // Rows are entered flat in Prismic; the year number on each row decides
   // which edition it belongs to. Members serving several editions get one
@@ -95,7 +131,19 @@ export default function JuryContent({ slice }: Props) {
             {slice.primary.season_label}
           </p>
         )}
-        <div className={styles.jury__members}>
+        {!juryPublished && (
+          <div className={`jury-fade ${styles.jury__placeholder}`}>
+            <Ornament className={styles.jury__placeholder_ornament} />
+            <p className={styles.jury__placeholder_title}>{comingSoonTitle}</p>
+            {comingSoonText && (
+              <div className={styles.jury__placeholder_text}>
+                {comingSoonText}
+              </div>
+            )}
+            <Ornament className={styles.jury__placeholder_ornament} />
+          </div>
+        )}
+        <div className={styles.jury__members} hidden={!juryPublished}>
           {slice.primary.members.map((item, index) => (
             <div key={index} className={`jury-fade ${styles.jury__member}`}>
               <div>

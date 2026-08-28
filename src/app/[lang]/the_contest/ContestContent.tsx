@@ -41,6 +41,7 @@ export default function ContestContent({
         slices={page.data.slices}
         components={components}
         context={{
+          lang: page.lang,
           wearehereicon,
           disciplinetypes,
           signuplink,

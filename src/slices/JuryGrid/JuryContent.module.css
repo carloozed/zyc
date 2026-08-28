@@ -43,7 +43,49 @@
     gap: var(--padding-xl);
 }
 
+.jury__members[hidden] {
+    display: none;
+}
 
+/* "Coming soon" placeholder: the site's circle-and-line ornament above and
+   below a Max Fett title, same footprint as the first member card. */
+.jury__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-m);
+    width: 100%;
+    max-width: 40rem;
+    padding: var(--padding-s) 0;
+}
+
+.jury__placeholder_ornament {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: var(--black);
+}
+
+/* Nested on purpose: globals' `.page-container p` outranks a bare class. */
+.jury__placeholder .jury__placeholder_title {
+    font-family: var(--title-font);
+    font-size: var(--subtitle-l);
+    font-weight: 150;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    text-align: center;
+    margin: 0;
+}
+
+.jury__placeholder_text {
+    max-width: 30rem;
+    text-align: center;
+}
+
+.jury__placeholder_text p {
+    font-size: var(--text);
+    margin: 0;
+}
 
 .jury__member {
     background-color: var(--lightgrey);
@@ -262,6 +304,10 @@
     .jury__member {
         padding-left: var(--padding-m);
         padding-top: var(--padding-m);
+    }
+
+    .jury__placeholder {
+        gap: var(--padding-s);
     }
 
     .jury__member h3 {
