@@ -1,5 +1,5 @@
 // Model-driven extraction of translatable strings from de-ch documents.
-// Usage: node extract.mjs <tmpdir>   (expects <tmpdir>/docs-de-ch.json)
+// Usage: node extract.mjs <tmpdir> [--types a,b] [--docs id1,id2]   (expects <tmpdir>/docs-de-ch.json)
 // Writes <tmpdir>/extraction.json: entries keyed docId::path, plus flags.
 // Field types come from customtypes/*/index.json and src/slices/*/model.json,
 // so Selects/config strings can never be mistaken for copy.
@@ -9,6 +9,11 @@ const tmp = process.argv[2];
 // Optional: --types a,b restricts extraction to ONLY those types (phase 2+).
 const only = process.argv.includes('--types')
   ? new Set(process.argv[process.argv.indexOf('--types') + 1].split(','))
+  : null;
+// Optional: --docs id1,id2 restricts extraction to those de-ch document ids
+// (sync runs); type exclusions do not apply to an explicit doc list.
+const onlyDocs = process.argv.includes('--docs')
+  ? new Set(process.argv[process.argv.indexOf('--docs') + 1].split(','))
   : null;
 const docs = JSON.parse(readFileSync(`${tmp}/docs-de-ch.json`, 'utf8'));
 
@@ -156,7 +161,9 @@ function handleField(doc, def, val, path, keyName) {
   }
 }
 
-const inScope = docs.filter((d) => (only ? only.has(d.type) : !EXCLUDED_TYPES.has(d.type)));
+const inScope = docs.filter((d) =>
+  onlyDocs ? onlyDocs.has(d.id) : only ? only.has(d.type) : !EXCLUDED_TYPES.has(d.type),
+);
 for (const doc of inScope) {
   const fields = typeModels[doc.type];
   if (!fields) { flags.push(`no custom type model for ${doc.type}`); continue; }

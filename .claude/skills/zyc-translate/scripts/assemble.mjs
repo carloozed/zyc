@@ -1,11 +1,27 @@
 // Validate translated batches and assemble full en-us document payloads.
-// Usage: node assemble.mjs <tmpdir>
+// Usage: node assemble.mjs <tmpdir> [--keep-en]
 // Reads docs-*.json, extraction.json, batch-*.json, out-*.json.
+// --keep-en (sync runs): entries with no translation in out-*.json keep the
+// CURRENT en-us value at the same path instead of being reported as problems —
+// so only the strings that were put into batches get retranslated. Structure
+// (group/block counts, order) always follows the de-ch document. Optional
+// <tmpdir>/en-path-remap.json = { "<deDocId>": { "<de path prefix>": "<en path prefix>" } }
+// redirects the copy when items moved index between locales.
 // Writes payloads.json (create/update actions with full data) + prints review.
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 
 const tmp = process.argv[2];
+const keepEn = process.argv.includes('--keep-en');
 const rd = (f) => JSON.parse(readFileSync(`${tmp}/${f}`, 'utf8'));
+let pathRemap = {};
+try { pathRemap = rd('en-path-remap.json'); } catch {}
+// Single (non-repeatable) custom types: an en-us doc can be matched by type when
+// alternate_languages is empty (docs created without a master-language link).
+const singleTypes = new Set(
+  readdirSync('customtypes').filter((d) => {
+    try { return JSON.parse(readFileSync(`customtypes/${d}/index.json`, 'utf8')).repeatable === false; } catch { return false; }
+  }),
+);
 const de = rd('docs-de-ch.json');
 const en = rd('docs-en-us.json');
 const { entries } = rd('extraction.json');
@@ -119,16 +135,37 @@ for (const e of entries) {
 const payloads = [];
 const overwriteSamples = [];
 const germanish = [];
+const unlinkedSingles = [];
 for (const [docId, es] of byDoc) {
   const deDoc = deById.get(docId);
   const label = `${deDoc.type}/${deDoc.uid ?? 'single'}`;
   const data = structuredClone(deDoc.data);
   const alt = deDoc.alternate_languages.find((a) => a.lang === 'en-us');
-  const enDoc = alt ? enById.get(alt.id) : undefined;
-  let applied = 0;
+  let enDoc = alt ? enById.get(alt.id) : undefined;
+  if (!enDoc && !alt && singleTypes.has(deDoc.type)) {
+    enDoc = en.find((d) => d.type === deDoc.type);
+    if (enDoc) unlinkedSingles.push(`${label} -> en ${enDoc.id} (matched by type; not linked as translation)`);
+  }
+  let applied = 0, kept = 0;
   for (const e of es) {
     const t = translated[e.key];
-    if (t === undefined) { problems.push(`${label}: no translation for ${e.path}`); continue; }
+    if (t === undefined) {
+      if (!keepEn || !enDoc) { problems.push(`${label}: no translation for ${e.path}`); continue; }
+      // keep current en-us value at the (possibly remapped) path
+      const remap = pathRemap[deDoc.id] ?? {};
+      let enPath = e.path;
+      for (const [from, to] of Object.entries(remap).sort((a, b) => b[0].length - a[0].length))
+        if (enPath.startsWith(from)) { enPath = to + enPath.slice(from.length); break; }
+      const prev = getAt(enDoc.data, pathTokens(enPath));
+      const ok = e.kind === 'rich' ? typeof prev?.text === 'string' && prev.text.trim() : typeof prev === 'string' && prev.trim();
+      if (!ok) { problems.push(`${label}: no translation and no en-us value to keep at ${e.path}`); continue; }
+      try {
+        if (e.kind === 'rich') setAt(data, pathTokens(e.path), (block) => ({ ...block, text: prev.text, spans: prev.spans ?? [] }));
+        else setAt(data, pathTokens(e.path), () => prev);
+        kept++;
+      } catch (err) { problems.push(`${label} ${e.path}: ${err.message}`); }
+      continue;
+    }
     if (DE_RE.test(e.kind === 'rich' ? t.replace(/⟦\/?\d+⟧/g, '') : t)) germanish.push(`${label} ${e.path}: ${t.slice(0, 80)}`);
     const tokens = pathTokens(e.path);
     try {
@@ -163,6 +200,7 @@ for (const [docId, es] of byDoc) {
     tags: deDoc.tags,
     title: docTitle(deDoc, data),
     strings: applied,
+    kept,
     data,
   });
 }
@@ -173,6 +211,8 @@ const creates = payloads.filter((p) => p.action === 'create');
 console.log(`assembled ${payloads.length} docs · ${payloads.filter((p) => p.action === 'update').length} updates · ${creates.length} creates`);
 if (creates.length) console.log('creates: ' + creates.map((c) => `${c.type}/${c.uid}`).join(', '));
 console.log(`document links remapped de->en: ${linkRemapped}`);
+if (keepEn) payloads.forEach((p) => console.log(`  ${p.type}/${p.uid ?? '-'}: ${p.strings} retranslated, ${p.kept} kept from en-us`));
+if (unlinkedSingles.length) { console.log('singletons matched by type (no alternate_languages link):'); unlinkedSingles.forEach((l) => console.log('  ' + l)); }
 if (linkUnmapped.length) { console.log(`links WITHOUT en-us target (${linkUnmapped.length}):`); [...new Set(linkUnmapped)].forEach((l) => console.log('  ' + l)); }
 if (problems.length) { console.log(`\nPROBLEMS (${problems.length}):`); problems.slice(0, 30).forEach((p) => console.log('  ' + p)); }
 else console.log('\nno structural problems — all keys returned, all markers parsed');
