@@ -5,6 +5,7 @@ import { SliceZone } from '@prismicio/react';
 import React from 'react';
 import {
   AnmeldelinkDocument,
+  ContactAndDownloadsDocument,
   FoldoutelementDocument,
   TheCrescendoDocument,
 } from '@/prismicio-types';
@@ -13,19 +14,21 @@ type Props = {
   page: TheCrescendoDocument<string>;
   foldoutElements: FoldoutelementDocument<string>[];
   signuplink: AnmeldelinkDocument;
+  contactAndDownloads: ContactAndDownloadsDocument | null;
 };
 
 export default function CreschendoContent({
   page,
   foldoutElements,
   signuplink,
+  contactAndDownloads,
 }: Props) {
   return (
     <section className="page-container">
       <SliceZone
         slices={page.data.slices}
         components={components}
-        context={{ foldoutElements, signuplink }}
+        context={{ foldoutElements, signuplink, contactAndDownloads }}
       />
     </section>
   );

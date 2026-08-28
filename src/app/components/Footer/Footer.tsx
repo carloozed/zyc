@@ -8,7 +8,6 @@ type FooterProps = {
 
 export default async function Footer({ lang }: FooterProps) {
   const client = createClient();
-  const footer = await client.getSingle('footer', { lang });
   const logo = await client.getSingle('logo', { lang });
   const navbar = await client.getSingle('navbar', { lang });
   const lownavigations = await client.getAllByType('low_navigation', { lang });
@@ -16,6 +15,9 @@ export default async function Footer({ lang }: FooterProps) {
   const subnavigation = await client.getSingle('subnavigation', { lang });
   const isDownloadsMutedObject = await client.getByType('isdownloadsmuted', { lang });
   const isTermineVisible = await client.getSingle('termine_is_visible', { lang });
+  const contactAndDownloads = await client
+    .getSingle('contact_and_downloads', { lang })
+    .catch(() => null);
 
   const isDownloadsMuted =
     isDownloadsMutedObject.results[0].data.isdownloadsmuted;
@@ -26,13 +28,13 @@ export default async function Footer({ lang }: FooterProps) {
 
   return (
     <FooterContent
-      footer={footer}
       logo={logo}
       navbar={navbar}
       lowNavigation={lowNavigation}
       address={address}
       subnavigation={subnavigation}
       isDownloadsMuted={isDownloadsMuted}
+      downloads={contactAndDownloads?.data.download_links ?? []}
       termineIsVisible={isTermineVisible}
     />
   );

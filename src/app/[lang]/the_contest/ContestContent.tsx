@@ -6,6 +6,7 @@ import { components } from '@/slices';
 import { SliceZone } from '@prismicio/react';
 import {
   AnmeldelinkDocument,
+  ContactAndDownloadsDocument,
   CriteriatypesubfieldDocument,
   FoldoutelementDocument,
   TheContestDocument,
@@ -22,6 +23,7 @@ type Props = {
   foldoutElements: FoldoutelementDocument<string>[];
   page: TheContestDocument<string>;
   isDownloadsMuted?: Query<IsdownloadsmutedDocument<string>>;
+  contactAndDownloads: ContactAndDownloadsDocument<string> | null;
 };
 
 export default function ContestContent({
@@ -31,6 +33,7 @@ export default function ContestContent({
   foldoutElements,
   page,
   isDownloadsMuted,
+  contactAndDownloads,
 }: Props) {
   return (
     <section className="page-container" style={{ position: 'relative' }}>
@@ -43,6 +46,7 @@ export default function ContestContent({
           signuplink,
           foldoutElements,
           isDownloadsMuted,
+          contactAndDownloads,
         }}
       />
     </section>

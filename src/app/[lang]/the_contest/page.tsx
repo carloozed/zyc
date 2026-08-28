@@ -32,9 +32,14 @@ export default async function Page({
     .getByType('isdownloadsmuted', { lang })
     .catch(() => notFound());
 
+  const contactAndDownloads = await client
+    .getSingle('contact_and_downloads', { lang })
+    .catch(() => null);
+
   return (
     <ContestContent
       signuplink={signuplink}
+      contactAndDownloads={contactAndDownloads}
       foldoutElements={foldoutElements}
       disciplinetypes={disciplinetypes}
       wearehereicon={wearehereicon}

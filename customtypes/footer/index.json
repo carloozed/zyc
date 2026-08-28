@@ -1,31 +1,10 @@
 {
   "format": "custom",
   "id": "footer",
+  "json": {
+    "Main": {}
+  },
   "label": "Footer",
   "repeatable": false,
-  "status": true,
-  "json": {
-    "Main": {
-      "downloads": {
-        "type": "Group",
-        "config": {
-          "label": "downloads",
-          "repeat": true,
-          "fields": {
-            "link": {
-              "type": "Link",
-              "config": {
-                "label": "Link",
-                "placeholder": "",
-                "select": null,
-                "allowTargetBlank": true,
-                "allowText": true,
-                "repeat": false
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  "status": true
 }

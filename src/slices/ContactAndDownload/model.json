@@ -1,144 +1,28 @@
 {
+  "description": "ContactAndDownload",
   "id": "contact_and_download",
-  "type": "SharedSlice",
   "name": "ContactAndDownload",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contact_and_download/default/277590cf843a94300134b9bb7e198c4ca8e78e40.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
-      "primary": {
-        "subtitle_something_missing": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Subtitle Something Missing",
-            "placeholder": "Fehlt etwas?",
-            "multi": "heading3",
-            "allowTargetBlank": true
-          }
-        },
-        "text_missingsomething": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Text missingsomething",
-            "placeholder": "hast du noch weitere fragene etc?",
-            "multi": "paragraph,strong,em,hyperlink",
-            "allowTargetBlank": true
-          }
-        },
-        "links": {
-          "type": "Group",
-          "config": {
-            "label": "Links",
-            "repeat": true,
-            "fields": {
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "Link",
-                  "placeholder": "Zum allgemeinen FAQ/Kontaktiere uns",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
-                }
-              }
-            }
-          }
-        },
-        "downloads_title": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Downloads Title",
-            "placeholder": "Downloads",
-            "multi": "heading3",
-            "allowTargetBlank": true
-          }
-        },
-        "text_downloads": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Text Downloads",
-            "placeholder": "Du kannst alle Reglemente und Zeitpläne zu einem gegebenen Zeitpunkt hier downloaden. ",
-            "multi": "paragraph,hyperlink,strong,em",
-            "allowTargetBlank": true
-          }
-        },
-        "download_links": {
-          "type": "Group",
-          "config": {
-            "label": "Download Links",
-            "repeat": true,
-            "fields": {
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "Link",
-                  "placeholder": "Name Download",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
-                }
-              }
-            }
-          }
-        }
-      },
-      "items": {}
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contact_and_download/default/277590cf843a94300134b9bb7e198c4ca8e78e40.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Contact & Downloads",
+      "primary": {},
+      "version": "initial"
     },
     {
-      "id": "justOneElement",
-      "name": "Just one Element",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contact_and_download/justOneElement/da3172284e4effce6cfcd2cb4b1702d47a10f332.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
-      "primary": {
-        "subtitle_something_missing": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Subtitle Something Missing",
-            "placeholder": "Fehlt etwas?",
-            "multi": "heading3",
-            "allowTargetBlank": true
-          }
-        },
-        "text_missingsomething": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Text missingsomething",
-            "placeholder": "hast du noch weitere fragene etc?",
-            "multi": "paragraph,strong,em,hyperlink",
-            "allowTargetBlank": true
-          }
-        },
-        "links": {
-          "type": "Group",
-          "config": {
-            "label": "Links",
-            "repeat": true,
-            "fields": {
-              "link": {
-                "type": "Link",
-                "config": {
-                  "label": "Link",
-                  "placeholder": "Zum allgemeinen FAQ/Kontaktiere uns",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
-                }
-              }
-            }
-          }
-        }
-      },
-      "items": {}
+      "id": "justOneElement",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contact_and_download/justOneElement/da3172284e4effce6cfcd2cb4b1702d47a10f332.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Newsletter",
+      "primary": {},
+      "version": "initial"
     }
-  ],
-  "description": "ContactAndDownload"
+  ]
 }

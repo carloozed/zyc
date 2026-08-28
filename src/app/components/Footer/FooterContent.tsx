@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 
 import {
   AddressDocument,
-  FooterDocument,
+  ContactAndDownloadsDocumentData,
   LogoDocument,
   LowNavigationDocument,
   NavbarDocument,
@@ -20,23 +20,23 @@ import NewsletterLink from '../NewsletterLink/NewsletterLink';
 import ContactLink from '../ContactLink/ContactLink';
 
 type Props = {
-  footer: FooterDocument;
   logo: LogoDocument;
   navbar: NavbarDocument;
   lowNavigation: LowNavigationDocument<string> | undefined;
   address: AddressDocument;
   subnavigation: SubnavigationDocument;
   isDownloadsMuted: boolean;
+  downloads: ContactAndDownloadsDocumentData['download_links'];
   termineIsVisible?: TermineIsVisibleDocument;
 };
 
 export default function FooterContent({
-  footer,
   navbar,
   lowNavigation,
   subnavigation,
   logo,
   isDownloadsMuted,
+  downloads,
 }: Props) {
   const pathname = usePathname();
 
@@ -44,7 +44,9 @@ export default function FooterContent({
 
   const filteredNavItems = navbar.data.navigation_items.filter(
     (item) =>
-      item.item.text !== 'Home' && item.item.text !== 'Dein Weg mit ZYC',
+      item.item.text !== 'Home' &&
+      item.item.text !== 'Dein Weg mit ZYC' &&
+      item.item.text !== 'Your Journey with ZYC',
   );
 
   return (
@@ -97,7 +99,7 @@ export default function FooterContent({
             <div className={styles.footer__downloadcontainer}>
               <h4 className={styles.footer__heading}>Downloads</h4>
               <div className={styles.footer__linklist}>
-                {footer.data.downloads.map((item, index) => (
+                {downloads.map((item, index) => (
                   <div key={index} className={styles.footer__link}>
                     <PrismicNextLink field={item.link} target="_blank" />
                     <p className={styles.downloadarrow}>&#8595;</p>

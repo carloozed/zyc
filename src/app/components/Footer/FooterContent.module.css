@@ -95,6 +95,11 @@
 
 }
 
+/* Download labels are long; let the text take the row and keep the arrow at the end. */
+.footer__downloadcontainer .footer__link {
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
 .footer__link a {
     display: inline-flex;
     align-items: center;

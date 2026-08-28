@@ -1,0 +1,135 @@
+{
+  "format": "custom",
+  "id": "contact_and_downloads",
+  "json": {
+    "Contact": {
+      "contact_title": {
+        "config": {
+          "label": "Title",
+          "placeholder": "Noch etwas unklar?",
+          "single": "heading3"
+        },
+        "type": "StructuredText"
+      },
+      "contact_text": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Text",
+          "multi": "paragraph,strong,em,hyperlink"
+        },
+        "type": "StructuredText"
+      },
+      "contact_links": {
+        "config": {
+          "fields": {
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Link"
+              },
+              "type": "Link"
+            },
+            "action": {
+              "config": {
+                "default_value": "link",
+                "label": "Action",
+                "options": [
+                  "link",
+                  "open_contact_form",
+                  "open_newsletter_form"
+                ]
+              },
+              "type": "Select"
+            }
+          },
+          "label": "Links"
+        },
+        "type": "Group"
+      }
+    },
+    "Newsletter": {
+      "newsletter_title": {
+        "config": {
+          "label": "Title",
+          "placeholder": "Bleibe auf dem Laufenden",
+          "single": "heading3"
+        },
+        "type": "StructuredText"
+      },
+      "newsletter_text": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Text",
+          "multi": "paragraph,strong,em,hyperlink"
+        },
+        "type": "StructuredText"
+      },
+      "newsletter_links": {
+        "config": {
+          "fields": {
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Link"
+              },
+              "type": "Link"
+            },
+            "action": {
+              "config": {
+                "default_value": "link",
+                "label": "Action",
+                "options": [
+                  "link",
+                  "open_contact_form",
+                  "open_newsletter_form"
+                ]
+              },
+              "type": "Select"
+            }
+          },
+          "label": "Links"
+        },
+        "type": "Group"
+      }
+    },
+    "Downloads": {
+      "downloads_title": {
+        "config": {
+          "label": "Title",
+          "placeholder": "Downloads",
+          "single": "heading3"
+        },
+        "type": "StructuredText"
+      },
+      "downloads_text": {
+        "config": {
+          "allowTargetBlank": true,
+          "label": "Text",
+          "multi": "paragraph,strong,em,hyperlink"
+        },
+        "type": "StructuredText"
+      },
+      "download_links": {
+        "config": {
+          "fields": {
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "allowText": true,
+                "label": "Link"
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Download Links"
+        },
+        "type": "Group"
+      }
+    }
+  },
+  "label": "Contact & Downloads",
+  "repeatable": false,
+  "status": true
+}

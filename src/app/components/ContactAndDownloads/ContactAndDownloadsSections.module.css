@@ -27,7 +27,9 @@
 .linkscontainer {
     padding-top: var(--padding-m);
     display: flex;
-    gap: var(--padding-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--padding-m) var(--padding-xl);
 }
 
 .downloadlink {

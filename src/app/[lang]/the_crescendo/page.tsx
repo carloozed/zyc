@@ -20,11 +20,16 @@ export default async function Page({
     .catch(() => notFound());
   const signuplink = await client.getSingle('anmeldelink', { lang });
 
+  const contactAndDownloads = await client
+    .getSingle('contact_and_downloads', { lang })
+    .catch(() => null);
+
   return (
     <CreschendoContent
       page={page}
       foldoutElements={foldoutElements}
       signuplink={signuplink}
+      contactAndDownloads={contactAndDownloads}
     />
   );
 }

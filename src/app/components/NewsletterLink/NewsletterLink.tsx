@@ -8,6 +8,8 @@ type Props = {
   hasAnmeldung?: boolean;
   hasBorder?: boolean;
   isFooter?: boolean;
+  /** Overrides the built-in German label. */
+  label?: string;
 };
 
 export default function NewsletterLink({
@@ -15,6 +17,7 @@ export default function NewsletterLink({
   hasAnmeldung,
   hasBorder = true,
   isFooter = false,
+  label,
 }: Props) {
   const { isNewsletterFormShown, setNewsletterFormShown } =
     useNewsletterStore();
@@ -26,7 +29,8 @@ export default function NewsletterLink({
     : isFooter
       ? 'var(--padding-s)'
       : 'var(--padding-m)';
-  const label = hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter';
+  const text =
+    label ?? (hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter');
 
   return (
     <span
@@ -38,7 +42,7 @@ export default function NewsletterLink({
       onClick={() => setNewsletterFormShown(!isNewsletterFormShown)}
       className="cursor-pointer"
     >
-      {label}
+      {text}
     </span>
   );
 }

@@ -286,6 +286,184 @@ interface AnmeldelinkDocumentData {
 export type AnmeldelinkDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<AnmeldelinkDocumentData>, "anmeldelink", Lang>;
 
 /**
+ * Item in *Contact & Downloads → Links*
+ */
+export interface ContactAndDownloadsDocumentDataContactLinksItem {
+	/**
+	 * Link field in *Contact & Downloads → Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.contact_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Action field in *Contact & Downloads → Links*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: link
+	 * - **API ID Path**: contact_and_downloads.contact_links[].action
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	action: prismic.SelectField<"link" | "open_contact_form" | "open_newsletter_form", "filled">;
+}
+
+/**
+ * Item in *Contact & Downloads → Links*
+ */
+export interface ContactAndDownloadsDocumentDataNewsletterLinksItem {
+	/**
+	 * Link field in *Contact & Downloads → Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.newsletter_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	
+	/**
+	 * Action field in *Contact & Downloads → Links*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: link
+	 * - **API ID Path**: contact_and_downloads.newsletter_links[].action
+	 * - **Documentation**: https://prismic.io/docs/fields/select
+	 */
+	action: prismic.SelectField<"link" | "open_contact_form" | "open_newsletter_form", "filled">;
+}
+
+/**
+ * Item in *Contact & Downloads → Download Links*
+ */
+export interface ContactAndDownloadsDocumentDataDownloadLinksItem {
+	/**
+	 * Link field in *Contact & Downloads → Download Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.download_links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Content for Contact & Downloads documents
+ */
+interface ContactAndDownloadsDocumentData {
+	/**
+	 * Title field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Noch etwas unklar?
+	 * - **API ID Path**: contact_and_downloads.contact_title
+	 * - **Tab**: Contact
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	contact_title: prismic.RichTextField;
+	
+	/**
+	 * Text field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.contact_text
+	 * - **Tab**: Contact
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	contact_text: prismic.RichTextField;
+	
+	/**
+	 * Links field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.contact_links[]
+	 * - **Tab**: Contact
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	contact_links: prismic.GroupField<Simplify<ContactAndDownloadsDocumentDataContactLinksItem>>;/**
+	 * Title field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Bleibe auf dem Laufenden
+	 * - **API ID Path**: contact_and_downloads.newsletter_title
+	 * - **Tab**: Newsletter
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	newsletter_title: prismic.RichTextField;
+	
+	/**
+	 * Text field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.newsletter_text
+	 * - **Tab**: Newsletter
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	newsletter_text: prismic.RichTextField;
+	
+	/**
+	 * Links field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.newsletter_links[]
+	 * - **Tab**: Newsletter
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	newsletter_links: prismic.GroupField<Simplify<ContactAndDownloadsDocumentDataNewsletterLinksItem>>;/**
+	 * Title field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: Downloads
+	 * - **API ID Path**: contact_and_downloads.downloads_title
+	 * - **Tab**: Downloads
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	downloads_title: prismic.RichTextField;
+	
+	/**
+	 * Text field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.downloads_text
+	 * - **Tab**: Downloads
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	downloads_text: prismic.RichTextField;
+	
+	/**
+	 * Download Links field in *Contact & Downloads*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_and_downloads.download_links[]
+	 * - **Tab**: Downloads
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	download_links: prismic.GroupField<Simplify<ContactAndDownloadsDocumentDataDownloadLinksItem>>;
+}
+
+/**
+ * Contact & Downloads document from Prismic
+ *
+ * - **API ID**: `contact_and_downloads`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactAndDownloadsDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<ContactAndDownloadsDocumentData>, "contact_and_downloads", Lang>;
+
+/**
  * Content for Contact Form documents
  */
 interface ContactFormDocumentData {
@@ -873,36 +1051,7 @@ interface FoldoutelementDocumentData {
  */
 export type FoldoutelementDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<FoldoutelementDocumentData>, "foldoutelement", Lang>;
 
-/**
- * Item in *Footer → downloads*
- */
-export interface FooterDocumentDataDownloadsItem {
-	/**
-	 * Link field in *Footer → downloads*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: footer.downloads[].link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Content for Footer documents
- */
-interface FooterDocumentData {
-	/**
-	 * downloads field in *Footer*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: footer.downloads[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	downloads: prismic.GroupField<Simplify<FooterDocumentDataDownloadsItem>>;
-}
+interface FooterDocumentData {}
 
 /**
  * Footer document from Prismic
@@ -2575,7 +2724,7 @@ interface WeAreHereImageDocumentData {
  */
 export type WeAreHereImageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<WeAreHereImageDocumentData>, "we_are_here_image", Lang>;
 
-export type AllDocumentTypes = AddressDocument | AlertoverlayDocument | AnmeldelinkDocument | ContactFormDocument | CriteriatypesubfieldDocument | DatenschutzDocument | DecorationImageDocument | DownloadBarDocument | DynamiclandingcontentDocument | FaqDocument | FoldoutelementDocument | FooterDocument | GalleryDocument | HomepageNavigationDocument | ImpresssumDocument | InstagramIconDocument | IsdownloadsmutedDocument | KontaktDocument | LandingBackgroundImageDocument | LogoDocument | LowNavigationDocument | MagazinDocument | MagazinpostDocument | NavbarDocument | NavigationIndicatorDocument | NewsletterFormDocument | PageDocument | SubnavigationDocument | TeilnahmeTermineDocument | TermineIsVisibleDocument | TheCadenzaDocument | TheContestDocument | TheCrescendoDocument | TimelineDocument | UberZycDocument | WeAreHereImageDocument;
+export type AllDocumentTypes = AddressDocument | AlertoverlayDocument | AnmeldelinkDocument | ContactAndDownloadsDocument | ContactFormDocument | CriteriatypesubfieldDocument | DatenschutzDocument | DecorationImageDocument | DownloadBarDocument | DynamiclandingcontentDocument | FaqDocument | FoldoutelementDocument | FooterDocument | GalleryDocument | HomepageNavigationDocument | ImpresssumDocument | InstagramIconDocument | IsdownloadsmutedDocument | KontaktDocument | LandingBackgroundImageDocument | LogoDocument | LowNavigationDocument | MagazinDocument | MagazinpostDocument | NavbarDocument | NavigationIndicatorDocument | NewsletterFormDocument | PageDocument | SubnavigationDocument | TeilnahmeTermineDocument | TermineIsVisibleDocument | TheCadenzaDocument | TheContestDocument | TheCrescendoDocument | TimelineDocument | UberZycDocument | WeAreHereImageDocument;
 
 /**
  * Item in *ArtistsProgramme → Default → Primary → Categories*
@@ -2696,167 +2845,22 @@ type ArtistsProgrammeSliceVariation = ArtistsProgrammeSliceDefault
 export type ArtistsProgrammeSlice = prismic.SharedSlice<"artists_programme", ArtistsProgrammeSliceVariation>;
 
 /**
- * Item in *ContactAndDownload → Default → Primary → Links*
- */
-export interface ContactAndDownloadSliceDefaultPrimaryLinksItem {
-	/**
-	 * Link field in *ContactAndDownload → Default → Primary → Links*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: Zum allgemeinen FAQ/Kontaktiere uns
-	 * - **API ID Path**: contact_and_download.default.primary.links[].link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Item in *ContactAndDownload → Default → Primary → Download Links*
- */
-export interface ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem {
-	/**
-	 * Link field in *ContactAndDownload → Default → Primary → Download Links*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: Name Download
-	 * - **API ID Path**: contact_and_download.default.primary.download_links[].link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Item in *ContactAndDownload → Just one Element → Primary → Links*
- */
-export interface ContactAndDownloadSliceJustOneElementPrimaryLinksItem {
-	/**
-	 * Link field in *ContactAndDownload → Just one Element → Primary → Links*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: Zum allgemeinen FAQ/Kontaktiere uns
-	 * - **API ID Path**: contact_and_download.justOneElement.primary.links[].link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-}
-
-/**
- * Primary content in *ContactAndDownload → Default → Primary*
- */
-export interface ContactAndDownloadSliceDefaultPrimary {
-	/**
-	 * Subtitle Something Missing field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Fehlt etwas?
-	 * - **API ID Path**: contact_and_download.default.primary.subtitle_something_missing
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	subtitle_something_missing: prismic.RichTextField;
-	
-	/**
-	 * Text missingsomething field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: hast du noch weitere fragene etc?
-	 * - **API ID Path**: contact_and_download.default.primary.text_missingsomething
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	text_missingsomething: prismic.RichTextField;
-	
-	/**
-	 * Links field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contact_and_download.default.primary.links[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	links: prismic.GroupField<Simplify<ContactAndDownloadSliceDefaultPrimaryLinksItem>>;
-	
-	/**
-	 * Downloads Title field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Downloads
-	 * - **API ID Path**: contact_and_download.default.primary.downloads_title
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	downloads_title: prismic.RichTextField;
-	
-	/**
-	 * Text Downloads field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Du kannst alle Reglemente und Zeitpläne zu einem gegebenen Zeitpunkt hier downloaden. 
-	 * - **API ID Path**: contact_and_download.default.primary.text_downloads
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	text_downloads: prismic.RichTextField;
-	
-	/**
-	 * Download Links field in *ContactAndDownload → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contact_and_download.default.primary.download_links[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	download_links: prismic.GroupField<Simplify<ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem>>;
-}
-
-/**
- * Default variation for ContactAndDownload Slice
+ * Contact & Downloads variation for ContactAndDownload Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type ContactAndDownloadSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ContactAndDownloadSliceDefaultPrimary>, never>;
+export type ContactAndDownloadSliceDefault = prismic.SharedSliceVariation<"default", Record<string, never>, never>;
 
 /**
- * Primary content in *ContactAndDownload → Just one Element → Primary*
- */
-export interface ContactAndDownloadSliceJustOneElementPrimary {
-	/**
-	 * Subtitle Something Missing field in *ContactAndDownload → Just one Element → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Fehlt etwas?
-	 * - **API ID Path**: contact_and_download.justOneElement.primary.subtitle_something_missing
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	subtitle_something_missing: prismic.RichTextField;
-	
-	/**
-	 * Text missingsomething field in *ContactAndDownload → Just one Element → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: hast du noch weitere fragene etc?
-	 * - **API ID Path**: contact_and_download.justOneElement.primary.text_missingsomething
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	text_missingsomething: prismic.RichTextField;
-	
-	/**
-	 * Links field in *ContactAndDownload → Just one Element → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: contact_and_download.justOneElement.primary.links[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
-	 */
-	links: prismic.GroupField<Simplify<ContactAndDownloadSliceJustOneElementPrimaryLinksItem>>;
-}
-
-/**
- * Just one Element variation for ContactAndDownload Slice
+ * Newsletter variation for ContactAndDownload Slice
  *
  * - **API ID**: `justOneElement`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type ContactAndDownloadSliceJustOneElement = prismic.SharedSliceVariation<"justOneElement", Simplify<ContactAndDownloadSliceJustOneElementPrimary>, never>;
+export type ContactAndDownloadSliceJustOneElement = prismic.SharedSliceVariation<"justOneElement", Record<string, never>, never>;
 
 /**
  * Slice variation for *ContactAndDownload*
@@ -4001,6 +4005,11 @@ declare module "@prismicio/client" {
 			AlertoverlayDocumentDataInformationGroupItem,
 			AnmeldelinkDocument,
 			AnmeldelinkDocumentData,
+			ContactAndDownloadsDocument,
+			ContactAndDownloadsDocumentData,
+			ContactAndDownloadsDocumentDataContactLinksItem,
+			ContactAndDownloadsDocumentDataNewsletterLinksItem,
+			ContactAndDownloadsDocumentDataDownloadLinksItem,
 			ContactFormDocument,
 			ContactFormDocumentData,
 			CriteriatypesubfieldDocument,
@@ -4024,7 +4033,6 @@ declare module "@prismicio/client" {
 			FoldoutelementDocumentDataContentItem,
 			FooterDocument,
 			FooterDocumentData,
-			FooterDocumentDataDownloadsItem,
 			GalleryDocument,
 			GalleryDocumentData,
 			GalleryDocumentDataSortingOptionsItem,
@@ -4103,11 +4111,6 @@ declare module "@prismicio/client" {
 			ArtistsProgrammeSliceVariation,
 			ArtistsProgrammeSliceDefault,
 			ContactAndDownloadSlice,
-			ContactAndDownloadSliceDefaultPrimaryLinksItem,
-			ContactAndDownloadSliceDefaultPrimaryDownloadLinksItem,
-			ContactAndDownloadSliceDefaultPrimary,
-			ContactAndDownloadSliceJustOneElementPrimaryLinksItem,
-			ContactAndDownloadSliceJustOneElementPrimary,
 			ContactAndDownloadSliceVariation,
 			ContactAndDownloadSliceDefault,
 			ContactAndDownloadSliceJustOneElement,
