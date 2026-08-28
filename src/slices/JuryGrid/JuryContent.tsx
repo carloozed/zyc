@@ -29,7 +29,7 @@ const COMING_SOON_FALLBACK: Record<
   { title: string; text: string }
 > = {
   'de-ch': {
-    title: 'Demnächst',
+    title: 'Coming soon',
     text: 'Die Jury wird in Kürze bekannt gegeben.',
   },
   'en-us': {
