@@ -7,6 +7,7 @@
     bottom: var(--padding-s);
     min-width: 85%;
     justify-content: space-between;
+    gap: var(--padding-xs);
     border: var(--border-thin);
     border-radius: 6px;
     transform: translateX(-50%) scale(0.88);

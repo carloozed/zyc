@@ -5,17 +5,22 @@ import React, { useState, useEffect } from 'react';
 import { asText, DateField } from '@prismicio/client';
 import { TimelinePhasesSlice } from '@/prismicio-types';
 
-import { useMobile } from '@/contexts/MobileContext';
-
 type Props = {
   styles: Readonly<Record<string, string>>;
   slice: TimelinePhasesSlice;
 };
 
+const DEFAULT_WIDTH_PERCENT = 100;
+
+/** Parses the CMS width field ("25" or "25%") into a percentage number. */
+function parseWidthPercent(value: string | null | undefined): number {
+  const parsed = parseFloat((value ?? '').trim().replace(/%$/, ''));
+  if (!Number.isFinite(parsed) || parsed <= 0) return DEFAULT_WIDTH_PERCENT;
+  return Math.min(parsed, 100);
+}
+
 export default function TimelineContent({ styles, slice }: Props) {
   const [progressPercentage, setProgressPercentage] = useState(0);
-
-  const { isMobile } = useMobile();
 
   useEffect(() => {
     const calculateProgressPercentage = () => {
@@ -52,19 +57,14 @@ export default function TimelineContent({ styles, slice }: Props) {
     setProgressPercentage(calculateProgressPercentage());
   }, [slice.primary.start_date, slice.primary.end_date]);
 
+  const widthPercent = parseWidthPercent(slice.primary.width);
+
   return (
     <div
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={styles.timeline__container}
-      style={{
-        width:
-          slice.variation === 'default'
-            ? '100%'
-            : slice.variation === 'midPhase'
-              ? `${!isMobile ? '17.5%' : '24%'}`
-              : `${!isMobile ? '10%' : '18%'}`,
-      }}
+      style={{ width: `${widthPercent}%` }}
     >
       <div>
         {' '}

@@ -3803,10 +3803,10 @@ export interface TimelinePhasesSliceDefaultPrimary {
 	end_date: prismic.DateField;
 	
 	/**
-	 * width field in *TimellinePhase → Long Phase → Primary*
+	 * Width (%) field in *TimellinePhase → Long Phase → Primary*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: 30%
+	 * - **Placeholder**: 25
 	 * - **API ID Path**: timeline_phases.default.primary.width
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
@@ -3823,97 +3823,9 @@ export interface TimelinePhasesSliceDefaultPrimary {
 export type TimelinePhasesSliceDefault = prismic.SharedSliceVariation<"default", Simplify<TimelinePhasesSliceDefaultPrimary>, never>;
 
 /**
- * Primary content in *TimellinePhase → Mid Phase → Primary*
- */
-export interface TimelinePhasesSliceMidPhasePrimary {
-	/**
-	 * Phase title field in *TimellinePhase → Mid Phase → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Qualifikationsphase
-	 * - **API ID Path**: timeline_phases.midPhase.primary.phase_title
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	phase_title: prismic.RichTextField;
-	
-	/**
-	 * Start Date field in *TimellinePhase → Mid Phase → Primary*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: timeline_phases.midPhase.primary.start_date
-	 * - **Documentation**: https://prismic.io/docs/fields/date
-	 */
-	start_date: prismic.DateField;
-	
-	/**
-	 * End Date field in *TimellinePhase → Mid Phase → Primary*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: timeline_phases.midPhase.primary.end_date
-	 * - **Documentation**: https://prismic.io/docs/fields/date
-	 */
-	end_date: prismic.DateField;
-}
-
-/**
- * Mid Phase variation for TimellinePhase Slice
- *
- * - **API ID**: `midPhase`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TimelinePhasesSliceMidPhase = prismic.SharedSliceVariation<"midPhase", Simplify<TimelinePhasesSliceMidPhasePrimary>, never>;
-
-/**
- * Primary content in *TimellinePhase → Short Phase → Primary*
- */
-export interface TimelinePhasesSliceShortPhasePrimary {
-	/**
-	 * Phase title field in *TimellinePhase → Short Phase → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Qualifikationsphase
-	 * - **API ID Path**: timeline_phases.shortPhase.primary.phase_title
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
-	 */
-	phase_title: prismic.RichTextField;
-	
-	/**
-	 * Start Date field in *TimellinePhase → Short Phase → Primary*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: timeline_phases.shortPhase.primary.start_date
-	 * - **Documentation**: https://prismic.io/docs/fields/date
-	 */
-	start_date: prismic.DateField;
-	
-	/**
-	 * End Date field in *TimellinePhase → Short Phase → Primary*
-	 *
-	 * - **Field Type**: Date
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: timeline_phases.shortPhase.primary.end_date
-	 * - **Documentation**: https://prismic.io/docs/fields/date
-	 */
-	end_date: prismic.DateField;
-}
-
-/**
- * Short Phase variation for TimellinePhase Slice
- *
- * - **API ID**: `shortPhase`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slices
- */
-export type TimelinePhasesSliceShortPhase = prismic.SharedSliceVariation<"shortPhase", Simplify<TimelinePhasesSliceShortPhasePrimary>, never>;
-
-/**
  * Slice variation for *TimellinePhase*
  */
-type TimelinePhasesSliceVariation = TimelinePhasesSliceDefault | TimelinePhasesSliceMidPhase | TimelinePhasesSliceShortPhase
+type TimelinePhasesSliceVariation = TimelinePhasesSliceDefault
 
 /**
  * TimellinePhase Shared Slice
@@ -4239,12 +4151,8 @@ declare module "@prismicio/client" {
 			SplitVisualHeadlineSliceContest,
 			TimelinePhasesSlice,
 			TimelinePhasesSliceDefaultPrimary,
-			TimelinePhasesSliceMidPhasePrimary,
-			TimelinePhasesSliceShortPhasePrimary,
 			TimelinePhasesSliceVariation,
 			TimelinePhasesSliceDefault,
-			TimelinePhasesSliceMidPhase,
-			TimelinePhasesSliceShortPhase,
 			VideosYearSlice,
 			VideosYearSliceDefaultPrimaryVideosItem,
 			VideosYearSliceDefaultPrimary,

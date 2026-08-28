@@ -1,117 +1,49 @@
 {
+  "description": "TimelinePhases",
   "id": "timeline_phases",
-  "type": "SharedSlice",
   "name": "TimellinePhase",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Long Phase",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/timeline_phases/default/fd10f08ef2ec33b35b356c0c813fb584b681a65a.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/timeline_phases/default/fd10f08ef2ec33b35b356c0c813fb584b681a65a.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Long Phase",
       "primary": {
         "phase_title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Phase title",
-            "placeholder": "Qualifikationsphase",
             "multi": "heading5",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Qualifikationsphase"
+          },
+          "type": "StructuredText"
         },
         "start_date": {
-          "type": "Date",
           "config": {
             "label": "Start Date",
             "placeholder": ""
-          }
+          },
+          "type": "Date"
         },
         "end_date": {
-          "type": "Date",
           "config": {
             "label": "End Date",
             "placeholder": ""
-          }
+          },
+          "type": "Date"
         },
         "width": {
-          "type": "Text",
           "config": {
-            "label": "width",
-            "placeholder": "30%"
-          }
+            "label": "Width (%)",
+            "placeholder": "25"
+          },
+          "type": "Text"
         }
       },
-      "items": {}
-    },
-    {
-      "id": "midPhase",
-      "name": "Mid Phase",
-      "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/timeline_phases/midPhase/9704a2bd150448f2865eb8a140204dfb6467abd5.png?auto=compress%2Cformat",
-      "docURL": "...",
-      "version": "initial",
-      "primary": {
-        "phase_title": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Phase title",
-            "placeholder": "Qualifikationsphase",
-            "multi": "heading5",
-            "allowTargetBlank": true
-          }
-        },
-        "start_date": {
-          "type": "Date",
-          "config": {
-            "label": "Start Date",
-            "placeholder": ""
-          }
-        },
-        "end_date": {
-          "type": "Date",
-          "config": {
-            "label": "End Date",
-            "placeholder": ""
-          }
-        }
-      },
-      "items": {}
-    },
-    {
-      "id": "shortPhase",
-      "name": "Short Phase",
-      "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/timeline_phases/shortPhase/ad5076c4d693a76059c2dd2b6f3d7884e0c32e93.png?auto=compress%2Cformat",
-      "docURL": "...",
-      "version": "initial",
-      "primary": {
-        "phase_title": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Phase title",
-            "placeholder": "Qualifikationsphase",
-            "multi": "heading5",
-            "allowTargetBlank": true
-          }
-        },
-        "start_date": {
-          "type": "Date",
-          "config": {
-            "label": "Start Date",
-            "placeholder": ""
-          }
-        },
-        "end_date": {
-          "type": "Date",
-          "config": {
-            "label": "End Date",
-            "placeholder": ""
-          }
-        }
-      },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "TimelinePhases"
+  ]
 }
