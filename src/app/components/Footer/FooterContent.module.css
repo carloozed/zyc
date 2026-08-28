@@ -78,26 +78,18 @@
 
 }
 
+/* Each list is one grid so every arrow sits in the same column, right after the longest label. */
 .footer__linklist {
-    display: flex;
-    flex-direction: column;
-    gap: var(--padding-xs);
+    display: grid;
+    grid-template-columns: minmax(0, max-content) auto;
+    justify-content: start;
+    align-items: center;
+    column-gap: calc(2 * var(--padding-s));
+    row-gap: var(--padding-xs);
 }
 
 .footer__link {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    width: fit-content;
-    max-width: 24rem;
-    width: 100%;
-    gap: var(--padding-s);
-
-}
-
-/* Download labels are long; let the text take the row and keep the arrow at the end. */
-.footer__downloadcontainer .footer__link {
-    grid-template-columns: minmax(0, 1fr) auto;
+    display: contents;
 }
 
 .footer__link a {

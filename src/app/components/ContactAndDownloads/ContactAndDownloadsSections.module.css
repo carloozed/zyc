@@ -34,7 +34,13 @@
 
 .downloadlink {
     display: flex;
-    gap: var(--padding-s)
+    align-items: center;
+    gap: var(--padding-s);
+}
+
+.downloadlink p {
+    margin: 0;
+    line-height: 1;
 }
 
 .downloadlink a,
