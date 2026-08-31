@@ -224,7 +224,9 @@
 
 .jury__past_year ul {
     list-style: none;
-    padding: 0;
+    /* Top padding sits inside the 0fr -> 1fr fold, so it animates with it
+       instead of leaking height into the closed state. */
+    padding: var(--padding-s) 0 0;
     margin: 0;
     display: flex;
     flex-direction: column;
