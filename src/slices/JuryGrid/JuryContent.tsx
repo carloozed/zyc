@@ -22,21 +22,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = { slice: JuryGridSlice; lang?: string };
 
-// Fallbacks for the "Coming soon" placeholder when the slice's own title /
-// text are empty; keyed by the document locale.
-const COMING_SOON_FALLBACK: Record<
-  'de-ch' | 'en-us',
-  { title: string; text: string }
-> = {
-  'de-ch': {
-    title: 'Coming soon',
-    text: 'Die Jury wird demnächst veröffentlicht.',
-  },
-  'en-us': {
-    title: 'Coming soon',
-    text: 'The jury will be announced shortly.',
-  },
-};
+// Fallback for the "Coming soon" placeholder when the slice's own title is
+// empty; same wording in both locales.
+const COMING_SOON_FALLBACK_TITLE = '2027: Coming soon';
 
 export default function JuryContent({ slice, lang }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -58,20 +46,12 @@ export default function JuryContent({ slice, lang }: Props) {
   // returns undefined for it on untouched documents — only an explicit
   // "false" hides the current jury behind the placeholder.
   const juryPublished = slice.primary.current_jury_published !== false;
-  const comingSoonFallback =
-    COMING_SOON_FALLBACK[lang === 'en-us' ? 'en-us' : 'de-ch'];
-  // A filled title stands on its own; the fallback subline only appears when
-  // the editor left both placeholder fields empty.
-  const hasComingSoonTitle = isFilled.keyText(slice.primary.coming_soon_title);
-  const hasComingSoonText = isFilled.richText(slice.primary.coming_soon_text);
-  const comingSoonTitle = hasComingSoonTitle
+  const comingSoonTitle = isFilled.keyText(slice.primary.coming_soon_title)
     ? slice.primary.coming_soon_title
-    : comingSoonFallback.title;
-  const comingSoonText = hasComingSoonText ? (
+    : COMING_SOON_FALLBACK_TITLE;
+  const comingSoonText = isFilled.richText(slice.primary.coming_soon_text) ? (
     <PrismicRichText field={slice.primary.coming_soon_text} />
-  ) : hasComingSoonTitle ? null : (
-    <p>{comingSoonFallback.text}</p>
-  );
+  ) : null;
 
   // Rows are entered flat in Prismic; the year number on each row decides
   // which edition it belongs to. Members serving several editions get one
