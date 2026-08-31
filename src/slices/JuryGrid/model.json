@@ -30,7 +30,7 @@
         "season_label": {
           "config": {
             "label": "Season Label",
-            "placeholder": "2026/2027"
+            "placeholder": "2027"
           },
           "type": "Text"
         },
@@ -80,13 +80,6 @@
           },
           "type": "Text"
         },
-        "past_title": {
-          "config": {
-            "label": "Past Juries Title",
-            "placeholder": "Ehemalige Jurymitglieder"
-          },
-          "type": "Text"
-        },
         "past_members": {
           "config": {
             "fields": {
@@ -100,7 +93,7 @@
               "edition": {
                 "config": {
                   "label": "Edition",
-                  "placeholder": "2025/2026"
+                  "placeholder": "2026"
                 },
                 "type": "Text"
               },

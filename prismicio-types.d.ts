@@ -3347,7 +3347,7 @@ export interface JuryGridSliceBaseGridPrimaryPastMembersItem {
 	 * Edition field in *JuryGrid → Base Grid → Primary → Past Members*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: 2025/2026
+	 * - **Placeholder**: 2026
 	 * - **API ID Path**: jury_grid.base_grid.primary.past_members[].edition
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
@@ -3402,7 +3402,7 @@ export interface JuryGridSliceBaseGridPrimary {
 	 * Season Label field in *JuryGrid → Base Grid → Primary*
 	 *
 	 * - **Field Type**: Text
-	 * - **Placeholder**: 2026/2027
+	 * - **Placeholder**: 2027
 	 * - **API ID Path**: jury_grid.base_grid.primary.season_label
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
@@ -3427,16 +3427,6 @@ export interface JuryGridSliceBaseGridPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	link_text: prismic.KeyTextField;
-	
-	/**
-	 * Past Juries Title field in *JuryGrid → Base Grid → Primary*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: Ehemalige Jurymitglieder
-	 * - **API ID Path**: jury_grid.base_grid.primary.past_title
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	past_title: prismic.KeyTextField;
 	
 	/**
 	 * Past Members field in *JuryGrid → Base Grid → Primary*
