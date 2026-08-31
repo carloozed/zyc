@@ -56,9 +56,9 @@ export default function JuryContent({ slice, lang }: Props) {
   // Rows are entered flat in Prismic; the year number on each row decides
   // which edition it belongs to. Members serving several editions get one
   // row per year. Missing years sink to the bottom instead of disappearing.
-  // The group heading is the rows' optional Edition label (e.g. "2025/2026")
-  // or, when none is filled, the site's default edition naming derived from
-  // the year — same convention as the gallery's edition_year/year_in_number.
+  // The group heading is the rows' optional Edition label or, when none is
+  // filled, the edition's finale year derived from the row's year field
+  // (year 2025 -> "2026"), matching the single-year season_label convention.
   const pastByYear = useMemo(() => {
     const rows = (slice.primary.past_members ?? []).filter(
       (row: JuryGridSliceBaseGridPrimaryPastMembersItem) =>
@@ -78,7 +78,7 @@ export default function JuryContent({ slice, lang }: Props) {
         year,
         label:
           members.find((m) => isFilled.keyText(m.edition))?.edition ??
-          (year > 0 ? `${year}/${year + 1}` : ''),
+          (year > 0 ? `${year + 1}` : ''),
         members,
       }));
   }, [slice.primary.past_members]);
