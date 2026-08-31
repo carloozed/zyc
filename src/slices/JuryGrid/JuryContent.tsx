@@ -118,7 +118,9 @@ export default function JuryContent({ slice, lang }: Props) {
         <PrismicRichText field={slice.primary.introduction} />
       </div>
       <div className={styles.jury__current}>
-        {isFilled.keyText(slice.primary.season_label) && (
+        {/* While the jury is pending, the placeholder title ("2027: Coming
+            soon") already names the season, so the label would repeat it. */}
+        {juryPublished && isFilled.keyText(slice.primary.season_label) && (
           <p className={`jury-fade ${styles.jury__season}`}>
             {slice.primary.season_label}
           </p>
