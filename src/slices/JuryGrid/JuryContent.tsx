@@ -40,7 +40,19 @@ const COMING_SOON_FALLBACK: Record<
 
 export default function JuryContent({ slice, lang }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [pastOpen, setPastOpen] = useState(false);
+  const [openYears, setOpenYears] = useState<ReadonlySet<number>>(new Set());
+
+  const toggleYear = (year: number) => {
+    setOpenYears((prev) => {
+      const next = new Set(prev);
+      if (next.has(year)) {
+        next.delete(year);
+      } else {
+        next.add(year);
+      }
+      return next;
+    });
+  };
 
   // The toggle was added after the documents were published, so the API
   // returns undefined for it on untouched documents — only an explicit
@@ -167,51 +179,59 @@ export default function JuryContent({ slice, lang }: Props) {
           ))}
         </div>
       </div>
-      {isFilled.keyText(slice.primary.past_title) && pastByYear.length > 0 && (
+      {pastByYear.length > 0 && (
         <div className={`jury-fade ${styles.jury__past}`}>
-          <button
-            type="button"
-            className={styles.jury__past_toggle}
-            onClick={() => setPastOpen(!pastOpen)}
-            aria-expanded={pastOpen}
-            aria-controls="jury-past-content"
-          >
-            <div className={styles.jury__past_title}>
-              <h3>{slice.primary.past_title}</h3>
-            </div>
-            <div className={styles.jury__past_icon}>
-              <div className={styles.jury__past_icondiv}></div>
-              <div
-                className={`${styles.jury__past_icondiv} ${pastOpen ? styles.open : ''}`}
-              ></div>
-            </div>
-          </button>
-          <div
-            id="jury-past-content"
-            className={`${styles.jury__past_content} ${pastOpen ? styles.open : ''}`}
-          >
-            <div className={styles.jury__past_inner}>
-              {pastByYear.map(({ year, label, members }) => (
+          <div className={styles.jury__past_years}>
+            {pastByYear.map(({ year, label, members }) => {
+              const isOpen = openYears.has(year);
+              return (
                 <div key={year} className={styles.jury__past_year}>
-                  {label && <h4>{label}</h4>}
-                  <ul>
-                    {members.map((member, memberIndex) => (
-                      <li key={memberIndex} className={styles.jury__past_row}>
-                        <span>{member.name}</span>
-                        {isFilled.link(member.website) && (
-                          <PrismicNextLink
-                            field={member.website}
-                            aria-label={`${slice.primary.link_text} – ${member.name}`}
+                  <button
+                    type="button"
+                    className={styles.jury__past_toggle}
+                    onClick={() => toggleYear(year)}
+                    aria-expanded={isOpen}
+                    aria-controls={`jury-past-content-${year}`}
+                  >
+                    <h3>
+                      {label ||
+                        (lang === 'en-us' ? 'Earlier years' : 'Frühere Jahre')}
+                    </h3>
+                    <div className={styles.jury__past_icon}>
+                      <div className={styles.jury__past_icondiv}></div>
+                      <div
+                        className={`${styles.jury__past_icondiv} ${isOpen ? styles.open : ''}`}
+                      ></div>
+                    </div>
+                  </button>
+                  <div
+                    id={`jury-past-content-${year}`}
+                    className={`${styles.jury__past_content} ${isOpen ? styles.open : ''}`}
+                  >
+                    <div className={styles.jury__past_inner}>
+                      <ul>
+                        {members.map((member, memberIndex) => (
+                          <li
+                            key={memberIndex}
+                            className={styles.jury__past_row}
                           >
-                            {slice.primary.link_text}
-                          </PrismicNextLink>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
+                            <span>{member.name}</span>
+                            {isFilled.link(member.website) && (
+                              <PrismicNextLink
+                                field={member.website}
+                                aria-label={`${slice.primary.link_text} – ${member.name}`}
+                              >
+                                {slice.primary.link_text}
+                              </PrismicNextLink>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       )}

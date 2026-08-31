@@ -146,6 +146,8 @@
     padding: var(--padding-l) var(--padding-xl);
 }
 
+/* One toggle per edition, same +/- icon and 0fr -> 1fr mechanism as the
+   Foldout slice. */
 .jury__past_toggle {
     display: flex;
     gap: var(--padding-m);
@@ -158,21 +160,6 @@
     font: inherit;
     color: inherit;
     text-align: left;
-}
-
-.jury__past_title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: var(--border-thin);
-    border-radius: var(--radius-l);
-}
-
-.jury__past_title h3 {
-    padding: var(--padding-s);
-    font-size: var(--subtitle-s);
-    font-weight: var(--fontweight-xs);
-    font-family: var(--subtitle-font);
 }
 
 .jury__past_icon {
@@ -222,15 +209,17 @@
     min-height: 0;
 }
 
-.jury__past_year {
-    padding-top: var(--padding-l);
+.jury__past_years {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-s);
+    padding: 0 var(--padding-s);
 }
 
-.jury__past_year h4 {
+.jury__past_year h3 {
     font-size: var(--subtitle-s);
     font-weight: 150;
     font-family: var(--title-font);
-    padding-bottom: var(--padding-xs);
 }
 
 .jury__past_year ul {
