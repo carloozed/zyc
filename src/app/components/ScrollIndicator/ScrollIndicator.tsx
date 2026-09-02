@@ -1,184 +1,143 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import DrawSVGPlugin from 'gsap/DrawSVGPlugin';
 import { SplitText } from 'gsap/SplitText';
-import styles from './ScrollIndicator.module.css';
 import { usePathname } from 'next/navigation';
+import styles from './ScrollIndicator.module.css';
+import stripLocale from '@/helpers/stripLocale';
 
 gsap.registerPlugin(DrawSVGPlugin, SplitText);
 
+// Pages where the indicator never shows.
+const EXCLUDED_PAGES = [
+  '/',
+  '/ueber_zyc',
+  '/impressum',
+  '/datenschutz',
+  '/newsletter_confirmed',
+];
+
+const INITIAL_DELAY = 2000; // ms after a page load or route change
+const RETURN_DELAY = 1000; // ms after scrolling back up to the top
+const TOP_THRESHOLD = 2; // px; tolerates sub-pixel and overscroll values
+const HIDE_SPEED = 1.5; // the retrace plays a bit faster than the entrance
+
 export default function ScrollIndicator() {
-  const [shouldShow, setShouldShow] = useState(false);
-  const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
-
+  const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
-  const splitRef = useRef<SplitText | null>(null);
   const arrowRef = useRef<SVGPathElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
   const pathname = usePathname();
-  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isExcludedPage = EXCLUDED_PAGES.includes(stripLocale(pathname));
 
-  // Pages where indicator should never show
-  const excludedPages = [
-    '/',
-    '/ueber_zyc',
-    '/impressum',
-    '/datenschutz',
-    '/newsletter_confirmed',
-  ];
-  const isExcludedPage = excludedPages.includes(pathname);
-
+  // One timeline for both directions: showing plays it forward, hiding plays
+  // it backwards. An interrupted entrance therefore retraces its own steps
+  // instead of being cut off, and the two directions hand over mid-way.
   useEffect(() => {
-    // Reset state when pathname changes
-    setShouldShow(false);
-    setHasAnimatedIn(false);
+    const container = containerRef.current;
+    const text = textRef.current;
+    const arrow = arrowRef.current;
+    if (!container || !text || !arrow) return;
 
-    // Clear any pending animations
-    if (animationTimeoutRef.current) {
-      clearTimeout(animationTimeoutRef.current);
-      animationTimeoutRef.current = null;
-    }
-
-    if (isExcludedPage) {
-      return;
-    }
-
-    const checkInitialPosition = () => {
-      if (window.scrollY === 0) {
-        animationTimeoutRef.current = setTimeout(() => {
-          setShouldShow(true);
-        }, 2000);
-      }
-    };
-
-    setTimeout(checkInitialPosition, 100);
-  }, [pathname, isExcludedPage]);
-
-  useEffect(() => {
-    if (isExcludedPage) return;
-
-    const handleScroll = () => {
-      const isAtTop = window.scrollY === 0;
-
-      if (isAtTop && !shouldShow && !hasAnimatedIn) {
-        // User scrolled back to top - show indicator after delay
-        if (animationTimeoutRef.current) {
-          clearTimeout(animationTimeoutRef.current);
-        }
-        animationTimeoutRef.current = setTimeout(() => {
-          setShouldShow(true);
-        }, 1000);
-      } else if (!isAtTop && shouldShow) {
-        // User scrolled away from top - hide immediately
-        if (animationTimeoutRef.current) {
-          clearTimeout(animationTimeoutRef.current);
-          animationTimeoutRef.current = null;
-        }
-        setShouldShow(false);
-        setHasAnimatedIn(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const split = new SplitText(text, { type: 'chars' });
+    const tl = gsap.timeline({
+      paused: true,
+      onReverseComplete: () => {
+        container.style.visibility = 'hidden';
+      },
+    });
+    // The arrow is the last thing to finish, so the retrace starts with it
+    // visibly undrawing instead of idling in the letters' faded-in tail.
+    tl.fromTo(
+      split.chars,
+      { y: '100%', opacity: 0 },
+      { y: '0%', opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.06 },
+      0,
+    ).fromTo(
+      arrow,
+      { drawSVG: '0%' },
+      { drawSVG: '100%', duration: 0.5, ease: 'power2.in' },
+      '>-0.5',
+    );
+    timelineRef.current = tl;
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (animationTimeoutRef.current) {
-        clearTimeout(animationTimeoutRef.current);
-      }
-    };
-  }, [shouldShow, hasAnimatedIn, isExcludedPage]);
-
-  useEffect(() => {
-    if (shouldShow && !hasAnimatedIn) {
-      animateIn();
-      setHasAnimatedIn(true);
-
-      // Auto-hide after 5 seconds
-      animationTimeoutRef.current = setTimeout(() => {
-        animateOut();
-        setShouldShow(false);
-        setHasAnimatedIn(false);
-      }, 5000);
-    } else if (!shouldShow && hasAnimatedIn) {
-      animateOut();
-      setHasAnimatedIn(false);
-    }
-  }, [shouldShow, hasAnimatedIn]);
-
-  const animateIn = () => {
-    if (!textRef.current || !arrowRef.current) return;
-
-    // Clean up previous split
-    if (splitRef.current) {
-      splitRef.current.revert();
-    }
-
-    splitRef.current = new SplitText(textRef.current, { type: 'chars' });
-
-    // Set initial states
-    gsap.set(splitRef.current.chars, { y: '100%', opacity: 0 });
-    gsap.set(arrowRef.current, { drawSVG: '0%' });
-
-    // Animate in
-    gsap.to(splitRef.current.chars, {
-      y: '0%',
-      opacity: 1,
-      duration: 1,
-      ease: 'power3.out',
-      stagger: 0.06,
-    });
-
-    gsap.to(arrowRef.current, {
-      duration: 0.5,
-      drawSVG: '100%',
-      ease: 'power2.in',
-      delay: 0.3,
-    });
-  };
-
-  const animateOut = () => {
-    if (!textRef.current || !arrowRef.current) return;
-
-    // Ensure we have split text
-    if (!splitRef.current || !splitRef.current.chars?.length) {
-      splitRef.current = new SplitText(textRef.current, { type: 'chars' });
-    }
-
-    // Animate out
-    gsap.to(splitRef.current.chars, {
-      y: '100%',
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.in',
-      stagger: 0.03,
-    });
-
-    gsap.to(arrowRef.current, {
-      duration: 0.5,
-      drawSVG: '0%',
-      ease: 'power2.in',
-    });
-  };
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (animationTimeoutRef.current) {
-        clearTimeout(animationTimeoutRef.current);
-      }
-      if (splitRef.current) {
-        splitRef.current.revert();
-      }
+      tl.kill();
+      split.revert();
+      timelineRef.current = null;
     };
   }, []);
 
+  useEffect(() => {
+    const container = containerRef.current;
+    const tl = timelineRef.current;
+    if (!container || !tl) return;
+
+    let showTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const cancelShow = () => {
+      if (showTimer) {
+        clearTimeout(showTimer);
+        showTimer = null;
+      }
+    };
+
+    const isAtTop = () => window.scrollY <= TOP_THRESHOLD;
+    const canScroll = () =>
+      document.documentElement.scrollHeight >
+      window.innerHeight + TOP_THRESHOLD;
+    const isHiddenOrHiding = () => tl.reversed() || tl.progress() === 0;
+
+    // Pages can opt out by rendering any element with this attribute
+    // (the 404 page does): the hint would only point at the footer there.
+    const pageOptsOut = () =>
+      document.querySelector('[data-hide-scroll-indicator]') !== null;
+
+    const show = () => {
+      showTimer = null;
+      if (!isAtTop() || !canScroll() || pageOptsOut()) return;
+      container.style.visibility = 'visible';
+      tl.timeScale(1).play();
+    };
+
+    const scheduleShow = (delay: number) => {
+      cancelShow();
+      showTimer = setTimeout(show, delay);
+    };
+
+    const hide = () => {
+      cancelShow();
+      tl.timeScale(HIDE_SPEED).reverse();
+    };
+
+    // Every route starts hidden; offer the hint once the visitor has had a
+    // moment to look at the page, provided they are still at the top.
+    tl.pause(0);
+    container.style.visibility = 'hidden';
+    if (isExcludedPage) return;
+
+    scheduleShow(INITIAL_DELAY);
+
+    const onScroll = () => {
+      if (!isAtTop()) {
+        hide();
+      } else if (!showTimer && isHiddenOrHiding()) {
+        scheduleShow(RETURN_DELAY);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      cancelShow();
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, [pathname, isExcludedPage]);
+
   return (
-    <div
-      style={{ display: shouldShow ? 'flex' : 'none' }}
-      className={styles.indicator}
-    >
+    <div ref={containerRef} className={styles.indicator} aria-hidden="true">
       <div className={styles.indicator__uppercontainer}>
         <h3 ref={textRef}>scroll</h3>
       </div>

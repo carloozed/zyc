@@ -8,6 +8,10 @@
     flex-direction: column;
     align-items: center;
     gap: var(--padding-m);
+    /* Stays mounted; the entrance animation makes it visible and its
+       reverse hides it again once the letters and the arrow are gone. */
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .indicator__uppercontainer {
