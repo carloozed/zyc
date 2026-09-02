@@ -1,0 +1,54 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.imagecontainer {
+    position: relative;
+    width: fit-content;
+}
+
+.imagecontainer img {
+    height: 90vh;
+    width: auto;
+    border: var(--border-thin);
+}
+
+.downloadcontainer {
+    position: absolute;
+    bottom: 0;
+    /* Explicit width: the reset's `svg { max-width: 100% }` has nothing to
+       resolve against in a shrink-to-fit box and collapses the icon to 0. */
+    width: 2rem;
+    left: 100%;
+    margin-left: var(--padding-m);
+}
+/* Phones and portrait tablets: a 90vh poster would be wider than the
+   screen, so size it by width instead and move the icon into the flow
+   below it. The definite width lets the browser reserve the poster's box
+   from its width/height attributes before the file has loaded. */
+@media (max-width: 48rem),
+    (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
+    .content {
+        padding: 0 var(--padding-s);
+    }
+
+    .imagecontainer {
+        width: 100%;
+    }
+
+    .imagecontainer img {
+        width: 100%;
+        height: auto;
+    }
+
+    .downloadcontainer {
+        position: static;
+        margin: var(--padding-s) auto 0;
+    }
+}

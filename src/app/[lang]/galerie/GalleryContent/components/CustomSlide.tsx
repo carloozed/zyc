@@ -5,21 +5,7 @@ import Image from 'next/image';
 import styles from './CustomSlide.module.css';
 import DownloadIconGallery from './DownloadIconGallery';
 import { GallerySlide } from '@/helpers/gallery';
-
-async function downloadImage(url: string, filename: string) {
-  try {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(blobUrl);
-  } catch {
-    window.open(url, '_blank');
-  }
-}
+import { downloadFile } from '@/helpers/downloadFile';
 
 export function CustomSlide({ slide }: { slide: GallerySlide }) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -38,7 +24,7 @@ export function CustomSlide({ slide }: { slide: GallerySlide }) {
           onLoad={() => setIsImageLoaded(true)}
           onError={() => setHasError(true)}
         />
-        <button onClick={() => downloadImage(slide.src, slide.alt)}>
+        <button onClick={() => downloadFile(slide.src, slide.alt)}>
           <DownloadIconGallery />
         </button>
       </span>
