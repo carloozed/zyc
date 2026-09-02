@@ -1,0 +1,63 @@
+.main {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--padding-l);
+    padding: var(--page-title) var(--padding-xl);
+}
+
+/* Same construction as the hamburger and header decor, scaled up:
+   a thin line with a white circle at each end, and the code in between. */
+.decor {
+    display: flex;
+    align-items: center;
+    width: min(100%, 40rem);
+}
+
+.circle {
+    flex: none;
+    width: calc(0.5rem + 0.5vw);
+    height: calc(0.5rem + 0.5vw);
+    background-color: var(--white);
+    border: var(--border-thin);
+    border-radius: 50%;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--black);
+}
+
+.code {
+    padding: 0 var(--padding-m);
+    font-size: var(--page-title);
+    line-height: 1;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--padding-s);
+    text-align: center;
+}
+
+.text p {
+    font-size: var(--text);
+}
+
+.link {
+    /* bare anchors don't inherit the site's text font */
+    font-family: var(--text-font);
+    font-size: var(--text);
+    text-decoration: underline;
+}
+
+@media (max-width: 48rem) {
+    .main {
+        padding: var(--page-title) var(--padding-s);
+    }
+}
