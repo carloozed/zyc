@@ -17,13 +17,14 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // The default locale is canonical on bare paths — an explicit /de-ch
-  // prefix redirects there so every page has exactly one URL.
+  // prefix redirects there so every page has exactly one URL. Permanent
+  // (308) so search engines index the bare URL and drop the prefixed one.
   if (
     pathname === `/${defaultLocale}` ||
     pathname.startsWith(`/${defaultLocale}/`)
   ) {
     const bare = pathname.slice(`/${defaultLocale}`.length) || '/';
-    return NextResponse.redirect(new URL(bare, request.url));
+    return NextResponse.redirect(new URL(bare, request.url), 308);
   }
 
   const pathnameIsMissingLocale = locales.every(
