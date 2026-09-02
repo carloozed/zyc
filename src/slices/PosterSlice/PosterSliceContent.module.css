@@ -35,11 +35,15 @@
 @media (max-width: 48rem),
     (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
     .content {
-        padding: 0 var(--padding-s);
+        /* Wider inset than the text slices: a near full-bleed poster
+           reads out of proportion next to them. */
+        padding: 0 calc(var(--padding-xl) * 1.5);
     }
 
     .imagecontainer {
         width: 100%;
+        /* Portrait tablets would otherwise show a ~95vh poster. */
+        max-width: 32rem;
     }
 
     .imagecontainer img {
