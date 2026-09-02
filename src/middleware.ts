@@ -3,6 +3,8 @@ import { createClient } from '@/prismicio';
 
 let cachedLocales: string[] | null = null;
 
+const defaultLocale = 'de-ch';
+
 export async function middleware(request: NextRequest) {
   if (!cachedLocales) {
     const client = createClient();
@@ -11,13 +13,17 @@ export async function middleware(request: NextRequest) {
   }
 
   const locales = cachedLocales; // use the cache, no more client/repository calls here
-  const defaultLocale =
-    process.env.NODE_ENV === 'development' ? 'en-us' : 'de-ch';
 
   const { pathname } = request.nextUrl;
 
-  if (process.env.NODE_ENV !== 'development' && pathname.startsWith('/en-us')) {
-    return NextResponse.redirect(new URL('/', request.url));
+  // The default locale is canonical on bare paths — an explicit /de-ch
+  // prefix redirects there so every page has exactly one URL.
+  if (
+    pathname === `/${defaultLocale}` ||
+    pathname.startsWith(`/${defaultLocale}/`)
+  ) {
+    const bare = pathname.slice(`/${defaultLocale}`.length) || '/';
+    return NextResponse.redirect(new URL(bare, request.url));
   }
 
   const pathnameIsMissingLocale = locales.every(

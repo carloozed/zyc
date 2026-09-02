@@ -18,6 +18,8 @@ import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
 import { TransitionLink } from '../TransitionLink/TransitionLink';
 import NewsletterLink from '../NewsletterLink/NewsletterLink';
 import ContactLink from '../ContactLink/ContactLink';
+import LocaleToggle from '../LocaleToggle/LocaleToggle';
+import stripLocale from '@/helpers/stripLocale';
 
 type Props = {
   logo: LogoDocument;
@@ -40,7 +42,7 @@ export default function FooterContent({
 }: Props) {
   const pathname = usePathname();
 
-  if (pathname === '/') return null;
+  if (stripLocale(pathname) === '/') return null;
 
   const filteredNavItems = navbar.data.navigation_items.filter(
     (item) =>
@@ -130,6 +132,10 @@ export default function FooterContent({
                 )}
               </React.Fragment>
             ))}
+          <div className={styles.footer__lownavigationDivider} />
+          <div className={styles.footer__lownavigation}>
+            <LocaleToggle variant="footer" />
+          </div>
         </div>
 
         <div className={styles.footer__datecontainer}>

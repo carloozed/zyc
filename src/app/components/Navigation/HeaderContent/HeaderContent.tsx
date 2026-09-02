@@ -12,6 +12,8 @@ import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
 
 import DownloadBar from './DownloadBar/DownloadBar';
+import LocaleToggle from '../../LocaleToggle/LocaleToggle';
+import stripLocale from '@/helpers/stripLocale';
 
 export default function HeaderContent({ ...headerContentProps }) {
   const [isHome, setIsHome] = useState(false);
@@ -24,11 +26,7 @@ export default function HeaderContent({ ...headerContentProps }) {
   const { isOpen, setIsOpen, logo } = headerContentProps;
 
   useEffect(() => {
-    if (pathname === '/') {
-      setIsHome(true);
-    } else {
-      setIsHome(false);
-    }
+    setIsHome(stripLocale(pathname) === '/');
   }, [pathname]);
 
   useEffect(() => {
@@ -89,7 +87,10 @@ export default function HeaderContent({ ...headerContentProps }) {
         )}
       </div>
       <div className={styles.header__hamburger}>
-        <Hamburger {...HamburgerProps} />
+        <LocaleToggle inverted={isHome} />
+        <div className={styles.header__hamburgerslot}>
+          <Hamburger {...HamburgerProps} />
+        </div>
       </div>
     </div>
   );

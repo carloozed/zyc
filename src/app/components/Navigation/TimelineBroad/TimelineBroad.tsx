@@ -6,6 +6,7 @@ import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
 import { usePathname } from 'next/navigation';
+import stripLocale from '@/helpers/stripLocale';
 
 import styles from './TimelineBroad.module.css';
 
@@ -21,9 +22,9 @@ export default function TimelineBroad({ ...timelineProps }) {
 
   useEffect(() => {
     const notVisiblePathname = ['/magazin', '/galerie'];
-    const shouldHide =
-      notVisiblePathname.some((path) => pathname.includes(path)) ||
-      pathname.match(/^\/[a-z]{2}$/);
+    const shouldHide = notVisiblePathname.some((path) =>
+      stripLocale(pathname).startsWith(path),
+    );
 
     setIsTimelineVisible(!shouldHide);
   }, [pathname]);
@@ -69,11 +70,7 @@ export default function TimelineBroad({ ...timelineProps }) {
   }, []);
 
   useEffect(() => {
-    if (pathname === '/') {
-      setIsHome(true);
-    } else {
-      setIsHome(false);
-    }
+    setIsHome(stripLocale(pathname) === '/');
   }, [pathname]);
   const currentDate = new Date().toISOString().split('T')[0];
   const timelineDate =

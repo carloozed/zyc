@@ -1,0 +1,98 @@
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--padding-xs);
+    font-family: var(--text-font);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+}
+
+.active,
+.inactive {
+    color: var(--black);
+    /* both labels take the toggle's size — beats the global mobile
+       `a { font-size: var(--text) }` rule that would enlarge only the link */
+    font-size: inherit;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+}
+
+.active {
+    cursor: default;
+}
+
+.inactive {
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity var(--animationtime-fast) var(--bezier);
+}
+
+.inactive:hover {
+    opacity: 1;
+}
+
+.divider {
+    width: 0.5px;
+    align-self: stretch;
+    background-color: var(--black);
+}
+
+/* Header: frameless, centered on the hamburger's height, decor separator */
+.header {
+    align-self: center;
+    gap: var(--padding-xs);
+    font-size: var(--text-s);
+    transition: filter var(--animationtime-middle) var(--bezier);
+}
+
+/* --text-s collapses to ~7px on phones — keep the toggle tappable there */
+@media (max-width: 48rem) {
+    .header {
+        font-size: var(--text-sm);
+    }
+}
+
+.inverted {
+    filter: invert(1);
+}
+
+/* circle-line-circle separator — same construction as the hamburger lines:
+   the line sits in flow, the circles are absolute at its ends and paint on
+   top of it, white-filled with the thin border. */
+.decor {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.decorline {
+    width: calc(0.75rem + 0.5vw);
+    height: 1px;
+    background-color: var(--black);
+}
+
+.decorcircle {
+    position: absolute;
+    height: calc(1px + 0.25vw);
+    width: calc(1px + 0.25vw);
+    background-color: white;
+    border: var(--border-thin);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.decorcircle:first-of-type {
+    left: 0;
+}
+
+.decorcircle:last-of-type {
+    right: 0;
+}
+
+/* Footer: plain text like the other bottom-row links */
+.footer {
+    gap: var(--padding-s);
+}

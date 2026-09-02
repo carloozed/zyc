@@ -11,6 +11,7 @@ import { useGSAP } from '@gsap/react';
 
 import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
+import stripLocale from '@/helpers/stripLocale';
 
 import { useMobile } from '@/contexts/MobileContext';
 
@@ -39,7 +40,7 @@ export default function Menu({ ...menuProps }) {
   const pathname = usePathname();
 
   const indicatorPosition = () => {
-    switch (pathname) {
+    switch (stripLocale(pathname)) {
       case '/':
         return '0%';
       case '/the_contest':

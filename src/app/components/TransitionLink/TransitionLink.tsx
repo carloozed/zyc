@@ -18,10 +18,11 @@ export type TransitionLinkProps = {
   | { field?: never; document?: never; href: string }
 );
 
-// Strip locale prefix from URLs for consistent display
+// The master locale (de-ch) serves from bare paths, so its prefix is
+// stripped for canonical URLs. Other locales (en-us) keep their prefix —
+// stripping it would silently switch the visitor back to German.
 function stripLocalePrefix(url: string) {
-  // Remove locale prefix like /de-ch/, /en-us/, etc.
-  return url.replace(/^\/[a-z]{2}-[a-z]{2}(\/|$)/, '/');
+  return url.replace(/^\/de-ch(\/|$)/, '/');
 }
 
 function getLinkUrl({

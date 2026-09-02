@@ -41,6 +41,23 @@
 
 .header__hamburger {
     justify-content: right;
+    gap: var(--padding-s);
+}
+
+/* Reserves the closed hamburger's width (line + horizontal padding +
+   borders) so the pill can shrink when open without moving the locale
+   toggle next to it. */
+.header__hamburgerslot {
+    display: flex;
+    justify-content: flex-end;
+    /* the 0.5px borders layout as ~1px each, hence 3px instead of 1px */
+    min-width: calc(1.3rem + 1.3vw + 2 * var(--padding-s) + 3px);
+}
+
+@media (max-width: 48rem) {
+    .header__hamburgerslot {
+        min-width: calc(1.3rem + 4vw + 2 * var(--padding-s) + 3px);
+    }
 }
 
 

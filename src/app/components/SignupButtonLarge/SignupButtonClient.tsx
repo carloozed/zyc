@@ -5,6 +5,7 @@ import { AnmeldelinkDocument } from '@/prismicio-types';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
+import stripLocale from '@/helpers/stripLocale';
 
 type Locale = 'de-ch' | 'en-us';
 
@@ -21,16 +22,8 @@ export default function SignupButtonClient({ styles, signuplinks }: Props) {
     signuplinks[lang] ?? signuplinks['de-ch'] ?? signuplinks['en-us'];
 
   useEffect(() => {
-    if (
-      pathname === '/' ||
-      pathname === '/the_cadenza' ||
-      pathname === '/the_crescendo' ||
-      pathname === '/ueber_zyc'
-    ) {
-      setButtonIsVisible(false);
-    } else {
-      setButtonIsVisible(true);
-    }
+    const hiddenOn = ['/', '/the_cadenza', '/the_crescendo', '/ueber_zyc'];
+    setButtonIsVisible(!hiddenOn.includes(stripLocale(pathname)));
   }, [pathname]);
 
   if (!signuplink) return null;

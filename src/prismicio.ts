@@ -16,17 +16,17 @@ export const repositoryName =
  * The project's Prismic route resolvers. This list determines a Prismic document's URL.
  */
 const routes: Route[] = [
-  { type: 'page', uid: 'home', path: '/:lang?' },
-  { type: 'the_contest', path: '/:lang?/the_contest' },
-  { type: 'the_cadenza', path: '/:lang?/the_cadenza' },
-  { type: 'the_crescendo', path: '/:lang?/the_crescendo' },
-  { type: 'teilnahme_termine', path: '/:lang?/termine' },
-  { type: 'magazin', path: '/:lang?/magazin' },
-  { type: 'magazinpost', path: '/:lang?/magazin/:uid' },
-  { type: 'uber_zyc', path: '/:lang?/ueber_zyc' },
-  { type: 'impresssum', path: '/:lang?/impressum' },
-  { type: 'datenschutz', path: '/:lang?/datenschutz' },
-  { type: 'gallery', path: '/:lang?/galerie' },
+  { type: 'page', uid: 'home', path: '/:lang' },
+  { type: 'the_contest', path: '/:lang/the_contest' },
+  { type: 'the_cadenza', path: '/:lang/the_cadenza' },
+  { type: 'the_crescendo', path: '/:lang/the_crescendo' },
+  { type: 'teilnahme_termine', path: '/:lang/termine' },
+  { type: 'magazin', path: '/:lang/magazin' },
+  { type: 'magazinpost', path: '/:lang/magazin/:uid' },
+  { type: 'uber_zyc', path: '/:lang/ueber_zyc' },
+  { type: 'impresssum', path: '/:lang/impressum' },
+  { type: 'datenschutz', path: '/:lang/datenschutz' },
+  { type: 'gallery', path: '/:lang/galerie' },
 ];
 /**
  * Creates a Prismic client for the project's repository. The client is used to
