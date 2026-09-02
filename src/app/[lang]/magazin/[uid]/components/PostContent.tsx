@@ -6,6 +6,7 @@ import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 import styles from './PostContent.module.css';
 import { JSXMapSerializer, PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
+import { isFilled } from '@prismicio/client';
 import PostLightbox from './PostLightbox/PostLightbox';
 
 import { SliceZone } from '@prismicio/react';
@@ -38,7 +39,12 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
     (slice) => slice.slice_type === 'split_visual_headline',
   );
 
-  const galleryImages = page.data.gallery;
+  // Only keep group items that actually carry an image; an empty group or
+  // placeholder rows would otherwise render a blank, fixed-height gallery.
+  const galleryImages = page.data.gallery.filter((item) =>
+    isFilled.image(item.image),
+  );
+  const hasGallery = galleryImages.length > 0;
 
   const handleImageClick = (index: number) => {
     setActiveIndex(index);
@@ -112,56 +118,58 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
           </div>
         </div>
 
-        <div className={styles.galleryWrapper}>
-          <div className={styles.galleryRow}>
-            {galleryImages.length > galleryThreshhold && (
-              <button
-                className={styles.arrow}
-                onClick={handlePrev}
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-            )}
+        {hasGallery && (
+          <div className={styles.galleryWrapper}>
+            <div className={styles.galleryRow}>
+              {galleryImages.length > galleryThreshhold && (
+                <button
+                  className={styles.arrow}
+                  onClick={handlePrev}
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+              )}
 
-            <div className={styles.gallery} ref={galleryRef}>
-              {galleryImages.map((item, index) => (
-                <PrismicNextImage
-                  field={item.image}
-                  key={index}
-                  onClick={() => handleImageClick(index)}
-                />
-              ))}
+              <div className={styles.gallery} ref={galleryRef}>
+                {galleryImages.map((item, index) => (
+                  <PrismicNextImage
+                    field={item.image}
+                    key={index}
+                    onClick={() => handleImageClick(index)}
+                  />
+                ))}
+              </div>
+
+              {galleryImages.length > galleryThreshhold && (
+                <button
+                  className={styles.arrow}
+                  onClick={handleNext}
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              )}
             </div>
 
             {galleryImages.length > galleryThreshhold && (
-              <button
-                className={styles.arrow}
-                onClick={handleNext}
-                aria-label="Next image"
-              >
-                ›
-              </button>
+              <div className={styles.dots}>
+                {galleryImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`${styles.dot} ${index === currentPreviewIndex ? styles.dotActive : ''}`}
+                    onClick={() => handleDotClick(index)}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
             )}
           </div>
+        )}
 
-          {galleryImages.length > galleryThreshhold && (
-            <div className={styles.dots}>
-              {galleryImages.map((_, index) => (
-                <button
-                  key={index}
-                  className={`${styles.dot} ${index === currentPreviewIndex ? styles.dotActive : ''}`}
-                  onClick={() => handleDotClick(index)}
-                  aria-label={`View image ${index + 1}`}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {lightboxOpen && (
+        {hasGallery && lightboxOpen && (
           <PostLightbox
-            page={page}
+            images={galleryImages}
             lightboxOpen={lightboxOpen}
             setLightboxOpen={setLightboxOpen}
             initialIndex={activeIndex}
