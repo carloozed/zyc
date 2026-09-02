@@ -1,64 +1,64 @@
 {
+  "description": "Criterias",
   "id": "criterias",
-  "type": "SharedSlice",
   "name": "Criterias",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/criterias/default/060b023c1c5e5178988b1351700a1f10b41d31a8.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/criterias/default/060b023c1c5e5178988b1351700a1f10b41d31a8.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Title",
-            "placeholder": "Zulassungskriterien",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Zulassungskriterien"
+          },
+          "type": "StructuredText"
         },
         "cta_contest": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "CTA Contest",
-            "placeholder": "Alle Anforderungen erfüllt? Dann melde dich für THE CONTEST an!",
             "multi": "heading4",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Alle Anforderungen erfüllt? Dann melde dich für THE CONTEST an!"
+          },
+          "type": "StructuredText"
         },
         "signup_link": {
-          "type": "Link",
           "config": {
-            "label": "Signup Link",
-            "placeholder": "Anmelden!",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
-            "repeat": false
-          }
+            "label": "Signup Link",
+            "placeholder": "Anmelden!",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
         },
         "slice_name": {
-          "type": "Text",
           "config": {
             "label": "Slice Name",
             "placeholder": "Name des Slice in Lowercase"
-          }
+          },
+          "type": "Text"
         },
         "is_visible": {
-          "type": "Boolean",
           "config": {
-            "label": "Is Visible",
             "default_value": false,
-            "placeholder_true": "true",
-            "placeholder_false": "false"
-          }
+            "label": "Is Visible",
+            "placeholder_false": "false",
+            "placeholder_true": "true"
+          },
+          "type": "Boolean"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Criterias"
+  ]
 }

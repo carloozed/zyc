@@ -1,72 +1,72 @@
 {
+  "format": "custom",
   "id": "contact_form",
-  "label": "Contact Form",
-  "repeatable": false,
   "json": {
     "Main": {
       "image": {
-        "type": "Image",
         "config": {
-          "label": "Image",
           "constraint": {},
+          "label": "Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "contact_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Contact Title",
-          "placeholder": "",
           "multi": "heading2",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "contact_text": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Contact Text",
-          "placeholder": "",
           "multi": "paragraph,strong,em,hyperlink",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "vorname": {
-        "type": "Text",
         "config": {
           "label": "Vorname",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "nachname": {
-        "type": "Text",
         "config": {
           "label": "Nachname",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "email": {
-        "type": "Text",
         "config": {
           "label": "Email",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "deine_nachricht": {
-        "type": "Text",
         "config": {
           "label": "Deine Nachricht",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "button_text": {
-        "type": "Text",
         "config": {
           "label": "Button Text",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Contact Form",
+  "repeatable": false,
+  "status": true
 }

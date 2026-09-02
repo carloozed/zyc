@@ -1,31 +1,31 @@
 {
   "format": "custom",
   "id": "navbar",
-  "label": "Navbar",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "navigation_items": {
-        "type": "Group",
         "config": {
-          "label": "Navigation Items",
-          "repeat": true,
           "fields": {
             "item": {
-              "type": "Link",
               "config": {
-                "label": "Item",
-                "placeholder": "Link",
-                "select": null,
                 "allowTargetBlank": false,
                 "allowText": true,
-                "repeat": false
-              }
+                "label": "Item",
+                "placeholder": "Link",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
             }
-          }
-        }
+          },
+          "label": "Navigation Items",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
-  }
+  },
+  "label": "Navbar",
+  "repeatable": false,
+  "status": true
 }

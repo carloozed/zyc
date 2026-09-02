@@ -7,6 +7,7 @@ import Criterias from "./Criterias";
 import Foldout from "./Foldout";
 import GalleryYear from "./GalleryYear";
 import JuryGrid from "./JuryGrid";
+import PosterSlice from "./PosterSlice";
 import ScheduleSlice from "./ScheduleSlice";
 import Hero from "./Hero";
 import TimellinePhase from "./TimellinePhase";
@@ -20,6 +21,7 @@ export const components = {
 	foldout: Foldout,
 	gallery_year: GalleryYear,
 	jury_grid: JuryGrid,
+	poster_slice: PosterSlice,
 	schedule_slice: ScheduleSlice,
 	split_visual_headline: Hero,
 	timeline_phases: TimellinePhase,

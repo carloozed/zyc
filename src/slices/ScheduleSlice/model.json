@@ -1,80 +1,80 @@
 {
+  "description": "ScheduleSlice",
   "id": "schedule_slice",
-  "type": "SharedSlice",
   "name": "ScheduleSlice",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/schedule_slice/default/ff87a7ac53e2ef2577ad4d5a1a7a36972d2c5dbc.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/schedule_slice/default/ff87a7ac53e2ef2577ad4d5a1a7a36972d2c5dbc.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "phase_title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Phase Title",
-            "placeholder": "The Contest - Qualifikationsphase",
             "multi": "heading3",
-            "allowTargetBlank": true
-          }
+            "placeholder": "The Contest - Qualifikationsphase"
+          },
+          "type": "StructuredText"
         },
         "important_to_know_field": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Important to Know field",
-            "placeholder": "Das musst du wissen!",
             "multi": "heading4",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Das musst du wissen!"
+          },
+          "type": "StructuredText"
         },
         "phase_is_over_text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Phase is over Text",
-            "placeholder": "DIese Phase ist bereits vorüber",
             "multi": "heading4",
-            "allowTargetBlank": true
-          }
+            "placeholder": "DIese Phase ist bereits vorüber"
+          },
+          "type": "StructuredText"
         },
         "phase_field": {
-          "type": "Group",
           "config": {
-            "label": "Phase Field",
-            "repeat": true,
             "fields": {
               "phase_title": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Phase Title",
-                  "placeholder": "",
                   "multi": "heading5",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "description": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Description",
-                  "placeholder": "",
                   "multi": "paragraph,heading6,strong,em,hyperlink,image,list-item,o-list-item",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "end_date": {
-                "type": "Date",
                 "config": {
                   "label": "End Date",
                   "placeholder": ""
-                }
+                },
+                "type": "Date"
               }
-            }
-          }
+            },
+            "label": "Phase Field",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "ScheduleSlice"
+  ]
 }

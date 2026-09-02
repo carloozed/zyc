@@ -1,60 +1,60 @@
 {
+  "format": "custom",
   "id": "criteriatypesubfield",
-  "label": "CriteriaTypeSubfield",
-  "repeatable": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "belongs_to_slice": {
-        "type": "Text",
         "config": {
           "label": "Gehört zum Slice",
           "placeholder": "name des slice in lowercase"
-        }
+        },
+        "type": "Text"
       },
       "fieldcontent": {
-        "type": "Group",
         "config": {
-          "label": "Fieldcontent",
-          "repeat": true,
           "fields": {
             "title": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Title",
-                "placeholder": "Zulassungskriterien",
                 "multi": "heading4",
-                "allowTargetBlank": true
-              }
+                "placeholder": "Zulassungskriterien"
+              },
+              "type": "StructuredText"
             },
             "short_overview": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Short Overview",
-                "placeholder": "The Contest findet diesen verschiedenen Disziplinen statt:",
                 "multi": "paragraph,strong,em,hyperlink",
-                "allowTargetBlank": true
-              }
+                "placeholder": "The Contest findet diesen verschiedenen Disziplinen statt:"
+              },
+              "type": "StructuredText"
             },
             "conditions": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Conditions",
-                "placeholder": "",
                 "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,embed,list-item,o-list-item",
-                "allowTargetBlank": true
-              }
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             }
-          }
-        }
+          },
+          "label": "Fieldcontent",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "CriteriaTypeSubfield",
+  "repeatable": true,
+  "status": true
 }

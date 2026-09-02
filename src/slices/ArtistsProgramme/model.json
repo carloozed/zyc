@@ -1,86 +1,86 @@
 {
+  "description": "ArtistsProgramme",
   "id": "artists_programme",
-  "type": "SharedSlice",
   "name": "ArtistsProgramme",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/artists_programme/default/2c518a58bc61b8964deb8e669c90247e9dbf5541.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/artists_programme/default/2c518a58bc61b8964deb8e669c90247e9dbf5541.png?auto=compress%2Cformat",
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Title",
-            "placeholder": "",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "categories": {
-          "type": "Group",
           "config": {
-            "label": "Categories",
-            "repeat": true,
             "fields": {
               "title": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Title",
-                  "placeholder": "",
                   "multi": "heading3",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "id": {
-                "type": "Text",
                 "config": {
                   "label": "ID",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               }
-            }
-          }
+            },
+            "label": "Categories",
+            "repeat": true
+          },
+          "type": "Group"
         },
         "descriptions": {
-          "type": "Group",
           "config": {
-            "label": "Descriptions",
-            "repeat": true,
             "fields": {
               "title": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Title",
-                  "placeholder": "",
                   "multi": "heading3",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "description": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Description",
-                  "placeholder": "",
                   "multi": "paragraph,strong,em,heading5,heading6,hyperlink,list-item",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "id": {
-                "type": "Text",
                 "config": {
                   "label": "ID",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               }
-            }
-          }
+            },
+            "label": "Descriptions",
+            "repeat": true
+          },
+          "type": "Group"
         }
-      }
+      },
+      "version": "initial"
     }
-  ],
-  "description": "ArtistsProgramme"
+  ]
 }

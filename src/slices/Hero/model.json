@@ -1,141 +1,141 @@
 {
   "id": "split_visual_headline",
-  "type": "SharedSlice",
   "name": "Hero",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "visual_left_headline_right",
-      "name": "Cadenza, Crescendo",
       "description": "Displays an image to the left and headline content with description to the right.",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/split_visual_headline/visual_left_headline_right/4066042ee4d0c885ac23a50f566abb42615d523c.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "visual_left_headline_right",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/split_visual_headline/visual_left_headline_right/4066042ee4d0c885ac23a50f566abb42615d523c.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Cadenza, Crescendo",
       "primary": {
         "visual": {
-          "type": "Image",
           "config": {
             "label": "Visual"
-          }
+          },
+          "type": "Image"
         },
         "headline": {
-          "type": "StructuredText",
           "config": {
             "label": "Headline",
             "single": "heading1"
-          }
+          },
+          "type": "StructuredText"
         },
         "supporting_text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Supporting Text",
-            "placeholder": "",
             "multi": "heading3",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "background_color": {
-          "type": "Color",
           "config": {
             "label": "Background Color"
-          }
+          },
+          "type": "Color"
         },
         "decoration": {
-          "type": "Image",
           "config": {
-            "label": "Decoration",
             "constraint": {},
+            "label": "Decoration",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "contest",
-      "name": "Contest",
       "description": "Displays an image to the left and headline content with description to the right.",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/split_visual_headline/contest/b5dd499fe9cfd4c79836b14aeba2c8ad6929412a.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "contest",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/split_visual_headline/contest/b5dd499fe9cfd4c79836b14aeba2c8ad6929412a.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Contest",
       "primary": {
         "visual": {
-          "type": "Image",
           "config": {
             "label": "Visual"
-          }
+          },
+          "type": "Image"
         },
         "headline": {
-          "type": "StructuredText",
           "config": {
             "label": "Headline",
             "single": "heading1"
-          }
+          },
+          "type": "StructuredText"
         },
         "supporting_text": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Supporting Text",
-            "placeholder": "",
             "multi": "heading3",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "background_color": {
-          "type": "Color",
           "config": {
             "label": "Background Color"
-          }
+          },
+          "type": "Color"
         },
         "decoration": {
-          "type": "Image",
           "config": {
-            "label": "Decoration",
             "constraint": {},
+            "label": "Decoration",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "anmeldelink": {
-          "type": "Link",
           "config": {
+            "allowTargetBlank": true,
+            "allowText": true,
             "label": "Anmeldelink",
             "placeholder": "Anmelden!",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
-          }
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
         },
         "reglement_download": {
-          "type": "Link",
           "config": {
-            "label": "Reglement DOwnload",
-            "placeholder": "Download Reglement",
-            "select": null,
             "allowTargetBlank": true,
             "allowText": true,
-            "repeat": false
-          }
+            "label": "Reglement DOwnload",
+            "placeholder": "Download Reglement",
+            "repeat": false,
+            "select": null
+          },
+          "type": "Link"
         },
         "contestubersicht": {
-          "type": "Group",
           "config": {
-            "label": "Contestübersicht",
-            "repeat": true,
             "fields": {
               "item": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Item",
-                  "placeholder": "",
                   "multi": "heading5",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               }
-            }
-          }
+            },
+            "label": "Contestübersicht",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

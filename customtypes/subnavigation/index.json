@@ -1,31 +1,31 @@
 {
   "format": "custom",
   "id": "subnavigation",
-  "label": "Subnavigation",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "subnavigation_items": {
-        "type": "Group",
         "config": {
-          "label": "Subnavigation Items",
-          "repeat": true,
           "fields": {
             "link": {
-              "type": "Link",
               "config": {
-                "label": "Link",
-                "placeholder": "The Contest",
-                "select": null,
                 "allowTargetBlank": true,
                 "allowText": true,
-                "repeat": false
-              }
+                "label": "Link",
+                "placeholder": "The Contest",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
             }
-          }
-        }
+          },
+          "label": "Subnavigation Items",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
-  }
+  },
+  "label": "Subnavigation",
+  "repeatable": false,
+  "status": true
 }

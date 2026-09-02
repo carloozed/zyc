@@ -1,21 +1,18 @@
 {
+  "format": "page",
   "id": "teilnahme_termine",
-  "label": "Teilnahme Termine",
-  "repeatable": false,
   "json": {
     "Main": {
       "page_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Page Title",
-          "placeholder": "Termine",
           "multi": "heading1",
-          "allowTargetBlank": true
-        }
+          "placeholder": "Termine"
+        },
+        "type": "StructuredText"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "foldout": {
@@ -28,37 +25,40 @@
               "type": "SharedSlice"
             }
           }
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   },
-  "status": true,
-  "format": "page"
+  "label": "Teilnahme Termine",
+  "repeatable": false,
+  "status": true
 }

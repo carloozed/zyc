@@ -1,105 +1,105 @@
 {
+  "description": "VideosYear",
   "id": "videos_year",
-  "type": "SharedSlice",
   "name": "VideosYear",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/videos_year/default/39051494e8a18b4ab2ae3e6c7655191ae466b35b.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/videos_year/default/39051494e8a18b4ab2ae3e6c7655191ae466b35b.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "edition_year": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Edition Year",
-            "placeholder": "",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "year_in_number": {
-          "type": "Number",
           "config": {
             "label": "Year in Number",
             "placeholder": ""
-          }
+          },
+          "type": "Number"
         },
         "videos": {
-          "type": "Group",
           "config": {
-            "label": "Videos",
-            "repeat": true,
             "fields": {
               "index": {
-                "type": "Number",
                 "config": {
                   "label": "index",
                   "placeholder": ""
-                }
+                },
+                "type": "Number"
               },
               "vimeo_url": {
-                "type": "Text",
                 "config": {
                   "label": "Vimeo URL",
                   "placeholder": "https://vimeo.com/123456789"
-                }
+                },
+                "type": "Text"
               },
               "performer": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Performer",
-                  "placeholder": "",
                   "multi": "heading3",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "age_and_instrument": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Age and instrument",
-                  "placeholder": "",
                   "multi": "heading4",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "song_title": {
-                "type": "Text",
                 "config": {
                   "label": "Song title",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "title": {
-                "type": "Text",
                 "config": {
                   "label": "Title",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "poster_image": {
-                "type": "Image",
                 "config": {
-                  "label": "Poster Image (optional)",
                   "constraint": {},
+                  "label": "Poster Image (optional)",
                   "thumbnails": []
-                }
+                },
+                "type": "Image"
               },
               "date_added": {
-                "type": "Date",
                 "config": {
                   "label": "Date Added",
                   "placeholder": ""
-                }
+                },
+                "type": "Date"
               }
-            }
-          }
+            },
+            "label": "Videos",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "VideosYear"
+  ]
 }

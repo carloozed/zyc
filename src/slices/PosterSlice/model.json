@@ -1,0 +1,36 @@
+{
+  "description": "PosterSlice",
+  "id": "poster_slice",
+  "name": "PosterSlice",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "poster": {
+          "config": {
+            "constraint": {},
+            "label": "Poster",
+            "thumbnails": []
+          },
+          "type": "Image"
+        },
+        "download_link": {
+          "config": {
+            "allowText": true,
+            "label": "Download Link",
+            "placeholder": "",
+            "repeat": false,
+            "select": "media"
+          },
+          "type": "Link"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

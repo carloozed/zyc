@@ -1,85 +1,85 @@
 {
+  "description": "ContestTimeline",
   "id": "contest_timeline",
-  "type": "SharedSlice",
   "name": "ContestTimeline",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contest_timeline/default/e9554075123a343ea34a4cc80fdd91e2d34d1034.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/contest_timeline/default/e9554075123a343ea34a4cc80fdd91e2d34d1034.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Title",
-            "placeholder": "Timeline",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Timeline"
+          },
+          "type": "StructuredText"
         },
         "timeline_contest_group": {
-          "type": "Group",
           "config": {
-            "label": "Timeline Contest Group",
-            "repeat": true,
             "fields": {
               "start_date": {
-                "type": "Date",
                 "config": {
                   "label": "Start Date",
                   "placeholder": ""
-                }
+                },
+                "type": "Date"
               },
               "end_date": {
-                "type": "Date",
                 "config": {
                   "label": "End Date",
                   "placeholder": ""
-                }
+                },
+                "type": "Date"
               },
               "phase_name": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Phase Name ",
-                  "placeholder": "Anmeldung",
                   "multi": "heading4,heading3",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": "Anmeldung"
+                },
+                "type": "StructuredText"
               },
               "phase_description": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Phase Description",
-                  "placeholder": "",
                   "multi": "paragraph,list-item,hyperlink,strong",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               },
               "individual_key": {
-                "type": "Text",
                 "config": {
                   "label": "Individual Key",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "phase_date_text": {
-                "type": "StructuredText",
                 "config": {
+                  "allowTargetBlank": true,
                   "label": "Phase Date Text",
-                  "placeholder": "",
                   "multi": "heading4",
-                  "allowTargetBlank": true
-                }
+                  "placeholder": ""
+                },
+                "type": "StructuredText"
               }
-            }
-          }
+            },
+            "label": "Timeline Contest Group",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "ContestTimeline"
+  ]
 }

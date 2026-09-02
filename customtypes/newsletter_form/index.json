@@ -1,65 +1,65 @@
 {
+  "format": "custom",
   "id": "newsletter_form",
-  "label": "Newsletter Form",
-  "repeatable": false,
   "json": {
     "Main": {
       "newsletter_image": {
-        "type": "Image",
         "config": {
-          "label": "Newsletter Image",
           "constraint": {},
+          "label": "Newsletter Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "newsletter_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Newsletter Title",
-          "placeholder": "",
           "multi": "heading2",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "newsletter_text": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Newsletter Text",
-          "placeholder": "",
           "multi": "paragraph,strong,em,hyperlink",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "vorname": {
-        "type": "Text",
         "config": {
           "label": "Vorname",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "nachname": {
-        "type": "Text",
         "config": {
           "label": "Nachname",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "email": {
-        "type": "Text",
         "config": {
           "label": "Email",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "button_text": {
-        "type": "Text",
         "config": {
           "label": "Button Text",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Newsletter Form",
+  "repeatable": false,
+  "status": true
 }

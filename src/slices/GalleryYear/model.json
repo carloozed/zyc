@@ -1,73 +1,73 @@
 {
+  "description": "GalleryYear",
   "id": "gallery_year",
-  "type": "SharedSlice",
   "name": "GalleryYear",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/gallery_year/default/002960319282db76042fb19b5b8dc218a66751b3.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/gallery_year/default/002960319282db76042fb19b5b8dc218a66751b3.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "edition_year": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Edition Year",
-            "placeholder": "",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "year_in_number": {
-          "type": "Number",
           "config": {
             "label": "Year in Number",
             "placeholder": ""
-          }
+          },
+          "type": "Number"
         },
         "event_type": {
-          "type": "Text",
           "config": {
             "label": "Event Type",
             "placeholder": "Cadenza, Qualifikation, Contest, Crescendo etc. "
-          }
+          },
+          "type": "Text"
         },
         "gallery": {
-          "type": "Group",
           "config": {
-            "label": "Gallery",
-            "repeat": true,
             "fields": {
               "image": {
-                "type": "Image",
                 "config": {
-                  "label": "Image",
                   "constraint": {},
+                  "label": "Image",
                   "thumbnails": []
-                }
+                },
+                "type": "Image"
               },
               "eventtag": {
-                "type": "Text",
                 "config": {
                   "label": "eventtag",
                   "placeholder": ""
-                }
+                },
+                "type": "Text"
               },
               "date_added": {
-                "type": "Date",
                 "config": {
                   "label": "Date Added",
                   "placeholder": ""
-                }
+                },
+                "type": "Date"
               }
-            }
-          }
+            },
+            "label": "Gallery",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "GalleryYear"
+  ]
 }

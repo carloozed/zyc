@@ -1,81 +1,81 @@
 {
+  "format": "page",
   "id": "datenschutz",
-  "label": "Datenschutz",
-  "repeatable": false,
   "json": {
     "Main": {
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
-          "placeholder": "",
           "multi": "heading1",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "datenschutz_content": {
-        "type": "Group",
         "config": {
-          "label": "Datenschutz Content",
-          "repeat": true,
           "fields": {
             "title": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Title",
-                "placeholder": "",
                 "multi": "heading2",
-                "allowTargetBlank": true
-              }
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             },
             "text": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Text",
-                "placeholder": "",
                 "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item,heading3",
-                "allowTargetBlank": true
-              }
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             }
-          }
-        }
+          },
+          "label": "Datenschutz Content",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   },
-  "status": true,
-  "format": "page"
+  "label": "Datenschutz",
+  "repeatable": false,
+  "status": true
 }

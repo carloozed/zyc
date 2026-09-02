@@ -1,55 +1,59 @@
 {
   "format": "custom",
   "id": "download_bar",
-  "label": "Download Bar",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "is_download_available": {
-        "type": "Select",
         "config": {
           "label": "Is Download Available",
-          "placeholder": "",
-          "options": ["Stundenplan", "Resultate", "Nichts"]
-        }
+          "options": [
+            "Stundenplan",
+            "Resultate",
+            "Nichts"
+          ],
+          "placeholder": ""
+        },
+        "type": "Select"
       },
       "schedule_is_available": {
-        "type": "Text",
         "config": {
           "label": "Schedule is Available",
           "placeholder": "Der Stundenplan ist jetzt verfügbar!"
-        }
+        },
+        "type": "Text"
       },
       "results_are_available": {
-        "type": "Text",
         "config": {
           "label": "Results are available",
           "placeholder": "Die Resultate sind jetzt verfügbar!"
-        }
+        },
+        "type": "Text"
       },
       "results_link": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "Results Link",
           "placeholder": "Download",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
-        }
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "schedule_link": {
-        "type": "Link",
         "config": {
-          "label": "Schedule Link",
-          "placeholder": "Download",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": false
-        }
+          "label": "Schedule Link",
+          "placeholder": "Download",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       }
     }
-  }
+  },
+  "label": "Download Bar",
+  "repeatable": false,
+  "status": true
 }

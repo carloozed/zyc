@@ -1,118 +1,118 @@
 {
+  "format": "custom",
   "id": "homepage_navigation",
-  "label": "Homepage Navigation",
-  "repeatable": false,
   "json": {
     "Main": {
       "cta_text": {
-        "type": "Text",
         "config": {
           "label": "CTA Text",
           "placeholder": "[mehr]"
-        }
+        },
+        "type": "Text"
       },
       "the_contest_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "The Contest Title",
-          "placeholder": "The Contest",
           "multi": "heading4,heading3",
-          "allowTargetBlank": true
-        }
+          "placeholder": "The Contest"
+        },
+        "type": "StructuredText"
       },
       "the_cadenza_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "The Cadenza Title",
-          "placeholder": "The Cadenza",
           "multi": "heading4",
-          "allowTargetBlank": true
-        }
+          "placeholder": "The Cadenza"
+        },
+        "type": "StructuredText"
       },
       "the_crescendo_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "The Crescendo Title",
-          "placeholder": "The Crescendo",
           "multi": "heading4",
-          "allowTargetBlank": true
-        }
+          "placeholder": "The Crescendo"
+        },
+        "type": "StructuredText"
       },
       "about_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "About Title",
-          "placeholder": "About",
           "multi": "heading4",
-          "allowTargetBlank": true
-        }
+          "placeholder": "About"
+        },
+        "type": "StructuredText"
       },
       "magazin_title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Magazin Title",
-          "placeholder": "",
           "multi": "heading4",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "the_contest": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "The Contest",
           "placeholder": "The Contest",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
-        }
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "the_cadenza": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "The Cadenza",
           "placeholder": "The Cadenza",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
-        }
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "the_crescendo": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "The Crescendo",
           "placeholder": "The Crescendo",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
-        }
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "about": {
-        "type": "Link",
         "config": {
+          "allowTargetBlank": true,
+          "allowText": true,
           "label": "About",
           "placeholder": "About",
-          "select": null,
-          "allowTargetBlank": true,
-          "allowText": true,
-          "repeat": false
-        }
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "magazin": {
-        "type": "Link",
         "config": {
-          "label": "Magazin",
-          "placeholder": "",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": false
-        }
+          "label": "Magazin",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Homepage Navigation",
+  "repeatable": false,
+  "status": true
 }

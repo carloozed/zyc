@@ -1,19 +1,19 @@
 {
   "format": "custom",
   "id": "logo",
-  "label": "Logo",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "image": {
-        "type": "Image",
         "config": {
-          "label": "image",
           "constraint": {},
+          "label": "image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
-  }
+  },
+  "label": "Logo",
+  "repeatable": false,
+  "status": true
 }

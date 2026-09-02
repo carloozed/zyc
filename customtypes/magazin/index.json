@@ -1,102 +1,102 @@
 {
+  "format": "page",
   "id": "magazin",
-  "label": "Magazin",
-  "repeatable": false,
   "json": {
     "Main": {
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
-          "placeholder": "Magazin",
           "multi": "heading1",
-          "allowTargetBlank": true
-        }
+          "placeholder": "Magazin"
+        },
+        "type": "StructuredText"
       },
       "sorting_options": {
-        "type": "Group",
         "config": {
-          "label": "Sorting Options",
-          "repeat": true,
           "fields": {
             "item": {
-              "type": "Text",
               "config": {
                 "label": "item",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             },
             "selectkey": {
-              "type": "Text",
               "config": {
                 "label": "selectkey",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "Sorting Options",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "filter_options": {
-        "type": "Group",
         "config": {
-          "label": "Filter Options",
-          "repeat": true,
           "fields": {
             "item": {
-              "type": "Text",
               "config": {
                 "label": "Item",
                 "placeholder": ""
-              }
+              },
+              "type": "Text"
             }
-          }
-        }
+          },
+          "label": "Filter Options",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "filterbar_visible": {
-        "type": "Boolean",
         "config": {
-          "label": "Filterbar Visible",
           "default_value": false,
-          "placeholder_true": "true",
-          "placeholder_false": "false"
-        }
+          "label": "Filterbar Visible",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       },
       "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        }
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
       }
     },
     "SEO & Metadata": {
       "meta_title": {
-        "type": "Text",
         "config": {
           "label": "Meta Title",
           "placeholder": "A title of the page used for social media and search engines"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": "A brief summary of the page"
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   },
-  "status": true,
-  "format": "page"
+  "label": "Magazin",
+  "repeatable": false,
+  "status": true
 }

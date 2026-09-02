@@ -1,73 +1,73 @@
 {
+  "format": "custom",
   "id": "alertoverlay",
-  "label": "AlertOverlay",
-  "repeatable": false,
   "json": {
     "Main": {
       "title": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Title",
-          "placeholder": "",
           "multi": "heading2,heading3",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "intro_text": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Intro Text",
-          "placeholder": "",
           "multi": "paragraph,heading5,heading6,strong,em,hyperlink,rtl",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "information_group": {
-        "type": "Group",
         "config": {
-          "label": "Information Group",
-          "repeat": true,
           "fields": {
             "item_title": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Item Title",
-                "placeholder": "",
                 "multi": "heading4,heading5,em,hyperlink,strong",
-                "allowTargetBlank": true
-              }
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             },
             "item_description": {
-              "type": "StructuredText",
               "config": {
+                "allowTargetBlank": true,
                 "label": "Item Description",
-                "placeholder": "",
                 "multi": "paragraph,heading5,heading6,strong,hyperlink,list-item",
-                "allowTargetBlank": true
-              }
+                "placeholder": ""
+              },
+              "type": "StructuredText"
             }
-          }
-        }
+          },
+          "label": "Information Group",
+          "repeat": true
+        },
+        "type": "Group"
       },
       "outro_text": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Outro Text",
-          "placeholder": "",
           "multi": "paragraph,heading4,heading5,strong,em,hyperlink",
-          "allowTargetBlank": true
-        }
+          "placeholder": ""
+        },
+        "type": "StructuredText"
       },
       "decoimage": {
-        "type": "Image",
         "config": {
-          "label": "decoimage",
           "constraint": {},
+          "label": "decoimage",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "AlertOverlay",
+  "repeatable": false,
+  "status": true
 }

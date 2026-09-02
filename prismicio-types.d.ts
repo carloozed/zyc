@@ -3494,6 +3494,54 @@ type JuryGridSliceVariation = JuryGridSliceBaseGrid
 export type JuryGridSlice = prismic.SharedSlice<"jury_grid", JuryGridSliceVariation>;
 
 /**
+ * Primary content in *PosterSlice → Default → Primary*
+ */
+export interface PosterSliceSliceDefaultPrimary {
+	/**
+	 * Poster field in *PosterSlice → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: poster_slice.default.primary.poster
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	poster: prismic.ImageField<never>;
+	
+	/**
+	 * Download Link field in *PosterSlice → Default → Primary*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: poster_slice.default.primary.download_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	download_link: prismic.LinkToMediaField<prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for PosterSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PosterSliceSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PosterSliceSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *PosterSlice*
+ */
+type PosterSliceSliceVariation = PosterSliceSliceDefault
+
+/**
+ * PosterSlice Shared Slice
+ *
+ * - **API ID**: `poster_slice`
+ * - **Description**: PosterSlice
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PosterSliceSlice = prismic.SharedSlice<"poster_slice", PosterSliceSliceVariation>;
+
+/**
  * Item in *ScheduleSlice → Default → Primary → Phase Field*
  */
 export interface ScheduleSliceSliceDefaultPrimaryPhaseFieldItem {
@@ -4151,6 +4199,10 @@ declare module "@prismicio/client" {
 			JuryGridSliceBaseGridPrimary,
 			JuryGridSliceVariation,
 			JuryGridSliceBaseGrid,
+			PosterSliceSlice,
+			PosterSliceSliceDefaultPrimary,
+			PosterSliceSliceVariation,
+			PosterSliceSliceDefault,
 			ScheduleSliceSlice,
 			ScheduleSliceSliceDefaultPrimaryPhaseFieldItem,
 			ScheduleSliceSliceDefaultPrimary,

@@ -1,20 +1,20 @@
 {
+  "format": "custom",
   "id": "isdownloadsmuted",
-  "label": "isDownloadsMuted",
-  "repeatable": false,
   "json": {
     "Main": {
       "isdownloadsmuted": {
-        "type": "Boolean",
         "config": {
-          "label": "Is Downloads Visible",
           "default_value": false,
-          "placeholder_true": "true",
-          "placeholder_false": "false"
-        }
+          "label": "Is Downloads Visible",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "isDownloadsMuted",
+  "repeatable": false,
+  "status": true
 }

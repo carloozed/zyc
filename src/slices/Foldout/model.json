@@ -1,87 +1,87 @@
 {
+  "description": "Foldout",
   "id": "foldout",
-  "type": "SharedSlice",
   "name": "Foldout",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/default/d910ba594bbfdb0e977aee26a25139026fab57b0.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/default/d910ba594bbfdb0e977aee26a25139026fab57b0.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "section_is_shown": {
-          "type": "Boolean",
           "config": {
-            "label": "Section Is Shown",
             "default_value": false,
-            "placeholder_true": "true",
-            "placeholder_false": "false"
-          }
+            "label": "Section Is Shown",
+            "placeholder_false": "false",
+            "placeholder_true": "true"
+          },
+          "type": "Boolean"
         },
         "section_title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Section Title",
-            "placeholder": "Weitere Fragen?",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": "Weitere Fragen?"
+          },
+          "type": "StructuredText"
         },
         "foldout_name": {
-          "type": "Text",
           "config": {
             "label": "Foldout Name",
             "placeholder": "Einen Namen für das Foldout"
-          }
+          },
+          "type": "Text"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "foldoutWithImage",
-      "name": "Foldout With Image",
       "description": "Default",
-      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/foldoutWithImage/bce4fe2f1c3b5eb4f9ee2be7f07a92e997ce6f8d.png?auto=compress%2Cformat",
       "docURL": "...",
-      "version": "initial",
+      "id": "foldoutWithImage",
+      "imageUrl": "https://images.prismic.io/zurichyouthclassical/shared-slices/foldout/foldoutWithImage/bce4fe2f1c3b5eb4f9ee2be7f07a92e997ce6f8d.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Foldout With Image",
       "primary": {
         "foldout_image": {
-          "type": "Image",
           "config": {
-            "label": "Foldout Image",
             "constraint": {},
+            "label": "Foldout Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "foldout_name": {
-          "type": "Text",
           "config": {
             "label": "Foldout Name",
             "placeholder": "Einen Namen für das Foldout"
-          }
+          },
+          "type": "Text"
         },
         "section_title": {
-          "type": "StructuredText",
           "config": {
+            "allowTargetBlank": true,
             "label": "Section_title",
-            "placeholder": "",
             "multi": "heading2",
-            "allowTargetBlank": true
-          }
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         },
         "decoration_image": {
-          "type": "Image",
           "config": {
-            "label": "Decoration Image",
             "constraint": {},
+            "label": "Decoration Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         }
       },
-      "items": {}
+      "version": "initial"
     }
-  ],
-  "description": "Foldout"
+  ]
 }

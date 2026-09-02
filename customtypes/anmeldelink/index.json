@@ -1,52 +1,52 @@
 {
+  "format": "custom",
   "id": "anmeldelink",
-  "label": "Anmeldelink",
-  "repeatable": false,
   "json": {
     "Main": {
       "anmeldelink": {
-        "type": "Link",
         "config": {
-          "label": "Anmeldelink",
-          "placeholder": "",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": false
-        }
+          "label": "Anmeldelink",
+          "placeholder": "",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "show_button_date": {
-        "type": "Date",
         "config": {
           "label": "Show Button Date",
           "placeholder": ""
-        }
+        },
+        "type": "Date"
       },
       "hide_button_date": {
-        "type": "Date",
         "config": {
           "label": "Hide Button Date",
           "placeholder": ""
-        }
+        },
+        "type": "Date"
       },
       "hide_button_boolean": {
-        "type": "Boolean",
         "config": {
-          "label": "Hide Button Boolean",
           "default_value": false,
-          "placeholder_true": "true",
-          "placeholder_false": "false"
-        }
+          "label": "Hide Button Boolean",
+          "placeholder_false": "false",
+          "placeholder_true": "true"
+        },
+        "type": "Boolean"
       },
       "link_url": {
-        "type": "Text",
         "config": {
           "label": "Link URL",
           "placeholder": "https://login.zurichyouthclassical.ch/"
-        }
+        },
+        "type": "Text"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Anmeldelink",
+  "repeatable": false,
+  "status": true
 }

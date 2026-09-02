@@ -1,37 +1,37 @@
 {
   "format": "custom",
   "id": "low_navigation",
-  "label": "Low Navigation",
-  "repeatable": true,
-  "status": true,
   "json": {
     "Main": {
       "uid": {
-        "type": "UID",
         "config": {
           "label": "UID"
-        }
+        },
+        "type": "UID"
       },
       "low_navigation_items": {
-        "type": "Group",
         "config": {
-          "label": "Low Navigation Items",
-          "repeat": true,
           "fields": {
             "item": {
-              "type": "Link",
               "config": {
-                "label": "item",
-                "placeholder": "",
-                "select": null,
                 "allowTargetBlank": true,
                 "allowText": true,
-                "repeat": false
-              }
+                "label": "item",
+                "placeholder": "",
+                "repeat": false,
+                "select": null
+              },
+              "type": "Link"
             }
-          }
-        }
+          },
+          "label": "Low Navigation Items",
+          "repeat": true
+        },
+        "type": "Group"
       }
     }
-  }
+  },
+  "label": "Low Navigation",
+  "repeatable": true,
+  "status": true
 }

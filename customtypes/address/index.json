@@ -1,58 +1,58 @@
 {
+  "format": "custom",
   "id": "address",
-  "label": "Address",
-  "repeatable": false,
   "json": {
     "Main": {
       "zyc": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": false,
           "label": "ZYC",
-          "placeholder": "ZYC",
           "multi": "heading4",
-          "allowTargetBlank": false
-        }
+          "placeholder": "ZYC"
+        },
+        "type": "StructuredText"
       },
       "name_full": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Name Full",
-          "placeholder": "Zurich Youth Classical",
           "multi": "heading5",
-          "allowTargetBlank": true
-        }
+          "placeholder": "Zurich Youth Classical"
+        },
+        "type": "StructuredText"
       },
       "location_link": {
-        "type": "Link",
         "config": {
-          "label": "Location Link",
-          "placeholder": "Location Link",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": false
-        }
+          "label": "Location Link",
+          "placeholder": "Location Link",
+          "repeat": false,
+          "select": null
+        },
+        "type": "Link"
       },
       "street": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "Street",
-          "placeholder": "Brunnenhof",
           "multi": "heading6",
-          "allowTargetBlank": true
-        }
+          "placeholder": "Brunnenhof"
+        },
+        "type": "StructuredText"
       },
       "city": {
-        "type": "StructuredText",
         "config": {
+          "allowTargetBlank": true,
           "label": "City",
-          "placeholder": "CH - 8048 Zürich",
           "multi": "heading6",
-          "allowTargetBlank": true
-        }
+          "placeholder": "CH - 8048 Zürich"
+        },
+        "type": "StructuredText"
       }
     }
   },
-  "status": true,
-  "format": "custom"
+  "label": "Address",
+  "repeatable": false,
+  "status": true
 }
