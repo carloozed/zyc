@@ -2466,7 +2466,7 @@ interface TheCadenzaDocumentData {
  */
 export type TheCadenzaDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<TheCadenzaDocumentData>, "the_cadenza", Lang>;
 
-type TheContestDocumentDataSlicesSlice = JuryGridSlice | ContactAndDownloadSlice | CriteriasSlice | ContestTimelineSlice | FoldoutSlice | SplitVisualHeadlineSlice | ArtistsProgrammeSlice
+type TheContestDocumentDataSlicesSlice = JuryGridSlice | ContactAndDownloadSlice | CriteriasSlice | ContestTimelineSlice | FoldoutSlice | SplitVisualHeadlineSlice | ArtistsProgrammeSlice | PosterSliceSlice
 
 /**
  * Content for The Contest documents

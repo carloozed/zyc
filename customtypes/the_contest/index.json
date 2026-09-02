@@ -26,6 +26,9 @@
             },
             "artists_programme": {
               "type": "SharedSlice"
+            },
+            "poster_slice": {
+              "type": "SharedSlice"
             }
           }
         },
