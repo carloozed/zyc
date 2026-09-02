@@ -97,16 +97,31 @@
         justify-content: flex-start;
     }
 
+    /* Width-driven box: with a definite width the visual reserves its
+       final size from the width/height attributes before the file has
+       loaded. A height-driven box inside a fit-content wrapper has no
+       definite dimension until then, so it collapsed to 0 and snapped
+       to full size once the image arrived. */
     .leftcontainer__imagecontainer {
+        width: 100%;
         height: fit-content;
     }
 
     .leftcontainer__imagecontainer img {
+        width: 100%;
+        height: auto;
         object-fit: contain;
     }
 
     .imagecontainer__decoration img {
         width: auto;
+    }
+
+    /* The vertical decoration ends up 0px wide on narrow screens anyway;
+       hide it explicitly so it doesn't flash at full height while the
+       visual is still loading. */
+    .heroslice[data-slice-variation='visual_left_headline_right'] .imagecontainer__decoration {
+        display: none;
     }
 }
 
@@ -152,16 +167,24 @@
         justify-content: flex-start;
     }
 
+    /* Same width-driven box as the mobile breakpoint above. */
     .leftcontainer__imagecontainer {
+        width: 100%;
         height: fit-content;
     }
 
     .leftcontainer__imagecontainer img {
+        width: 100%;
+        height: auto;
         object-fit: contain;
     }
 
     .imagecontainer__decoration img {
         width: auto;
+    }
+
+    .heroslice[data-slice-variation='visual_left_headline_right'] .imagecontainer__decoration {
+        display: none;
     }
 }
 

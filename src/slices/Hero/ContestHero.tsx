@@ -15,11 +15,18 @@ export default function ContestHero({ slice, styles }: Props) {
     <>
       <div
         className={styles.heroslice__container}
-        style={{ backgroundColor: slice.primary.background_color || 'var(--cadenzagold)' }}
+        style={{
+          backgroundColor:
+            slice.primary.background_color || 'var(--cadenzagold)',
+        }}
       >
         <div className={styles.heroslice__leftcontainer}>
           <div className={styles.leftcontainer__imagecontainer}>
-            <PrismicNextImage field={slice.primary.visual} />{' '}
+            <PrismicNextImage
+              field={slice.primary.visual}
+              sizes="(max-width: 48rem) 92vw, (max-width: 74rem) and (orientation: portrait) 92vw, (max-width: 74rem) 45vw, 36vw"
+              priority
+            />{' '}
             <div
               className={styles.imagecontainer__decoration}
               style={{
