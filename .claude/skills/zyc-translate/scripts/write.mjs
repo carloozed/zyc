@@ -58,7 +58,10 @@ for (const p of payloads.filter((x) => x.action === 'create')) {
     await client.migrate(m, { reporter });
     console.log(`created: ${p.title}`);
   } catch (e) {
-    if (String(e.message).includes('already an existing translation')) {
+    if (
+      String(e.message).includes('already an existing translation') ||
+      String(e.message).includes('A document with this UID already exists')
+    ) {
       skipped.push(p);
       console.log(`SKIP create ${p.title}: an en-us variant already exists (unpublished draft or earlier run)`);
     } else throw e;

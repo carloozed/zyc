@@ -108,9 +108,14 @@ Translation conventions:
 - Proper nouns unchanged: Zurich Youth Classical, ZYC, The Contest,
   The Cadenza, The Crescendo, PreCollege, person names, institutions.
 - Glossary: Teilnehmer:innen → participants · Jurymitglieder → jury
-  members · Anmeldung → registration · Wettbewerb → competition (or
-  contest when referring to The Contest) · Kanton Zürich → Canton of
+  members · Anmeldung → registration · Kanton Zürich → Canton of
   Zurich · Teilnahmeberechtigung → eligibility.
+- Terminology policy (proofreader feedback, applied 2026-09-02 — see
+  `docs/proofread/feedback/feedback-vs-prismic-diff.md`): never call ZYC
+  or The Contest a "competition"/"contest" in English. Wettbewerb →
+  "The Contest" when it names the event, otherwise rephrase (the
+  proofreader used "comparison" for Vergleich-like uses, "process",
+  "event"). "Audition(s)" and "Final" are the fixed stage names.
 - Gender-inclusive German forms (`:innen`) map to neutral English
   plurals.
 - Numeric dates stay dd/mm/yyyy in BOTH locales (Carlo, 2026-08-19: the
@@ -170,9 +175,11 @@ both fix and can break names):
   flag it; authoring is a separate ask.
 - The public Document API only sees PUBLISHED docs: a doc "missing" in
   en-us may exist as an unpublished draft, and the Migration API then
-  rejects the create ("already an existing translation"). `write.mjs`
-  skips these and reports them — Carlo publishes or deletes the drafts,
-  and a re-run after publishing handles them as plain updates.
+  rejects the create ("already an existing translation" or "A document
+  with this UID already exists" — two message variants, 2026-09-02).
+  `write.mjs` skips these and reports them — Carlo publishes or deletes
+  the drafts, and a re-run after publishing handles them as plain
+  updates.
 - The Migration API validates strictly against the CURRENT model; legacy
   published content may violate it (e.g. a paragraph block in a
   heading3-only rich text on the_cadenza, 2026-08). Coerce the block to
@@ -190,3 +197,16 @@ both fix and can break names):
   string length corrupts formatting.
 - Re-runs are cheap: the inventory's stale-check makes this workflow
   the ongoing sync tool, not a one-shot.
+
+## Proofread export
+
+`scripts/build-proofread.sh` regenerates `docs/proofread/proofread-en-us.*`
+(gitignored) from published Prismic content; afterwards update the date and
+PDF page count in `docs/proofread/README.md` by hand. Content Carlo has
+declared STALE is excluded via `STALE_TYPES` / `STALE_FIELDS` at the top of
+`scripts/export-proofread.mjs` (since 2026-08-31: `teilnahme_termine`,
+`gallery`, `navbar`, `subnavigation`, `anmeldelink`, `download_bar`,
+`alertoverlay`, plus `magazin.sorting_options` / `magazin.filter_options`).
+The coverage report prints them under "stale, excluded" — remove an entry
+when Carlo says the content is current again. Note this only affects the
+proofread export; these documents still get translated/synced as normal.
