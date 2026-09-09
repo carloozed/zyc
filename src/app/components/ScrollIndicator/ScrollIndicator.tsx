@@ -17,6 +17,7 @@ const EXCLUDED_PAGES = [
   '/impressum',
   '/datenschutz',
   '/newsletter_confirmed',
+  '/newsletter',
 ];
 
 const INITIAL_DELAY = 2000; // ms after a page load or route change

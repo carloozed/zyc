@@ -53,6 +53,7 @@ When validating normal code changes, run at least `npx tsc --noEmit` and `npm ru
 - `/[lang]/ueber_zyc`: about page with foldouts.
 - `/[lang]/impressum` and `/[lang]/datenschutz`: legal text pages.
 - `/[lang]/newsletter_confirmed`: newsletter double-opt-in landing page.
+- `/[lang]/newsletter`: standalone newsletter signup page for direct links (mailings, social bios). Same `newsletter_form` document and fields as the modal; see "Newsletter Signup".
 - Any other `/[lang]/...` URL: 404 page in the locale layout.
 - `/slice-simulator`: Prismic slice simulator route.
 
@@ -137,6 +138,14 @@ Files: `src/slices/PosterSlice/`, attached to the `the_contest` slice zone.
 - Desktop: poster is `90vh` tall and centered. The download icon is absolutely positioned at `left: 100%` of the image container so it never shifts the poster's centering. The icon container needs an explicit width because the reset's `svg { max-width: 100% }` collapses it in a shrink-to-fit box.
 - Mobile and portrait tablet: poster is width-driven with a wide horizontal inset (1.5x `--padding-xl`) and a `32rem` cap, so it reads as a poster rather than a full-bleed image; the icon moves into the flow below it.
 - `PosterDownloadLink` forces a real download. For `images.prismic.io` URLs it rewrites the query to `?dl=<name>` (imgix serves the original file as an attachment; the default `auto=format,compress` query is dropped so the name matches the format). Other media go through `downloadFile()` (fetch to blob), which also powers the gallery lightbox's download button.
+
+## Newsletter Signup
+
+Files: `src/app/components/NewsletterForm/`, `src/app/[lang]/newsletter/`.
+
+- `NewsletterSignup` is the shared client form: fields, button, status line, and the POST to `/api/subscribe`, with an `onSuccess` callback. `NewsletterSignup.module.css` styles the fields for both surfaces; title, text and surrounding layout belong to the caller.
+- `FormContent` is the modal: overlay, card, image and header around `NewsletterSignup`, toggled through `NewsletterStore`. On success it closes itself after 1 s.
+- `/[lang]/newsletter` renders the same `newsletter_form` document inline, with `newsletter_title` as a deliberately small `h1` (`--subtitle-l`, the modal's heading size). It is not a Prismic-resolved route, so `src/prismicio.ts` is untouched. Labels, title, text and button come from Prismic; the status texts are hard-coded per locale in `NewsletterSignup`.
 
 ## Magazine: Current BlogContainer Grid Behavior
 

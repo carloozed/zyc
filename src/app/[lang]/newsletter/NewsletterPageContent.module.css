@@ -1,0 +1,58 @@
+.main {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--page-title) var(--padding-xl);
+}
+
+.inner {
+    width: min(100%, 34rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l);
+}
+
+/* Deliberately small: the modal's heading size, not the page-title size the
+   other subpages use. */
+.title h1 {
+    font-size: var(--subtitle-l);
+    line-height: 1.1;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l);
+    /* FadeIn tweens this to 1 */
+    opacity: 0;
+}
+
+.body p {
+    font-size: var(--text);
+}
+
+/* Intro paragraph: same proportion as the modal's header text. The status
+   line inside the form is not a direct child and keeps its full width. */
+.body > p {
+    width: 80%;
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+    .main {
+        padding: var(--page-title) var(--padding-s);
+    }
+
+    .inner {
+        align-items: center;
+        text-align: center;
+    }
+
+    .body {
+        width: 100%;
+        align-items: center;
+    }
+}

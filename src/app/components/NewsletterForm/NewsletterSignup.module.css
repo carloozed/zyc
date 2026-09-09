@@ -1,0 +1,72 @@
+/* Fields, button and status of the newsletter signup. Used inside the modal
+   card (NewsletterForm.module.css) and on the /newsletter page. */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-l);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-xs);
+    padding: var(--padding-s) 0;
+}
+
+.form label {
+    font-family: var(--title-font);
+}
+
+.form input {
+    font-family: var(--text-font);
+    padding: var(--padding-xs);
+    border: var(--border-thin);
+    border-radius: 6px;
+    width: 90%;
+}
+
+.form button {
+    background-color: var(--buttoncolor);
+    outline: none;
+    border: var(--border-thin);
+    width: 50%;
+    padding: var(--padding-xs) var(--padding-s);
+    font-family: var(--title-font);
+    border-radius: 6px;
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+    .form {
+        width: 100%;
+        align-items: center;
+    }
+
+    /* Centered flex children shrink to the input's default width;
+       match the button's width instead. */
+    .inputs {
+        width: 80%;
+        /* labels sit at the field's left edge, whatever the page centers */
+        text-align: left;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    .form input {
+        width: 100%;
+    }
+
+    .form button {
+        margin-top: var(--padding-m);
+        width: 80%;
+    }
+}

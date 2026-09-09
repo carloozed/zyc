@@ -1,55 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import styles from './NewsletterForm.module.css';
 import { NewsletterFormDocument } from '@/prismicio-types';
 import { PrismicNextImage } from '@prismicio/next';
 import { PrismicRichText } from '@prismicio/react';
 
 import useNewsletterStore from '@/stores/NewsletterStore';
-import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
+import NewsletterSignup from './NewsletterSignup';
 
 export type NewsletterProps = {
   newsletter: NewsletterFormDocument;
 };
 
+/** The newsletter signup as a fixed overlay, opened from the menu and footer
+ * links through `NewsletterStore`. The same form lives inline on /newsletter. */
 export default function FormContent({ newsletter }: NewsletterProps) {
-  const [email, setEmail] = useState('');
-  const [firstname, setFirstName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [status, setStatus] = useState('');
-  const lang = useLocaleFromPathname();
-  const en = lang === 'en-us';
-
   const { isNewsletterFormShown, setNewsletterFormShown } =
     useNewsletterStore();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus(en ? 'Sending...' : 'Wird gesendet...');
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, firstname, surname }),
-    });
-
-    const data = await res.json();
-    if (res.ok) {
-      setStatus(
-        en ? 'You have successfully signed up!' : 'Deine Anmeldung war erfolgreich!',
-      );
-      setEmail('');
-      setFirstName('');
-      setSurname('');
-      setTimeout(() => {
-        setNewsletterFormShown(false);
-      }, 1000);
-    } else {
-      setStatus(
-        data.error || (en ? 'Something went wrong.' : 'Etwas ist schiefgelaufen.'),
-      );
-    }
-  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,7 +37,7 @@ export default function FormContent({ newsletter }: NewsletterProps) {
     <div
       className={`${styles.formcontainer} ${isNewsletterFormShown ? styles.formcontainer__shown : ''}`}
     >
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.card}>
         <div
           className={styles.cross__container}
           onClick={() => setNewsletterFormShown(false)}
@@ -79,47 +47,22 @@ export default function FormContent({ newsletter }: NewsletterProps) {
             <div className={styles.line}></div>
           </div>
         </div>
-        <div className={styles.form__image}>
+        <div className={styles.image}>
           <PrismicNextImage field={newsletter.data.newsletter_image} />
         </div>
-        <div className={styles.form__content}>
-          <div className={styles.form__header}>
+        <div className={styles.content}>
+          <div className={styles.header}>
             <PrismicRichText field={newsletter.data.newsletter_title} />
             <PrismicRichText field={newsletter.data.newsletter_text} />
           </div>
-          <div className={styles.form__inputs}>
-            <div className={styles.inputGroup}>
-              <label>{newsletter.data.vorname}</label>
-              <input
-                type="text"
-                value={firstname}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label>{newsletter.data.nachname}</label>
-              <input
-                type="text"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                required
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <label>{newsletter.data.email}</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-          </div>{' '}
-          <button type="submit">{newsletter.data.button_text}</button>
-          <p>{status}</p>
+          <NewsletterSignup
+            newsletter={newsletter}
+            onSuccess={() => {
+              setTimeout(() => setNewsletterFormShown(false), 1000);
+            }}
+          />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
