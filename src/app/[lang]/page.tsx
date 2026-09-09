@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { asText } from '@prismicio/client';
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 import styles from './page.module.css';
 import LandingContent from '../components/Landing/LandingContent';
 import { notFound } from 'next/navigation';
@@ -56,6 +57,7 @@ export async function generateMetadata({
   return {
     title: asText(home.data.title),
     description: home.data.meta_description ?? '',
+    alternates: localeAlternates(lang, '/'),
     openGraph: {
       title: home.data.meta_title ?? undefined,
       images: [

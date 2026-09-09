@@ -5,6 +5,7 @@ import { asImageSrc } from '@prismicio/client';
 import styles from './page.module.css';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 
 import AboutContent from './AboutContent/AboutContent';
 
@@ -45,6 +46,7 @@ export async function generateMetadata({
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: localeAlternates(lang, '/ueber_zyc'),
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
     },

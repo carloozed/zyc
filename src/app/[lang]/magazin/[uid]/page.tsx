@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 import PostContent from './components/PostContent';
 
 type Params = { uid: string; lang: string };
@@ -35,6 +36,15 @@ export async function generateMetadata({
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: localeAlternates(
+      lang,
+      Object.fromEntries(
+        [page, ...page.alternate_languages].map((doc) => [
+          doc.lang,
+          `/magazin/${doc.uid}`,
+        ]),
+      ),
+    ),
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
     },

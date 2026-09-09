@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { asImageSrc, asText } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 
 import NewsletterPageContent from './NewsletterPageContent';
 
@@ -34,6 +35,7 @@ export async function generateMetadata({
   return {
     title: 'ZYC | Newsletter',
     description: asText(newsletter.data.newsletter_text),
+    alternates: localeAlternates(lang, '/newsletter'),
     openGraph: {
       images: [{ url: asImageSrc(newsletter.data.newsletter_image) ?? '' }],
     },

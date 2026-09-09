@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 
 import CadenzaContent from './CadenzaContent';
 
@@ -49,6 +50,7 @@ export async function generateMetadata({
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: localeAlternates(lang, '/the_cadenza'),
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
     },

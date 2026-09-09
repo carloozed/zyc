@@ -1,4 +1,5 @@
 import React from 'react';
+import { type Metadata } from 'next';
 
 export default async function Page({
   params,
@@ -31,4 +32,21 @@ export default async function Page({
       </h3>
     </div>
   );
+}
+
+/** Only reached from the confirmation email; keep it out of search results. */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}): Promise<Metadata> {
+  const { lang } = await params;
+
+  return {
+    title:
+      lang === 'en-us'
+        ? 'ZYC | Newsletter confirmed'
+        : 'ZYC | Newsletter bestätigt',
+    robots: { index: false, follow: false },
+  };
 }

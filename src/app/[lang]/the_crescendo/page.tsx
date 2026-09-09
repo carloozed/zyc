@@ -4,6 +4,7 @@ import { asImageSrc } from '@prismicio/client';
 import CreschendoContent from './CrescendoContent/CreschendoContent';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 
 export default async function Page({
   params,
@@ -48,6 +49,7 @@ export async function generateMetadata({
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: localeAlternates(lang, '/the_crescendo'),
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
     },

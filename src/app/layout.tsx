@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { PrismicPreview } from '@prismicio/next';
 import { repositoryName } from '@/prismicio';
 
@@ -19,6 +20,13 @@ import './animationglobals.css';
 
 import SignupButtonLarge from './components/SignupButtonLarge/SignupButtonLarge';
 import ScrollIndicator from './components/ScrollIndicator/ScrollIndicator';
+import { SITE_URL } from '@/helpers/seo';
+
+/** Makes every relative URL in page metadata (canonical, hreflang, Open
+ * Graph) absolute on the production domain. */
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+};
 
 export default async function RootLayout({
   children,

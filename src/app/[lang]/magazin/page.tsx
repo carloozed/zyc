@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
+import { localeAlternates } from '@/helpers/seo';
 import MagazineContent from './components/MagazineContent';
 
 export default async function Page({
@@ -43,6 +44,7 @@ export async function generateMetadata({
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,
+    alternates: localeAlternates(lang, '/magazin'),
     openGraph: {
       images: [{ url: asImageSrc(page.data.meta_image) ?? '' }],
     },
