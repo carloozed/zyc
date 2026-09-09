@@ -145,7 +145,7 @@ Files: `src/app/components/NewsletterForm/`, `src/app/[lang]/newsletter/`.
 
 - `NewsletterSignup` is the shared client form: fields, button, status line, and the POST to `/api/subscribe`, with an `onSuccess` callback. `NewsletterSignup.module.css` styles the fields for both surfaces; title, text and surrounding layout belong to the caller.
 - `FormContent` is the modal: overlay, card, image and header around `NewsletterSignup`, toggled through `NewsletterStore`. On success it closes itself after 1 s.
-- `/[lang]/newsletter` renders the same `newsletter_form` document inline, with `newsletter_title` as a deliberately small `h1` (`--subtitle-l`, the modal's heading size). It is not a Prismic-resolved route, so `src/prismicio.ts` is untouched. Labels, title, text and button come from Prismic; the status texts are hard-coded per locale in `NewsletterSignup`.
+- `/[lang]/newsletter` renders the same `newsletter_form` document inline, with `newsletter_title` as a deliberately small `h1` (`--subtitle-l`, the modal's heading size). The `newsletter_form` route in `src/prismicio.ts` gives the document a URL, so links to it and the Page Builder preview land on the page; the Next route itself is the file under `src/app/[lang]/newsletter/`. Labels, title, text and button come from Prismic; the status texts are hard-coded per locale in `NewsletterSignup`.
 
 ## Magazine: Current BlogContainer Grid Behavior
 

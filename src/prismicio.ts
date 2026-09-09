@@ -27,6 +27,7 @@ const routes: Route[] = [
   { type: 'impresssum', path: '/:lang/impressum' },
   { type: 'datenschutz', path: '/:lang/datenschutz' },
   { type: 'gallery', path: '/:lang/galerie' },
+  { type: 'newsletter_form', path: '/:lang/newsletter' },
 ];
 /**
  * Creates a Prismic client for the project's repository. The client is used to
