@@ -3285,45 +3285,110 @@ type GalleryYearSliceVariation = GalleryYearSliceDefault
 export type GalleryYearSlice = prismic.SharedSlice<"gallery_year", GalleryYearSliceVariation>;
 
 /**
- * Item in *JuryGrid → Base Grid → Primary → Members*
+ * Item in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
  */
-export interface JuryGridSliceBaseGridPrimaryMembersItem {
+export interface JuryGridSliceBaseGridPrimaryPreliminaryMembersItem {
 	/**
-	 * Photo field in *JuryGrid → Base Grid → Primary → Members*
+	 * Photo field in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.members[].photo
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[].photo
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	photo: prismic.ImageField<never>;
 	
 	/**
-	 * Name field in *JuryGrid → Base Grid → Primary → Members*
+	 * Name field in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.members[].name
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[].name
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	name: prismic.RichTextField;
 	
 	/**
-	 * Bio field in *JuryGrid → Base Grid → Primary → Members*
+	 * Role (optional) field in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Präsidentin
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[].role
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	role: prismic.KeyTextField;
+	
+	/**
+	 * Bio field in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.members[].bio
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[].bio
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	bio: prismic.RichTextField;
 	
 	/**
-	 * Jurymember Link field in *JuryGrid → Base Grid → Primary → Members*
+	 * Jurymember Link field in *JuryGrid → Base Grid → Primary → Vorspiel – jury members*
 	 *
 	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.members[].jurymember_link
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[].jurymember_link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	jurymember_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Item in *JuryGrid → Base Grid → Primary → Finale – jury members*
+ */
+export interface JuryGridSliceBaseGridPrimaryFinalMembersItem {
+	/**
+	 * Photo field in *JuryGrid → Base Grid → Primary → Finale – jury members*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[].photo
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	photo: prismic.ImageField<never>;
+	
+	/**
+	 * Name field in *JuryGrid → Base Grid → Primary → Finale – jury members*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[].name
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	name: prismic.RichTextField;
+	
+	/**
+	 * Role (optional) field in *JuryGrid → Base Grid → Primary → Finale – jury members*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Präsidentin
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[].role
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	role: prismic.KeyTextField;
+	
+	/**
+	 * Bio field in *JuryGrid → Base Grid → Primary → Finale – jury members*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[].bio
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	bio: prismic.RichTextField;
+	
+	/**
+	 * Jurymember Link field in *JuryGrid → Base Grid → Primary → Finale – jury members*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[].jurymember_link
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	jurymember_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
@@ -3409,14 +3474,44 @@ export interface JuryGridSliceBaseGridPrimary {
 	season_label: prismic.KeyTextField;
 	
 	/**
-	 * Members field in *JuryGrid → Base Grid → Primary*
+	 * Vorspiel – section title field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Vorspiel
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	preliminary_title: prismic.KeyTextField;
+	
+	/**
+	 * Vorspiel – jury members field in *JuryGrid → Base Grid → Primary*
 	 *
 	 * - **Field Type**: Group
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: jury_grid.base_grid.primary.members[]
+	 * - **API ID Path**: jury_grid.base_grid.primary.preliminary_members[]
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	members: prismic.GroupField<Simplify<JuryGridSliceBaseGridPrimaryMembersItem>>;
+	preliminary_members: prismic.GroupField<Simplify<JuryGridSliceBaseGridPrimaryPreliminaryMembersItem>>;
+	
+	/**
+	 * Finale – section title field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Finale
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	final_title: prismic.KeyTextField;
+	
+	/**
+	 * Finale – jury members field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: jury_grid.base_grid.primary.final_members[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	final_members: prismic.GroupField<Simplify<JuryGridSliceBaseGridPrimaryFinalMembersItem>>;
 	
 	/**
 	 * Link Text field in *JuryGrid → Base Grid → Primary*
@@ -3427,6 +3522,26 @@ export interface JuryGridSliceBaseGridPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	link_text: prismic.KeyTextField;
+	
+	/**
+	 * Photo placeholder text field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Foto folgt bald
+	 * - **API ID Path**: jury_grid.base_grid.primary.photo_placeholder_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	photo_placeholder_text: prismic.KeyTextField;
+	
+	/**
+	 * Bio placeholder text field in *JuryGrid → Base Grid → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Text folgt in Kürze
+	 * - **API ID Path**: jury_grid.base_grid.primary.bio_placeholder_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	bio_placeholder_text: prismic.KeyTextField;
 	
 	/**
 	 * Past Members field in *JuryGrid → Base Grid → Primary*
@@ -4194,7 +4309,8 @@ declare module "@prismicio/client" {
 			GalleryYearSliceVariation,
 			GalleryYearSliceDefault,
 			JuryGridSlice,
-			JuryGridSliceBaseGridPrimaryMembersItem,
+			JuryGridSliceBaseGridPrimaryPreliminaryMembersItem,
+			JuryGridSliceBaseGridPrimaryFinalMembersItem,
 			JuryGridSliceBaseGridPrimaryPastMembersItem,
 			JuryGridSliceBaseGridPrimary,
 			JuryGridSliceVariation,

@@ -1,15 +1,17 @@
 'use client';
 
 import React, { useMemo, useRef, useState } from 'react';
-import { asText, isFilled } from '@prismicio/client';
+import { asText, isFilled, type KeyTextField } from '@prismicio/client';
 import {
   JuryGridSlice,
+  JuryGridSliceBaseGridPrimaryFinalMembersItem,
   JuryGridSliceBaseGridPrimaryPastMembersItem,
+  JuryGridSliceBaseGridPrimaryPreliminaryMembersItem,
 } from '@/prismicio-types';
 
 import styles from './JuryContent.module.css';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-import { PrismicRichText } from '@prismicio/react';
+import { PrismicRichText, type JSXMapSerializer } from '@prismicio/react';
 import { RevealText } from '@/app/components/RevealText/RevealText';
 import Ornament from './Ornament';
 
@@ -22,9 +24,104 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Props = { slice: JuryGridSlice; lang?: string };
 
+type JuryMember =
+  | JuryGridSliceBaseGridPrimaryPreliminaryMembersItem
+  | JuryGridSliceBaseGridPrimaryFinalMembersItem;
+
 // Fallback for the "Coming soon" placeholder when the slice's own title is
 // empty; same wording in both locales.
 const COMING_SOON_FALLBACK_TITLE = '2027: Coming soon';
+
+// Fallbacks for the phase titles and the per-member placeholders when the
+// corresponding slice fields are empty. The English site calls the Vorspiel
+// "Audition" (timeline, FAQ), so the jury follows that.
+const FALLBACK_LABELS = {
+  'de-ch': {
+    preliminary: 'Vorspiel',
+    final: 'Finale',
+    photo: 'Foto folgt bald',
+    bio: 'Text folgt in Kürze',
+  },
+  'en-us': {
+    preliminary: 'Audition',
+    final: 'Final',
+    photo: 'Photo coming soon',
+    bio: 'Text coming soon',
+  },
+} as const;
+
+const textOr = (field: KeyTextField | undefined, fallback: string) =>
+  isFilled.keyText(field) ? field : fallback;
+
+// Member names are heading3 blocks in Prismic; below the phase title (h3)
+// they sit one level down.
+const nameComponents: JSXMapSerializer = {
+  heading3: ({ children }) => <h4>{children}</h4>,
+};
+
+type MemberCardProps = {
+  member: JuryMember;
+  linkText: KeyTextField;
+  photoPlaceholder: string;
+  bioPlaceholder: string;
+};
+
+function MemberCard({
+  member,
+  linkText,
+  photoPlaceholder,
+  bioPlaceholder,
+}: MemberCardProps) {
+  return (
+    <div className={`jury-fade ${styles.jury__member}`}>
+      <div>
+        <div className={styles.jury__container}>
+          <div className={styles.jury__uppercontainer}>
+            {isFilled.image(member.photo) ? (
+              <PrismicNextImage field={member.photo} />
+            ) : (
+              <div className={styles.jury__photo_placeholder}>
+                <Ornament
+                  className={styles.jury__photo_placeholder_ornament}
+                  compact
+                />
+                <span>{photoPlaceholder}</span>
+                <Ornament
+                  className={styles.jury__photo_placeholder_ornament}
+                  compact
+                />
+              </div>
+            )}
+            {isFilled.richText(member.bio) ? (
+              <PrismicRichText field={member.bio} />
+            ) : (
+              <p className={styles.jury__bio_placeholder}>{bioPlaceholder}</p>
+            )}
+          </div>
+          <div className={styles.jury__lowercontainer}>
+            <div>
+              <PrismicRichText
+                field={member.name}
+                components={nameComponents}
+              />
+              {isFilled.keyText(member.role) && (
+                <p className={styles.jury__role}>{member.role}</p>
+              )}
+            </div>
+            {isFilled.link(member.jurymember_link) && (
+              <PrismicNextLink
+                field={member.jurymember_link}
+                aria-label={`${linkText} – ${asText(member.name)}`}
+              >
+                {linkText}
+              </PrismicNextLink>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function JuryContent({ slice, lang }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,12 +143,37 @@ export default function JuryContent({ slice, lang }: Props) {
   // returns undefined for it on untouched documents — only an explicit
   // "false" hides the current jury behind the placeholder.
   const juryPublished = slice.primary.current_jury_published !== false;
-  const comingSoonTitle = isFilled.keyText(slice.primary.coming_soon_title)
-    ? slice.primary.coming_soon_title
-    : COMING_SOON_FALLBACK_TITLE;
+  const comingSoonTitle = textOr(
+    slice.primary.coming_soon_title,
+    COMING_SOON_FALLBACK_TITLE,
+  );
   const comingSoonText = isFilled.richText(slice.primary.coming_soon_text) ? (
     <PrismicRichText field={slice.primary.coming_soon_text} />
   ) : null;
+
+  const labels =
+    lang === 'en-us' ? FALLBACK_LABELS['en-us'] : FALLBACK_LABELS['de-ch'];
+  const photoPlaceholder = textOr(
+    slice.primary.photo_placeholder_text,
+    labels.photo,
+  );
+  const bioPlaceholder = textOr(slice.primary.bio_placeholder_text, labels.bio);
+
+  // The current jury always has the same two phases, Vorspiel before Finale.
+  // Members serving in both are entered in both groups in Prismic. The
+  // groups were added after the documents were published, hence the guards.
+  const phases = [
+    {
+      key: 'preliminary',
+      title: textOr(slice.primary.preliminary_title, labels.preliminary),
+      members: slice.primary.preliminary_members ?? [],
+    },
+    {
+      key: 'final',
+      title: textOr(slice.primary.final_title, labels.final),
+      members: slice.primary.final_members ?? [],
+    },
+  ];
 
   // Rows are entered flat in Prismic; the year number on each row decides
   // which edition it belongs to. Members serving several editions get one
@@ -138,24 +260,21 @@ export default function JuryContent({ slice, lang }: Props) {
           </div>
         )}
         <div className={styles.jury__members} hidden={!juryPublished}>
-          {slice.primary.members.map((item, index) => (
-            <div key={index} className={`jury-fade ${styles.jury__member}`}>
-              <div>
-                <div className={styles.jury__container}>
-                  <div className={styles.jury__uppercontainer}>
-                    <PrismicNextImage field={item.photo} />
-                    <PrismicRichText field={item.bio} />
-                  </div>
-                  <div className={styles.jury__lowercontainer}>
-                    <PrismicRichText field={item.name} />
-                    <PrismicNextLink
-                      field={item.jurymember_link}
-                      aria-label={`${slice.primary.link_text} – ${asText(item.name)}`}
-                    >
-                      {slice.primary.link_text}
-                    </PrismicNextLink>
-                  </div>
-                </div>
+          {phases.map((phase) => (
+            <div key={phase.key} className={styles.jury__phase}>
+              <h3 className={`jury-fade ${styles.jury__phase_title}`}>
+                {phase.title}
+              </h3>
+              <div className={styles.jury__phase_grid}>
+                {phase.members.map((member, index) => (
+                  <MemberCard
+                    key={`${asText(member.name)}-${index}`}
+                    member={member}
+                    linkText={slice.primary.link_text}
+                    photoPlaceholder={photoPlaceholder}
+                    bioPlaceholder={bioPlaceholder}
+                  />
+                ))}
               </div>
             </div>
           ))}

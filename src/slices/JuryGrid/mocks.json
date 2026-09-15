@@ -25,7 +25,17 @@
           }
         ]
       },
-      "members": {
+      "season_label": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "2027"
+      },
+      "preliminary_title": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Vorspiel"
+      },
+      "preliminary_members": {
         "__TYPE__": "GroupContentType",
         "value": [
           {
@@ -71,6 +81,102 @@
                 }
               ],
               [
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": "Präsidentin"
+                }
+              ],
+              [
+                "bio",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "paragraph",
+                      "content": {
+                        "text": "Eiusmod fugiat officia sit esse do qui ut incididunt amet proident nostrud ipsum qui irure. Non irure sunt esse minim minim commodo. Dolore eu id dolore nisi sint incididunt duis."
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "jurymember_link",
+                {
+                  "key": "2bcde5c2-70f1-4444-9678-2b645f8ff825",
+                  "__TYPE__": "LinkContent",
+                  "value": {
+                    "__TYPE__": "ExternalLink",
+                    "url": "https://slicemachine.dev",
+                    "text": "country"
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      "final_title": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Finale"
+      },
+      "final_members": {
+        "__TYPE__": "GroupContentType",
+        "value": [
+          {
+            "__TYPE__": "GroupItemContent",
+            "value": [
+              [
+                "photo",
+                {
+                  "origin": {
+                    "id": "main",
+                    "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                    "width": 4752,
+                    "height": 3168
+                  },
+                  "url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+                  "width": 4752,
+                  "height": 3168,
+                  "edit": {
+                    "zoom": 1,
+                    "crop": {
+                      "x": 0,
+                      "y": 0
+                    },
+                    "background": "transparent"
+                  },
+                  "alt": "name",
+                  "credits": null,
+                  "__TYPE__": "ImageContent"
+                }
+              ],
+              [
+                "name",
+                {
+                  "__TYPE__": "StructuredTextContent",
+                  "value": [
+                    {
+                      "type": "heading3",
+                      "content": {
+                        "text": "Figure"
+                      }
+                    }
+                  ]
+                }
+              ],
+              [
+                "role",
+                {
+                  "__TYPE__": "FieldContent",
+                  "type": "Text",
+                  "value": ""
+                }
+              ],
+              [
                 "bio",
                 {
                   "__TYPE__": "StructuredTextContent",
@@ -104,6 +210,16 @@
         "__TYPE__": "FieldContent",
         "value": "dangerous",
         "type": "Text"
+      },
+      "photo_placeholder_text": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Foto folgt bald"
+      },
+      "bio_placeholder_text": {
+        "__TYPE__": "FieldContent",
+        "type": "Text",
+        "value": "Text folgt in Kürze"
       },
       "current_jury_published": {
         "__TYPE__": "BooleanContent",

@@ -34,7 +34,14 @@
           },
           "type": "Text"
         },
-        "members": {
+        "preliminary_title": {
+          "config": {
+            "label": "Vorspiel – section title",
+            "placeholder": "Vorspiel"
+          },
+          "type": "Text"
+        },
+        "preliminary_members": {
           "config": {
             "fields": {
               "photo": {
@@ -50,6 +57,13 @@
                 },
                 "type": "StructuredText"
               },
+              "role": {
+                "config": {
+                  "label": "Role (optional)",
+                  "placeholder": "Präsidentin"
+                },
+                "type": "Text"
+              },
               "bio": {
                 "config": {
                   "label": "Bio",
@@ -61,15 +75,62 @@
                 "config": {
                   "allowTargetBlank": true,
                   "allowText": true,
-                  "label": "Jurymember Link",
-                  "placeholder": "",
-                  "repeat": false,
-                  "select": null
+                  "label": "Jurymember Link"
                 },
                 "type": "Link"
               }
             },
-            "label": "Members"
+            "label": "Vorspiel – jury members"
+          },
+          "type": "Group"
+        },
+        "final_title": {
+          "config": {
+            "label": "Finale – section title",
+            "placeholder": "Finale"
+          },
+          "type": "Text"
+        },
+        "final_members": {
+          "config": {
+            "fields": {
+              "photo": {
+                "config": {
+                  "label": "Photo"
+                },
+                "type": "Image"
+              },
+              "name": {
+                "config": {
+                  "label": "Name",
+                  "single": "heading3"
+                },
+                "type": "StructuredText"
+              },
+              "role": {
+                "config": {
+                  "label": "Role (optional)",
+                  "placeholder": "Präsidentin"
+                },
+                "type": "Text"
+              },
+              "bio": {
+                "config": {
+                  "label": "Bio",
+                  "multi": "paragraph,strong,em,hyperlink"
+                },
+                "type": "StructuredText"
+              },
+              "jurymember_link": {
+                "config": {
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "label": "Jurymember Link"
+                },
+                "type": "Link"
+              }
+            },
+            "label": "Finale – jury members"
           },
           "type": "Group"
         },
@@ -77,6 +138,20 @@
           "config": {
             "label": "Link Text",
             "placeholder": ""
+          },
+          "type": "Text"
+        },
+        "photo_placeholder_text": {
+          "config": {
+            "label": "Photo placeholder text",
+            "placeholder": "Foto folgt bald"
+          },
+          "type": "Text"
+        },
+        "bio_placeholder_text": {
+          "config": {
+            "label": "Bio placeholder text",
+            "placeholder": "Text folgt in Kürze"
           },
           "type": "Text"
         },

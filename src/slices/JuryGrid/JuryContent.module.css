@@ -37,14 +37,38 @@
     font-weight: 150;
 }
 
+/* One block per phase (Vorspiel, Finale), each with a title and its own
+   card grid. The toggle hides all of it while the jury is pending. */
 .jury__members {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: var(--padding-xl);
 }
 
 .jury__members[hidden] {
     display: none;
+}
+
+.jury__phase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+}
+
+/* Same size as the past-edition toggles, one step below the season label.
+   Nested for the same reason as .jury__season. */
+.jury__phase .jury__phase_title {
+    font-size: var(--subtitle-s);
+}
+
+/* 1fr auto rows make every card in a phase as tall as the tallest one
+   (cards differ by an optional role line and website link); the card
+   internals stretch to fill, see .jury__container. */
+.jury__phase_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: var(--padding-xl);
 }
 
 /* "Coming soon" placeholder: the site's circle-and-line ornament above and
@@ -95,15 +119,63 @@
     max-width: 40rem;
 }
 
+/* The grey frame is stretched by the grid; the white card fills it and
+   pins name/link to the bottom so they line up across the row. */
+.jury__member > div {
+    height: 100%;
+}
+
 .jury__container {
     background-color: var(--white);
     padding: var(--padding-s) var(--padding-m);
     border-radius: var(--radius-s);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--padding-s);
 }
 
-.jury__container img {
+.jury__container img,
+.jury__photo_placeholder {
     height: calc(6rem + 6vw);
     width: auto;
+}
+
+/* Stand-in for a missing photo: the site's ornament framing the "Foto folgt
+   bald" note, in the footprint of a real square portrait. */
+.jury__photo_placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--padding-m);
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    padding: var(--padding-s);
+    background-color: var(--lightgrey);
+    color: var(--black);
+    text-align: center;
+}
+
+.jury__photo_placeholder_ornament {
+    display: block;
+    width: 70%;
+    height: auto;
+}
+
+/* Same face and weight as the site's headings. */
+.jury__photo_placeholder span {
+    font-family: var(--title-font);
+    font-weight: 150;
+    font-size: var(--text-large);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+
+/* Bio stand-in shares the bio paragraph rules; italic marks it as pending. */
+.jury__uppercontainer .jury__bio_placeholder {
+    font-style: italic;
 }
 
 .jury__container a {
@@ -112,9 +184,18 @@
     text-decoration: underline;
 }
 
-.jury__member h3 {
+/* Names render as h4 under the phase title but keep the h3 look. */
+.jury__member h4 {
+    font-family: var(--title-font);
+    font-weight: 150;
     font-size: var(--subtitle-s);
     padding-top: var(--padding-m)
+}
+
+/* Optional role under the name ("Präsidentin"). */
+.jury__member .jury__role {
+    font-size: var(--text-s);
+    margin: var(--padding-xs) 0 0;
 }
 
 .jury__uppercontainer {
@@ -286,9 +367,12 @@
     }
 
     .jury__members {
-        display: grid;
+        gap: var(--padding-l);
+    }
+
+    .jury__phase_grid {
         grid-template-columns: 1fr;
-        gap: var(--padding-xl);
+        grid-auto-rows: auto;
     }
 
 
@@ -301,13 +385,14 @@
         gap: var(--padding-s);
     }
 
-    .jury__member h3 {
+    .jury__member h4 {
         font-size: var(--subtitle-s);
         padding-top: var(--padding-m)
     }
 
 
-    .jury__container img {
+    .jury__container img,
+    .jury__photo_placeholder {
         height: calc(5rem + 5vw);
         width: auto;
         object-fit: contain;
@@ -327,6 +412,15 @@
 
     .jury__container a {
         font-size: var(--text);
+    }
+
+    /* --text-s is ~7px on phones; follow the bio paragraph up to --text. */
+    .jury__member .jury__role {
+        font-size: var(--text);
+    }
+
+    .jury__photo_placeholder {
+        gap: var(--padding-s);
     }
 
 
@@ -386,7 +480,7 @@
         padding: 0 var(--padding-s);
     }
 
-    .jury__members {
+    .jury__phase_grid {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -428,6 +522,10 @@
         max-height: 10rem;
         width: auto;
         aspect-ratio: 1/1;
+    }
+
+    .jury__photo_placeholder {
+        height: 10rem;
     }
 
 
