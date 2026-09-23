@@ -77,7 +77,7 @@ When validating normal code changes, run at least `npx tsc --noEmit` and `npm ru
 - Prismic routes are resolved in `src/prismicio.ts`; update that list when adding a new Prismic-backed page type.
 - Production Prismic fetches use `force-cache` tagged with `prismic`; `/api/revalidate` calls `revalidateTag('prismic')`.
 - Development Prismic fetches use `revalidate: 5`.
-- Magazine post galleries (`PostContent.tsx`) filter the `gallery` group with `isFilled.image`. When no item has an image, neither the gallery nor the lightbox renders; the lightbox receives the filtered list, not the whole document.
+- Magazine post galleries (`PostContent.tsx`) turn the `gallery` group into image or video items with `toGalleryMedia()` (`components/galleryMedia.ts`). A row is a video when its `video` link is filled (a Cloudinary URL, or an MP4 uploaded to the Prismic media library); its image then becomes the poster, and a Cloudinary video without an image gets the `.jpg` still Cloudinary renders. Rows with neither are dropped, and with none left neither the gallery nor the lightbox renders. The lightbox uses yet-another-react-lightbox's Video plugin and autoplays with controls. Prefer Cloudinary: uploaded videos count against the Prismic bandwidth allowance.
 
 ## Prismic CLI Workflow
 

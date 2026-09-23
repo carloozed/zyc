@@ -90,6 +90,54 @@
     flex-shrink: 0;
 }
 
+.videoThumb {
+    position: relative;
+    height: 100%;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.videoThumb video {
+    display: block;
+    height: 100%;
+    width: auto;
+    border-radius: 6px;
+    border: var(--border-thin);
+    pointer-events: none;
+}
+
+/* Circle with a play triangle, built from CSS like the rest of the decor. */
+.playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(2.5rem + 1vw);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: var(--border-thin);
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.2s ease;
+}
+
+.playIcon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    border-width: 0.5em 0 0.5em 0.85em;
+    border-color: transparent transparent transparent var(--black);
+}
+
+.videoThumb:hover .playIcon {
+    background-color: white;
+}
+
 .arrow {
     background: none;
     border: none;

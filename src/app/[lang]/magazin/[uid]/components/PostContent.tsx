@@ -6,8 +6,8 @@ import { InstagramIconDocument, MagazinpostDocument } from '@/prismicio-types';
 import styles from './PostContent.module.css';
 import { JSXMapSerializer, PrismicRichText } from '@prismicio/react';
 import { PrismicNextImage, PrismicNextLink } from '@prismicio/next';
-import { isFilled } from '@prismicio/client';
 import PostLightbox from './PostLightbox/PostLightbox';
+import { toGalleryMedia } from './galleryMedia';
 
 import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
@@ -39,12 +39,10 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
     (slice) => slice.slice_type === 'split_visual_headline',
   );
 
-  // Only keep group items that actually carry an image; an empty group or
+  // Only keep group items that carry an image or a video; an empty group or
   // placeholder rows would otherwise render a blank, fixed-height gallery.
-  const galleryImages = page.data.gallery.filter((item) =>
-    isFilled.image(item.image),
-  );
-  const hasGallery = galleryImages.length > 0;
+  const galleryMedia = toGalleryMedia(page.data.gallery);
+  const hasGallery = galleryMedia.length > 0;
 
   const handleImageClick = (index: number) => {
     setActiveIndex(index);
@@ -54,11 +52,10 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
   const scrollToIndex = (index: number) => {
     if (galleryRef.current) {
       const gallery = galleryRef.current;
-      const images = gallery.querySelectorAll('img');
-      if (images[index]) {
-        const image = images[index] as HTMLElement;
+      const item = gallery.children[index] as HTMLElement | undefined;
+      if (item) {
         const scrollLeft =
-          image.offsetLeft - gallery.offsetWidth / 2 + image.offsetWidth / 2;
+          item.offsetLeft - gallery.offsetWidth / 2 + item.offsetWidth / 2;
         gallery.scrollTo({ left: scrollLeft, behavior: 'smooth' });
       }
     }
@@ -69,13 +66,13 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
     const newIndex =
       currentPreviewIndex > 0
         ? currentPreviewIndex - 1
-        : galleryImages.length - 1;
+        : galleryMedia.length - 1;
     scrollToIndex(newIndex);
   };
 
   const handleNext = () => {
     const newIndex =
-      currentPreviewIndex < galleryImages.length - 1
+      currentPreviewIndex < galleryMedia.length - 1
         ? currentPreviewIndex + 1
         : 0;
     scrollToIndex(newIndex);
@@ -121,7 +118,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
         {hasGallery && (
           <div className={styles.galleryWrapper}>
             <div className={styles.galleryRow}>
-              {galleryImages.length > galleryThreshhold && (
+              {galleryMedia.length > galleryThreshhold && (
                 <button
                   className={styles.arrow}
                   onClick={handlePrev}
@@ -132,16 +129,38 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
               )}
 
               <div className={styles.gallery} ref={galleryRef}>
-                {galleryImages.map((item, index) => (
-                  <PrismicNextImage
-                    field={item.image}
-                    key={index}
-                    onClick={() => handleImageClick(index)}
-                  />
-                ))}
+                {galleryMedia.map((item, index) =>
+                  item.kind === 'image' ? (
+                    <PrismicNextImage
+                      field={item.image}
+                      key={index}
+                      onClick={() => handleImageClick(index)}
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      key={index}
+                      className={styles.videoThumb}
+                      onClick={() => handleImageClick(index)}
+                      aria-label={item.alt || 'Video abspielen'}
+                    >
+                      {/* With a poster nothing is fetched until the lightbox
+                          plays it; without one the first frame is shown. */}
+                      <video
+                        src={item.poster ? item.src : `${item.src}#t=0.1`}
+                        poster={item.poster}
+                        preload={item.poster ? 'none' : 'metadata'}
+                        muted
+                        playsInline
+                        tabIndex={-1}
+                      />
+                      <span className={styles.playIcon} aria-hidden="true" />
+                    </button>
+                  ),
+                )}
               </div>
 
-              {galleryImages.length > galleryThreshhold && (
+              {galleryMedia.length > galleryThreshhold && (
                 <button
                   className={styles.arrow}
                   onClick={handleNext}
@@ -152,9 +171,9 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
               )}
             </div>
 
-            {galleryImages.length > galleryThreshhold && (
+            {galleryMedia.length > galleryThreshhold && (
               <div className={styles.dots}>
-                {galleryImages.map((_, index) => (
+                {galleryMedia.map((_, index) => (
                   <button
                     key={index}
                     className={`${styles.dot} ${index === currentPreviewIndex ? styles.dotActive : ''}`}
@@ -169,7 +188,7 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
 
         {hasGallery && lightboxOpen && (
           <PostLightbox
-            images={galleryImages}
+            media={galleryMedia}
             lightboxOpen={lightboxOpen}
             setLightboxOpen={setLightboxOpen}
             initialIndex={activeIndex}

@@ -117,6 +117,12 @@
                 "thumbnails": []
               },
               "type": "Image"
+            },
+            "video": {
+              "config": {
+                "label": "Video (Cloudinary-URL oder MP4-Upload, ersetzt das Bild)"
+              },
+              "type": "Link"
             }
           },
           "label": "Instagram Gallery",

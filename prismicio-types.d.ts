@@ -1847,6 +1847,16 @@ export interface MagazinpostDocumentDataGalleryItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	image: prismic.ImageField<never>;
+	
+	/**
+	 * Video (Cloudinary-URL oder MP4-Upload, ersetzt das Bild) field in *Magazinpost → Instagram Gallery*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: magazinpost.gallery[].video
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	video: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 type MagazinpostDocumentDataSlicesSlice = SplitVisualHeadlineSlice
