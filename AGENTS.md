@@ -123,6 +123,16 @@ Branching: every task gets its own branch off `main` (for example `feat/gallery-
 - Global view transitions are configured in `src/app/globals.css`.
 - Lenis is provided by `src/contexts/LenisContext.tsx`.
 
+## Menu Subnavigation
+
+File: `src/app/components/Navigation/Menu/Menu.tsx`, `subnavLinksFor()`.
+
+- The 2nd navbar item shows the Prismic `subnavigation` document (The Contest, The Cadenza, The Crescendo). This is still tied to the item's position.
+- The Galerie item is found by its URL (`/galerie`) and gets one link per gallery view, built in code with `galleryViewPath()` and labelled with `GALLERY_MEDIA_LABELS` from `src/helpers/gallery.ts`, the same labels as the tabs on the page. Nothing for it lives in Prismic.
+- When the visitor is already on the gallery, those links pass `replace` to `TransitionLink`, so no same-pathname history entry is created (see "Gallery Grid Behavior" for why that would freeze the page on back).
+- The subnavigation is always visible; the `subnavbar__open` class toggled on hover has no CSS.
+- The mobile menu just fits a 375x667 screen with both subnavigations. Another sub-item there needs a scrollable menu.
+
 ## Scroll Indicator
 
 File: `src/app/components/ScrollIndicator/ScrollIndicator.tsx`, mounted once in the root layout.

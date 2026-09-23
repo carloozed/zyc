@@ -12,6 +12,7 @@ export type TransitionLinkProps = {
   tabIndex?: number;
   hasText?: boolean;
   isDisabled?: boolean;
+  replace?: boolean;
 } & (
   | { field: LinkField | null; document?: never; href?: never }
   | { field?: never; document: PrismicDocument | null; href?: never }
@@ -53,6 +54,7 @@ export function TransitionLink({
   tabIndex,
   hasText = true,
   isDisabled = false,
+  replace,
 }: TransitionLinkProps) {
   const url = getLinkUrl({ field, document: doc, href });
 
@@ -67,6 +69,7 @@ export function TransitionLink({
       className={className}
       onClick={onClick}
       tabIndex={tabIndex}
+      replace={replace}
       style={{
         visibility: isDisabled ? 'hidden' : 'visible',
       }}

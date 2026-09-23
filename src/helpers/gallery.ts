@@ -1,5 +1,7 @@
 import { Content } from '@prismicio/client';
 
+import { Locale, localePath } from '@/helpers/seo';
+
 export type GalleryImage = Content.GalleryYearSliceDefaultPrimaryGalleryItem;
 
 export type GalleryMediaType = 'photos' | 'videos';
@@ -10,6 +12,22 @@ export const GALLERY_VIEW_PARAM = 'ansicht';
 
 export function mediaTypeFromParam(value: string | null): GalleryMediaType {
   return value === 'videos' ? 'videos' : 'photos';
+}
+
+export const GALLERY_MEDIA_TYPES: GalleryMediaType[] = ['photos', 'videos'];
+
+export const GALLERY_MEDIA_LABELS: Record<
+  GalleryMediaType,
+  Record<Locale, string>
+> = {
+  photos: { 'de-ch': 'Fotos', 'en-us': 'Photos' },
+  videos: { 'de-ch': 'Videos', 'en-us': 'Videos' },
+};
+
+/** Gallery URL for one view in one locale, e.g. `/en-us/galerie?ansicht=videos`. */
+export function galleryViewPath(locale: string, mediaType: GalleryMediaType) {
+  const path = localePath(locale, '/galerie');
+  return mediaType === 'videos' ? `${path}?${GALLERY_VIEW_PARAM}=videos` : path;
 }
 
 export type GallerySlide = {

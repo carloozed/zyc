@@ -3,7 +3,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './Menu.module.css';
 import { PrismicNextImage } from '@prismicio/next';
-import { LinkField } from '@prismicio/client';
+import { asLink, LinkField } from '@prismicio/client';
 
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -12,6 +12,12 @@ import { useGSAP } from '@gsap/react';
 import { usePathname } from 'next/navigation';
 import { TransitionLink } from '../../TransitionLink/TransitionLink';
 import stripLocale from '@/helpers/stripLocale';
+import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
+import {
+  GALLERY_MEDIA_LABELS,
+  GALLERY_MEDIA_TYPES,
+  galleryViewPath,
+} from '@/helpers/gallery';
 
 import { useMobile } from '@/contexts/MobileContext';
 
@@ -20,6 +26,12 @@ import ContactLink from '../../ContactLink/ContactLink';
 
 // Register the plugin
 gsap.registerPlugin(SplitText, useGSAP);
+
+// A sub-item is either a Prismic link (the Contest subnavigation document)
+// or a link built in code (the gallery views).
+type SubnavLink =
+  | { field: LinkField; href?: never; label?: never }
+  | { field?: never; href: string; label: string };
 
 export default function Menu({ ...menuProps }) {
   const { navbar, isOpen, setIsOpen, lowNavigation, termineIsVisible } =
@@ -38,6 +50,26 @@ export default function Menu({ ...menuProps }) {
   const subnavigation = menuProps.subnavigation.data;
 
   const pathname = usePathname();
+  const locale = useLocaleFromPathname();
+  const isOnGallery = stripLocale(pathname) === '/galerie';
+
+  // The 2nd navbar item carries the Contest subnavigation from Prismic; the
+  // Galerie item, found by its URL so its position can change, gets one link
+  // per gallery view.
+  const subnavLinksFor = (item: LinkField, index: number): SubnavLink[] => {
+    if (index === 1) {
+      return subnavigation.subnavigation_items.map(
+        ({ link }: { link: LinkField }) => ({ field: link }),
+      );
+    }
+    if (stripLocale(asLink(item) ?? '') === '/galerie') {
+      return GALLERY_MEDIA_TYPES.map((mediaType) => ({
+        href: galleryViewPath(locale, mediaType),
+        label: GALLERY_MEDIA_LABELS[mediaType][locale],
+      }));
+    }
+    return [];
+  };
 
   const indicatorPosition = () => {
     switch (stripLocale(pathname)) {
@@ -73,8 +105,10 @@ export default function Menu({ ...menuProps }) {
     }
 
     if (isOpen) {
-      gsap.set(subnavLinksRef.current, { y: '140%' });
-      gsap.to(subnavLinksRef.current, {
+      // Sparse: refs are keyed per navbar item, see the subnav render below.
+      const subnavLinks = subnavLinksRef.current.filter(Boolean);
+      gsap.set(subnavLinks, { y: '140%' });
+      gsap.to(subnavLinks, {
         y: '10%',
         duration: 1,
         ease: 'power3.out',
@@ -176,27 +210,42 @@ export default function Menu({ ...menuProps }) {
                         <ul
                           className={`${styles.subnavbar__subnavbar} ${subbarIsOpen ? styles.subnavbar__open : ''}`}
                         >
-                          {index === 1 &&
-                            subnavigation.subnavigation_items.map(
-                              (item: { link: LinkField }, index: number) => (
-                                <li
-                                  key={index}
-                                  className={styles.subnavbar__item}
-                                  onClick={() => setSubbarIsOpen(false)}
+                          {subnavLinksFor(item.item, index).map(
+                            (subnavLink, subIndex) => (
+                              <li
+                                key={subIndex}
+                                className={styles.subnavbar__item}
+                                onClick={() => setSubbarIsOpen(false)}
+                              >
+                                <div
+                                  ref={(el) => {
+                                    subnavLinksRef.current[
+                                      index * 10 + subIndex
+                                    ] = el;
+                                  }}
+                                  style={{ overflow: 'hidden' }}
                                 >
-                                  <div
-                                    ref={(el) => {
-                                      subnavLinksRef.current[index] = el;
-                                    }}
-                                    style={{ overflow: 'hidden' }}
-                                  >
-                                    <span>
-                                      <TransitionLink field={item.link} />
-                                    </span>
-                                  </div>
-                                </li>
-                              ),
-                            )}
+                                  <span>
+                                    {subnavLink.field ? (
+                                      <TransitionLink
+                                        field={subnavLink.field}
+                                      />
+                                    ) : (
+                                      // On the gallery already: replace, so
+                                      // back doesn't step between two query
+                                      // strings (see GalleryMediaTabs).
+                                      <TransitionLink
+                                        href={subnavLink.href}
+                                        replace={isOnGallery}
+                                      >
+                                        {subnavLink.label}
+                                      </TransitionLink>
+                                    )}
+                                  </span>
+                                </div>
+                              </li>
+                            ),
+                          )}
                         </ul>
                       </div>
                     </li>

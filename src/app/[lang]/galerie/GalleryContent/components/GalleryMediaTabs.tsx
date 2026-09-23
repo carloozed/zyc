@@ -6,20 +6,12 @@ import { useSearchParams } from 'next/navigation';
 import styles from './GalleryMediaTabs.module.css';
 
 import {
+  GALLERY_MEDIA_LABELS,
+  GALLERY_MEDIA_TYPES,
   GALLERY_VIEW_PARAM,
   GalleryMediaType,
   mediaTypeFromParam,
 } from '@/helpers/gallery';
-
-const MEDIA_TYPE_TABS: GalleryMediaType[] = ['photos', 'videos'];
-
-const MEDIA_TYPE_LABELS: Record<
-  GalleryMediaType,
-  { 'de-ch': string; 'en-us': string }
-> = {
-  photos: { 'de-ch': 'Fotos', 'en-us': 'Photos' },
-  videos: { 'de-ch': 'Videos', 'en-us': 'Videos' },
-};
 
 type GalleryMediaTabsProps = {
   lang: string;
@@ -50,7 +42,7 @@ export default function GalleryMediaTabs({ lang }: GalleryMediaTabsProps) {
 
   return (
     <div className={styles.tabs}>
-      {MEDIA_TYPE_TABS.map((tab) => (
+      {GALLERY_MEDIA_TYPES.map((tab) => (
         <button
           key={tab}
           type="button"
@@ -58,7 +50,7 @@ export default function GalleryMediaTabs({ lang }: GalleryMediaTabsProps) {
           onClick={() => selectMediaType(tab)}
           className={`${styles.tab} ${mediaType === tab ? styles.active : ''}`}
         >
-          {MEDIA_TYPE_LABELS[tab][labelLang]}
+          {GALLERY_MEDIA_LABELS[tab][labelLang]}
         </button>
       ))}
     </div>
