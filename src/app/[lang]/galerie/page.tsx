@@ -1,5 +1,6 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { connection } from 'next/server';
 import { asImageSrc } from '@prismicio/client';
 
 import { createClient } from '@/prismicio';
@@ -12,6 +13,9 @@ export default async function Page({
 }: {
   params: Promise<{ lang: string }>;
 }) {
+  // Render per request: GalleryContent reads the `ansicht` query param, and a
+  // static page would only know it after hydration and flash the photos first.
+  await connection();
   const { lang } = await params;
   const client = createClient();
   const page = await client

@@ -1,13 +1,19 @@
 'use client';
 
 import React from 'react';
+import { useSearchParams } from 'next/navigation';
 import { GalleryDocument } from '@/prismicio-types';
 
 import styles from './GalleryFilterContainer.module.css';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
 
-import useGalleryStore, { GalleryMediaType } from '@/stores/GalleryStore';
+import useGalleryStore from '@/stores/GalleryStore';
+import {
+  GALLERY_VIEW_PARAM,
+  GalleryMediaType,
+  mediaTypeFromParam,
+} from '@/helpers/gallery';
 
 type GalleryFilterContainerProps = {
   page: GalleryDocument;
@@ -29,8 +35,26 @@ export default function GalleryFilterContainer({
   const filter = useGalleryStore((state) => state.filter);
   const setFilter = useGalleryStore((state) => state.setFilter);
   const setGalleryYear = useGalleryStore((state) => state.setGalleryYear);
-  const mediaType = useGalleryStore((state) => state.mediaType);
-  const setMediaType = useGalleryStore((state) => state.setMediaType);
+  const searchParams = useSearchParams();
+  const mediaType = mediaTypeFromParam(searchParams.get(GALLERY_VIEW_PARAM));
+
+  // replaceState instead of router.replace: Next syncs useSearchParams with
+  // it, so the view switches in place without a server round trip. Not
+  // pushState: next-view-transitions starts a view transition on popstate and
+  // only ends it on a pathname change, so a back step between two query
+  // strings froze the page until the browser timed the transition out.
+  const selectMediaType = (tab: GalleryMediaType) => {
+    if (tab === mediaType) return;
+    const params = new URLSearchParams(searchParams.toString());
+    if (tab === 'videos') params.set(GALLERY_VIEW_PARAM, tab);
+    else params.delete(GALLERY_VIEW_PARAM);
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      '',
+      query ? `?${query}` : window.location.pathname,
+    );
+  };
 
   const filterOptions = page.data.filter_options;
   const labelLang = page.lang === 'en-us' ? 'en-us' : 'de-ch';
@@ -65,7 +89,7 @@ export default function GalleryFilterContainer({
           <button
             key={tab}
             type="button"
-            onClick={() => setMediaType(tab)}
+            onClick={() => selectMediaType(tab)}
             className={`${styles.filterbutton} ${mediaType === tab ? styles.active : ''}`}
           >
             {MEDIA_TYPE_LABELS[tab][labelLang]}

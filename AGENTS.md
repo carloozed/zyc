@@ -26,6 +26,8 @@ This file is the working guide for coding agents in this repository. Keep it cur
 
 When validating normal code changes, run at least `npx tsc --noEmit` and `npm run lint`. There is no CI; the hosting platform builds from the push to `main`.
 
+Branching: every task gets its own branch off `main` (for example `feat/gallery-media-navigation`). Commit there, let Carlo review, then merge into `main`; the merge is what deploys. Don't commit task work directly on `main`.
+
 ## Important Paths
 
 - `src/app/layout.tsx`: root layout. Wraps the app in `ViewTransitions`, `Providers`, global Lenis provider, signup button, scroll indicator, Simple Analytics script, and `PrismicPreview`. Its `<html lang>` is hard-coded to `en`.
@@ -50,7 +52,7 @@ When validating normal code changes, run at least `npx tsc --noEmit` and `npm ru
 - `/[lang]/termine`: dates/schedule page with signup link.
 - `/[lang]/magazin`: magazine index with filters, sorting, focus posts, and grouped month sections.
 - `/[lang]/magazin/[uid]`: magazine post page with post body, gallery, and lightbox.
-- `/[lang]/galerie`: gallery page using Prismic slices and `GalleryYear`.
+- `/[lang]/galerie`: gallery page using Prismic slices: `GalleryYear` (photos) and `VideosYear` (Vimeo). The view is in the URL: bare `/galerie` shows photos, `/galerie?ansicht=videos` shows videos. See "Gallery Grid Behavior".
 - `/[lang]/ueber_zyc`: about page with foldouts.
 - `/[lang]/impressum` and `/[lang]/datenschutz`: legal text pages.
 - `/[lang]/newsletter_confirmed`: newsletter double-opt-in landing page. `noindex`, not in the sitemap.
@@ -90,9 +92,7 @@ When validating normal code changes, run at least `npx tsc --noEmit` and `npm ru
 
 - `FilterStore.ts`: magazine tag filter.
 - `SortingStore.ts`: magazine sort order, default `neu`.
-- `GalleryFilterStore.ts`: gallery event filter.
-- `GalleryYearStore.ts`: gallery year filter, default `alle`.
-- `GalleryAnimationStore.ts`: prevents gallery intro animation from replaying.
+- `GalleryStore.ts`: gallery event filter, year filter (default `alle`) and the flag that keeps the intro animation from replaying. The photos/videos view is in the URL, not here.
 - `ContactFormStore.ts` and `NewsletterStore.ts`: modal visibility.
 
 ## Styling Conventions
@@ -191,6 +191,8 @@ Important caution:
 - The magazine grid is normal CSS Grid row flow. Do not add a masonry/column reordering workaround here unless the CSS layout changes.
 
 ## Gallery Grid Behavior
+
+- Photos vs videos: `mediaTypeFromParam()` and `GALLERY_VIEW_PARAM` in `src/helpers/gallery.ts` read the `ansicht` query param through `useSearchParams`; it is not in the store. The toggle writes it with `window.history.replaceState`, which Next syncs into `useSearchParams` without a server request. Do not switch to `pushState`: `next-view-transitions` starts a view transition on every popstate and only finishes it on a pathname change, so a back step between two query strings freezes the page until the browser times out. `galerie/page.tsx` calls `connection()` so the requested view is server-rendered instead of flashing photos first.
 
 - `src/slices/GalleryYear/index.module.css` uses a CSS Grid wrapper with explicit column stacks for a masonry-like look.
 - Desktop uses 4 rendered columns; tablet uses 3 rendered columns; mobile uses 1 column.

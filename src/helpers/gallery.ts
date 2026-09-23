@@ -2,6 +2,16 @@ import { Content } from '@prismicio/client';
 
 export type GalleryImage = Content.GalleryYearSliceDefaultPrimaryGalleryItem;
 
+export type GalleryMediaType = 'photos' | 'videos';
+
+// The gallery view lives in the URL (`/galerie?ansicht=videos`) so the menu
+// and outside links can open the videos directly. Photos is the bare URL.
+export const GALLERY_VIEW_PARAM = 'ansicht';
+
+export function mediaTypeFromParam(value: string | null): GalleryMediaType {
+  return value === 'videos' ? 'videos' : 'photos';
+}
+
 export type GallerySlide = {
   src: string;
   alt: string;

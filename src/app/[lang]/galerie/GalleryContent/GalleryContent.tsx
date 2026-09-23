@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState, useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import styles from './GalleryContent.module.css';
 import {
@@ -16,10 +17,12 @@ import { components } from '@/slices';
 
 import useGalleryStore from '@/stores/GalleryStore';
 import {
+  GALLERY_VIEW_PARAM,
   GalleryPageContext,
   GallerySlide,
   getVisibleGalleryImages,
   getVisibleYearSlices,
+  mediaTypeFromParam,
 } from '@/helpers/gallery';
 
 import GalleryLightbox from './components/GalleryLightbox';
@@ -39,7 +42,9 @@ export default function GalleryContent({
 }: GalleryContentProps) {
   const filter = useGalleryStore((state) => state.filter);
   const galleryYear = useGalleryStore((state) => state.galleryYear);
-  const mediaType = useGalleryStore((state) => state.mediaType);
+  const mediaType = mediaTypeFromParam(
+    useSearchParams().get(GALLERY_VIEW_PARAM),
+  );
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
