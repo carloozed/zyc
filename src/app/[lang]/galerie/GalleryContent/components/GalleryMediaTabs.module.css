@@ -15,9 +15,9 @@
 }
 
 .tab {
-    padding: var(--padding-s) var(--padding-l);
+    padding: var(--padding-xs) var(--padding-m);
     font-family: var(--title-font);
-    font-size: var(--subtitle-s);
+    font-size: var(--text-large);
     color: var(--black);
     background-color: white;
     border: none;
@@ -45,13 +45,7 @@
         margin-bottom: 0;
     }
 
-    .tabs {
-        width: 100%;
-    }
-
     .tab {
-        flex: 1;
-        padding: var(--padding-xs) var(--padding-s);
-        font-size: var(--text-large);
+        font-size: var(--text-sm);
     }
 }

@@ -65,7 +65,7 @@
 
     .titleContainer {
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
     }
 
     .number {
