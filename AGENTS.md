@@ -121,7 +121,7 @@ Branching: every task gets its own branch off `main` (for example `feat/gallery-
 - Scroll-triggered content fades use `gsap.from` with `autoAlpha: 0`, `siteEase` from `src/helpers/siteEase.ts`, and `scrollTrigger: { start: 'top 80%' }`. The poster slice adds `y: 24` and `duration: 1.5` on purpose so it stands out from the text.
 - Many page components use fixed intro delays around 1-3 seconds. Be careful when changing mount order because staggered delays are visually coordinated.
 - Global view transitions are configured in `src/app/globals.css`.
-- Lenis is provided by `src/contexts/LenisContext.tsx`.
+- Lenis is provided by `src/contexts/LenisContext.tsx`. Its `ScrollToTopOnRouteChange` jumps to the top with `lenis.scrollTo(0, { immediate: true, force: true })` on every pathname change; without it, a link clicked while Lenis is still easing out a scroll carried that animation onto the new page (a magazine post opened mid-scroll landed at its bottom). Query-only changes such as `?ansicht=videos` keep the position. Back navigation does not restore the previous position either: returning to `/magazin` from a post lands far down the page, not where the visitor left.
 
 ## Menu Subnavigation
 
