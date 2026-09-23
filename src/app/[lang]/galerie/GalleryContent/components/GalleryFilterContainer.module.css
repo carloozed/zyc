@@ -6,12 +6,6 @@
     transform: translateY(150%)
 }
 
-.mediatypetabs {
-    display: flex;
-    gap: var(--padding-xs);
-    align-items: center;
-}
-
 .filterbar {
     margin-left: auto;
 }

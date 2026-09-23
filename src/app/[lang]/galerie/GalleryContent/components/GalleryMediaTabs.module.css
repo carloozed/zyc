@@ -1,0 +1,57 @@
+/* Clips the tabs while FadeIn slides them up from below. The bottom margin
+   lifts the box onto the title's baseline: RevealText's inline-block word
+   spans leave about half an em of empty space under the page title. */
+.clip {
+    overflow: hidden;
+    margin-bottom: calc(var(--page-title) * 0.48);
+}
+
+.tabs {
+    display: flex;
+    border: var(--border-thin);
+    border-radius: 6px;
+    overflow: hidden;
+    transform: translateY(110%);
+}
+
+.tab {
+    padding: var(--padding-s) var(--padding-l);
+    font-family: var(--title-font);
+    font-size: var(--subtitle-s);
+    color: var(--black);
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tab + .tab {
+    border-left: var(--border-thin);
+}
+
+.tab:hover {
+    background-color: var(--lightgrey);
+}
+
+.tab.active {
+    background-color: var(--contestblue);
+    cursor: default;
+}
+
+/* Mobile */
+/* Up to 768px */
+@media (max-width: 48rem) {
+    .clip {
+        margin-bottom: 0;
+    }
+
+    .tabs {
+        width: 100%;
+    }
+
+    .tab {
+        flex: 1;
+        padding: var(--padding-xs) var(--padding-s);
+        font-size: var(--text-large);
+    }
+}

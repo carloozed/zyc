@@ -28,6 +28,7 @@ import {
 import GalleryLightbox from './components/GalleryLightbox';
 import CopyrightNotice from './components/CopyrightNotice';
 import GalleryFilterContainer from './components/GalleryFilterContainer';
+import GalleryMediaTabs from './components/GalleryMediaTabs';
 
 const SLICES_PER_PAGE = 1;
 
@@ -137,6 +138,7 @@ export default function GalleryContent({
             delay={1.0}
             as={'h1'}
           />
+          <GalleryMediaTabs lang={page.lang} />
         </div>
       </div>
       <div className={styles.lowercontainer}>
