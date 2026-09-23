@@ -40,10 +40,10 @@ export default function GalleryFilterContainer({
         delay: 1,
       }}
     >
-      {/* Tabs and edition share a row so the sticky bar stays as tall as
-          before, also on mobile where the bar stacks its rows. */}
+      {/* Edition first, as in the magazine's filter bar. Edition and tabs
+          share a row so the sticky bar keeps its height, also on mobile
+          where the bar stacks its rows. */}
       <div className={styles.viewrow}>
-        <GalleryMediaTabs lang={page.lang} />
         <div className={styles.sortcontainer}>
           <h4>{'Edition:'}</h4>
           <select onChange={(e) => setGalleryYear(e.target.value)}>
@@ -57,6 +57,7 @@ export default function GalleryFilterContainer({
             ))}
           </select>
         </div>
+        <GalleryMediaTabs lang={page.lang} />
       </div>
       {isFilterVisible && (
         <div className={styles.filterbar}>
