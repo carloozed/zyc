@@ -8,9 +8,6 @@
 
 .titleContainer {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: var(--padding-m);
     overflow: hidden;
 }
 
@@ -64,8 +61,8 @@
     }
 
     .titleContainer {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        overflow: hidden;
     }
 
     .number {

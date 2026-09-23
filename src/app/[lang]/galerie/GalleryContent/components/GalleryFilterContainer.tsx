@@ -7,6 +7,7 @@ import { GalleryDocument } from '@/prismicio-types';
 import styles from './GalleryFilterContainer.module.css';
 
 import FadeIn from '@/app/components/FadeIn/FadeIn';
+import GalleryMediaTabs from './GalleryMediaTabs';
 
 import useGalleryStore from '@/stores/GalleryStore';
 import { GALLERY_VIEW_PARAM, mediaTypeFromParam } from '@/helpers/gallery';
@@ -39,18 +40,23 @@ export default function GalleryFilterContainer({
         delay: 1,
       }}
     >
-      <div className={styles.sortcontainer}>
-        <h4>{'Edition:'}</h4>
-        <select onChange={(e) => setGalleryYear(e.target.value)}>
-          {page.data.sorting_options.map((item, index) => (
-            <option
-              key={`${index}-${item.item}`}
-              value={item.selectkey as string}
-            >
-              {item.item}
-            </option>
-          ))}
-        </select>
+      {/* Tabs and edition share a row so the sticky bar stays as tall as
+          before, also on mobile where the bar stacks its rows. */}
+      <div className={styles.viewrow}>
+        <GalleryMediaTabs lang={page.lang} />
+        <div className={styles.sortcontainer}>
+          <h4>{'Edition:'}</h4>
+          <select onChange={(e) => setGalleryYear(e.target.value)}>
+            {page.data.sorting_options.map((item, index) => (
+              <option
+                key={`${index}-${item.item}`}
+                value={item.selectkey as string}
+              >
+                {item.item}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       {isFilterVisible && (
         <div className={styles.filterbar}>

@@ -6,6 +6,12 @@
     transform: translateY(150%)
 }
 
+.viewrow {
+    display: flex;
+    align-items: center;
+    gap: var(--padding-l);
+}
+
 .filterbar {
     margin-left: auto;
 }

@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 
 import styles from './GalleryMediaTabs.module.css';
 
-import FadeIn from '@/app/components/FadeIn/FadeIn';
 import {
   GALLERY_VIEW_PARAM,
   GalleryMediaType,
@@ -50,20 +49,18 @@ export default function GalleryMediaTabs({ lang }: GalleryMediaTabsProps) {
   };
 
   return (
-    <div className={styles.clip}>
-      <FadeIn className={styles.tabs} vars={{ duration: 1.2, delay: 1 }}>
-        {MEDIA_TYPE_TABS.map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            aria-pressed={mediaType === tab}
-            onClick={() => selectMediaType(tab)}
-            className={`${styles.tab} ${mediaType === tab ? styles.active : ''}`}
-          >
-            {MEDIA_TYPE_LABELS[tab][labelLang]}
-          </button>
-        ))}
-      </FadeIn>
+    <div className={styles.tabs}>
+      {MEDIA_TYPE_TABS.map((tab) => (
+        <button
+          key={tab}
+          type="button"
+          aria-pressed={mediaType === tab}
+          onClick={() => selectMediaType(tab)}
+          className={`${styles.tab} ${mediaType === tab ? styles.active : ''}`}
+        >
+          {MEDIA_TYPE_LABELS[tab][labelLang]}
+        </button>
+      ))}
     </div>
   );
 }
