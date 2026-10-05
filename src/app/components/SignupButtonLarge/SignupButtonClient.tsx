@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
 import stripLocale from '@/helpers/stripLocale';
+import isSignupOpen from '@/helpers/signupWindow';
 
 type Locale = 'de-ch' | 'en-us';
 
@@ -16,6 +17,7 @@ type Props = {
 
 export default function SignupButtonClient({ styles, signuplinks }: Props) {
   const [buttonIsVisible, setButtonIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const lang = useLocaleFromPathname();
   const signuplink =
@@ -26,43 +28,14 @@ export default function SignupButtonClient({ styles, signuplinks }: Props) {
     setButtonIsVisible(!hiddenOn.includes(stripLocale(pathname)));
   }, [pathname]);
 
-  if (!signuplink) return null;
+  // Decided after mount: the server's HTML can be older than today (magazine
+  // posts are prerendered), so rendering it there would mismatch on hydration.
+  useEffect(() => {
+    setIsOpen(!!signuplink && isSignupOpen(signuplink));
+  }, [signuplink]);
+
+  if (!signuplink || !isOpen) return null;
   const data = signuplink.data;
-
-  const shouldShowBasedOnDates = () => {
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    const buttonShowDate =
-      data.show_button_date?.split('T')[0] || data.show_button_date;
-    const buttonHideDate =
-      data.hide_button_date?.split('T')[0] || data.hide_button_date;
-
-    if (!buttonShowDate) return false;
-
-    const isPastShowDate = currentDate >= buttonShowDate;
-
-    if (!buttonHideDate) return isPastShowDate;
-
-    const isBeforeHideDate = currentDate < buttonHideDate;
-
-    return isPastShowDate && isBeforeHideDate;
-  };
-
-  const shouldRenderButton = () => {
-    if (data.hide_button_boolean === true) {
-      return false;
-    }
-
-    if (data.hide_button_boolean === false) {
-      return shouldShowBasedOnDates();
-    }
-
-    return shouldShowBasedOnDates();
-  };
-
-  if (!shouldRenderButton()) {
-    return null;
-  }
 
   return (
     <div
