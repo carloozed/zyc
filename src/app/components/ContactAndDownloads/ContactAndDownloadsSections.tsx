@@ -17,6 +17,7 @@ import NewsletterLink from '@/app/components/NewsletterLink/NewsletterLink';
 import ContactLink from '@/app/components/ContactLink/ContactLink';
 import { useMobile } from '@/contexts/MobileContext';
 import { siteEase } from '@/helpers/siteEase';
+import isSignupOpen from '@/helpers/signupWindow';
 
 import styles from './ContactAndDownloadsSections.module.css';
 
@@ -95,15 +96,6 @@ function Block({
   );
 }
 
-/** True while today is inside the sign-up button's show/hide window. */
-function isWithinSignupWindow(signuplink: AnmeldelinkDocument) {
-  const today = new Date().toISOString().split('T')[0];
-  const show = signuplink.data.show_button_date?.split('T')[0];
-  const hide = signuplink.data.hide_button_date?.split('T')[0];
-  if (!show) return false;
-  return today >= show && (!hide || today < hide);
-}
-
 /**
  * Renders any combination of the shared "Contact & Downloads" document's
  * blocks. Used by the ContactAndDownload slice, and reusable anywhere a
@@ -170,9 +162,7 @@ export default function ContactAndDownloadsSections({
   };
 
   const showSignup =
-    signuplink &&
-    isWithinSignupWindow(signuplink) &&
-    (isMobile || isTabletPortrait);
+    signuplink && isSignupOpen(signuplink) && (isMobile || isTabletPortrait);
 
   return (
     <section
@@ -183,9 +173,7 @@ export default function ContactAndDownloadsSections({
       {sections.map((section) => blocks[section])}
       {showSignup && (
         <div className={styles.signuplink}>
-          <PrismicNextLink field={signuplink.data.anmeldelink}>
-            Anmelden
-          </PrismicNextLink>
+          <PrismicNextLink field={signuplink.data.anmeldelink} />
         </div>
       )}
     </section>

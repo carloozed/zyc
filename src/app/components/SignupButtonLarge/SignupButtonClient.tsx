@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { AnmeldelinkDocument } from '@/prismicio-types';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { PrismicNextLink } from '@prismicio/next';
 import useLocaleFromPathname from '@/helpers/useLocaleFromPathname';
 import stripLocale from '@/helpers/stripLocale';
+import isSignupOpen from '@/helpers/signupWindow';
 
 type Locale = 'de-ch' | 'en-us';
 
@@ -14,63 +15,43 @@ type Props = {
   signuplinks: Partial<Record<Locale, AnmeldelinkDocument>>;
 };
 
+/** Routes where the button stays parked off-screen. */
+const HIDDEN_ON = ['/', '/the_cadenza', '/the_crescendo', '/ueber_zyc'];
+
 export default function SignupButtonClient({ styles, signuplinks }: Props) {
-  const [buttonIsVisible, setButtonIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isShown, setIsShown] = useState(false);
   const pathname = usePathname();
   const lang = useLocaleFromPathname();
   const signuplink =
     signuplinks[lang] ?? signuplinks['de-ch'] ?? signuplinks['en-us'];
 
+  // Decided after mount: the server's HTML can be older than today (magazine
+  // posts are prerendered), so rendering it there would mismatch on hydration.
   useEffect(() => {
-    const hiddenOn = ['/', '/the_cadenza', '/the_crescendo', '/ueber_zyc'];
-    setButtonIsVisible(!hiddenOn.includes(stripLocale(pathname)));
-  }, [pathname]);
+    setIsOpen(!!signuplink && isSignupOpen(signuplink));
+  }, [signuplink]);
 
-  if (!signuplink) return null;
-  const data = signuplink.data;
+  // The button mounts off-screen; sliding it in two frames later lets the
+  // browser paint that start position, so the transform transition runs.
+  useEffect(() => {
+    if (!isOpen) return;
+    const show = !HIDDEN_ON.includes(stripLocale(pathname));
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => setIsShown(show));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [isOpen, pathname]);
 
-  const shouldShowBasedOnDates = () => {
-    const currentDate = new Date().toISOString().split('T')[0];
-
-    const buttonShowDate =
-      data.show_button_date?.split('T')[0] || data.show_button_date;
-    const buttonHideDate =
-      data.hide_button_date?.split('T')[0] || data.hide_button_date;
-
-    if (!buttonShowDate) return false;
-
-    const isPastShowDate = currentDate >= buttonShowDate;
-
-    if (!buttonHideDate) return isPastShowDate;
-
-    const isBeforeHideDate = currentDate < buttonHideDate;
-
-    return isPastShowDate && isBeforeHideDate;
-  };
-
-  const shouldRenderButton = () => {
-    if (data.hide_button_boolean === true) {
-      return false;
-    }
-
-    if (data.hide_button_boolean === false) {
-      return shouldShowBasedOnDates();
-    }
-
-    return shouldShowBasedOnDates();
-  };
-
-  if (!shouldRenderButton()) {
-    return null;
-  }
+  if (!signuplink || !isOpen) return null;
 
   return (
     <div
-      className={`${styles.signup__button} ${buttonIsVisible ? styles.signup__button__home : ''}`}
+      className={`${styles.signup__button} ${isShown ? styles.signup__button__shown : ''}`}
+      // Parked off-screen it must not be reachable by keyboard either.
+      inert={!isShown}
     >
-      <Link href={data.link_url ?? '#'} target="_blank">
-        {data.anmeldelink.text}
-      </Link>
+      <PrismicNextLink field={signuplink.data.anmeldelink} />
     </div>
   );
 }
