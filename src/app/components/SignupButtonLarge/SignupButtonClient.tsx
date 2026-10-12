@@ -15,8 +15,13 @@ type Props = {
   signuplinks: Partial<Record<Locale, AnmeldelinkDocument>>;
 };
 
-/** Routes where the button stays parked off-screen. */
-const HIDDEN_ON = ['/', '/the_cadenza', '/the_crescendo', '/ueber_zyc'];
+/** Routes where the button is visible. */
+const SHOWN_ON = [
+  '/the_contest',
+  '/the_cadenza',
+  '/the_crescendo',
+  '/ueber_zyc',
+];
 
 export default function SignupButtonClient({ styles, signuplinks }: Props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +41,7 @@ export default function SignupButtonClient({ styles, signuplinks }: Props) {
   // browser paint that start position, so the transform transition runs.
   useEffect(() => {
     if (!isOpen) return;
-    const show = !HIDDEN_ON.includes(stripLocale(pathname));
+    const show = SHOWN_ON.includes(stripLocale(pathname));
     let frame = requestAnimationFrame(() => {
       frame = requestAnimationFrame(() => setIsShown(show));
     });
