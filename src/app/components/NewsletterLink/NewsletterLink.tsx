@@ -29,20 +29,20 @@ export default function NewsletterLink({
     : isFooter
       ? 'var(--padding-s)'
       : 'var(--padding-m)';
-  const text =
-    label ?? (hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter');
+  const text = label ?? (hasAnmeldung ? 'Anmeldung Newsletter' : 'Newsletter');
 
   return (
-    <span
+    <button
+      type="button"
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
         borderRight: showBorder ? '0.5px solid black' : 'none',
         paddingRight,
       }}
       onClick={() => setNewsletterFormShown(!isNewsletterFormShown)}
-      className="cursor-pointer"
+      className="text-button"
     >
       {text}
-    </span>
+    </button>
   );
 }

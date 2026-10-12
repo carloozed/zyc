@@ -132,6 +132,8 @@ File: `src/app/components/Navigation/Menu/Menu.tsx`, `subnavLinksFor()`.
 - When the visitor is already on the gallery, those links pass `replace` to `TransitionLink`, so no same-pathname history entry is created (see "Gallery Grid Behavior" for why that would freeze the page on back).
 - The subnavigation is always visible; the `subnavbar__open` class toggled on hover has no CSS.
 - The mobile menu just fits a 375x667 screen with both subnavigations. Another sub-item there needs a scrollable menu.
+- Keyboard: `Navigation/Content.tsx` owns the open state. While the menu is open it sets `inert` on every element outside the header (walking up from the header to `body`), so Tab stays in the header and menu, and Escape closes the menu and focuses the hamburger. The hamburger is a `<button>` with a localized `aria-label` and `aria-expanded`; the menu is `<nav id="site-menu">`.
+- `ContactLink` and `NewsletterLink` render `<button class="text-button">` (defined in `globals.css`), not spans. CSS that styles them by element must name `button`, as the footer, menu and contact-section rules do.
 
 ## Scroll Indicator
 
@@ -142,6 +144,14 @@ File: `src/app/components/ScrollIndicator/ScrollIndicator.tsx`, mounted once in 
 - `EXCLUDED_PAGES` lists routes that never show it, compared through `stripLocale` so both locales match.
 - Any page can opt out by rendering an element with `data-hide-scroll-indicator`; the 404 page does.
 - The container stays mounted with `visibility: hidden`; the timeline's `onReverseComplete` hides it again.
+
+## Sign-up Button
+
+Files: `src/app/components/SignupButtonLarge/`, mounted once in the root layout.
+
+- Shown only on `SHOWN_ON` routes (`/the_contest`, `/the_cadenza`, `/the_crescendo`, `/ueber_zyc`, compared through `stripLocale`) and only inside the Prismic `anmeldelink` window (`src/helpers/signupWindow.ts`, Swiss calendar days).
+- Desktop and landscape tablet: a round button fixed at the right edge, sliding in from the right.
+- Phones and portrait tablets (`COMPACT_QUERY`, mirrored in the CSS): a wide pill fixed at the bottom centre, sliding up from below. On portrait tablets it sits above the header's timeline bar. It steps aside while the page's own sign-up link (same href) or the footer is on screen; that check runs on scroll and looks the elements up each time, because parts of the page render client-side after mount.
 
 ## Poster Slice
 

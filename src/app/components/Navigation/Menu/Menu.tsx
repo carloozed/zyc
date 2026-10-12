@@ -158,7 +158,7 @@ export default function Menu({ ...menuProps }) {
   return (
     <>
       {isOpen && (
-        <div className={styles.menu__container}>
+        <nav id="site-menu" className={styles.menu__container}>
           <div className={styles.menu__leftcontainer}>
             <div className={styles.menu__navlistcontainer}>
               <ul className={styles.menu__navlist}>
@@ -297,7 +297,7 @@ export default function Menu({ ...menuProps }) {
               </div>
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </>
   );

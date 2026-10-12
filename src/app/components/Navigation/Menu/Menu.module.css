@@ -205,7 +205,8 @@
 }
 
 .lowernavbar__item a,
-.lowernavbar__item span {
+.lowernavbar__item span,
+.lowernavbar__item button {
     font-family: var(--subtitle-font);
     pointer-events: all;
     cursor: pointer;
@@ -373,7 +374,8 @@
     }
 
     .lowernavbar__item a,
-    .lowernavbar__item span {
+    .lowernavbar__item span,
+    .lowernavbar__item button {
         font-family: var(--subtitle-font);
         pointer-events: all;
         padding: 0;
@@ -539,7 +541,8 @@
     }
 
     .lowernavbar__item a,
-    .lowernavbar__item span {
+    .lowernavbar__item span,
+    .lowernavbar__item button {
         font-family: var(--subtitle-font);
         pointer-events: all;
         padding: 0;
