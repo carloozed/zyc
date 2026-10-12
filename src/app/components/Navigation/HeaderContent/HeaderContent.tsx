@@ -23,7 +23,7 @@ export default function HeaderContent({ ...headerContentProps }) {
 
   const { navbar, downloadbar } = headerContentProps;
   const home = navbar.data.navigation_items[0].item;
-  const { isOpen, setIsOpen, logo } = headerContentProps;
+  const { isOpen, setIsOpen, logo, toggleRef } = headerContentProps;
 
   useEffect(() => {
     setIsHome(stripLocale(pathname) === '/');
@@ -58,6 +58,7 @@ export default function HeaderContent({ ...headerContentProps }) {
   const HamburgerProps = {
     isOpen: isOpen,
     setIsOpen: setIsOpen,
+    toggleRef: toggleRef,
   };
 
   return (

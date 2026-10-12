@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import HeaderContent from './HeaderContent/HeaderContent';
 import Menu from './Menu/Menu';
 
@@ -46,6 +46,44 @@ export default function Content({
   termineIsVisible,
 }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // While the menu is open it covers the page: everything outside the header
+  // becomes inert so Tab can't wander into hidden content, and Escape closes
+  // the menu and hands focus back to the toggle.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const inerted: HTMLElement[] = [];
+    let node: HTMLElement | null = containerRef.current;
+    while (node && node !== document.body) {
+      const parent: HTMLElement | null = node.parentElement;
+      for (const sibling of Array.from(parent?.children ?? [])) {
+        if (
+          sibling !== node &&
+          sibling instanceof HTMLElement &&
+          !sibling.inert
+        ) {
+          sibling.inert = true;
+          inerted.push(sibling);
+        }
+      }
+      node = parent;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setIsOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      inerted.forEach((element) => (element.inert = false));
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isOpen]);
 
   const menuProps = {
     navbar: navbar,
@@ -66,6 +104,7 @@ export default function Content({
     isOpen: isOpen,
     setIsOpen: setIsOpen,
     navbar: navbar,
+    toggleRef: toggleRef,
   };
 
   const timelineProps = {
@@ -75,6 +114,7 @@ export default function Content({
   return (
     <>
       <div
+        ref={containerRef}
         className={`${styles.header__maincontent} ${isOpen && styles.header__open}`}
       >
         <div className={styles.header__highercontent}>

@@ -28,16 +28,17 @@ export default function ContactLink({
       : 'var(--padding-m)';
 
   return (
-    <span
+    <button
+      type="button"
       style={{
         textDecoration: hasUnderscore ? 'underline' : 'none',
         borderRight: showBorder ? '0.5px solid black' : 'none',
         paddingRight,
       }}
       onClick={() => setContactFormShown(!isContactFormShown)}
-      className="cursor-pointer"
+      className="text-button"
     >
       {buttonText}
-    </span>
+    </button>
   );
 }

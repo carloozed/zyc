@@ -119,6 +119,17 @@ body {
     background-color: var(--contestblue);
 }
 
+/* A button that reads as inline text, e.g. links that open a modal. */
+.text-button {
+    all: unset;
+    cursor: pointer;
+}
+
+.text-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 
 h1,
 h2,
