@@ -145,6 +145,14 @@ File: `src/app/components/ScrollIndicator/ScrollIndicator.tsx`, mounted once in 
 - Any page can opt out by rendering an element with `data-hide-scroll-indicator`; the 404 page does.
 - The container stays mounted with `visibility: hidden`; the timeline's `onReverseComplete` hides it again.
 
+## Sign-up Button
+
+Files: `src/app/components/SignupButtonLarge/`, mounted once in the root layout.
+
+- Shown only on `SHOWN_ON` routes (`/the_contest`, `/the_cadenza`, `/the_crescendo`, `/ueber_zyc`, compared through `stripLocale`) and only inside the Prismic `anmeldelink` window (`src/helpers/signupWindow.ts`, Swiss calendar days).
+- Desktop and landscape tablet: a round button fixed at the right edge, sliding in from the right.
+- Phones and portrait tablets (`COMPACT_QUERY`, mirrored in the CSS): a wide pill fixed at the bottom centre, sliding up from below. On portrait tablets it sits above the header's timeline bar. It steps aside while the page's own sign-up link (same href) or the footer is on screen; that check runs on scroll and looks the elements up each time, because parts of the page render client-side after mount.
+
 ## Poster Slice
 
 Files: `src/slices/PosterSlice/`, attached to the `the_contest` slice zone.

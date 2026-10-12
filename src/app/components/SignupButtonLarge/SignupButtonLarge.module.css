@@ -36,18 +36,6 @@
 }
 
 
-/* Small Mobile */
-/* Up to 480px */
-@media (max-width: 48rem) {
-    .signup__button {
-        display: none;
-
-    }
-
-}
-
-
-
 /* Tablet */
 /* 768px to 1184px */
 @media (min-width: 48rem) and (max-width: 74rem) {
@@ -56,12 +44,37 @@
     }
 }
 
-/* Tablet - Portrait Orientation */
-/* 768px to 1184px in portrait mode */
+/* Mobile and portrait tablet: a pill fixed at the bottom centre that slides
+   up from below. Keep this query in sync with COMPACT_QUERY in
+   SignupButtonClient.tsx. */
+@media (max-width: 48rem),
+(min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
+    .signup__button {
+        top: auto;
+        right: auto;
+        left: 50%;
+        bottom: calc(var(--padding-s) + env(safe-area-inset-bottom));
+        width: min(20rem, calc(100% - 2 * var(--padding-m)));
+        height: 3.25rem;
+        border-radius: 999px;
+        transform: translateX(-50%) translateY(calc(100% + 3rem));
+        transition: transform 1.2s var(--bezier);
+    }
+
+    .signup__button__shown {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    .signup__button a {
+        font-size: 1.15rem;
+    }
+}
+
+/* Portrait tablet: the header's timeline bar sits at the bottom here (it is
+   hidden on phones), so the pill rides above it. */
 @media (min-width: 48rem) and (max-width: 74rem) and (orientation: portrait) {
     .signup__button {
-        display: none;
-
+        bottom: calc(var(--header-height) + var(--padding-xs) + var(--padding-s));
     }
 }
 
