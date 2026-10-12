@@ -3,8 +3,8 @@
     top: 50%;
     right: calc(0.5rem + 1vw);
     background-color: var(--buttoncolor);
-    height: calc(2.5rem + 3.5vw);
-    width: calc(2.5rem + 3.5vw);
+    height: calc(3rem + 4.5vw);
+    width: calc(3rem + 4.5vw);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@
     align-items: center;
     justify-content: center;
     font-family: var(--title-font);
-    font-size: var(--subtitle-xs)
+    font-size: calc(1rem + 0.28vw);
 }
 
 
@@ -52,7 +52,7 @@
 /* 768px to 1184px */
 @media (min-width: 48rem) and (max-width: 74rem) {
     .signup__button a {
-        font-size: calc(0.5rem + 0.5vw);
+        font-size: calc(0.6rem + 0.66vw);
     }
 }
 
