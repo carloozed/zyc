@@ -202,6 +202,25 @@
     width: auto;
 }
 
+.backlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: var(--page-title);
+    padding: 0.5em 1em;
+    border: var(--border-thin);
+    border-radius: 6px;
+    /* bare anchors don't inherit the site's text font */
+    font-family: var(--text-font);
+    font-size: var(--text-s);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.backlink:hover {
+    background-color: var(--black);
+    color: white;
+}
+
 
 
 /* Mobile */
@@ -230,6 +249,13 @@
 
         max-width: 100%;
 
+    }
+
+    /* --text-s is too small for a comfortable tap target on phones */
+    .backlink {
+        margin-top: var(--padding-l);
+        font-size: var(--text);
+        min-height: 2.5rem;
     }
 
     .gallery::-webkit-scrollbar {
