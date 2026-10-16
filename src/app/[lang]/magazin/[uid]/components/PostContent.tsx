@@ -102,6 +102,14 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
       {heroslice && <SliceZone slices={heroslice} components={components} />}
 
       <div className={styles.contentcontainer}>
+        <TransitionLink
+          href={localePath(page.lang, '/magazin')}
+          className={styles.backlink}
+        >
+          <span aria-hidden="true">←</span>
+          {BACK_LABEL[page.lang] ?? BACK_LABEL['de-ch']}
+        </TransitionLink>
+
         <div className={styles.description}>
           <PrismicRichText
             field={page.data.post_description}
@@ -201,14 +209,6 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
             initialIndex={activeIndex}
           />
         )}
-
-        <TransitionLink
-          href={localePath(page.lang, '/magazin')}
-          className={styles.backlink}
-        >
-          <span aria-hidden="true">←</span>
-          {BACK_LABEL[page.lang] ?? BACK_LABEL['de-ch']}
-        </TransitionLink>
       </div>
     </div>
   );

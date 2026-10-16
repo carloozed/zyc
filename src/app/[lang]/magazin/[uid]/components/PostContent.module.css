@@ -206,19 +206,19 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
-    margin-top: var(--page-title);
+    margin-bottom: var(--padding-l);
     padding: 0.5em 1em;
     border: var(--border-thin);
     border-radius: 6px;
     /* bare anchors don't inherit the site's text font */
     font-family: var(--text-font);
     font-size: var(--text-s);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease;
 }
 
+/* same hover as the other bordered buttons (gallery tabs, download bar) */
 .backlink:hover {
-    background-color: var(--black);
-    color: white;
+    background-color: var(--lightgrey);
 }
 
 
@@ -253,7 +253,7 @@
 
     /* --text-s is too small for a comfortable tap target on phones */
     .backlink {
-        margin-top: var(--padding-l);
+        margin-bottom: var(--padding-m);
         font-size: var(--text);
         min-height: 2.5rem;
     }
