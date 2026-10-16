@@ -202,23 +202,27 @@
     width: auto;
 }
 
+/* Plain text link with an arrow, like the footer links. */
 .backlink {
     display: inline-flex;
     align-items: center;
     gap: 0.5em;
     margin-bottom: var(--padding-l);
-    padding: 0.5em 1em;
-    border: var(--border-thin);
-    border-radius: 6px;
+    color: var(--black);
     /* bare anchors don't inherit the site's text font */
     font-family: var(--text-font);
-    font-size: var(--text-s);
-    transition: background-color 0.2s ease;
+    font-size: var(--text-sm);
+    line-height: 1.4;
 }
 
-/* same hover as the other bordered buttons (gallery tabs, download bar) */
-.backlink:hover {
-    background-color: var(--lightgrey);
+@media (hover: hover) and (pointer: fine) {
+    .backlink {
+        transition: opacity var(--animationtime-xfast) ease-out;
+    }
+
+    .backlink:hover {
+        opacity: 0.7;
+    }
 }
 
 
@@ -251,11 +255,8 @@
 
     }
 
-    /* --text-s is too small for a comfortable tap target on phones */
     .backlink {
         margin-bottom: var(--padding-m);
-        font-size: var(--text);
-        min-height: 2.5rem;
     }
 
     .gallery::-webkit-scrollbar {
