@@ -13,6 +13,13 @@ import { SliceZone } from '@prismicio/react';
 import { components } from '@/slices';
 
 import formatIsoToDate from '@/helpers/formatIsoToDate';
+import { localePath } from '@/helpers/seo';
+import { TransitionLink } from '@/app/components/TransitionLink/TransitionLink';
+
+const BACK_LABEL: Record<string, string> = {
+  'de-ch': 'Zurück zum Magazin',
+  'en-us': 'Back to the magazine',
+};
 
 type PostContentProps = {
   page: MagazinpostDocument;
@@ -95,6 +102,14 @@ export default function PostContent({ page, instaIcon }: PostContentProps) {
       {heroslice && <SliceZone slices={heroslice} components={components} />}
 
       <div className={styles.contentcontainer}>
+        <TransitionLink
+          href={localePath(page.lang, '/magazin')}
+          className={styles.backlink}
+        >
+          <span aria-hidden="true">←</span>
+          {BACK_LABEL[page.lang] ?? BACK_LABEL['de-ch']}
+        </TransitionLink>
+
         <div className={styles.description}>
           <PrismicRichText
             field={page.data.post_description}
